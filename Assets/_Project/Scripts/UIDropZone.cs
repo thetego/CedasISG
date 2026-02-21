@@ -2,10 +2,16 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using System.Collections.Generic;
 
 namespace SafetyTraining
 {
-	public class UIDropZone : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+	/// <summary>
+	/// Drop zone - ekipman slotu veya tool drop alanı
+	/// SequenceManager ile çalışır
+	/// </summary>
+	public class UIDropZone : MonoBehaviour,
+			IPointerEnterHandler, IPointerExitHandler
 	{
 		[Header("━━━ REFERANSLAR ━━━")]
 		public Image background;
@@ -25,105 +31,135 @@ namespace SafetyTraining
 		[Header("━━━ DEBUG ━━━")]
 		public bool debugMode = false;
 
-		// ─── Runtime ───
+		// Runtime
 		private string _actionID;
-
-		// Equipment slot
+		private string _acceptedItemID;
 		private EquipmentSlotType _slotType;
 		private bool _isEquipmentSlot;
-
-		// Tool drop - ToolData referansı
-		private ToolData _acceptedToolData;
-
 		private bool _filled;
 		private RectTransform _rectTransform;
+
+		// Multi-equipment support
+		private HashSet<string> _acceptedEquipmentIDs = new HashSet<string>();
+		private int _maxCapacity = 1; // Varsayılan: 1 item
+
+		// Tool drop mode
+		private ToolDropMode _toolDropMode = ToolDropMode.DragAndDrop;
+
+		// Multiple drop zones tracking
+		private string _uniqueID; // Her drop zone için benzersiz
+		private string _onDropEventID; // Drop edildiğinde tetiklenecek event
 
 		private void Awake()
 		{
 			_rectTransform = GetComponent<RectTransform>();
 		}
 
-		// ─── Setup: Equipment Slot ───
-		public void SetupAsEquipmentSlot(string actionID, EquipmentSlotType slotType, string labelText, Vector2? customSize = null)
+		public void SetupAsToolDrop(string actionID, string acceptedItemID, string labelText, Vector2? customSize = null, ToolDropMode dropMode = ToolDropMode.DragAndDrop, string uniqueID = null, string onDropEventID = null)
 		{
 			if (string.IsNullOrEmpty(actionID))
 			{
-				Debug.LogError("[UIDropZone] SetupAsEquipmentSlot: actionID boş!");
+				Debug.LogError("[UIDropZone] SetupAsToolDrop called with empty actionID!");
+				return;
+			}
+
+			_actionID = actionID;
+			_acceptedItemID = acceptedItemID;
+			_isEquipmentSlot = false;
+			_filled = false;
+			_toolDropMode = dropMode;
+			_uniqueID = uniqueID ?? acceptedItemID; // uniqueID yoksa itemID kullan
+			_onDropEventID = onDropEventID; // Event ID
+
+			if (label != null) label.text = labelText;
+			if (background != null) background.color = normalColor;
+
+			if (customSize.HasValue)
+				zoneSize = customSize.Value;
+
+			if (autoResizeOnSetup)
+				ApplySize();
+
+			gameObject.SetActive(false);
+
+			if (debugMode)
+				Debug.Log($"[UIDropZone] Setup as tool drop: {actionID} (accepts: {acceptedItemID})");
+		}
+
+		public void SetupAsEquipmentSlot(string actionID, EquipmentSlotType slotType, string labelText, Vector2? customSize = null, int maxCapacity = 999)
+		{
+			if (string.IsNullOrEmpty(actionID))
+			{
+				Debug.LogError("[UIDropZone] SetupAsEquipmentSlot called with empty actionID!");
 				return;
 			}
 
 			_actionID = actionID;
 			_slotType = slotType;
 			_isEquipmentSlot = true;
-			_acceptedToolData = null;
 			_filled = false;
+			_maxCapacity = maxCapacity;
+			_acceptedEquipmentIDs.Clear();
 
 			if (label != null) label.text = labelText;
 			if (background != null) background.color = normalColor;
-			if (customSize.HasValue) zoneSize = customSize.Value;
-			if (autoResizeOnSetup) ApplySize();
+
+			if (customSize.HasValue)
+				zoneSize = customSize.Value;
+
+			if (autoResizeOnSetup)
+				ApplySize();
 
 			gameObject.SetActive(false);
 
 			if (debugMode)
-				Debug.Log($"[UIDropZone] Equipment slot: {actionID} (slot: {slotType})");
-		}
-
-		// ─── Setup: Tool Drop ───
-		public void SetupAsToolDrop(string actionID, ToolData toolData, string labelText, Vector2? customSize = null)
-		{
-			if (string.IsNullOrEmpty(actionID))
-			{
-				Debug.LogError("[UIDropZone] SetupAsToolDrop: actionID boş!");
-				return;
-			}
-
-			if (toolData == null)
-			{
-				Debug.LogError($"[UIDropZone] SetupAsToolDrop: toolData null! (action: {actionID})");
-				return;
-			}
-
-			_actionID = actionID;
-			_acceptedToolData = toolData;
-			_isEquipmentSlot = false;
-			_filled = false;
-
-			if (label != null) label.text = labelText;
-			if (background != null) background.color = normalColor;
-			if (customSize.HasValue) zoneSize = customSize.Value;
-			if (autoResizeOnSetup) ApplySize();
-
-			gameObject.SetActive(false);
-
-			if (debugMode)
-				Debug.Log($"[UIDropZone] Tool drop: {actionID} (tool: {toolData.toolID})");
+				Debug.Log($"[UIDropZone] Setup as equipment slot: {actionID} (slot: {slotType})");
 		}
 
 		public void ApplySize()
 		{
 			if (_rectTransform != null)
+			{
 				_rectTransform.sizeDelta = zoneSize;
+			}
+		}
+
+		public void SetSize(Vector2 newSize)
+		{
+			zoneSize = newSize;
+			ApplySize();
 		}
 
 		public void SetActive(bool state) => gameObject.SetActive(state);
 
-		// ─── Drop Logic ───
 		public bool TryAcceptItem(UIDraggableItem item)
 		{
-			if (item == null || _filled) return false;
+			if (item == null) return false;
+
+			// Capacity kontrolü
+			if (_acceptedEquipmentIDs.Count >= _maxCapacity)
+			{
+				if (debugMode)
+					Debug.Log($"[UIDropZone] Slot full ({_acceptedEquipmentIDs.Count}/{_maxCapacity})");
+				return false;
+			}
 
 			bool accepted = false;
 
 			if (_isEquipmentSlot)
 			{
-				// Ekipman: slot type eşleşmeli
-				accepted = item.EquipmentData != null && item.EquipmentData.slotType == _slotType;
+				// Equipment slot: Aynı tip ve daha önce eklenmemiş olmalı
+				if (item.EquipmentData != null &&
+					item.EquipmentData.slotType == _slotType &&
+					!_acceptedEquipmentIDs.Contains(item.EquipmentData.equipmentID))
+				{
+					accepted = true;
+				}
 			}
 			else
 			{
-				// Tool: ToolData ID eşleşmeli
-				accepted = item.ToolData != null && item.ToolData.toolID == _acceptedToolData?.toolID;
+				// Tool slot: Sadece specific item ID
+				accepted = item.ItemID == _acceptedItemID && !_filled;
 			}
 
 			if (!accepted) return false;
@@ -136,7 +172,18 @@ namespace SafetyTraining
 		{
 			_filled = true;
 
-			if (background != null) background.color = filledColor;
+			item.transform.SetParent(transform);
+
+			RectTransform itemRT = item.GetComponent<RectTransform>();
+			if (itemRT != null)
+				itemRT.anchoredPosition = Vector2.zero;
+
+			CanvasGroup itemCG = item.GetComponent<CanvasGroup>();
+			if (itemCG != null)
+				itemCG.blocksRaycasts = false;
+
+			if (background != null)
+				background.color = filledColor;
 
 			if (icon != null && item.ItemIconSprite != null)
 			{
@@ -144,37 +191,39 @@ namespace SafetyTraining
 				icon.enabled = true;
 			}
 
-			if (_isEquipmentSlot)
+			// SequenceManager'a bildir
+			if (SequenceManager.Instance != null)
 			{
-				// Ekipman: SequenceManager'a bildir, item geri dönsün
-				item.ReturnToOriginalPosition();
-
-				if (SequenceManager.Instance != null)
+				if (item.EquipmentData != null)
+				{
 					SequenceManager.Instance.OnEquipmentWorn(item.EquipmentData);
+					item.ReturnToOriginalPosition();
+				}
+
 				else
-					Debug.LogWarning("[UIDropZone] SequenceManager.Instance null!");
+				{
+					SequenceManager.Instance.OnToolDropped(_actionID, _uniqueID);
+
+					// Drop event varsa tetikle
+					if (!string.IsNullOrEmpty(_onDropEventID))
+					{
+						SequenceManager.Instance.TriggerSceneEvent(_onDropEventID);
+						Debug.Log($"[UIDropZone] Drop event triggered: {_onDropEventID}");
+						if (debugMode)
+							Debug.Log($"[UIDropZone] Drop event triggered: {_onDropEventID}");
+					}
+				}
+
 			}
 			else
 			{
-				// Tool: SequenceManager'a bildir, item drop zone'da kalsın
-				item.transform.SetParent(transform);
-				RectTransform itemRT = item.GetComponent<RectTransform>();
-				if (itemRT != null) itemRT.anchoredPosition = Vector2.zero;
-
-				CanvasGroup itemCG = item.GetComponent<CanvasGroup>();
-				if (itemCG != null) itemCG.blocksRaycasts = false;
-
-				if (SequenceManager.Instance != null)
-					SequenceManager.Instance.OnToolDropped(_actionID, item.ToolData);
-				else
-					Debug.LogWarning("[UIDropZone] SequenceManager.Instance null!");
+				Debug.LogWarning("[UIDropZone] SequenceManager.Instance is null!");
 			}
 
 			if (debugMode)
-				Debug.Log($"<color=green>[UIDropZone] Accepted: {item.ItemID}</color>");
+				Debug.Log($"<color=green>[UIDropZone] Item accepted: {item.ItemID}</color>");
 		}
 
-		// ─── Hover ───
 		public void OnPointerEnter(PointerEventData e)
 		{
 			if (_filled || background == null) return;
@@ -182,7 +231,18 @@ namespace SafetyTraining
 			UIDraggableItem dragged = e.pointerDrag?.GetComponent<UIDraggableItem>();
 			if (dragged == null) return;
 
-			background.color = CanAcceptItem(dragged) ? hoverValid : hoverInvalid;
+			bool canAccept = CanAcceptItem(dragged);
+			background.color = canAccept ? hoverValid : hoverInvalid;
+
+			// HoverOnly modu: Üzerine gelince otomatik drop
+			if (_toolDropMode == ToolDropMode.HoverOnly && canAccept && !_isEquipmentSlot)
+			{
+				if (TryAcceptItem(dragged))
+				{
+					if (debugMode)
+						Debug.Log($"[UIDropZone] HoverOnly auto-drop: {dragged.ItemID}");
+				}
+			}
 		}
 
 		public void OnPointerExit(PointerEventData e)
@@ -198,7 +258,7 @@ namespace SafetyTraining
 			if (_isEquipmentSlot)
 				return item.EquipmentData != null && item.EquipmentData.slotType == _slotType;
 			else
-				return item.ToolData != null && item.ToolData.toolID == _acceptedToolData?.toolID;
+				return item.ItemID == _acceptedItemID;
 		}
 
 		public void Reset()

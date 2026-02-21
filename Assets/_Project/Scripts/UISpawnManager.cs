@@ -300,8 +300,29 @@ namespace SafetyTraining
 				equipmentPanel.SetActive(true);
 			}
 
+			// Layout'u güncelle (inventory ve equipment panel için)
+			if (inventoryContainer != null)
+			{
+				StartCoroutine(RebuildLayoutNextFrame(inventoryContainer.GetComponent<RectTransform>()));
+			}
+			if (equipmentPanelContainer != null)
+			{
+				StartCoroutine(RebuildLayoutNextFrame(equipmentPanelContainer.GetComponent<RectTransform>()));
+			}
+
 			if (debugMode)
 				Debug.Log($"<color=green>[UISpawnManager] Activated UI for action: {action.actionName}</color>");
+		}
+
+		private System.Collections.IEnumerator RebuildLayoutNextFrame(RectTransform rectTransform)
+		{
+			if (rectTransform == null) yield break;
+
+			yield return null; // Bir frame bekle
+			UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
+
+			if (debugMode)
+				Debug.Log($"[UISpawnManager] Layout rebuilt for: {rectTransform.name}");
 		}
 
 		/// <summary>
@@ -497,70 +518,74 @@ namespace SafetyTraining
 			}
 
 			// Her tool için: drop zone (worldButtonContainer içinde) + draggable item (inventory)
-			foreach (var tool in action.requiredTools)
+			// Tool drop mappings varsa kullan (aynı tool, farklı drop zone'lar)
+			if (action.toolDropMappings != null && action.toolDropMappings.Length > 0)
 			{
-				if (tool == null) continue;
-
-				// ─── Drop Zone (world to screen) ───
-				if (dropZonePrefab != null && worldButtonContainer != null)
+				foreach (var mapping in action.toolDropMappings)
 				{
-					GameObject zoneObj = Instantiate(dropZonePrefab, worldButtonContainer);
-					UIDropZone zone = zoneObj.GetComponent<UIDropZone>();
+					if (mapping == null || string.IsNullOrEmpty(mapping.uniqueID))
+						continue;
 
-					if (zone != null)
-						zone.SetupAsToolDrop(action.actionID, tool, tool.toolName, action.dropZoneSize);
-					else
-						Debug.LogError("[UISpawnManager] UIDropZone component missing on prefab!");
-
-					// World follower → tool'un drop target'ını bul
-					string dropTarget = GetToolDropTarget(action, tool);
-					if (!string.IsNullOrEmpty(dropTarget))
+					// Tool'u bul
+					ToolData tool = System.Array.Find(action.requiredTools, t => t != null && t.toolID == mapping.toolID);
+					if (tool == null)
 					{
-						UIWorldFollower follower = zoneObj.GetComponent<UIWorldFollower>();
-						if (follower == null)
-							follower = zoneObj.AddComponent<UIWorldFollower>();
-
-						follower.Initialize(dropTarget, defaultWorldOffset);
+						Debug.LogWarning($"[UISpawnManager] Tool '{mapping.toolID}' not found in requiredTools!");
+						continue;
 					}
 
-					elements.Add(zoneObj);
-					_spawnedDropZones[$"{action.actionID}_{tool.toolID}"] = zoneObj;
+					// Drop zone spawn et (uniqueID ile)
+					if (dropZonePrefab != null && worldButtonContainer != null)
+					{
+						GameObject zoneObj = Instantiate(dropZonePrefab, worldButtonContainer);
+						UIDropZone zone = zoneObj.GetComponent<UIDropZone>();
 
-					if (debugMode)
-						Debug.Log($"  → Tool drop zone created: {tool.toolName} (target: {dropTarget})");
+						if (zone != null)
+						{
+							zone.SetupAsToolDrop(action.actionID, tool.toolID, tool.toolName, action.dropZoneSize, action.toolDropMode, mapping.uniqueID, mapping.onDropEventID);
+						}
+
+						// World follower
+						if (!string.IsNullOrEmpty(mapping.dropTargetObjectID))
+						{
+							UIWorldFollower follower = zoneObj.GetComponent<UIWorldFollower>();
+							if (follower == null)
+								follower = zoneObj.AddComponent<UIWorldFollower>();
+
+							follower.Initialize(mapping.dropTargetObjectID, defaultWorldOffset);
+						}
+
+						elements.Add(zoneObj);
+						_spawnedDropZones[$"{action.actionID}_{mapping.uniqueID}"] = zoneObj;
+
+						if (debugMode)
+							Debug.Log($"  → Tool drop zone created: {tool.toolName} (uniqueID: {mapping.uniqueID}, target: {mapping.dropTargetObjectID})");
+					}
+
+					// Draggable item (sadece ilk mapping için spawn et)
+					string itemKey = $"{action.actionID}_tool_{tool.toolID}";
+					if (!_spawnedItems.ContainsKey(itemKey) && draggableItemPrefab != null && inventoryContainer != null)
+					{
+						GameObject itemObj = Instantiate(draggableItemPrefab, inventoryContainer);
+						UIDraggableItem item = itemObj.GetComponent<UIDraggableItem>();
+
+						if (item != null)
+							item.SetupAsTool(tool.toolID, tool.toolName, tool.toolIcon, tool);
+
+						// Layout'u güncelle
+						UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(inventoryContainer.GetComponent<RectTransform>());
+
+						elements.Add(itemObj);
+						_spawnedItems[itemKey] = itemObj;
+
+						if (debugMode)
+							Debug.Log($"  → Tool draggable item created: {tool.toolName}");
+					}
 				}
-				else
-				{
-					if (dropZonePrefab == null)
-						Debug.LogError("[UISpawnManager] dropZonePrefab null!");
-					if (worldButtonContainer == null)
-						Debug.LogError("[UISpawnManager] worldButtonContainer null!");
-				}
-
-				// ─── Draggable Item (inventory) ───
-				if (draggableItemPrefab != null && inventoryContainer != null)
-				{
-					GameObject itemObj = Instantiate(draggableItemPrefab, inventoryContainer);
-					UIDraggableItem item = itemObj.GetComponent<UIDraggableItem>();
-
-					if (item != null)
-						item.SetupAsTool(tool.toolID, tool.toolName, tool.toolIcon, tool);
-					else
-						Debug.LogError("[UISpawnManager] UIDraggableItem component missing on prefab!");
-
-					elements.Add(itemObj);
-					_spawnedItems[$"{action.actionID}_{tool.toolID}"] = itemObj;
-
-					if (debugMode)
-						Debug.Log($"  → Tool draggable item created: {tool.toolName}");
-				}
-				else
-				{
-					if (draggableItemPrefab == null)
-						Debug.LogError("[UISpawnManager] draggableItemPrefab null!");
-					if (inventoryContainer == null)
-						Debug.LogError("[UISpawnManager] inventoryContainer null!");
-				}
+			}
+			else
+			{
+				// Eski sistem: Her tool için tek drop zone
 			}
 
 			// ─── Distractor Tools (sadece draggable item, drop zone yok) ───

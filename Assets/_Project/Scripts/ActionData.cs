@@ -133,6 +133,9 @@ namespace SafetyTraining
 		[Tooltip("Drop zone boyutu (piksel)")]
 		public Vector2 dropZoneSize = new Vector2(120, 120);
 
+		[Tooltip("Tool drop modu: DragAndDrop (sürükle bırak) veya HoverOnly (üzerine gel)")]
+		public ToolDropMode toolDropMode = ToolDropMode.DragAndDrop;
+
 		// ───────────────────────────────────────
 		// PanelInteraction
 		// ───────────────────────────────────────
@@ -189,10 +192,22 @@ namespace SafetyTraining
 	[System.Serializable]
 	public class ToolDropMapping
 	{
+		[Tooltip("Benzersiz ID (aynı tool, farklı drop zone'lar için)")]
+		public string uniqueID;
+
 		[Tooltip("Tool ID (requiredTools array'indeki tool'un ID'si)")]
 		public string toolID;
 
 		[Tooltip("Bu tool'un bırakılacağı sahne objesinin ID'si")]
 		public string dropTargetObjectID;
+
+		[Tooltip("Drop edildiğinde tetiklenecek event ID (ActionEventHandler)")]
+		public string onDropEventID;
 	}
+}
+
+public enum ToolDropMode
+{
+	DragAndDrop,  // Sürükle ve bırak (varsayılan)
+	HoverOnly     // Sadece üzerine gel
 }

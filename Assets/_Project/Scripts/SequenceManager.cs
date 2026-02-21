@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
-using Michsky.MUIP;
 
 namespace SafetyTraining
 {
@@ -146,6 +145,32 @@ namespace SafetyTraining
 		// ═══════════════════════════════════════════════════════
 
 		/// <summary>
+		/// <summary>
+		/// Sequence butonunu manuel spawn eder (spawnButtonAtStart=false olan sequenceler için)
+		/// </summary>
+		public void SpawnSequenceButton(string sequenceID)
+		{
+			if (!_allSequences.TryGetValue(sequenceID, out SequenceData sequence))
+			{
+				Debug.LogError($"[SequenceManager] Sequence '{sequenceID}' not found for spawning!");
+				return;
+			}
+
+			// Zaten spawn edilmiş mi?
+			if (_sequenceButtons.ContainsKey(sequenceID))
+			{
+				if (debugMode)
+					Debug.LogWarning($"[SequenceManager] Button already exists for '{sequence.sequenceName}'");
+				return;
+			}
+
+			// UISpawnManager'a spawn et
+			UISpawnManager.Instance?.SpawnSequenceButton(sequence);
+
+			if (debugMode)
+				Debug.Log($"[SequenceManager] Spawned button for sequence: '{sequence.sequenceName}'");
+		}
+
 		/// Sekans butonuna tıklandığında çağrılır
 		/// </summary>
 		public void OnSequenceButtonClicked(string sequenceID)
@@ -665,7 +690,7 @@ namespace SafetyTraining
 				if (CheckSequencePrerequisites(sequence))
 				{
 					// Spawn et!
-					UISpawnManager.Instance.SpawnSequenceButton(sequence);
+					SpawnSequenceButton(sequence.sequenceID);
 
 					if (debugMode)
 						Debug.Log($"<color=lime>[SequenceManager] ✓ Auto-spawned unlocked sequence: '{sequence.sequenceName}'</color>");
@@ -732,8 +757,8 @@ namespace SafetyTraining
 		{
 			if (warningPanel)
 			{
-				warningPanel.GetComponent<ModalWindowManager>().OpenWindow();
-				if (warningMessageText) warningPanel.GetComponent<ModalWindowManager>().descriptionText = message;
+				warningPanel.SetActive(true);
+				if (warningMessageText) warningMessageText.text = message;
 			}
 
 			if (debugMode)
@@ -744,8 +769,8 @@ namespace SafetyTraining
 		{
 			if (gameOverPanel)
 			{
-				gameOverPanel.GetComponent<ModalWindowManager>().OpenWindow();
-				if (gameOverMessageText) gameOverMessageText.GetComponent<ModalWindowManager>().descriptionText = message;
+				gameOverPanel.SetActive(true);
+				if (gameOverMessageText) gameOverMessageText.text = message;
 			}
 
 			currentLevel.onLevelFail?.Invoke();
@@ -955,43 +980,39 @@ namespace SafetyTraining
 
 		private HashSet<string> _droppedTools = new HashSet<string>();
 
-		public void OnToolDropped(string actionID, ToolData tool)
+		public void OnToolDropped(string actionID, string uniqueDropID)
 		{
 			if (_currentAction == null || _currentAction.actionType != ActionType.DragToWorld)
 				return;
 
-			if (_currentAction.requiredTools == null || _currentAction.requiredTools.Length == 0)
+			// Multiple drop zones kontrolü
+			int totalDropZones = 0;
+			if (_currentAction.toolDropMappings != null && _currentAction.toolDropMappings.Length > 0)
+			{
+				totalDropZones = _currentAction.toolDropMappings.Length;
+			}
+			else if (_currentAction.requiredTools != null)
+			{
+				totalDropZones = _currentAction.requiredTools.Length;
+			}
+
+			if (totalDropZones == 0) return;
+
+			// Bu drop zone zaten tamamlandı mı?
+			if (_droppedTools.Contains(uniqueDropID))
+			{
+				if (debugMode)
+					Debug.Log($"[SequenceManager] Drop zone already completed: {uniqueDropID}");
 				return;
-
-			// Bu tool gerekli mi?
-			bool isRequired = false;
-			foreach (var required in _currentAction.requiredTools)
-			{
-				if (required == tool) { isRequired = true; break; }
 			}
 
-			if (!isRequired)
-			{
-				Debug.LogWarning($"[SequenceManager] Yanlış tool: {tool.toolName}");
-				return;
-			}
-
-			if (_droppedTools.Contains(tool.toolID)) return;
-
-			_droppedTools.Add(tool.toolID);
-
-			// Sahnede 3D modeli göster
-			if (!string.IsNullOrEmpty(tool.gameObjectID))
-			{
-				GameObject obj = SceneObjectRegistry.Instance?.GetGameObjectByID(tool.gameObjectID);
-				if (obj != null) obj.SetActive(true);
-			}
+			_droppedTools.Add(uniqueDropID);
 
 			if (debugMode)
-				Debug.Log($"[SequenceManager] ✓ Tool bırakıldı: {tool.toolName} ({_droppedTools.Count}/{_currentAction.requiredTools.Length})");
+				Debug.Log($"[SequenceManager] ✓ Tool dropped: {uniqueDropID} ({_droppedTools.Count}/{totalDropZones})");
 
 			// Tümü bırakıldı mı?
-			if (_droppedTools.Count >= _currentAction.requiredTools.Length)
+			if (_droppedTools.Count >= totalDropZones)
 			{
 				_droppedTools.Clear();
 				OnActionCompleted(_currentAction.actionID);
@@ -1020,6 +1041,17 @@ namespace SafetyTraining
 			}
 
 			handler.TriggerEvents(eventIDs);
+		}
+
+		/// <summary>
+		/// Tek bir event ID'yi tetikler (public - tool drops için)
+		/// </summary>
+		public void TriggerSceneEvent(string eventID)
+		{
+			if (string.IsNullOrEmpty(eventID))
+				return;
+
+			TriggerSceneEvents(new string[] { eventID });
 		}
 	}
 
