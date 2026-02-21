@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: keys2
   actionName: action6
-  instructionText: 
+  instructionText: "Anahtar\u0131 \xE7evir."
   actionType: 3
   prerequisiteActionIDs:
   - opendoors
@@ -42,6 +42,7 @@ MonoBehaviour:
   distractorTools: []
   toolDropMappings: []
   dropZoneSize: {x: 120, y: 120}
+  toolDropMode: 0
   interactionPanelPrefab: {fileID: 0}
   panelID: 
   hideButtonAfterComplete: 0

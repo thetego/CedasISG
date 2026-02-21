@@ -122,7 +122,7 @@ namespace SafetyTraining
 				instructionText.text = _currentAction.instructionText;
 
 			// UI aktif et
-			UISpawnManager.Instance?.ActivateAction(_currentAction);
+			StartCoroutine(UISpawnManager.Instance?.ActivateAction(_currentAction, 1f));
 
 			// OnStart animasyonlar
 			PlayAnimations(_currentAction,AnimationTiming.OnStart);

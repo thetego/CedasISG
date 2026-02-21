@@ -209,7 +209,7 @@ namespace SafetyTraining
 			CameraManager.Instance?.HandleActionCamera(action);
 
 			// UI aktif et (ekipman paneli vb.)
-			UISpawnManager.Instance?.ActivateAction(action);
+			StartCoroutine(UISpawnManager.Instance?.ActivateAction(_currentAction, 1f));
 
 			// OnStart animasyonlar
 			if (LevelManager.Instance != null)

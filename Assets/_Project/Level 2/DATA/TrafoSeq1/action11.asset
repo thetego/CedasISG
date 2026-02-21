@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: stanka1
   actionName: action11
-  instructionText: 
+  instructionText: "stanka kontrol\xFC yap."
   actionType: 2
   prerequisiteActionIDs:
   - opendoors
@@ -47,9 +47,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1132fef60912dd84ca6830bf909d5d94, type: 2}
   distractorTools: []
   toolDropMappings:
-  - toolID: Neon
+  - uniqueID: p1
+    toolID: Neon
     dropTargetObjectID: stanka1
+    onDropEventID: 
   dropZoneSize: {x: 120, y: 120}
+  toolDropMode: 0
+  interactionPanelPrefab: {fileID: 0}
+  panelID: 
   hideButtonAfterComplete: 0
   animationTriggers: []
   soundClip: {fileID: 0}
@@ -64,3 +69,6 @@ MonoBehaviour:
   onActionFail:
     m_PersistentCalls:
       m_Calls: []
+  onStartEventIDs: []
+  onCompleteEventIDs: []
+  onFailEventIDs: []

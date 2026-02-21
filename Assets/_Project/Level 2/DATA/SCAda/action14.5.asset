@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: scada
   actionName: action15
-  instructionText: 
+  instructionText: "Scada i\u015Flemini yap."
   actionType: 5
   prerequisiteActionIDs:
   - boxOpen
@@ -34,7 +34,7 @@ MonoBehaviour:
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
-  completionDelay: 4
+  completionDelay: 5
   autoCompleteAfterDelay: 1
   cameraMode: 0
   virtualCameraID: 
@@ -51,6 +51,7 @@ MonoBehaviour:
   distractorTools: []
   toolDropMappings: []
   dropZoneSize: {x: 120, y: 120}
+  toolDropMode: 0
   interactionPanelPrefab: {fileID: 4080833952583038003, guid: 03a69da61f8039b48a8e24540625ea41, type: 3}
   panelID: scada
   hideButtonAfterComplete: 0

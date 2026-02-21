@@ -49,8 +49,10 @@ namespace SafetyTraining
 			_canvas = GetComponentInParent<Canvas>();
 			_cg = GetComponent<CanvasGroup>();
 
-			if (_cg == null)
-				_cg = gameObject.AddComponent<CanvasGroup>();
+			/*if (_cg == null)
+				_cg = gameObject.AddComponent<CanvasGroup>();*/
+
+
 
 			_originalPos = _rt.anchoredPosition;
 			_originalParent = transform.parent;
@@ -104,6 +106,14 @@ namespace SafetyTraining
 			if (background != null) background.color = normalColor;
 
 			gameObject.SetActive(false);
+		}
+
+		private void OnEnable()
+		{
+			var csf = _originalParent.GetComponent<ContentSizeFitter>();
+			var glg = _originalParent.GetComponent<GridLayoutGroup>();
+			if (csf != null) csf.enabled = true;
+			if (glg != null) glg.enabled = true;
 		}
 
 		public bool IsTool => ToolData != null;
@@ -172,10 +182,10 @@ namespace SafetyTraining
 				if (zone != null)
 					accepted = zone.TryAcceptItem(this);
 			}
-
+			ReturnToOriginalPosition();
 			if (!accepted)
 			{
-				ReturnToOriginalPosition();
+				
 				PlaySound(invalidSound);
 			}
 		}

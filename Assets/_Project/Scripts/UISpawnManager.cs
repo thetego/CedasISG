@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace SafetyTraining
 {
@@ -272,9 +273,11 @@ namespace SafetyTraining
 		/// <summary>
 		/// Action aktif olduğunda ilgili UI'ları gösterir
 		/// </summary>
-		public void ActivateAction(ActionData action)
+		public IEnumerator ActivateAction(ActionData action, float Delay = 0f)
 		{
-			if (action == null) return;
+			yield return new WaitForSeconds(Delay);
+
+			if (action == null)  yield return null;
 
 			//if (action.actionType == ActionType.CameraMove) return;
 

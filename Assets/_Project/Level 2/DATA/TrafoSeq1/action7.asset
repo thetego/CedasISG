@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: switch1
   actionName: action7
-  instructionText: 
+  instructionText: "Topraklama anahtar\u0131n\u0131 \xE7evir."
   actionType: 2
   prerequisiteActionIDs:
   - opendoors
@@ -43,9 +43,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9bb471e52fec2f641b332cd8a745a4a8, type: 2}
   distractorTools: []
   toolDropMappings:
-  - toolID: RotTool
+  - uniqueID: p1
+    toolID: RotTool
     dropTargetObjectID: rot1
+    onDropEventID: 
   dropZoneSize: {x: 120, y: 120}
+  toolDropMode: 0
   interactionPanelPrefab: {fileID: 0}
   panelID: 
   hideButtonAfterComplete: 0

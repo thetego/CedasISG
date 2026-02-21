@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
   sequenceID: EquipmentSequence
   sequenceName: Equipment
-  sequenceDescription: 
+  sequenceDescription: "Uygun ekipmanlar\u0131 giy."
   actions:
   - {fileID: 11400000, guid: 2704c639a9aa23443a427020417e4a83, type: 2}
   targetObjectID: character
@@ -31,6 +31,7 @@ MonoBehaviour:
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."
+  spawnButtonAtStart: 1
   sequenceIcon: {fileID: 0}
   buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
   completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}

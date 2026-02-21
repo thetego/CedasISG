@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5508086265587087029
 RectTransform:
   m_ObjectHideFlags: 0
@@ -99,7 +99,6 @@ MonoBehaviour:
   hoverInvalid: {r: 1, g: 0.2, b: 0.2, a: 0.55}
   filledColor: {r: 0.2, g: 0.85, b: 1, a: 0.8}
   debugMode: 0
-  _maxCapacity: 1
 --- !u!114 &2741067848704963574
 MonoBehaviour:
   m_ObjectHideFlags: 0

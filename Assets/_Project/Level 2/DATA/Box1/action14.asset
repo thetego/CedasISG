@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: boxClick3
   actionName: action14
-  instructionText: 
+  instructionText: "Testi ba\u015Flat."
   actionType: 3
   prerequisiteActionIDs:
   - boxOpen
@@ -50,6 +50,7 @@ MonoBehaviour:
   distractorTools: []
   toolDropMappings: []
   dropZoneSize: {x: 120, y: 120}
+  toolDropMode: 0
   interactionPanelPrefab: {fileID: 0}
   panelID: 
   hideButtonAfterComplete: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: bottomKey
   actionName: action3
-  instructionText: 
+  instructionText: "Kesici anahtar\u0131n\u0131 \xE7evir."
   actionType: 1
   prerequisiteActionIDs:
   - opendoors
@@ -39,6 +39,7 @@ MonoBehaviour:
   distractorTools: []
   toolDropMappings: []
   dropZoneSize: {x: 120, y: 120}
+  toolDropMode: 0
   interactionPanelPrefab: {fileID: 0}
   panelID: 
   hideButtonAfterComplete: 0

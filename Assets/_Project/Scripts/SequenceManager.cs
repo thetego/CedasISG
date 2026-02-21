@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
+using Michsky.MUIP;
 
 namespace SafetyTraining
 {
@@ -400,7 +401,7 @@ namespace SafetyTraining
 			}
 
 			// UI aktif et
-			UISpawnManager.Instance?.ActivateAction(_currentAction);
+			StartCoroutine(UISpawnManager.Instance?.ActivateAction(_currentAction,1f));
 
 			// OnStart animasyonlar
 			PlayAnimations(_currentAction, AnimationTiming.OnStart);
@@ -757,7 +758,7 @@ namespace SafetyTraining
 		{
 			if (warningPanel)
 			{
-				warningPanel.SetActive(true);
+				warningPanel.GetComponent<ModalWindowManager>().Open();
 				if (warningMessageText) warningMessageText.text = message;
 			}
 
@@ -769,7 +770,7 @@ namespace SafetyTraining
 		{
 			if (gameOverPanel)
 			{
-				gameOverPanel.SetActive(true);
+				gameOverPanel.GetComponent<ModalWindowManager>().Open();
 				if (gameOverMessageText) gameOverMessageText.text = message;
 			}
 

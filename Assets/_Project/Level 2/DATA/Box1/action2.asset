@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: boxCable
   actionName: action2
-  instructionText: 
+  instructionText: "Kablolar\u0131 ba\u011Fla."
   actionType: 3
   prerequisiteActionIDs:
   - boxOpen
@@ -38,6 +38,7 @@ MonoBehaviour:
   distractorTools: []
   toolDropMappings: []
   dropZoneSize: {x: 120, y: 120}
+  toolDropMode: 0
   interactionPanelPrefab: {fileID: 0}
   panelID: 
   hideButtonAfterComplete: 0

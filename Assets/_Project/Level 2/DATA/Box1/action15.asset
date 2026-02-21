@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: boxClose
   actionName: action15
-  instructionText: 
+  instructionText: Kutuyu kapat.
   actionType: 3
   prerequisiteActionIDs:
   - boxOpen
@@ -51,6 +51,9 @@ MonoBehaviour:
   distractorTools: []
   toolDropMappings: []
   dropZoneSize: {x: 120, y: 120}
+  toolDropMode: 0
+  interactionPanelPrefab: {fileID: 0}
+  panelID: 
   hideButtonAfterComplete: 0
   animationTriggers:
   - animatorObjectID: box
