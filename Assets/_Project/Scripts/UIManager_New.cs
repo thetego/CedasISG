@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Michsky.MUIP;
 
 namespace SafetyTraining
 {
@@ -88,7 +89,7 @@ namespace SafetyTraining
 				return;
 			}
 
-			levelCompletePanel.SetActive(true);
+			levelCompletePanel.GetComponent<ModalWindowManager>().Open();
 
 			// Skorları göster
 			if (scoreText != null)

@@ -75,5 +75,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onStartEventIDs: []
-  onCompleteEventIDs: []
+  onCompleteEventIDs:
+  - kablokapa
   onFailEventIDs: []

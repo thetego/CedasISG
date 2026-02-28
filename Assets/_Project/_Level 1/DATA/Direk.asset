@@ -18,6 +18,7 @@ MonoBehaviour:
   actions:
   - {fileID: 11400000, guid: 03f3288efb359bf419ef3235fd04ece4, type: 2}
   - {fileID: 11400000, guid: bf3c3f692fba009419d04c583338490e, type: 2}
+  - {fileID: 11400000, guid: 21de33e99851cd1499b4c00752bf3184, type: 2}
   targetObjectID: direk
   buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4

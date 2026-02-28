@@ -49,7 +49,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1132fef60912dd84ca6830bf909d5d94, type: 2}
   distractorTools: []
   toolDropMappings:
-  - uniqueID: p1
+  - uniqueID: p3
     toolID: Neon
     dropTargetObjectID: stanka3
     onDropEventID: 

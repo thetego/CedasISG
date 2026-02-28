@@ -34,7 +34,7 @@ MonoBehaviour:
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
-  completionDelay: 5
+  completionDelay: 3
   autoCompleteAfterDelay: 1
   cameraMode: 0
   virtualCameraID: 

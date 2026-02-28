@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: lvl2-a1
   actionName: Equipment
-  instructionText: 
+  instructionText: "Uygun ekipmanlar\u0131 giy."
   actionType: 0
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
@@ -40,6 +40,7 @@ MonoBehaviour:
   distractorTools: []
   toolDropMappings: []
   dropZoneSize: {x: 120, y: 120}
+  toolDropMode: 0
   interactionPanelPrefab: {fileID: 0}
   panelID: 
   hideButtonAfterComplete: 0

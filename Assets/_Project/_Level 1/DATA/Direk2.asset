@@ -16,10 +16,12 @@ MonoBehaviour:
   sequenceName: direk2
   sequenceDescription: 
   actions:
+  - {fileID: 11400000, guid: 21de33e99851cd1499b4c00752bf3184, type: 2}
   - {fileID: 11400000, guid: fae3c0b6b94878443ac1aa0d35a7449d, type: 2}
   - {fileID: 11400000, guid: f5fca14545ed86346ad83c7a7d117693, type: 2}
   - {fileID: 11400000, guid: 6c519828aba775a4fa7928f8665298e9, type: 2}
   - {fileID: 11400000, guid: f83b307bc18efb04e890372f47fb2711, type: 2}
+  - {fileID: 11400000, guid: 21de33e99851cd1499b4c00752bf3184, type: 2}
   - {fileID: 11400000, guid: 36f0931ddaf76054e89332a0f96aa572, type: 2}
   targetObjectID: direk
   buttonOffset: {x: 0, y: 0, z: 0}

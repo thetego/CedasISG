@@ -10,27 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: SwitchOut
+  m_Name: action17
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: SwitchTrafo
-  actionName: SwitchTrafo
-  instructionText: 
-  actionType: 4
+  actionID: tabClick
+  actionName: action15
+  instructionText: "Uyar\u0131 tabelas\u0131n\u0131 as."
+  actionType: 3
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
-  completionDelay: 1.1
+  completionDelay: 1.25
   autoCompleteAfterDelay: 0
-  cameraMode: 4
-  virtualCameraID: cam2
+  cameraMode: 0
+  virtualCameraID: 
   autoReturnCameraOnComplete: 0
   cameraTargetID: 
-  cameraMoveSpeed: 5
+  cameraMoveSpeed: 2
   autoCompleteAfterCamera: 1
   requiresPreviousAction: 1
   prerequisiteActions: []
-  targetObjectID: 
+  targetObjectID: tab
   requiredEquipments: []
   distractorEquipments: []
   requiredTools: []
@@ -55,5 +55,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onStartEventIDs: []
-  onCompleteEventIDs: []
+  onCompleteEventIDs:
+  - Tabela
   onFailEventIDs: []

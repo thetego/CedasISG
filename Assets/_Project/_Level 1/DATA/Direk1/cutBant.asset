@@ -40,7 +40,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: daa0bc5b2e9ae1543b47dfe642e053c5, type: 2}
   - {fileID: 11400000, guid: fcddd625d347d9944a5bcb009dd15907, type: 2}
   - {fileID: 11400000, guid: 4918ea0877336624bac51790748b511e, type: 2}
-  - {fileID: 11400000, guid: 86d86a9b559bb8e409a17f1fbd72b7a9, type: 2}
   toolDropMappings:
   - uniqueID: p1
     toolID: Knife

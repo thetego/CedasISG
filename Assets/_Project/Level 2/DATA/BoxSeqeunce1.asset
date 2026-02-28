@@ -36,6 +36,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d8f9f0885c5ddc04b9e10aa7a97de81f, type: 2}
   - {fileID: 11400000, guid: a6eb5dbe8560eab45b5d146c6e088eb1, type: 2}
   - {fileID: 11400000, guid: 4738b328b702d734d8f2ae9d1c62b280, type: 2}
+  - {fileID: 11400000, guid: 557c4aad8ca91db4dafc1d2af3151e31, type: 2}
+  - {fileID: 11400000, guid: 855f2dcedf8627b4da0eb31e10392660, type: 2}
   targetObjectID: box
   buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4

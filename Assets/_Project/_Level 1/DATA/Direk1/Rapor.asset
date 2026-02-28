@@ -10,24 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: action16
+  m_Name: Rapor
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: tabCam
-  actionName: action16
+  actionID: pic1
+  actionName: pic1
   instructionText: 
-  actionType: 4
-  prerequisiteActionIDs:
-  - boxOpen
-  - boxCable
-  - cableCam
-  - kesCable
+  actionType: 5
+  prerequisiteActionIDs: []
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
-  completionDelay: 1
-  autoCompleteAfterDelay: 1
-  cameraMode: 4
-  virtualCameraID: cam6
+  completionDelay: 0
+  autoCompleteAfterDelay: 0
+  cameraMode: 0
+  virtualCameraID: 
   autoReturnCameraOnComplete: 0
   cameraTargetID: 
   cameraMoveSpeed: 2
@@ -41,8 +37,9 @@ MonoBehaviour:
   distractorTools: []
   toolDropMappings: []
   dropZoneSize: {x: 120, y: 120}
-  interactionPanelPrefab: {fileID: 0}
-  panelID: 
+  toolDropMode: 0
+  interactionPanelPrefab: {fileID: 4833007405114673601, guid: 8e7accbdf5941c14bba94ec7931df950, type: 3}
+  panelID: pic
   hideButtonAfterComplete: 0
   animationTriggers: []
   soundClip: {fileID: 0}
