@@ -21,7 +21,7 @@ MonoBehaviour:
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
   completionDelay: 1.1
-  autoCompleteAfterDelay: 0
+  autoCompleteAfterDelay: 1
   cameraMode: 4
   virtualCameraID: cam4
   autoReturnCameraOnComplete: 0
@@ -40,6 +40,24 @@ MonoBehaviour:
   toolDropMode: 0
   interactionPanelPrefab: {fileID: 0}
   panelID: 
+  quizData:
+    questionText: 
+    options:
+    - 
+    - 
+    - 
+    - 
+    correctOptionIndex: 0
+    correctFeedbackText: "Do\u011Fru! Tebrikler."
+    wrongFeedbackText: "Yanl\u0131\u015F cevap! \u0130\u015Flem sonland\u0131r\u0131ld\u0131."
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 0
+    photoSlots: []
+  activatesTablet: 0
+  deactivatesTablet: 0
   hideButtonAfterComplete: 0
   animationTriggers: []
   soundClip: {fileID: 0}

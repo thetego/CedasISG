@@ -16,7 +16,7 @@ MonoBehaviour:
   equipmentName: gloveRed
   dropID: hand
   gameObjectID: glovesOBJ
-  equipmentIcon: {fileID: 21300000, guid: 61d249482fe287849ad095632a6eeb6c, type: 3}
+  equipmentIcon: {fileID: 21300000, guid: be6773a5783b1154aaaa20d46ee40af1, type: 3}
   slotType: 2
   isRequired: 1
-  tooltipText: 
+  tooltipText: YG Eldiveni

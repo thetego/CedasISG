@@ -43,7 +43,8 @@ namespace SafetyTraining
 		// Mevcut sekans
 		private SequenceData _currentSequence;
 		private SequenceState _currentSequenceState;
-		private int _currentActionIndex = 0;
+		private int  _currentActionIndex = 0;
+		[HideInInspector] public bool _waitingForTablet = false;
 		private ActionData _currentAction;
 
 		// Level state
@@ -290,6 +291,9 @@ namespace SafetyTraining
 			// Sekans butonlarını gizle
 			HideSequenceButtons();
 
+			// Sekans survey'i varsa spawn et
+			UISpawnManager.Instance?.OnSequenceStarted(_currentSequence);
+
 			// İlk action'ı başlat
 			StartNextActionInSequence();
 		}
@@ -320,6 +324,8 @@ namespace SafetyTraining
 			if (_currentAction != null)
 			{
 				UISpawnManager.Instance?.DeactivateAction(_currentAction);
+				// Sekans survey'i kapat
+				UISpawnManager.Instance?.OnSequenceEnded(_currentSequence);
 			}
 
 			// Exit kamera
@@ -467,6 +473,7 @@ namespace SafetyTraining
 
 			// UI deaktif et
 			UISpawnManager.Instance?.DeactivateAction(_currentAction);
+			UISpawnManager.Instance?.OnActionFinished(_currentAction);
 
 			// OnComplete animasyonlar
 			PlayAnimations(_currentAction, AnimationTiming.OnComplete);
@@ -485,19 +492,87 @@ namespace SafetyTraining
 
 			// Kamera geri dön (varsa)
 			if (_currentAction.autoReturnCameraOnComplete)
-			{
 				CameraManager.Instance?.PopCamera();
+
+			// activatesTablet = true ise akışı durdur
+			// UITabletButton.OnTabletClosed() çağrılınca devam eder
+			if (_currentAction.activatesTablet)
+			{
+				_waitingForTablet = true;
+				_currentActionIndex++; // index'i ilerlet ama StartNext çağırma
+				if (debugMode)
+					Debug.Log($"[SequenceManager] Tablet bekleniyor — akış duraklatıldı.");
+				return;
 			}
 
 			// Delay varsa bekle
 			if (_currentAction.completionDelay > 0)
-			{
 				StartCoroutine(WaitAndContinueSequence(_currentAction.completionDelay));
+			else
+				MoveToNextActionInSequence();
+		}
+
+		/// <summary>
+		/// Tablet kapatıldığında UITabletButton tarafından çağrılır.
+		/// activatesTablet ile duraklatılmış akışı devam ettirir.
+		/// </summary>
+		public void OnTabletClosed()
+		{
+			Debug.Log($"[SequenceManager] OnTabletClosed çağrıldı. _waitingForTablet={_waitingForTablet}");
+			if (!_waitingForTablet) return;
+
+			_waitingForTablet = false;
+			Debug.Log("[SequenceManager] Tablet kapatıldı — akış devam ediyor.");
+			StartNextActionInSequence();
+		}
+
+		/// <summary>
+		/// Survey tamamlandığında çağrılır.
+		/// Eğer tüm actionlar bitti ise sekansı tamamlar,
+		/// aksi halde sadece survey'i kapatır.
+		/// </summary>
+		public void CompleteSurveyAndAdvance()
+		{
+			if (_currentSequence == null) return;
+
+			// Tablet bekleme durumunu temizle
+			_waitingForTablet = false;
+
+			// Tüm action'lar tamamlandıysa sekansı bitir
+			bool allActionsComplete = _currentActionIndex >= _currentSequence.GetTotalActionCount();
+
+			if (allActionsComplete)
+			{
+				CompleteSequence();
 			}
 			else
 			{
-				MoveToNextActionInSequence();
+				// Henüz devam eden action'lar var — akışı devam ettir
+				if (debugMode)
+					Debug.Log("[SequenceManager] Survey tamamlandı, sekans devam ediyor.");
+				StartNextActionInSequence();
 			}
+		}
+
+		/// <summary>
+		/// Quiz yanlış cevaplandığında çağrılır — analytics kaydeder, UI kapatır, game over gösterir.
+		/// </summary>
+		public void OnQuizFailed(string actionID)
+		{
+			if (_currentAction == null || _currentAction.actionID != actionID) return;
+
+			if (debugMode)
+				Debug.LogWarning($"[SequenceManager] Quiz başarısız: {_currentAction.actionName}");
+
+			_mistakes++;
+
+			PlayAnimations(_currentAction, AnimationTiming.OnFail);
+			_currentAction.onActionFail?.Invoke();
+			TriggerSceneEvents(_currentAction.onFailEventIDs);
+			UISpawnManager.Instance?.DeactivateAction(_currentAction);
+
+			string msg = _currentAction.quizData?.wrongFeedbackText ?? "Yanlış cevap!";
+			ShowGameOver(msg);
 		}
 
 		private System.Collections.IEnumerator WaitAndContinueSequence(float delay)
@@ -523,6 +598,9 @@ namespace SafetyTraining
 				Debug.Log($"<color=lime>[SequenceManager] ★ Sekans tamamlandı: {_currentSequence.sequenceName} ★</color>");
 
 			_currentSequenceState.isCompleted = true;
+
+			// Sekans survey'i kapat
+			UISpawnManager.Instance?.OnSequenceEnded(_currentSequence);
 			_currentSequenceState.completionTime = Time.time;
 
 			// Events

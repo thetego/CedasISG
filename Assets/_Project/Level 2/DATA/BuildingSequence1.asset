@@ -26,9 +26,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: acd51873b688558448150db0f21300ff, type: 2}
   - {fileID: 11400000, guid: 75e07c6c78166e749a884811f80ac29d, type: 2}
   - {fileID: 11400000, guid: fbe5c2ccf06f3ef4b81fd94774e803ca, type: 2}
+  - {fileID: 11400000, guid: 0f61aa6a5c0222d4abd4e722c29ae464, type: 2}
   - {fileID: 11400000, guid: 8a947bd1fe9b6014eaf77751ff8b1d74, type: 2}
   - {fileID: 11400000, guid: 115a5f1141f8ca6418d77aa470e0095c, type: 2}
   - {fileID: 11400000, guid: de1fe01dba66e514693377c82b5e4e63, type: 2}
+  - {fileID: 11400000, guid: aefa128928cf7fa45a01017199f3fdcc, type: 2}
   targetObjectID: kosk1
   buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4
@@ -44,6 +46,14 @@ MonoBehaviour:
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."
+  hasSurvey: 0
+  surveyPanelPrefab: {fileID: 0}
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 0
+    photoSlots: []
   spawnButtonAtStart: 1
   sequenceIcon: {fileID: 0}
   buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}

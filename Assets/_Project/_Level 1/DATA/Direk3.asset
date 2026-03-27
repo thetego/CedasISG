@@ -18,7 +18,6 @@ MonoBehaviour:
   actions:
   - {fileID: 11400000, guid: e61b9aaae32cd2540a8a5fc0ccbff9bb, type: 2}
   - {fileID: 11400000, guid: f9a6db5321a456344a6f98395423a248, type: 2}
-  - {fileID: 11400000, guid: 21de33e99851cd1499b4c00752bf3184, type: 2}
   targetObjectID: direk
   buttonOffset: {x: 0, y: 3, z: 0}
   entryCameraMode: 4
@@ -38,6 +37,19 @@ MonoBehaviour:
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."
+  hasSurvey: 1
+  surveyPanelPrefab: {fileID: 1286903722057059542, guid: 19fa24d4f5915f640b3fee1d4534a0fb, type: 3}
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 1
+    photoSlots:
+    - slotLabel: DirekUst
+      targetObjectID: DirekUst
+      alignmentThreshold: 0.5
+      indicatorAlignedColor: {r: 0.03127098, g: 1, b: 0, a: 0}
+      indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
   spawnButtonAtStart: 0
   sequenceIcon: {fileID: 0}
   buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}

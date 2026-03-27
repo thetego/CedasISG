@@ -203,12 +203,7 @@ namespace SafetyTraining
 		private void OnRestartClicked()
 		{
 			HideAllPanels();
-
-			// ActionManager veya LevelManager üzerinden restart
-			if (ActionManager.Instance != null)
-				ActionManager.Instance.RestartLevel();
-			else if (LevelManager.Instance != null)
-				LevelManager.Instance.RestartLevel();
+			SequenceManager.Instance?.RestartLevel();
 
 			if (debugMode)
 				Debug.Log("[UIManager] Restart clicked");
@@ -236,7 +231,6 @@ namespace SafetyTraining
 		/// </summary>
 		public void UpdateInstruction(string text)
 		{
-			// Bu method ActionManager veya LevelManager tarafından kullanılabilir
 			// Eğer UI'da bir instruction text varsa buradan güncellenebilir
 			if (debugMode)
 				Debug.Log($"[UIManager] Instruction: {text}");

@@ -24,7 +24,7 @@ MonoBehaviour:
   autoCompleteAfterDelay: 0
   cameraMode: 4
   virtualCameraID: 
-  autoReturnCameraOnComplete: 1
+  autoReturnCameraOnComplete: 0
   cameraTargetID: 
   cameraMoveSpeed: 2
   autoCompleteAfterCamera: 0
@@ -43,6 +43,16 @@ MonoBehaviour:
   toolDropMode: 0
   interactionPanelPrefab: {fileID: 0}
   panelID: 
+  quizData:
+    questionText: 
+    options:
+    - 
+    - 
+    - 
+    - 
+    correctOptionIndex: 0
+    correctFeedbackText: "Do\u011Fru! Tebrikler."
+    wrongFeedbackText: "Yanl\u0131\u015F cevap! \u0130\u015Flem sonland\u0131r\u0131ld\u0131."
   hideButtonAfterComplete: 0
   animationTriggers: []
   soundClip: {fileID: 0}

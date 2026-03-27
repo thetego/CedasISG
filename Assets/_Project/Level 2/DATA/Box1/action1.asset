@@ -40,6 +40,24 @@ MonoBehaviour:
   toolDropMode: 0
   interactionPanelPrefab: {fileID: 0}
   panelID: 
+  quizData:
+    questionText: 
+    options:
+    - 
+    - 
+    - 
+    - 
+    correctOptionIndex: 0
+    correctFeedbackText: "Do\u011Fru! Tebrikler."
+    wrongFeedbackText: "Yanl\u0131\u015F cevap! \u0130\u015Flem sonland\u0131r\u0131ld\u0131."
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 0
+    photoSlots: []
+  activatesTablet: 0
+  deactivatesTablet: 0
   hideButtonAfterComplete: 0
   animationTriggers:
   - animatorObjectID: box
@@ -60,6 +78,7 @@ MonoBehaviour:
   onActionFail:
     m_PersistentCalls:
       m_Calls: []
-  onStartEventIDs: []
+  onStartEventIDs:
+  - st4
   onCompleteEventIDs: []
   onFailEventIDs: []

@@ -4,7 +4,7 @@ using UnityEngine.Events;
 namespace SafetyTraining
 {
 	/// <summary>
-	/// Level yapısı - hem eski ActionManager hem yeni SequenceManager ile uyumlu
+	/// Level yapısı - SequenceManager ile kullanılır
 	/// </summary>
 	[CreateAssetMenu(fileName = "New Level", menuName = "Safety Training/Level Data")]
 	public class LevelData : ScriptableObject
@@ -18,10 +18,6 @@ namespace SafetyTraining
 		[Header("━━━ YENİ SİSTEM: SEKANSLAR ━━━")]
 		[Tooltip("Sekans bazlı sistem için (SequenceManager)")]
 		public SequenceData[] sequences;
-
-		[Header("━━━ ESKİ SİSTEM: AKSİYONLAR (DEPRECATED) ━━━")]
-		[Tooltip("Eski sıralı sistem için (LevelManager) - deprecated")]
-		public ActionData[] actionSequence;
 
 		[Header("━━━ AYARLAR ━━━")]
 		[Tooltip("Zaman limiti (0 = limitsiz)")]
@@ -68,13 +64,5 @@ namespace SafetyTraining
 			return null;
 		}
 
-		// ═══════════════════════════════════════════════════════
-		// ACTION METHODS (ESKİ SİSTEM - BACKWARD COMPATIBILITY)
-		// ═══════════════════════════════════════════════════════
-
-		public ActionData GetActionAt(int i) =>
-			(actionSequence != null && i >= 0 && i < actionSequence.Length) ? actionSequence[i] : null;
-
-		public int GetTotalActionCount() => actionSequence?.Length ?? 0;
 	}
 }

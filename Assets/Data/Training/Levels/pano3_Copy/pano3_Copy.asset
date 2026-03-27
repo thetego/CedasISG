@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
+  m_Name: pano3_Copy
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
+  sequenceID: pano3_Copy
+  sequenceName: pano4
+  sequenceDescription: 
+  actions:
+  - {fileID: 11400000, guid: 04fd5f4f4e9c23b4fb617e66c8930f22, type: 2}
+  - {fileID: 11400000, guid: 491c78e49fd57e04982a988760b5e5ce, type: 2}
+  - {fileID: 11400000, guid: fa655cfdfb73a854f86367f8368fcb92, type: 2}
+  - {fileID: 11400000, guid: 569d076b6b1723a40a669a62a976d822, type: 2}
+  - {fileID: 11400000, guid: 75a5d1fd4ecc5db468d9ab36df7d6ec3, type: 2}
+  - {fileID: 11400000, guid: 2875510548529874c875efd4c651b029, type: 2}
+  targetObjectID: panoDepar4
+  buttonOffset: {x: 0, y: 1.5, z: 0}
+  entryCameraMode: 4
+  entryCameraID: camPano4
+  autoReturnOnComplete: 1
+  autoReturnOnExit: 1
+  resumeFromLastAction: 1
+  allowRestart: 0
+  hideButtonAfterComplete: 1
+  lockAfterComplete: 0
+  prerequisiteSequences: []
+  onPrerequisiteFail: 1
+  prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
+    tamamlay\u0131n."
+  hasSurvey: 1
+  surveyPanelPrefab: {fileID: 1286903722057059542, guid: 19fa24d4f5915f640b3fee1d4534a0fb, type: 3}
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions:
+    - questionText: "H\xFCcre plaka etiketi var m\u0131?"
+      options:
+      - Evet
+      - "Hay\u0131r"
+      correctOptionIndices: 01000000
+      isRequired: 1
+    photoSlotCount: 2
+    photoSlots:
+    - slotLabel: panoEtiket
+      targetObjectID: panoEtiket4
+      alignmentThreshold: 0.5
+      indicatorAlignedColor: {r: 0.13948512, g: 1, b: 0, a: 0}
+      indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
+    - slotLabel: panoDepar
+      targetObjectID: panoDepar4
+      alignmentThreshold: 0.5
+      indicatorAlignedColor: {r: 0.13948512, g: 1, b: 0, a: 0}
+      indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
+  spawnButtonAtStart: 0
+  sequenceIcon: {fileID: 0}
+  buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
+  completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}
+  onSequenceEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceExit:
+    m_PersistentCalls:
+      m_Calls: []

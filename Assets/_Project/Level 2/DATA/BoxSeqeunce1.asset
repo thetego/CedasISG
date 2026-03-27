@@ -17,6 +17,7 @@ MonoBehaviour:
   sequenceDescription: 
   actions:
   - {fileID: 11400000, guid: f3cd59d70288dbe4684e0bcfadd291b9, type: 2}
+  - {fileID: 11400000, guid: ee2d6f01c80be11469a18e0eb81e49f8, type: 2}
   - {fileID: 11400000, guid: b394d7a798a11b048b075a86b49fa3ee, type: 2}
   - {fileID: 11400000, guid: ee5d3efde60d3d043a316d6b5dde53cf, type: 2}
   - {fileID: 11400000, guid: ea334266f6ec2074aa1ac0c5b70c9c6f, type: 2}
@@ -35,7 +36,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a40b9cd97246c5140a9cb1b5617c868b, type: 2}
   - {fileID: 11400000, guid: d8f9f0885c5ddc04b9e10aa7a97de81f, type: 2}
   - {fileID: 11400000, guid: a6eb5dbe8560eab45b5d146c6e088eb1, type: 2}
+  - {fileID: 11400000, guid: 5710c6e22fd571c408530a87f12fc3a6, type: 2}
   - {fileID: 11400000, guid: 4738b328b702d734d8f2ae9d1c62b280, type: 2}
+  - {fileID: 11400000, guid: 5d15d5165169b67439cfa9a40020e2cf, type: 2}
+  - {fileID: 11400000, guid: 63f128cbeed4f7242a679fdca7df32ea, type: 2}
   - {fileID: 11400000, guid: 557c4aad8ca91db4dafc1d2af3151e31, type: 2}
   - {fileID: 11400000, guid: 855f2dcedf8627b4da0eb31e10392660, type: 2}
   targetObjectID: box
@@ -54,6 +58,14 @@ MonoBehaviour:
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."
+  hasSurvey: 0
+  surveyPanelPrefab: {fileID: 0}
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 0
+    photoSlots: []
   spawnButtonAtStart: 1
   sequenceIcon: {fileID: 0}
   buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}

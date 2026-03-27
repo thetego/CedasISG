@@ -11,7 +11,9 @@ namespace SafetyTraining
 		DragToWorld,     // Tool sürükle → Drop zone (world to screen)
 		Click,           // Basit tıklama → UI buton (world to screen)
 		CameraMove,      // Otomatik kamera geçiş
-		PanelInteraction // Panel aç → Panel içinde buton tıkla → Action tamamlanır
+		PanelInteraction,// Panel aç → Panel içinde buton tıkla → Action tamamlanır
+		Quiz,            // Soru + 4 seçenek → Doğru → tamamlandı, Yanlış → game over
+		Survey           // Dropdown sorular + fotoğraf çekme → analytics
 	}
 
 	public enum PrerequisiteFailAction
@@ -85,24 +87,6 @@ namespace SafetyTraining
 		[Tooltip("Action tamamlandığında otomatik kamera geri dönsün mü?")]
 		public bool autoReturnCameraOnComplete = false;
 
-		[Header("━━━ KAMERA HAREKETİ (CameraMove için - DEPRECATED) ━━━")]
-		[Tooltip("Kameranın gideceği hedef objenin Tag/Name'i")]
-		public string cameraTargetID;
-
-		[Tooltip("Kamera hareket hızı")]
-		[Range(0.5f, 5f)]
-		public float cameraMoveSpeed = 2f;
-
-		[Tooltip("Kamera hareketinden sonra otomatik tamamlansın mı?")]
-		public bool autoCompleteAfterCamera = true;
-
-		[Header("━━━ KOŞULLAR (DEPRECATED) ━━━")]
-		[Tooltip("Önceki action tamamlanmadan bu başlamasın mı?")]
-		public bool requiresPreviousAction = true;
-
-		[Tooltip("Bu actiondan önce tamamlanması gereken actionlar (deprecated)")]
-		public ActionData[] prerequisiteActions;
-
 		[Header("━━━ HEDEF OBJE (Sahne) ━━━")]
 		[Tooltip("Sahnedeki 3D objenin ID'si. UI otomatik burada belirir.")]
 		public string targetObjectID;
@@ -145,6 +129,30 @@ namespace SafetyTraining
 
 		[Tooltip("Panel ID (runtime tracking için - boş bırakılabilir)")]
 		public string panelID;
+
+		// ───────────────────────────────────────
+		// Quiz
+		// ───────────────────────────────────────
+		[Header("━━━ QUIZ ━━━")]
+		[Tooltip("Quiz soru ve seçenek verisi")]
+		public QuizActionData quizData;
+
+		// ───────────────────────────────────────
+		// Survey
+		// ───────────────────────────────────────
+		[Header("━━━ SURVEY ━━━")]
+		[Tooltip("Dropdown anket, fotoğraf çekme ve analytics verisi")]
+		public SurveyActionData surveyData;
+
+		// ───────────────────────────────────────
+		// Tablet
+		// ───────────────────────────────────────
+		[Header("━━━ TABLET ━━━")]
+		[Tooltip("Bu action tamamlanınca sekansın tablet butonu aktifleşsin mi?")]
+		public bool activatesTablet = false;
+
+		[Tooltip("Bu action başlayınca tablet butonu pasifleşsin mi?")]
+		public bool deactivatesTablet = false;
 
 		// ───────────────────────────────────────
 		// UI BEHAVIOR
@@ -203,6 +211,32 @@ namespace SafetyTraining
 
 		[Tooltip("Drop edildiğinde tetiklenecek event ID (ActionEventHandler)")]
 		public string onDropEventID;
+	}
+
+	/// <summary>
+	/// Quiz action tipi için soru verisi.
+	/// ActionData içinde [Header("QUIZ")] altında düzenlenir.
+	/// </summary>
+	[System.Serializable]
+	public class QuizActionData
+	{
+		[Tooltip("Soru metni")]
+		[TextArea(2, 5)]
+		public string questionText;
+
+		[Tooltip("4 seçenek (A, B, C, D sırasıyla)")]
+		public string[] options = new string[4];
+
+		[Tooltip("Doğru cevabın index'i (0=A, 1=B, 2=C, 3=D)")]
+		[Range(0, 3)]
+		public int correctOptionIndex = 0;
+
+		[Header("━ Feedback Metinleri")]
+		[Tooltip("Doğru cevapta gösterilecek metin")]
+		public string correctFeedbackText = "Doğru! Tebrikler.";
+
+		[Tooltip("Yanlış cevapta gösterilecek metin")]
+		public string wrongFeedbackText = "Yanlış cevap! İşlem sonlandırıldı.";
 	}
 }
 

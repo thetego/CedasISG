@@ -55,9 +55,6 @@ namespace SafetyTraining
 		[Tooltip("Tamamlandıktan sonra buton tamamen gizlensin mi? (destroy/deactivate)")]
 		public bool hideButtonAfterComplete = false;
 
-		[Tooltip("Tamamlanmış sekansa tekrar girilemesin mi? (DEPRECATED - allowRestart kullanın)")]
-		public bool lockAfterComplete = false;
-
 		[Header("━━━ ÖNKOŞULLAR ━━━")]
 		[Tooltip("Bu sekansa girmek için tamamlanması gereken diğer sekanslar")]
 		public SequenceData[] prerequisiteSequences;
@@ -68,6 +65,16 @@ namespace SafetyTraining
 		[Tooltip("Önkoşul hatası mesajı")]
 		[TextArea(2, 3)]
 		public string prerequisiteFailMessage = "Bu sekansa girmek için önce diğer sekansları tamamlayın.";
+
+		[Header("━━━ SURVEY / TABLET ━━━")]
+		[Tooltip("Bu sekans için tablet survey paneli var mı?")]
+		public bool hasSurvey = false;
+
+		[Tooltip("Survey panel prefabı (UISurveyPanel component'li)")]
+		public GameObject surveyPanelPrefab;
+
+		[Tooltip("Survey veri tanımı")]
+		public SurveyActionData surveyData;
 
 		[Header("━━━ UI AYARLARI ━━━")]
 		[Tooltip("Level başlangıcında buton spawn edilsin mi? (false ise programmatically spawn edilmeli)")]

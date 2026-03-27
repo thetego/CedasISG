@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9161bf1027ff61439a7793cfc71ac08, type: 3}
+  m_Name: Level 3
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.LevelData
+  levelID: NewLevel
+  levelName: Level 3
+  levelDescription: 
+  sequences:
+  - {fileID: 11400000, guid: 50c0b1333e1279b42af9af7114f76912, type: 2}
+  - {fileID: 11400000, guid: 67b089813e549074380f691473682511, type: 2}
+  - {fileID: 11400000, guid: 8c0a3b21e8fc5da42b3e92fb26f2ff0f, type: 2}
+  - {fileID: 11400000, guid: c7001038dd1d6ab488a746cff7ac47f6, type: 2}
+  - {fileID: 11400000, guid: 19031ee8b8501a048a2e13dbb7449b18, type: 2}
+  - {fileID: 11400000, guid: e8da41f43f17e064697f2014ddb3119c, type: 2}
+  - {fileID: 11400000, guid: 283fdee4ba872f849afe2c4dd52f5ef3, type: 2}
+  - {fileID: 11400000, guid: 5cedc5ef4f48cd64fa93c7c2b3a1fd14, type: 2}
+  actionSequence: []
+  timeLimit: 0
+  allowSequenceSwitching: 1
+  maxScore: 100
+  penaltyPerMistake: 5
+  bonusForSpeed: 20
+  onLevelStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onLevelComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onLevelFail:
+    m_PersistentCalls:
+      m_Calls: []

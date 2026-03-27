@@ -16,12 +16,10 @@ MonoBehaviour:
   sequenceName: direk2
   sequenceDescription: 
   actions:
-  - {fileID: 11400000, guid: 21de33e99851cd1499b4c00752bf3184, type: 2}
   - {fileID: 11400000, guid: fae3c0b6b94878443ac1aa0d35a7449d, type: 2}
   - {fileID: 11400000, guid: f5fca14545ed86346ad83c7a7d117693, type: 2}
   - {fileID: 11400000, guid: 6c519828aba775a4fa7928f8665298e9, type: 2}
   - {fileID: 11400000, guid: f83b307bc18efb04e890372f47fb2711, type: 2}
-  - {fileID: 11400000, guid: 21de33e99851cd1499b4c00752bf3184, type: 2}
   - {fileID: 11400000, guid: 36f0931ddaf76054e89332a0f96aa572, type: 2}
   targetObjectID: direk
   buttonOffset: {x: 0, y: 0, z: 0}
@@ -41,6 +39,19 @@ MonoBehaviour:
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."
+  hasSurvey: 1
+  surveyPanelPrefab: {fileID: 1286903722057059542, guid: 19fa24d4f5915f640b3fee1d4534a0fb, type: 3}
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 1
+    photoSlots:
+    - slotLabel: p1
+      targetObjectID: p1
+      alignmentThreshold: 0.5
+      indicatorAlignedColor: {r: 0.20301843, g: 1, b: 0, a: 0}
+      indicatorOffColor: {r: 1, g: 0, b: 0.11461401, a: 0}
   spawnButtonAtStart: 0
   sequenceIcon: {fileID: 0}
   buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}

@@ -6,7 +6,7 @@ namespace SafetyTraining
 {
 	/// <summary>
 	/// UI elementlerini spawn eder ve yönetir
-	/// Hem eski ActionManager hem yeni SequenceManager ile uyumlu
+	/// SequenceManager ile birlikte çalışır
 	/// </summary>
 	public class UISpawnManager : MonoBehaviour
 	{
@@ -16,8 +16,8 @@ namespace SafetyTraining
 		[Tooltip("Sekans butonu prefabı (UISequenceButton)")]
 		public GameObject sequenceButtonPrefab;
 
-		[Tooltip("Action butonu prefabı (UIActionButton)")]
-		public GameObject actionButtonPrefab;
+		[Tooltip("Survey tablet butonu prefabı (UITabletButton) — Canvas’ta sabit alt orta")]
+		public GameObject tabletButtonPrefab;
 
 		[Tooltip("Click butonu prefabı (UIClickButton)")]
 		public GameObject clickButtonPrefab;
@@ -51,7 +51,6 @@ namespace SafetyTraining
 
 		// ─── Runtime Storage ───
 		private Dictionary<string, GameObject> _spawnedSequenceButtons = new Dictionary<string, GameObject>();
-		private Dictionary<string, GameObject> _spawnedActionButtons = new Dictionary<string, GameObject>();
 		private Dictionary<string, GameObject> _spawnedButtons = new Dictionary<string, GameObject>();
 		private Dictionary<string, GameObject> _spawnedDropZones = new Dictionary<string, GameObject>();
 		private Dictionary<string, GameObject> _spawnedItems = new Dictionary<string, GameObject>();
@@ -170,104 +169,7 @@ namespace SafetyTraining
 		}
 
 		// ═══════════════════════════════════════════════════════
-		// ESKİ SİSTEM: ACTION BUTTON SPAWNING (BACKWARD COMPATIBILITY)
-		// ═══════════════════════════════════════════════════════
-
-		/// <summary>
-		/// ActionManager için: Tüm action butonlarını spawn eder (ESKİ SİSTEM)
-		/// </summary>
-		public void SpawnAllActionButtons(LevelData level)
-		{
-			if (level == null || level.actionSequence == null)
-			{
-				Debug.LogError("[UISpawnManager] Level veya actionSequence null!");
-				return;
-			}
-
-			CleanupActionButtons();
-
-			foreach (var action in level.actionSequence)
-			{
-				if (action == null) continue;
-				SpawnActionButton(action);
-			}
-
-			if (debugMode)
-				Debug.Log($"<color=cyan>[UISpawnManager] Spawned {_spawnedActionButtons.Count} action buttons</color>");
-		}
-
-		private void SpawnActionButton(ActionData action)
-		{
-			if (actionButtonPrefab == null || worldButtonContainer == null)
-			{
-				Debug.LogError("[UISpawnManager] actionButtonPrefab veya worldButtonContainer null!");
-				return;
-			}
-
-			GameObject btnObj = Instantiate(actionButtonPrefab, worldButtonContainer);
-			UIActionButton btn = btnObj.GetComponent<UIActionButton>();
-
-			if (btn != null)
-			{
-				btn.Setup(action.actionID, action.actionName);
-
-				// World follower ekle (eğer hedef obje varsa)
-				if (!string.IsNullOrEmpty(action.targetObjectID))
-				{
-					UIWorldFollower follower = btnObj.GetComponent<UIWorldFollower>();
-					if (follower == null)
-						follower = btnObj.AddComponent<UIWorldFollower>();
-
-					follower.Initialize(action.targetObjectID, defaultWorldOffset);
-				}
-
-				// ActionManager'a kaydet
-				if (ActionManager.Instance != null)
-					ActionManager.Instance.RegisterActionButton(action.actionID, btn);
-
-				_spawnedActionButtons[action.actionID] = btnObj;
-			}
-		}
-
-		private void CleanupActionButtons()
-		{
-			foreach (var kvp in _spawnedActionButtons)
-			{
-				if (kvp.Value != null)
-					Destroy(kvp.Value);
-			}
-			_spawnedActionButtons.Clear();
-		}
-
-		/// <summary>
-		/// LevelManager için: Tüm UI'ları spawn eder ama deaktif tutar (ESKİ SİSTEM)
-		/// </summary>
-		public void SpawnAllUI(LevelData level)
-		{
-			if (level == null || level.actionSequence == null)
-			{
-				Debug.LogError("[UISpawnManager] Level veya actionSequence null!");
-				return;
-			}
-
-			CleanupAllUI();
-
-			foreach (var action in level.actionSequence)
-			{
-				if (action == null) continue;
-				SpawnUIForAction(action);
-			}
-
-			// Ekipman panelini kapat
-			if (equipmentPanel)
-				equipmentPanel.SetActive(false);
-
-			if (debugMode)
-				Debug.Log($"<color=cyan>[UISpawnManager] Spawned UI for {level.actionSequence.Length} actions</color>");
-		}
-
-		// ═══════════════════════════════════════════════════════
-		// ORTAK: ACTION UI SPAWNING (HER İKİ SİSTEM İÇİN)
+		// ACTION UI SPAWNING
 		// ═══════════════════════════════════════════════════════
 
 		/// <summary>
@@ -347,9 +249,11 @@ namespace SafetyTraining
 
 			// Ekipman panelini kapat (WearEquipment için)
 			if (action.actionType == ActionType.WearEquipment && equipmentPanel != null)
-			{
 				equipmentPanel.SetActive(false);
-			}
+
+			// Tablet butonu aktivasyon/deaktivasyon (action flag'ına göre)
+			if (action.deactivatesTablet && _activeTabletButton != null)
+				_activeTabletButton.SetInteractable(false);
 
 			if (debugMode)
 				Debug.Log($"<color=yellow>[UISpawnManager] Deactivated UI for action: {action.actionName}</color>");
@@ -378,6 +282,16 @@ namespace SafetyTraining
 				case ActionType.PanelInteraction:
 					GameObject panel = SpawnInteractionPanel(action);
 					if (panel != null) uiElements.Add(panel);
+					break;
+
+				case ActionType.Quiz:
+					GameObject quizPanel = SpawnQuizPanel(action);
+					if (quizPanel != null) uiElements.Add(quizPanel);
+					break;
+
+				case ActionType.Survey:
+					// Survey artık action bazlı değil — sequence bazlı
+					// SequenceManager.StartSequence() içinde SpawnSequenceSurvey çağrılır
 					break;
 
 				case ActionType.CameraMove:
@@ -666,20 +580,174 @@ namespace SafetyTraining
 			return panelObj;
 		}
 
+		private GameObject SpawnQuizPanel(ActionData action)
+		{
+			if (action.quizData == null)
+			{
+				Debug.LogError($"[UISpawnManager] quizData null for action '{action.actionID}'!");
+				return null;
+			}
+
+			if (action.interactionPanelPrefab == null)
+			{
+				Debug.LogError($"[UISpawnManager] interactionPanelPrefab (quiz prefab) null for action '{action.actionID}'!");
+				return null;
+			}
+
+			Canvas canvas = worldButtonContainer?.GetComponentInParent<Canvas>();
+			if (canvas == null)
+			{
+				Debug.LogError("[UISpawnManager] Canvas not found!");
+				return null;
+			}
+
+			GameObject panelObj = Instantiate(action.interactionPanelPrefab, canvas.transform);
+
+			UIQuizPanel quizPanel = panelObj.GetComponent<UIQuizPanel>();
+			if (quizPanel != null)
+			{
+				quizPanel.Setup(action.actionID, action.quizData);
+
+				if (debugMode)
+					Debug.Log($"  → UIQuizPanel setup: {panelObj.name}");
+			}
+			else
+			{
+				Debug.LogWarning($"[UISpawnManager] UIQuizPanel component missing on '{panelObj.name}'!");
+			}
+
+			_spawnedButtons[action.actionID] = panelObj;
+
+			if (debugMode)
+				Debug.Log($"<color=lime>[UISpawnManager] ✓ Quiz panel spawned: {panelObj.name}</color>");
+
+			return panelObj;
+		}
+
 		// ═══════════════════════════════════════════════════════
+		// ══════════════════════════════════════════════════════════
+		// SURVEY UI SPAWNING
+		// ══════════════════════════════════════════════════════════
+
+		private UITabletButton _activeTabletButton;
+		private UISurveyPanel  _activeSurveyPanel;
+
 		// CLEANUP
 		// ═══════════════════════════════════════════════════════
 
 		/// <summary>
 		/// Tüm spawn edilmiş UI'ları temizler
 		/// </summary>
+		// ═══════════════════════════════════════════════════════
+		// SEQUENCE SURVEY — sekans bazlı tablet yönetimi
+		// ═══════════════════════════════════════════════════════
+
+		/// <summary>
+		/// Sekans başlarken çağrılır. hasSurvey true ise tablet + panel spawn eder.
+		/// </summary>
+		public void OnSequenceStarted(SequenceData sequence)
+		{
+			if (sequence == null || !sequence.hasSurvey) return;
+			if (sequence.surveyPanelPrefab == null)
+			{
+				Debug.LogError($"[UISpawnManager] hasSurvey=true ama surveyPanelPrefab atanmamış: {sequence.sequenceID}");
+				return;
+			}
+
+			Canvas canvas = worldButtonContainer?.GetComponentInParent<Canvas>();
+			if (canvas == null) { Debug.LogError("[UISpawnManager] Canvas bulunamadı!"); return; }
+
+			// Panel spawn et
+			GameObject panelObj = Instantiate(sequence.surveyPanelPrefab, canvas.transform);
+			UISurveyPanel surveyPanel = panelObj.GetComponent<UISurveyPanel>();
+			SurveyCameraController camController = FindObjectOfType<SurveyCameraController>();
+
+			if (surveyPanel != null)
+			{
+				string sessionID = $"{sequence.sequenceID}_survey";
+				surveyPanel.Setup(sessionID, sequence.surveyData, camController);
+				panelObj.SetActive(false);
+			}
+			else
+				Debug.LogWarning($"[UISpawnManager] UISurveyPanel component eksik: {panelObj.name}");
+
+			// Tablet butonu spawn et — başlangıçta disabled
+			if (tabletButtonPrefab != null)
+			{
+				GameObject btnObj = Instantiate(tabletButtonPrefab, canvas.transform);
+				UITabletButton tabletBtn = btnObj.GetComponent<UITabletButton>();
+				if (tabletBtn != null && surveyPanel != null)
+				{
+					tabletBtn.Activate(surveyPanel);
+					tabletBtn.SetInteractable(false); // Başlangıçta kilitli
+				}
+				_activeTabletButton = tabletBtn;
+				_spawnedButtons[$"{sequence.sequenceID}_tablet"] = btnObj;
+			}
+
+			_activeSurveyPanel = surveyPanel;
+			_spawnedButtons[$"{sequence.sequenceID}_survey"] = panelObj;
+
+			if (debugMode)
+				Debug.Log($"<color=lime>[UISpawnManager] Sequence survey spawned: {sequence.sequenceID}</color>");
+		}
+
+		/// <summary>
+		/// Sekans bitince veya çıkılınca survey UI'ı temizler.
+		/// </summary>
+		public void OnSequenceEnded(SequenceData sequence)
+		{
+			if (sequence == null) return;
+
+			string surveyKey = $"{sequence.sequenceID}_survey";
+			string tabletKey = $"{sequence.sequenceID}_tablet";
+
+			if (_spawnedButtons.TryGetValue(tabletKey, out GameObject tabletObj))
+			{
+				_activeTabletButton?.Deactivate();
+				if (tabletObj != null) Destroy(tabletObj);
+				_spawnedButtons.Remove(tabletKey);
+			}
+
+			if (_spawnedButtons.TryGetValue(surveyKey, out GameObject panelObj))
+			{
+				if (panelObj != null) Destroy(panelObj);
+				_spawnedButtons.Remove(surveyKey);
+			}
+
+			_activeTabletButton = null;
+			_activeSurveyPanel  = null;
+
+			if (debugMode)
+				Debug.Log($"<color=yellow>[UISpawnManager] Sequence survey cleaned: {sequence.sequenceID}</color>");
+		}
+
+		/// <summary>
+		/// Action tamamlanınca çağrılır — activatesTablet flag'ına göre tablet'i aktifleştirir.
+		/// </summary>
+		public void OnActionFinished(ActionData action)
+		{
+			if (action == null) return;
+
+			if (action.activatesTablet && _activeTabletButton != null)
+			{
+				_activeTabletButton.SetInteractable(true);
+				if (debugMode)
+					Debug.Log($"[UISpawnManager] Tablet aktifleşti: {action.actionName} tamamlandı.");
+			}
+
+			if (action.deactivatesTablet && _activeTabletButton != null)
+			{
+				_activeTabletButton.SetInteractable(false);
+				if (debugMode)
+					Debug.Log($"[UISpawnManager] Tablet pasifleşti: {action.actionName} tamamlandı.");
+			}
+		}
+
 		public void CleanupAllUI()
 		{
 			// Sekans butonlarını temizle
 			CleanupSequenceButtons();
-
-			// Action butonlarını temizle
-			CleanupActionButtons();
 
 			// Click butonlarını temizle
 			foreach (var kvp in _spawnedButtons)

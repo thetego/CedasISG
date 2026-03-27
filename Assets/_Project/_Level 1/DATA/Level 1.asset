@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9161bf1027ff61439a7793cfc71ac08, type: 3}
   m_Name: Level 1
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.LevelData
-  levelID: leve1
-  levelName: 
+  levelID: level 1
+  levelName: Level 1
   levelDescription: 
   sequences:
   - {fileID: 11400000, guid: 4d18524abb07db64f89b49413ae4b133, type: 2}
@@ -22,8 +22,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c9b9d4f959a83b04b9e61e3e4f848950, type: 2}
   - {fileID: 11400000, guid: ad6a4600c3de8d948b9c56b2eddc8367, type: 2}
   - {fileID: 11400000, guid: 2c4b469114df4034691f585c593fdcec, type: 2}
-  - {fileID: 11400000, guid: 2c4b469114df4034691f585c593fdcec, type: 2}
-  - {fileID: 11400000, guid: 7114164d87037be4e8759e65329a6f30, type: 2}
   - {fileID: 11400000, guid: 7114164d87037be4e8759e65329a6f30, type: 2}
   - {fileID: 11400000, guid: eacab4df5d4adab4a8ddeffd16ff6c81, type: 2}
   actionSequence: []
