@@ -25,11 +25,6 @@ MonoBehaviour:
   cameraMode: 4
   virtualCameraID: camAG2
   autoReturnCameraOnComplete: 0
-  cameraTargetID: 
-  cameraMoveSpeed: 2
-  autoCompleteAfterCamera: 1
-  requiresPreviousAction: 1
-  prerequisiteActions: []
   targetObjectID: 
   requiredEquipments: []
   distractorEquipments: []

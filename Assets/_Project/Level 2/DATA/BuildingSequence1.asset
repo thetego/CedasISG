@@ -16,6 +16,7 @@ MonoBehaviour:
   sequenceName: Building
   sequenceDescription: 
   actions:
+  - {fileID: 11400000, guid: 0f61aa6a5c0222d4abd4e722c29ae464, type: 2}
   - {fileID: 11400000, guid: 4f2c52b801030504a9447c94ef1dd340, type: 2}
   - {fileID: 11400000, guid: e236903b6a575ff4f9721207f396ffdf, type: 2}
   - {fileID: 11400000, guid: 10fdc12ff56988b4ca280446f069c5af, type: 2}
@@ -26,7 +27,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: acd51873b688558448150db0f21300ff, type: 2}
   - {fileID: 11400000, guid: 75e07c6c78166e749a884811f80ac29d, type: 2}
   - {fileID: 11400000, guid: fbe5c2ccf06f3ef4b81fd94774e803ca, type: 2}
-  - {fileID: 11400000, guid: 0f61aa6a5c0222d4abd4e722c29ae464, type: 2}
   - {fileID: 11400000, guid: 8a947bd1fe9b6014eaf77751ff8b1d74, type: 2}
   - {fileID: 11400000, guid: 115a5f1141f8ca6418d77aa470e0095c, type: 2}
   - {fileID: 11400000, guid: de1fe01dba66e514693377c82b5e4e63, type: 2}
@@ -40,7 +40,6 @@ MonoBehaviour:
   resumeFromLastAction: 1
   allowRestart: 0
   hideButtonAfterComplete: 1
-  lockAfterComplete: 0
   prerequisiteSequences:
   - {fileID: 11400000, guid: f03acee37abe2ce40b010f233660c612, type: 2}
   onPrerequisiteFail: 1

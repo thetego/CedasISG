@@ -2,32 +2,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
-using UnityEngine.EventSystems;
-using System.Collections;
+using Unity.Cinemachine;
 using System.Collections.Generic;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 namespace SafetyTraining
 {
 	/// <summary>
-	/// Tablet kamera kontrolcüsü.
-	/// - RenderTexture üzerinden ayrı bir Camera'yı kullanır
-	/// - Dokunuşla pan ve pinch-to-zoom
-	/// - Hedef obje göstergesi (dünya → ekran projeksiyon)
-	/// - Fotoğraf çekme + hizalama skoru hesaplama
+	/// Tablet survey kamera kontrolcüsü.
+	/// - RenderTexture/RawImage yerine overlay'deki şeffaf alan üzerinden ana kamera görüntüsü kullanılır
+	/// - O an aktif olan Cinemachine kameranın transform'unu kontrol eder
+	/// - Kontrol bitince kamera orijinal transform ve FOV değerlerine döner
+	/// - Hedef göstergesi olarak dünya uzayında yarı saydam küre spawn edilir
 	/// </summary>
 	public class SurveyCameraController : MonoBehaviour
 	{
 		// ═══════════════════════════════════════════════════════
 		// INSPECTOR
 		// ═══════════════════════════════════════════════════════
-
-		[Header("━━━ KAMERA ━━━")]
-		[Tooltip("Tablet kamera (Main Camera'nın child'ı önerilir)")]
-		public Camera surveyCamera;
-
-		[Tooltip("Kameranın render edeceği RenderTexture (512x512)")]
-		public RenderTexture renderTexture;
 
 		[Header("━━━ PAN AYARLARI ━━━")]
 		[Tooltip("Pan hassasiyeti")]
@@ -55,15 +47,20 @@ namespace SafetyTraining
 		[Tooltip("Zoom hassasiyeti (pinch)")]
 		public float zoomSensitivity = 0.05f;
 
-		[Header("━━━ GÖSTERGELer ━━━")]
-		[Tooltip("Hedef göstergesi prefab'ı (Image component'li)")]
-		public GameObject targetIndicatorPrefab;
+		[Header("━━━ GÖSTERGELER ━━━")]
+		[Tooltip("Hedef noktasına dünya uzayında spawn edilecek küre prefabı (yarı saydam materyal olmalı)")]
+		public GameObject worldIndicatorPrefab;
 
-		[Tooltip("Gösterge büyüklüğü (piksel)")]
-		public float indicatorSize = 32f;
+		[Tooltip("Küre boyutu (world space scale)")]
+		public float indicatorScale = 0.2f;
 
-		[Tooltip("RenderTexture'ın gösterildiği UI RawImage")]
-		public RawImage cameraViewImage;
+		[Header("━━━ DOKUNUŞ ALANI ━━━")]
+		[Tooltip("Dokunuş girişinin aktif olacağı RectTransform (overlay'deki şeffaf kamera alanı)")]
+		public RectTransform cameraViewRect;
+
+		[Header("━━━ TERMAL KAMERA ━━━")]
+		[Tooltip("ThermalCameraRenderer bileşenini taşıyan obje — null ise termal efekt devre dışı")]
+		public ThermalCameraRenderer thermalRenderer;
 
 		[Header("━━━ DEBUG ━━━")]
 		public bool debugMode = false;
@@ -74,17 +71,20 @@ namespace SafetyTraining
 
 		private float _currentPitch;
 		private float _currentYaw;
-		private float _baseYaw;
-		private float _basePitch;
 
-		private List<GameObject>   _indicators    = new List<GameObject>();
-		private List<PhotoSlot>    _activeSlots   = new List<PhotoSlot>();
-		private Transform          _indicatorParent;
+		// Aktif Cinemachine kamera ve kaydedilen durum
+		private CinemachineCamera          _activeVcam;
+		private Quaternion                 _savedRotation;
+		private float                      _savedFOV;
+		private CinemachineComponentBase[] _vcamComponents;
+		private bool[]                     _componentEnabledStates;
 
-		// Aktif slot indeksi (hangi slot için fotoğraf çekiliyor)
-		private int _activeSlotIndex = -1;
+		// Dünya uzayı göstergeler — key: slot index, value: indicator GameObject
+		private Dictionary<int, GameObject> _indicatorsBySlot = new Dictionary<int, GameObject>();
+		private List<PhotoSlot>             _activeSlots      = new List<PhotoSlot>();
+		private int                         _activeSlotIndex  = -1;
+		private HashSet<int>                _photographedSlots = new HashSet<int>();
 
-		// Şu anki slot'un hizalama durumu
 		public bool  IsAligned      { get; private set; }
 		public float AlignmentScore { get; private set; }
 
@@ -94,55 +94,109 @@ namespace SafetyTraining
 
 		private void Awake()
 		{
-			surveyCamera = Camera.main.transform.GetChild(0).GetComponent<Camera>();
-			if (surveyCamera != null && renderTexture != null)
-				surveyCamera.targetTexture = renderTexture;
-
-			if (surveyCamera != null)
-			{
-				_basePitch    = surveyCamera.transform.localEulerAngles.x;
-				_baseYaw      = surveyCamera.transform.localEulerAngles.y;
-				_currentPitch = _basePitch;
-				_currentYaw   = _baseYaw;
-			}
-
-			// New Input System — Enhanced Touch API'yi aktifleştir
 			EnhancedTouchSupport.Enable();
 		}
 
 		private void OnDestroy()
 		{
 			EnhancedTouchSupport.Disable();
+			RestoreCameraState();
 			ClearIndicators();
-
-			if (surveyCamera != null)
-				surveyCamera.targetTexture = null;
 		}
 
 		/// <summary>
-		/// Slot listesini ve gösterge parent'ını dışarıdan set et
+		/// Slot listesini dışarıdan set et.
+		/// indicatorParent parametresi geriye dönük uyumluluk için korundu, artık kullanılmıyor.
 		/// </summary>
 		public void Initialize(List<PhotoSlot> slots, Transform indicatorParent)
 		{
-			_activeSlots     = slots ?? new List<PhotoSlot>();
-			_indicatorParent = indicatorParent;
+			_activeSlots = slots ?? new List<PhotoSlot>();
+			_photographedSlots.Clear();
 			ClearIndicators();
 
-			// indicatorParent'ın her zaman en üstte render edilmesini garantile
-			if (indicatorParent != null)
+			// Tüm slotların indicator'larını önceden spawn et (başta hepsi gizli)
+			for (int i = 0; i < _activeSlots.Count; i++)
+				SpawnWorldIndicator(i, _activeSlots[i]);
+		}
+
+		/// <summary>
+		/// Fotoğrafı çekilen slotun indicator'ını kalıcı olarak sil.
+		/// </summary>
+		public void MarkSlotPhotographed(int slotIndex)
+		{
+			_photographedSlots.Add(slotIndex);
+
+			if (_indicatorsBySlot.TryGetValue(slotIndex, out GameObject ind))
 			{
-				// Ayrı bir Canvas yoksa ekle — Override Sorting ile RawImage'ın üstüne çıkar
-				Canvas indicatorCanvas = indicatorParent.GetComponent<Canvas>();
-				if (indicatorCanvas == null)
-					indicatorCanvas = indicatorParent.gameObject.AddComponent<Canvas>();
-
-				indicatorCanvas.overrideSorting = true;
-				indicatorCanvas.sortingOrder    = 100;
-
-				// GraphicRaycaster da ekle — UI event'leri için
-				if (indicatorParent.GetComponent<GraphicRaycaster>() == null)
-					indicatorParent.gameObject.AddComponent<GraphicRaycaster>();
+				if (ind != null) Destroy(ind);
+				_indicatorsBySlot.Remove(slotIndex);
 			}
+		}
+
+		// ═══════════════════════════════════════════════════════
+		// CİNEMACHİNE KAMERA YÖNETİMİ
+		// ═══════════════════════════════════════════════════════
+
+		private void GrabActiveCinemachineCamera()
+		{
+			if (CameraManager.Instance == null)
+			{
+				Debug.LogError("[SurveyCameraController] CameraManager.Instance null!");
+				return;
+			}
+
+			_activeVcam = CameraManager.Instance.GetCurrentCamera();
+			if (_activeVcam == null)
+			{
+				Debug.LogError("[SurveyCameraController] Aktif Cinemachine kamera bulunamadı!");
+				return;
+			}
+
+			// Mevcut durumu kaydet
+			_savedRotation = _activeVcam.transform.rotation;
+			_savedFOV      = _activeVcam.Lens.FieldOfView;
+
+			// Cinemachine pipeline bileşenlerini geçici olarak devre dışı bırak
+			// (kameranın transform'unu her frame overwrite etmesini önlemek için)
+			_vcamComponents         = _activeVcam.GetComponents<CinemachineComponentBase>();
+			_componentEnabledStates = new bool[_vcamComponents.Length];
+			for (int i = 0; i < _vcamComponents.Length; i++)
+			{
+				_componentEnabledStates[i] = _vcamComponents[i].enabled;
+				_vcamComponents[i].enabled = false;
+			}
+
+			if (debugMode)
+				Debug.Log($"[SurveyCameraController] Vcam yakalandı: '{_activeVcam.name}', " +
+					$"{_vcamComponents.Length} pipeline bileşen devre dışı bırakıldı");
+		}
+
+		private void RestoreCameraState()
+		{
+			if (_activeVcam == null) return;
+
+			// Pipeline bileşenlerini eski haline getir
+			if (_vcamComponents != null)
+			{
+				for (int i = 0; i < _vcamComponents.Length; i++)
+				{
+					if (_vcamComponents[i] != null)
+						_vcamComponents[i].enabled = _componentEnabledStates[i];
+				}
+			}
+
+			// Transform ve FOV'u orijinal değerlerine döndür
+			_activeVcam.transform.rotation = _savedRotation;
+			var lens = _activeVcam.Lens;
+			lens.FieldOfView = _savedFOV;
+			_activeVcam.Lens = lens;
+
+			if (debugMode)
+				Debug.Log($"[SurveyCameraController] Kamera orijinal haline döndürüldü: '{_activeVcam.name}'");
+
+			_activeVcam             = null;
+			_vcamComponents         = null;
+			_componentEnabledStates = null;
 		}
 
 		// ═══════════════════════════════════════════════════════
@@ -150,24 +204,46 @@ namespace SafetyTraining
 		// ═══════════════════════════════════════════════════════
 
 		/// <summary>
-		/// Belirli bir slot için kamera modunu aktifleştirir
+		/// Belirli bir slot için kamera modunu aktifleştirir.
 		/// </summary>
 		public void ActivateForSlot(int slotIndex)
 		{
+			RestoreCameraState();
+
 			_activeSlotIndex = slotIndex;
-			ClearIndicators();
+
+			GrabActiveCinemachineCamera();
 			ResetCamera();
 
-			if (slotIndex < 0 || slotIndex >= _activeSlots.Count) return;
+			if (thermalRenderer != null)
+				thermalRenderer.enabled = true;
 
-			PhotoSlot slot = _activeSlots[slotIndex];
-
-			if (!string.IsNullOrEmpty(slot.targetObjectID))
-				SpawnIndicator(slot);
+			// Sadece aktif slotun indicator'ını göster, diğerlerini gizle
+			foreach (var kvp in _indicatorsBySlot)
+				kvp.Value.SetActive(kvp.Key == slotIndex);
 		}
 
 		/// <summary>
-		/// Kamerayı başlangıç açısına sıfırlar
+		/// Kamera modunu kapat ve orijinal duruma döndür.
+		/// </summary>
+		public void DeactivateCamera()
+		{
+			_activeSlotIndex = -1;
+			RestoreCameraState();
+
+			// Kamera kapanınca tüm indicator'ları gizle
+			foreach (var kvp in _indicatorsBySlot)
+				if (kvp.Value != null) kvp.Value.SetActive(false);
+
+			if (thermalRenderer != null)
+				thermalRenderer.enabled = false;
+
+			if (debugMode)
+				Debug.Log("[SurveyCameraController] Kamera deaktif edildi.");
+		}
+
+		/// <summary>
+		/// Kamerayı kaydedilen başlangıç rotasyonuna sıfırlar.
 		/// </summary>
 		public void ResetCamera()
 		{
@@ -175,8 +251,12 @@ namespace SafetyTraining
 			_currentYaw   = 0f;
 			ApplyRotation();
 
-			if (surveyCamera != null)
-				surveyCamera.fieldOfView = (minFOV + maxFOV) * 0.5f;
+			if (_activeVcam != null)
+			{
+				var lens = _activeVcam.Lens;
+				lens.FieldOfView = (minFOV + maxFOV) * 0.5f;
+				_activeVcam.Lens = lens;
+			}
 		}
 
 		// ═══════════════════════════════════════════════════════
@@ -186,9 +266,8 @@ namespace SafetyTraining
 		private void Update()
 		{
 			if (_activeSlotIndex < 0) return;
-
 			HandleTouchInput();
-			UpdateIndicators();
+			UpdateAlignmentScore();
 		}
 
 		private void HandleTouchInput()
@@ -200,18 +279,13 @@ namespace SafetyTraining
 			if (touchCount == 1)
 			{
 				Touch touch = activeTouches[0];
-
 				if (touch.phase == UnityEngine.InputSystem.TouchPhase.Moved)
 				{
 					if (!IsTouchOnCameraView(touch.screenPosition)) return;
 
-					Vector2 delta     = touch.delta;
-					float deltaPitch  = -delta.y * panSensitivity * 100f;
-					float deltaYaw    =  delta.x * panSensitivity * 100f;
-
-					_currentPitch = Mathf.Clamp(_currentPitch + deltaPitch, minPitch, maxPitch);
-					_currentYaw   = Mathf.Clamp(_currentYaw   + deltaYaw,   minYaw,   maxYaw);
-
+					Vector2 delta = touch.delta;
+					_currentPitch = Mathf.Clamp(_currentPitch + (-delta.y * panSensitivity * 100f), minPitch, maxPitch);
+					_currentYaw   = Mathf.Clamp(_currentYaw   + ( delta.x * panSensitivity * 100f), minYaw,   maxYaw);
 					ApplyRotation();
 				}
 			}
@@ -226,13 +300,13 @@ namespace SafetyTraining
 
 				float prevMag = (prevT0 - prevT1).magnitude;
 				float currMag = (t0.screenPosition - t1.screenPosition).magnitude;
+				float delta   = currMag - prevMag;
 
-				float delta = currMag - prevMag;
-
-				if (surveyCamera != null)
+				if (_activeVcam != null)
 				{
-					float newFOV = surveyCamera.fieldOfView - delta * zoomSensitivity;
-					surveyCamera.fieldOfView = Mathf.Clamp(newFOV, minFOV, maxFOV);
+					var lens = _activeVcam.Lens;
+					lens.FieldOfView = Mathf.Clamp(lens.FieldOfView - delta * zoomSensitivity, minFOV, maxFOV);
+					_activeVcam.Lens = lens;
 				}
 			}
 
@@ -248,27 +322,15 @@ namespace SafetyTraining
 		private void HandleMouseInput()
 		{
 			var mouse = Mouse.current;
-			if (mouse == null)
-			{
-				Debug.LogWarning("[SurveyCameraController] Mouse.current null!");
-				return;
-			}
+			if (mouse == null) return;
 
 			Vector2 mousePos = mouse.position.ReadValue();
 			bool overView    = IsTouchOnCameraView(mousePos);
 
-			// Her frame debug
-			if (mouse.leftButton.isPressed)
-				Debug.Log($"[CAM] mousePos={mousePos} overView={overView} mouseDown={_mouseDown} cameraViewImage={cameraViewImage != null}");
-
-			if (mouse.leftButton.wasPressedThisFrame)
+			if (mouse.leftButton.wasPressedThisFrame && overView)
 			{
-				Debug.Log($"[CAM] Press — overView={overView} cameraViewImage={cameraViewImage?.name ?? "NULL"}");
-				if (overView)
-				{
-					_lastMousePos = mousePos;
-					_mouseDown    = true;
-				}
+				_lastMousePos = mousePos;
+				_mouseDown    = true;
 			}
 
 			if (mouse.leftButton.wasReleasedThisFrame)
@@ -283,13 +345,14 @@ namespace SafetyTraining
 				_lastMousePos = mousePos;
 			}
 
-			if (overView)
+			if (overView && _activeVcam != null)
 			{
 				float scroll = mouse.scroll.ReadValue().y;
-				if (scroll != 0f && surveyCamera != null)
+				if (scroll != 0f)
 				{
-					float newFOV = surveyCamera.fieldOfView - scroll * 0.05f * zoomSensitivity * 100f;
-					surveyCamera.fieldOfView = Mathf.Clamp(newFOV, minFOV, maxFOV);
+					var lens = _activeVcam.Lens;
+					lens.FieldOfView = Mathf.Clamp(lens.FieldOfView - scroll * 0.05f * zoomSensitivity * 100f, minFOV, maxFOV);
+					_activeVcam.Lens = lens;
 				}
 			}
 		}
@@ -297,58 +360,64 @@ namespace SafetyTraining
 
 		private void ApplyRotation()
 		{
-			if (surveyCamera == null) return;
-			surveyCamera.transform.localEulerAngles = new Vector3(_currentPitch, _currentYaw, 0f);
+			if (_activeVcam == null) return;
+			// Kaydedilen rotasyona göre pitch/yaw offset'i uygula (local euler gibi davranır)
+			_activeVcam.transform.rotation = _savedRotation * Quaternion.Euler(_currentPitch, _currentYaw, 0f);
 		}
 
 		private bool IsTouchOnCameraView(Vector2 screenPos)
 		{
-			if (cameraViewImage == null) return true;
-
-			// Canvas camera'sını bul (Screen Space - Camera ise kamera lazım, Overlay ise null)
-			Canvas canvas = cameraViewImage.canvas;
-			Camera uiCam  = (canvas != null && canvas.renderMode != RenderMode.ScreenSpaceOverlay)
-				? canvas.worldCamera : null;
-
-			return RectTransformUtility.RectangleContainsScreenPoint(
-				cameraViewImage.rectTransform, screenPos, uiCam);
+			if (cameraViewRect == null) return true;
+			return RectTransformUtility.RectangleContainsScreenPoint(cameraViewRect, screenPos, null);
 		}
 
 		// ═══════════════════════════════════════════════════════
-		// GÖSTERGELER
+		// DÜNYA UZAYI GÖSTERGELERİ
 		// ═══════════════════════════════════════════════════════
 
-		private void SpawnIndicator(PhotoSlot slot)
+		private void SpawnWorldIndicator(int slotIndex, PhotoSlot slot)
 		{
-			if (targetIndicatorPrefab == null || _indicatorParent == null) return;
+			if (worldIndicatorPrefab == null || string.IsNullOrEmpty(slot.targetObjectID)) return;
 
-			GameObject ind = Instantiate(targetIndicatorPrefab, _indicatorParent);
-			RectTransform rt = ind.GetComponent<RectTransform>();
-			if (rt != null)
-				rt.sizeDelta = new Vector2(indicatorSize, indicatorSize);
+			Transform target = SceneObjectRegistry.Instance?.GetTransformByID(slot.targetObjectID);
+			if (target == null)
+			{
+				Debug.LogWarning($"[SurveyCameraController] Hedef obje bulunamadı: '{slot.targetObjectID}'");
+				return;
+			}
 
-			_indicators.Add(ind);
+			GameObject ind = Instantiate(worldIndicatorPrefab, target.position, Quaternion.identity);
+			ind.transform.localScale = Vector3.one * indicatorScale;
+			ind.SetActive(false); // Başta gizli — ActivateForSlot açar
+
+			_indicatorsBySlot[slotIndex] = ind;
+
+			if (debugMode)
+				Debug.Log($"[SurveyCameraController] Indicator spawn: slot {slotIndex} → '{slot.targetObjectID}'");
 		}
 
-		private void UpdateIndicators()
+		private void UpdateAlignmentScore()
 		{
 			if (_activeSlotIndex < 0 || _activeSlotIndex >= _activeSlots.Count) return;
-			if (_indicators.Count == 0) return;
 
-			PhotoSlot slot      = _activeSlots[_activeSlotIndex];
-			GameObject indicator = _indicators[0];
+			PhotoSlot slot = _activeSlots[_activeSlotIndex];
 
-			if (string.IsNullOrEmpty(slot.targetObjectID) || surveyCamera == null || indicator == null)
+			if (!_indicatorsBySlot.TryGetValue(_activeSlotIndex, out GameObject indicator) ||
+			    indicator == null ||
+			    string.IsNullOrEmpty(slot.targetObjectID) ||
+			    Camera.main == null)
+			{
+				IsAligned      = false;
+				AlignmentScore = 0f;
 				return;
+			}
 
-			// Hedef objeyi bul
 			Transform target = SceneObjectRegistry.Instance?.GetTransformByID(slot.targetObjectID);
 			if (target == null) return;
 
-			// Dünya → viewport koordinatı
-			Vector3 viewportPos = surveyCamera.WorldToViewportPoint(target.position);
+			// Ana kamera üzerinden viewport koordinatı hesapla
+			Vector3 viewportPos = Camera.main.WorldToViewportPoint(target.position);
 
-			// Kameranın arkasındaysa gizle
 			if (viewportPos.z < 0)
 			{
 				indicator.SetActive(false);
@@ -359,62 +428,22 @@ namespace SafetyTraining
 
 			indicator.SetActive(true);
 
-			// Viewport (0-1) → ekran pikseli → indicatorContainer lokal koordinatı
-			if (cameraViewImage != null)
-			{
-				RectTransform rawRT = cameraViewImage.rectTransform;
-
-				// RawImage'ın dünya köşelerini al
-				Vector3[] corners = new Vector3[4];
-				rawRT.GetWorldCorners(corners);
-				// corners: [0]=bottomLeft [1]=topLeft [2]=topRight [3]=bottomRight
-
-				Vector3 bottomLeft = corners[0];
-				Vector3 topRight   = corners[2];
-
-				// Viewport pozisyonunu dünya koordinatına çevir
-				float worldX = Mathf.Lerp(bottomLeft.x, topRight.x, viewportPos.x);
-				float worldY = Mathf.Lerp(bottomLeft.y, topRight.y, viewportPos.y);
-				Vector3 worldPos = new Vector3(worldX, worldY, 0f);
-
-				// Dünya koordinatını indicatorContainer lokal koordinatına çevir
-				RectTransform containerRT = _indicatorParent as RectTransform;
-				if (containerRT != null)
-				{
-					Vector2 localPos;
-					RectTransformUtility.ScreenPointToLocalPointInRectangle(
-						containerRT,
-						RectTransformUtility.WorldToScreenPoint(null, worldPos),
-						null,
-						out localPos
-					);
-
-					RectTransform indRT = indicator.GetComponent<RectTransform>();
-					if (indRT != null)
-					{
-						indRT.anchorMin        = new Vector2(0.5f, 0.5f);
-						indRT.anchorMax        = new Vector2(0.5f, 0.5f);
-						indRT.pivot            = new Vector2(0.5f, 0.5f);
-						indRT.anchoredPosition = localPos;
-					}
-				}
-			}
-
-			// Hizalama skoru — viewport merkezine mesafe (0-1 arası, 1=mükemmel)
+			// Viewport merkezinden uzaklık → hizalama skoru
 			float distFromCenter = Vector2.Distance(
 				new Vector2(viewportPos.x, viewportPos.y),
 				new Vector2(0.5f, 0.5f)
 			);
 
-			// Normalize: threshold mesafesinde skor 0, merkezde skor 1
 			AlignmentScore = Mathf.Clamp01(1f - (distFromCenter / slot.alignmentThreshold));
 			IsAligned      = distFromCenter <= slot.alignmentThreshold;
 
-			// Renk güncelle
-			Image img = indicator.GetComponent<Image>();
-			if (img != null)
+			// Kürenin rengini güncelle (yarı saydam)
+			Renderer rend = indicator.GetComponent<Renderer>();
+			if (rend != null)
 			{
-				img.color = Color.Lerp(slot.indicatorOffColor, slot.indicatorAlignedColor, AlignmentScore);
+				Color c = Color.Lerp(slot.indicatorOffColor, slot.indicatorAlignedColor, AlignmentScore);
+				c.a = 0.6f;
+				rend.material.color = c;
 			}
 
 			if (debugMode)
@@ -424,9 +453,9 @@ namespace SafetyTraining
 
 		private void ClearIndicators()
 		{
-			foreach (var ind in _indicators)
-				if (ind != null) Destroy(ind);
-			_indicators.Clear();
+			foreach (var kvp in _indicatorsBySlot)
+				if (kvp.Value != null) Destroy(kvp.Value);
+			_indicatorsBySlot.Clear();
 		}
 
 		// ═══════════════════════════════════════════════════════
@@ -434,41 +463,54 @@ namespace SafetyTraining
 		// ═══════════════════════════════════════════════════════
 
 		/// <summary>
-		/// RenderTexture'dan anlık fotoğraf çeker ve Texture2D döndürür
+		/// Ana kamerayı (UI olmadan) bir RenderTexture'a render eder ve Texture2D döndürür.
+		/// Canvas/UI elemanları Camera.Render() tarafından çizilmez — sadece 3D sahne yakalanır.
 		/// </summary>
 		public Texture2D CapturePhoto()
 		{
-			if (surveyCamera == null || renderTexture == null)
+			// Termal renderer aktifse termal efektli fotoğraf çek
+			if (thermalRenderer != null && thermalRenderer.enabled)
 			{
-				Debug.LogError("[SurveyCameraController] CapturePhoto: Camera veya RenderTexture null!");
+				Texture2D thermalPhoto = thermalRenderer.CaptureWithThermal();
+				if (thermalPhoto != null)
+				{
+					if (debugMode)
+						Debug.Log($"[SurveyCameraController] CapturePhoto (thermal): " +
+							$"{thermalPhoto.width}x{thermalPhoto.height} — score={AlignmentScore:F2} aligned={IsAligned}");
+					return thermalPhoto;
+				}
+			}
+
+			// Fallback: normal fotoğraf
+			Camera cam = Camera.main;
+			if (cam == null)
+			{
+				Debug.LogError("[SurveyCameraController] CapturePhoto: Camera.main null!");
 				return null;
 			}
 
-			// RenderTexture'ı aktif et ve oku
-			RenderTexture prevActive = RenderTexture.active;
-			RenderTexture.active = renderTexture;
+			int w = Screen.width;
+			int h = Screen.height;
 
-			Texture2D photo = new Texture2D(
-				renderTexture.width,
-				renderTexture.height,
-				TextureFormat.RGB24,
-				false
-			);
-			photo.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+			RenderTexture rt   = new RenderTexture(w, h, 24, RenderTextureFormat.ARGB32);
+			RenderTexture prev = cam.targetTexture;
+
+			cam.targetTexture = rt;
+			cam.Render();
+			cam.targetTexture = prev;
+
+			RenderTexture.active = rt;
+			Texture2D photo = new Texture2D(w, h, TextureFormat.RGB24, false);
+			photo.ReadPixels(new Rect(0, 0, w, h), 0, 0);
 			photo.Apply();
+			RenderTexture.active = null;
 
-			RenderTexture.active = prevActive;
+			Destroy(rt);
 
 			if (debugMode)
-				Debug.Log($"[SurveyCameraController] Photo captured: {renderTexture.width}x{renderTexture.height}");
+				Debug.Log($"[SurveyCameraController] CapturePhoto: {w}x{h} — score={AlignmentScore:F2} aligned={IsAligned}");
 
 			return photo;
 		}
-
-		// ═══════════════════════════════════════════════════════
-		// CLEANUP
-		// ═══════════════════════════════════════════════════════
-
-
 	}
 }

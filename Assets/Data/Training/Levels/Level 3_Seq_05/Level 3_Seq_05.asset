@@ -21,6 +21,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 01b74eb845d65a5499d916722debfce2, type: 2}
   - {fileID: 11400000, guid: 0cbc3aeaeadaa744db54d8a6cfea330b, type: 2}
   - {fileID: 11400000, guid: 07fc9793c865fc442ae52d959cc7cd50, type: 2}
+  - {fileID: 11400000, guid: 263fe9ad1188141498637d6d9ab7465e, type: 2}
+  - {fileID: 11400000, guid: 4978c9e80dd3565458d9f52b713cec86, type: 2}
   targetObjectID: panoDepar
   buttonOffset: {x: 1.02, y: 1.5, z: 0}
   entryCameraMode: 4
@@ -30,8 +32,8 @@ MonoBehaviour:
   resumeFromLastAction: 1
   allowRestart: 0
   hideButtonAfterComplete: 1
-  lockAfterComplete: 0
-  prerequisiteSequences: []
+  prerequisiteSequences:
+  - {fileID: 11400000, guid: c7001038dd1d6ab488a746cff7ac47f6, type: 2}
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."
@@ -46,6 +48,24 @@ MonoBehaviour:
       - Evet
       - "Hay\u0131r"
       correctOptionIndices: 01000000
+      isRequired: 1
+    - questionText: "SF6 %100 m\xFC?"
+      options:
+      - Evet
+      - "Hay\u0131r"
+      correctOptionIndices: 00000000
+      isRequired: 1
+    - questionText: "\u0130ndikat\xF6rde sorun var m\u0131?"
+      options:
+      - Evet
+      - "Hay\u0131r"
+      correctOptionIndices: 01000000
+      isRequired: 1
+    - questionText: "K\u0131smi de\u015Farj kontrol\xFC yap\u0131ld\u0131 m\u0131?"
+      options:
+      - Evet
+      - "Hay\u0131r"
+      correctOptionIndices: 00000000
       isRequired: 1
     photoSlotCount: 2
     photoSlots:

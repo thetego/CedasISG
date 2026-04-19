@@ -16,6 +16,7 @@ MonoBehaviour:
   sequenceName: TrafoCheck
   sequenceDescription: 
   actions:
+  - {fileID: 11400000, guid: 70a296d2583fd6c419769bb71827efae, type: 2}
   - {fileID: 11400000, guid: abecf5a00add75b448137543b0819b67, type: 2}
   - {fileID: 11400000, guid: 4910fe1c5e7284947b4eead5ec3a0b7b, type: 2}
   - {fileID: 11400000, guid: 7b010d0f8ab81c2409cb9f2d3523fd86, type: 2}
@@ -32,7 +33,6 @@ MonoBehaviour:
   resumeFromLastAction: 1
   allowRestart: 0
   hideButtonAfterComplete: 1
-  lockAfterComplete: 0
   prerequisiteSequences:
   - {fileID: 11400000, guid: 50c0b1333e1279b42af9af7114f76912, type: 2}
   onPrerequisiteFail: 1
@@ -43,27 +43,38 @@ MonoBehaviour:
   surveyData:
     panelTitle: Kontrol Formu
     completeButtonText: Tamamla
-    questions: []
-    photoSlotCount: 4
+    questions:
+    - questionText: "Kap\u0131 yap\u0131s\u0131 sa\u011Fl\u0131kl\u0131 m\u0131?"
+      options:
+      - Evet
+      - "Hay\u0131r"
+      correctOptionIndices: 00000000
+      isRequired: 0
+    photoSlotCount: 5
     photoSlots:
+    - slotLabel: trafoPicDoor
+      targetObjectID: trafoLock
+      alignmentThreshold: 0.116
+      indicatorAlignedColor: {r: 0.0023497343, g: 1, b: 0, a: 0}
+      indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
     - slotLabel: trafoPic1
       targetObjectID: trafoPic1
-      alignmentThreshold: 0.5
+      alignmentThreshold: 0.102
       indicatorAlignedColor: {r: 0.0023497343, g: 1, b: 0, a: 0}
       indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
     - slotLabel: trafoPic2
       targetObjectID: trafoPic2
-      alignmentThreshold: 0.5
+      alignmentThreshold: 0.151
       indicatorAlignedColor: {r: 0.0023497343, g: 1, b: 0, a: 0}
       indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
-    - slotLabel: trafoPic1
-      targetObjectID: trafoPic1
-      alignmentThreshold: 0.5
+    - slotLabel: trafoPic2
+      targetObjectID: trafoPic2
+      alignmentThreshold: 0.102
       indicatorAlignedColor: {r: 0.0023497343, g: 1, b: 0, a: 0}
       indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
     - slotLabel: trafoPic3
       targetObjectID: trafoPic3
-      alignmentThreshold: 0.5
+      alignmentThreshold: 0.116
       indicatorAlignedColor: {r: 0.0023497343, g: 1, b: 0, a: 0}
       indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
   spawnButtonAtStart: 1

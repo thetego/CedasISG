@@ -278,6 +278,17 @@ namespace SafetyTraining
 		}
 
 		/// <summary>
+		/// Stack'teki aktif (en üstteki) CinemachineCamera'yı döndürür.
+		/// SurveyCameraController gibi sistemler bunu kullanarak aktif vcam'i kontrol eder.
+		/// </summary>
+		public CinemachineCamera GetCurrentCamera()
+		{
+			if (_cameraStack.Count > 0)
+				return _cameraStack.Peek().camera;
+			return null;
+		}
+
+		/// <summary>
 		/// Stack depth'i döndürür (kaç seviye derinlik)
 		/// </summary>
 		public int GetStackDepth() => _cameraStack.Count;

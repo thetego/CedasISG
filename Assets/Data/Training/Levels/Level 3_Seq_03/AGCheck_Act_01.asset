@@ -25,11 +25,6 @@ MonoBehaviour:
   cameraMode: 0
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  cameraTargetID: 
-  cameraMoveSpeed: 2
-  autoCompleteAfterCamera: 1
-  requiresPreviousAction: 1
-  prerequisiteActions: []
   targetObjectID: agDoor
   requiredEquipments: []
   distractorEquipments: []

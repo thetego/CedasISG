@@ -172,6 +172,7 @@ namespace SafetyTraining
 			if (_isPanelOpen)
 			{
 				_surveyPanel.OpenPanel();
+				_isInteractable = false; // Panel açıkken buton deaktif
 			}
 			else
 			{

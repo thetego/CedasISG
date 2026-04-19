@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: AGCheck_Act_02_Copy
   actionName: AGCheck_Act_02_Copy
-  instructionText: "G\xFC\xE7 analit\xF6r\xFCn\xFCn foto\u011Fraf\u0131n\u0131 \xE7ek."
+  instructionText: "G\xFC\xE7 analiz\xF6r\xFCn\xFCn foto\u011Fraf\u0131n\u0131 \xE7ek."
   actionType: 4
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
@@ -25,11 +25,6 @@ MonoBehaviour:
   cameraMode: 4
   virtualCameraID: camAG4
   autoReturnCameraOnComplete: 0
-  cameraTargetID: 
-  cameraMoveSpeed: 2
-  autoCompleteAfterCamera: 1
-  requiresPreviousAction: 1
-  prerequisiteActions: []
   targetObjectID: 
   requiredEquipments: []
   distractorEquipments: []

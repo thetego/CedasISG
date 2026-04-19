@@ -19,6 +19,8 @@ namespace SafetyTraining
 		// ═══════════════════════════════════════════════════════
 
 		[Header("━━━ PANEL REFERANSLARI ━━━")]
+		public GameObject surveyContentRoot;
+
 		public TextMeshProUGUI panelTitleText;
 		public ScrollRect      scrollRect;
 		public RectTransform   contentContainer;    // Scroll içeriği — sadece sorular
@@ -36,9 +38,6 @@ namespace SafetyTraining
 		[Header("━━━ KAMERA OVERLAY ━━━")]
 		[Tooltip("Kamera görünümü overlay paneli (başta kapalı)")]
 		public GameObject cameraOverlayPanel;
-
-		[Tooltip("Tablet RenderTexture'ını gösteren RawImage")]
-		public RawImage cameraRawImage;
 
 		[Tooltip("Fotoğraf çek butonu")]
 		public Button captureButton;
@@ -99,30 +98,8 @@ namespace SafetyTraining
 				_audio.playOnAwake = false;
 			}
 
-			// cameraOverlayPanel içindeki RawImage'ı otomatik bul
-			// (spawn edilen prefabda Inspector ataması çalışmaz)
 			if (cameraOverlayPanel == null)
 				Debug.LogWarning("[UISurveyPanel] cameraOverlayPanel atanmamış!");
-
-			if (cameraRawImage == null && cameraOverlayPanel != null)
-				cameraRawImage = cameraOverlayPanel.GetComponentInChildren<RawImage>(true);
-
-			if (cameraRawImage == null)
-				cameraRawImage = GetComponentInChildren<RawImage>(true);
-
-			// RenderTexture'ı hemen bağla
-			if (_cameraController?.renderTexture != null)
-			{
-				if (cameraRawImage != null)
-					cameraRawImage.texture = _cameraController.renderTexture;
-				else
-					Debug.LogError("[UISurveyPanel] RawImage bulunamadı — " +
-						"CameraOverlayPanel altında bir RawImage olmalı.");
-			}
-
-			// SurveyCameraController'a cameraViewImage'ı bildir
-			if (_cameraController != null && cameraRawImage != null)
-				_cameraController.cameraViewImage = cameraRawImage;
 
 			// Başlık
 			if (panelTitleText != null)
@@ -289,10 +266,6 @@ namespace SafetyTraining
 
 			if (_cameraController != null)
 			{
-				// cameraViewImage her açılışta tekrar bağla
-				if (cameraRawImage != null)
-					_cameraController.cameraViewImage = cameraRawImage;
-
 				_cameraController.ActivateForSlot(slotIndex);
 				Debug.Log($"[UISurveyPanel] ActivateForSlot({slotIndex}) çağrıldı.");
 			}
@@ -303,19 +276,16 @@ namespace SafetyTraining
 			}
 
 			if (cameraOverlayPanel != null)
+			{
 				cameraOverlayPanel.SetActive(true);
+				SetSurveyContentVisible(false);
+			}
 			else
 				Debug.LogError("[UISurveyPanel] cameraOverlayPanel atanmamış!");
 
-			// RenderTexture bağla
-			if (cameraRawImage != null && _cameraController?.renderTexture != null)
-				cameraRawImage.texture = _cameraController.renderTexture;
-			else if (cameraRawImage == null)
-				Debug.LogError("[UISurveyPanel] cameraRawImage atanmamış!");
-			else if (_cameraController?.renderTexture == null)
-				Debug.LogError("[UISurveyPanel] SurveyCameraController.renderTexture atanmamış!");
-
-			UpdateAlignmentStatus();
+			// 0 indexli child'ı kamera açıkken gizle
+			if (transform.childCount > 0)
+				transform.GetChild(0).gameObject.SetActive(false);
 
 			if (debugMode)
 				Debug.Log($"[UISurveyPanel] Kamera açıldı: slot {slotIndex}");
@@ -323,8 +293,15 @@ namespace SafetyTraining
 
 		private void CloseCameraOverlay()
 		{
+			_cameraController?.DeactivateCamera();
+			SetSurveyContentVisible(true);
+
 			if (cameraOverlayPanel != null)
 				cameraOverlayPanel.SetActive(false);
+
+			// 0 indexli child'ı kamera kapanınca geri aç
+			if (transform.childCount > 0)
+				transform.GetChild(0).gameObject.SetActive(true);
 
 			_activeCameraSlot = -1;
 		}
@@ -370,12 +347,6 @@ namespace SafetyTraining
 			// Fotoğrafı çek
 			Texture2D photo = _cameraController.CapturePhoto();
 
-			if (photo == null)
-			{
-				Debug.LogError("[UISurveyPanel] Fotoğraf çekilemedi!");
-				return;
-			}
-
 			// Ses
 			if (_audio != null && captureSound != null)
 				_audio.PlayOneShot(captureSound);
@@ -385,12 +356,15 @@ namespace SafetyTraining
 				_activeCameraSlot, photo, alignmentScore, isAligned);
 
 			// Slot UI'ını güncelle (preview göster)
-			if (_activeCameraSlot < _photoSlotUIs.Count)
+			if (photo != null && _activeCameraSlot < _photoSlotUIs.Count)
 				_photoSlotUIs[_activeCameraSlot].SetPreview(photo, isAligned);
 
 			if (debugMode)
 				Debug.Log($"[UISurveyPanel] Fotoğraf çekildi: slot {_activeCameraSlot} " +
 					$"score={alignmentScore:F2} aligned={isAligned}");
+
+			// Bu slotun indicator'ını kalıcı olarak işaretle (tekrar spawn edilmesin)
+			_cameraController?.MarkSlotPhotographed(_activeCameraSlot);
 
 			// Kamera overlay'i kapat
 			CloseCameraOverlay();
@@ -466,6 +440,14 @@ namespace SafetyTraining
 			if (debugMode)
 				Debug.Log($"[UISurveyPanel] Layout: {contentContainer?.childCount} soru, " +
 					$"{_photoSlotUIs.Count} foto slotu");
+		}
+
+		private void SetSurveyContentVisible(bool visible)
+		{
+			if (surveyContentRoot != null) { surveyContentRoot.SetActive(visible); return; }
+			if (scrollRect != null)          scrollRect.gameObject.SetActive(visible);
+			if (photoSlotsContainer != null) photoSlotsContainer.gameObject.SetActive(visible);
+			if (completeButton != null)      completeButton.gameObject.SetActive(visible);
 		}
 
 		public void OpenPanel()  => gameObject.SetActive(true);

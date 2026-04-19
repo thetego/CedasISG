@@ -17,9 +17,11 @@ MonoBehaviour:
   sequenceDescription: 
   actions:
   - {fileID: 11400000, guid: 04fd5f4f4e9c23b4fb617e66c8930f22, type: 2}
+  - {fileID: 11400000, guid: c4ab1ce2bd8aa6b4da7a393304ecdf6d, type: 2}
   - {fileID: 11400000, guid: 491c78e49fd57e04982a988760b5e5ce, type: 2}
   - {fileID: 11400000, guid: fa655cfdfb73a854f86367f8368fcb92, type: 2}
   - {fileID: 11400000, guid: 569d076b6b1723a40a669a62a976d822, type: 2}
+  - {fileID: 11400000, guid: 104c23166866a604a9c57a6e77d971f9, type: 2}
   - {fileID: 11400000, guid: 75a5d1fd4ecc5db468d9ab36df7d6ec3, type: 2}
   - {fileID: 11400000, guid: 2875510548529874c875efd4c651b029, type: 2}
   targetObjectID: panoDepar4
@@ -31,7 +33,6 @@ MonoBehaviour:
   resumeFromLastAction: 1
   allowRestart: 0
   hideButtonAfterComplete: 1
-  lockAfterComplete: 0
   prerequisiteSequences: []
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
@@ -47,6 +48,24 @@ MonoBehaviour:
       - Evet
       - "Hay\u0131r"
       correctOptionIndices: 01000000
+      isRequired: 1
+    - questionText: "SF6 %100 m\xFC?"
+      options:
+      - Evet
+      - "Hay\u0131r"
+      correctOptionIndices: 00000000
+      isRequired: 1
+    - questionText: "\u0130ndikat\xF6rde sorun var m\u0131?"
+      options:
+      - Evet
+      - "Hay\u0131r"
+      correctOptionIndices: 01000000
+      isRequired: 1
+    - questionText: "K\u0131smi de\u015Farj kontrol\xFC yap\u0131ld\u0131 m\u0131?"
+      options:
+      - Evet
+      - "Hay\u0131r"
+      correctOptionIndices: 00000000
       isRequired: 1
     photoSlotCount: 2
     photoSlots:

@@ -113,12 +113,7 @@ namespace SafetyTraining
 					break;
 
 				case ActionType.CameraMove:
-					DrawSection("━━━ KAMERA HAREKETİ ━━━", () =>
-					{
-						EditorGUILayout.PropertyField(serializedObject.FindProperty("cameraTargetID"));
-						EditorGUILayout.PropertyField(serializedObject.FindProperty("cameraMoveSpeed"));
-						EditorGUILayout.PropertyField(serializedObject.FindProperty("autoCompleteAfterCamera"));
-					});
+					// Kamera ayarları üstteki KAMERA section'ında mevcut
 					break;
 			}
 

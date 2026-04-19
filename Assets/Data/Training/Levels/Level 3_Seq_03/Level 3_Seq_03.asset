@@ -16,14 +16,17 @@ MonoBehaviour:
   sequenceName: AGCheck
   sequenceDescription: 
   actions:
+  - {fileID: 11400000, guid: e05e5ab89834cc64096fbfdaa0b03852, type: 2}
   - {fileID: 11400000, guid: 72ba1471dbb2925418c3f5e02e9c5dc9, type: 2}
   - {fileID: 11400000, guid: 7b42da042c36da7489927598f3fbc973, type: 2}
   - {fileID: 11400000, guid: 8e257dd70c1affc4ca5f1d96db8e22b5, type: 2}
   - {fileID: 11400000, guid: 28d12ab61b33efe45a15f44dfddf3f85, type: 2}
   - {fileID: 11400000, guid: efa846bc578df6b4ebbd5c908964eb45, type: 2}
   - {fileID: 11400000, guid: 1002e93cb3e5c254ebc440a05ee8a238, type: 2}
+  - {fileID: 11400000, guid: e9db53ce31d585e4e999dfec51aa4aa4, type: 2}
   - {fileID: 11400000, guid: 3b4dc811f177c1e4f9627ad027408e80, type: 2}
   - {fileID: 11400000, guid: 9767cbba640505f4cb9f6071f69b16f3, type: 2}
+  - {fileID: 11400000, guid: 12f61bfbfd4c75a40ab0410798c72003, type: 2}
   - {fileID: 11400000, guid: 42a88f031e23203408d95e5e16f61be1, type: 2}
   - {fileID: 11400000, guid: bb840f98907c0004283adb792478bf82, type: 2}
   - {fileID: 11400000, guid: 9994832e65d65c34e8328ab3f8fec888, type: 2}
@@ -37,10 +40,10 @@ MonoBehaviour:
   resumeFromLastAction: 1
   allowRestart: 0
   hideButtonAfterComplete: 1
-  lockAfterComplete: 0
   prerequisiteSequences:
   - {fileID: 11400000, guid: 50c0b1333e1279b42af9af7114f76912, type: 2}
   - {fileID: 11400000, guid: 67b089813e549074380f691473682511, type: 2}
+  - {fileID: 11400000, guid: 8cbe788c18ed488418b16d2538b70f9b, type: 2}
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."
@@ -50,14 +53,25 @@ MonoBehaviour:
     panelTitle: Kontrol Formu
     completeButtonText: Tamamla
     questions:
+    - questionText: "Kap\u0131 yap\u0131s\u0131 sa\u011Fl\u0131kl\u0131 m\u0131?"
+      options:
+      - Evet
+      - "Hay\u0131r"
+      correctOptionIndices: 00000000
+      isRequired: 1
     - questionText: "\u0130zole hal\u0131 var m\u0131?"
       options:
       - Evet
       - "Hay\u0131r"
       correctOptionIndices: 00000000
       isRequired: 1
-    photoSlotCount: 7
+    photoSlotCount: 10
     photoSlots:
+    - slotLabel: agD
+      targetObjectID: agDoor
+      alignmentThreshold: 0.5
+      indicatorAlignedColor: {r: 0.05281806, g: 1, b: 0, a: 0}
+      indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
     - slotLabel: c1
       targetObjectID: agC1
       alignmentThreshold: 0.5
@@ -73,6 +87,16 @@ MonoBehaviour:
       alignmentThreshold: 0.5
       indicatorAlignedColor: {r: 0.05281806, g: 1, b: 0, a: 0}
       indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
+    - slotLabel: c3-2
+      targetObjectID: agC3-2
+      alignmentThreshold: 0.5
+      indicatorAlignedColor: {r: 0.05281806, g: 1, b: 0, a: 0}
+      indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
+    - slotLabel: c3-3
+      targetObjectID: agC3-3
+      alignmentThreshold: 0.5
+      indicatorAlignedColor: {r: 0.05281806, g: 1, b: 0, a: 0}
+      indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
     - slotLabel: c4
       targetObjectID: agC4
       alignmentThreshold: 0.5
@@ -84,7 +108,7 @@ MonoBehaviour:
       indicatorAlignedColor: {r: 0.05281806, g: 1, b: 0, a: 0}
       indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
     - slotLabel: c6
-      targetObjectID: agC6
+      targetObjectID: agC6s
       alignmentThreshold: 0.5
       indicatorAlignedColor: {r: 0.05281806, g: 1, b: 0, a: 0}
       indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}

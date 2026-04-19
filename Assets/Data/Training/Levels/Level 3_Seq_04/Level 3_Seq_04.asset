@@ -20,6 +20,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f92cfd707d0bcee49aefc2cf5c64f371, type: 2}
   - {fileID: 11400000, guid: 574382927e4f51b4fb39cec99ac57012, type: 2}
   - {fileID: 11400000, guid: d909fa5d288e54c46bd83827f00889e7, type: 2}
+  - {fileID: 11400000, guid: 1c2aa4ec8d4c7b740a8c79cf10e73c40, type: 2}
   - {fileID: 11400000, guid: b4903fb2299e9674283a72a64d371e8c, type: 2}
   targetObjectID: TMLock
   buttonOffset: {x: 0, y: 1.5, z: 0}
@@ -30,7 +31,6 @@ MonoBehaviour:
   resumeFromLastAction: 1
   allowRestart: 0
   hideButtonAfterComplete: 1
-  lockAfterComplete: 0
   prerequisiteSequences: []
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
@@ -41,6 +41,12 @@ MonoBehaviour:
     panelTitle: Kontrol Formu
     completeButtonText: Tamamla
     questions:
+    - questionText: "Kap\u0131 yap\u0131s\u0131 sa\u011Fl\u0131kl\u0131 m\u0131?"
+      options:
+      - Evet
+      - "Hay\u0131r"
+      correctOptionIndices: 00000000
+      isRequired: 1
     - questionText: "DC \xE7al\u0131\u015F\u0131yor mu?"
       options:
       - Evet
@@ -71,10 +77,21 @@ MonoBehaviour:
       - "Hay\u0131r"
       correctOptionIndices: 00000000
       isRequired: 1
-    photoSlotCount: 1
+    - questionText: "\u0130\xE7 ayd\u0131nlatma var m\u0131?"
+      options:
+      - Evet
+      - "Hay\u0131r"
+      correctOptionIndices: 00000000
+      isRequired: 1
+    photoSlotCount: 2
     photoSlots:
     - slotLabel: TMPlaka
       targetObjectID: TMPlaka
+      alignmentThreshold: 0.5
+      indicatorAlignedColor: {r: 0.25402117, g: 1, b: 0, a: 0}
+      indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
+    - slotLabel: TMLock
+      targetObjectID: TMLock
       alignmentThreshold: 0.5
       indicatorAlignedColor: {r: 0.25402117, g: 1, b: 0, a: 0}
       indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
