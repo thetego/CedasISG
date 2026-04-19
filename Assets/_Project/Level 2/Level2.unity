@@ -2016,6 +2016,90 @@ MonoBehaviour:
             m_StringArgument: SC
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: kes3
+    onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7163128899350186682}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: turn2
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 757885317}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Turn2
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 757885317}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Turn2
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: kes4
+    onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8506388660623877533}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: turn2
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 25131536}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Turn2
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: Key1-2
+    onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 183993970}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: asd2
+            m_BoolArgument: 0
+          m_CallState: 2
   debugMode: 1
 --- !u!4 &132114489
 Transform:
@@ -2855,7 +2939,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.UISpawnManager
   sequenceButtonPrefab: {fileID: 2698107713579558471, guid: 5a30ab88747781946bb2c62175754bc7, type: 3}
   tabletButtonPrefab: {fileID: 0}
-  actionButtonPrefab: {fileID: 2698107713579558471, guid: 5a30ab88747781946bb2c62175754bc7, type: 3}
   clickButtonPrefab: {fileID: 311034343986268004, guid: 9efe88fb8e2055348a8cb34c8c067a07, type: 3}
   dropZonePrefab: {fileID: 1471600242452957261, guid: db0a9a17a7bc6ea4897e2b014a532d97, type: 3}
   draggableItemPrefab: {fileID: 8533135196359368803, guid: 67b2a1a6270823c47a192eb7da2f4fef, type: 3}
@@ -4929,11 +5012,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad94930402b14af44a06cdcf3b0d6f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.LevelManager
-  currentLevel: {fileID: 11400000, guid: bd7f9ac9f204e864282beb358eaa8ec6, type: 2}
-  virtualCamera: {fileID: 1237656216}
-  audioSource: {fileID: 0}
-  instructionText: {fileID: 0}
-  debugMode: 1
 --- !u!4 &397063172
 Transform:
   m_ObjectHideFlags: 0
@@ -7221,7 +7299,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 896191869890609138, guid: 39e8e0fb46ebc5c418b244d6d71f17df, type: 3}
+  - {fileID: 2100000, guid: 345d864ed7e2229498561ad6f1e9f01a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23596,7 +23674,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 896191869890609138, guid: 39e8e0fb46ebc5c418b244d6d71f17df, type: 3}
+  - {fileID: 2100000, guid: 345d864ed7e2229498561ad6f1e9f01a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -25856,7 +25934,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 896191869890609138, guid: 39e8e0fb46ebc5c418b244d6d71f17df, type: 3}
+  - {fileID: 2100000, guid: 345d864ed7e2229498561ad6f1e9f01a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -26117,7 +26195,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 896191869890609138, guid: 39e8e0fb46ebc5c418b244d6d71f17df, type: 3}
+  - {fileID: 2100000, guid: 345d864ed7e2229498561ad6f1e9f01a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

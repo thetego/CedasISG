@@ -51,7 +51,6 @@ MonoBehaviour:
   resumeFromLastAction: 1
   allowRestart: 0
   hideButtonAfterComplete: 1
-  lockAfterComplete: 0
   prerequisiteSequences:
   - {fileID: 11400000, guid: f03acee37abe2ce40b010f233660c612, type: 2}
   - {fileID: 11400000, guid: 0413432aab8826e439292736b4849377, type: 2}

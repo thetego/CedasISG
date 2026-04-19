@@ -20,8 +20,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0413432aab8826e439292736b4849377, type: 2}
   - {fileID: 11400000, guid: ca3a750534fa6034e910370f12bbcfaa, type: 2}
   - {fileID: 11400000, guid: 1060d50668e5b3745bec77dc664d0d86, type: 2}
-  actionSequence:
-  - {fileID: 11400000, guid: 2704c639a9aa23443a427020417e4a83, type: 2}
+  - {fileID: 11400000, guid: 6a34b67aa9b8dab4e8ba11608169fff4, type: 2}
   timeLimit: 3600
   allowSequenceSwitching: 1
   maxScore: 100
