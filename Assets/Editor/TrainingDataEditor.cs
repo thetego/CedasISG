@@ -20,6 +20,8 @@ namespace SafetyTraining
 		private const float ITEM_HEIGHT = 28f;
 		private const float TOOLBAR_HEIGHT = 40f;
 		private const float SEPARATOR = 2f;
+		private const string DRAG_SEQUENCE_TYPE = "SafetyTrainingEditor.SequenceData";
+		private const string DRAG_ACTION_TYPE = "SafetyTrainingEditor.ActionData";
 
 		// ═══════════════════════════════════════════════════════
 		// STATE
@@ -45,6 +47,7 @@ namespace SafetyTraining
 		private Vector2 _scrollActions;
 		private Vector2 _scrollInspector;
 		private float _inspectorContentHeight = 2000f; // dinamik güncellenir
+		private Object _dragSourceObject;
 
 		// Embedded inspector
 		private Editor _embeddedEditor;
@@ -401,7 +404,9 @@ namespace SafetyTraining
 					BuildSequenceReorderableList(); BuildActionReorderableList(); DestroyEmbeddedEditor();
 				},
 				() => OnRenameLevel(level),
-				() => OnDeleteLevel(level));
+				() => OnDeleteLevel(level),
+				null,
+				() => OnDuplicateLevel(level));
 		}
 
 		private void DrawSequenceElement(Rect rect, int index, bool isActive, bool isFocused)
@@ -442,6 +447,8 @@ namespace SafetyTraining
 			System.Action onClick, System.Action onRename, System.Action onDelete,
 			Color? badgeColor = null, System.Action onDuplicate = null)
 		{
+			HandleRowDragAndDrop(rect, target);
+
 			Color bg = selected ? COL_SELECTED
 				: rect.Contains(Event.current.mousePosition) ? COL_HOVER : COL_BG;
 			EditorGUI.DrawRect(new Rect(rect.x, rect.y + 1, rect.width, rect.height - 2), bg);
@@ -485,6 +492,7 @@ namespace SafetyTraining
 
 			// Duplicate butonu (sadece onDuplicate verilmişse)
 			float btnRight = rect.x + rect.width;
+			Rect dragRect = new Rect(rect.x, rect.y, rect.width - 56, rect.height);
 			if (onDuplicate != null)
 			{
 				if (DrawButton(new Rect(btnRight - 52, rect.y + 4, 14, rect.height - 8),
@@ -495,10 +503,98 @@ namespace SafetyTraining
 			if (DrawButton(new Rect(btnRight - 20, rect.y + 4, 14, rect.height - 8),
 				"✕", new Color(0.3f, 0.3f, 0.3f), 10)) onDelete?.Invoke();
 
+			if (Event.current.type == EventType.MouseDown && dragRect.Contains(Event.current.mousePosition))
+				_dragSourceObject = target;
+
+			if (Event.current.type == EventType.MouseDrag &&
+				_dragSourceObject == target)
+			{
+				StartRowDrag(target, label);
+				Event.current.Use();
+			}
+
 			if (Event.current.type == EventType.MouseDown && rect.Contains(Event.current.mousePosition))
 			{
 				onClick?.Invoke();
 				Repaint();
+			}
+		}
+
+		private void StartRowDrag(Object target, string label)
+		{
+			if (target is SequenceData sequence)
+			{
+				DragAndDrop.PrepareStartDrag();
+				DragAndDrop.objectReferences = new Object[] { sequence };
+				DragAndDrop.SetGenericData(DRAG_SEQUENCE_TYPE, sequence);
+				DragAndDrop.StartDrag($"Sequence: {label}");
+			}
+			else if (target is ActionData action)
+			{
+				DragAndDrop.PrepareStartDrag();
+				DragAndDrop.objectReferences = new Object[] { action };
+				DragAndDrop.SetGenericData(DRAG_ACTION_TYPE, action);
+				DragAndDrop.StartDrag($"Action: {label}");
+			}
+
+			_dragSourceObject = null;
+		}
+
+		private void HandleRowDragAndDrop(Rect rect, Object target)
+		{
+			Event evt = Event.current;
+			if (!rect.Contains(evt.mousePosition))
+				return;
+
+			SequenceData draggedSequence = DragAndDrop.GetGenericData(DRAG_SEQUENCE_TYPE) as SequenceData;
+			ActionData draggedAction = DragAndDrop.GetGenericData(DRAG_ACTION_TYPE) as ActionData;
+
+			if (draggedSequence == null && DragAndDrop.objectReferences != null && DragAndDrop.objectReferences.Length == 1)
+				draggedSequence = DragAndDrop.objectReferences[0] as SequenceData;
+
+			if (draggedAction == null && DragAndDrop.objectReferences != null && DragAndDrop.objectReferences.Length == 1)
+				draggedAction = DragAndDrop.objectReferences[0] as ActionData;
+
+			LevelData targetLevel = target as LevelData;
+			SequenceData targetSequence = target as SequenceData;
+			bool canDropSequence = targetLevel != null && draggedSequence != null;
+			bool canDropAction = targetSequence != null && draggedAction != null;
+
+			if (!canDropSequence && !canDropAction)
+				return;
+
+			if (evt.type == EventType.Repaint)
+			{
+				EditorGUI.DrawRect(
+					new Rect(rect.x + 1, rect.y + 1, rect.width - 2, rect.height - 2),
+					new Color(0.20f, 0.60f, 0.86f, 0.18f));
+
+				GUIStyle dropStyle = new GUIStyle(EditorStyles.miniBoldLabel)
+				{
+					alignment = TextAnchor.MiddleLeft,
+					normal = { textColor = Color.white }
+				};
+
+				string dropLabel = canDropSequence ? "  DROP SEQ" : "  DROP ACT";
+				GUI.Label(new Rect(rect.x + 4, rect.y + 1, rect.width - 8, rect.height - 2), dropLabel, dropStyle);
+			}
+
+			if (evt.type == EventType.DragUpdated)
+			{
+				DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
+				evt.Use();
+			}
+			else if (evt.type == EventType.DragPerform)
+			{
+				DragAndDrop.AcceptDrag();
+
+				if (canDropSequence)
+					DuplicateSequenceIntoLevel(draggedSequence, targetLevel);
+				else if (canDropAction)
+					DuplicateActionIntoSequence(draggedAction, targetSequence);
+
+				_dragSourceObject = null;
+				evt.Use();
 			}
 		}
 
@@ -645,6 +741,8 @@ namespace SafetyTraining
 		private void OnDuplicateSequence(SequenceData source)
 		{
 			if (_selectedLevel == null || source == null) return;
+			DuplicateSequenceIntoLevel(source, _selectedLevel);
+			return;
 			EnsureSavePath();
 
 			// Yeni isim ve klasör
@@ -708,6 +806,8 @@ namespace SafetyTraining
 		private void OnDuplicateAction(ActionData source)
 		{
 			if (_selectedSequence == null || source == null) return;
+			DuplicateActionIntoSequence(source, _selectedSequence);
+			return;
 			EnsureSavePath();
 
 			string seqFolder = GetSequenceFolder(_selectedSequence);
@@ -737,6 +837,67 @@ namespace SafetyTraining
 		// ═══════════════════════════════════════════════════════
 		// DELETE OPERATIONS
 		// ═══════════════════════════════════════════════════════
+
+		private void OnDuplicateLevel(LevelData source)
+		{
+			if (source == null) return;
+			EnsureSavePath();
+
+			string requestedName = source.levelName + "_Copy";
+			string levelFolder = GetUniqueLevelFolder(requestedName);
+			string uniqueLevelName = Path.GetFileName(levelFolder);
+			string levelPath = $"{levelFolder}/{uniqueLevelName}.asset";
+
+			LevelData levelCopy = Instantiate(source);
+			levelCopy.levelID = uniqueLevelName;
+			levelCopy.levelName = uniqueLevelName;
+			levelCopy.sequences = new SequenceData[0];
+			SaveAsset(levelCopy, levelPath);
+
+			var sequenceMap = new Dictionary<SequenceData, SequenceData>();
+			var copiedSequences = new List<SequenceData>();
+
+			if (source.sequences != null)
+			{
+				foreach (SequenceData sourceSequence in source.sequences)
+				{
+					if (sourceSequence == null) continue;
+
+					SequenceData sequenceCopy = DuplicateSequenceAsset(sourceSequence, levelFolder, copiedSequences);
+					sequenceMap[sourceSequence] = sequenceCopy;
+				}
+			}
+
+			foreach (var pair in sequenceMap)
+			{
+				List<SequenceData> remappedPrerequisites = new List<SequenceData>();
+				if (pair.Key.prerequisiteSequences != null)
+				{
+					foreach (SequenceData prerequisite in pair.Key.prerequisiteSequences)
+					{
+						if (prerequisite != null && sequenceMap.TryGetValue(prerequisite, out SequenceData mapped))
+							remappedPrerequisites.Add(mapped);
+					}
+				}
+
+				pair.Value.prerequisiteSequences = remappedPrerequisites.ToArray();
+				EditorUtility.SetDirty(pair.Value);
+			}
+
+			levelCopy.sequences = copiedSequences.ToArray();
+			EditorUtility.SetDirty(levelCopy);
+			AssetDatabase.SaveAssets();
+
+			RefreshLevelList();
+			BuildLevelReorderableList();
+			_selectedLevel = levelCopy;
+			_selectedSequence = copiedSequences.Count > 0 ? copiedSequences[0] : null;
+			_selectedAction = null;
+			BuildSequenceReorderableList();
+			BuildActionReorderableList();
+			DestroyEmbeddedEditor();
+			Repaint();
+		}
 
 		private void OnDeleteLevel(LevelData level)
 		{
@@ -903,6 +1064,131 @@ namespace SafetyTraining
 		// ═══════════════════════════════════════════════════════
 		// KLASÖR YARDIMCILARI
 		// ═══════════════════════════════════════════════════════
+
+		private SequenceData DuplicateSequenceIntoLevel(SequenceData source, LevelData targetLevel)
+		{
+			if (source == null || targetLevel == null) return null;
+			EnsureSavePath();
+
+			string levelFolder = GetLevelFolder(targetLevel);
+			List<SequenceData> targetSequences = new List<SequenceData>(targetLevel.sequences ?? new SequenceData[0]);
+			SequenceData copy = DuplicateSequenceAsset(source, levelFolder, targetSequences);
+
+			List<SequenceData> remappedPrerequisites = new List<SequenceData>();
+			if (source.prerequisiteSequences != null)
+			{
+				foreach (SequenceData prerequisite in source.prerequisiteSequences)
+				{
+					if (prerequisite == null) continue;
+
+					SequenceData existingTargetSequence = FindSequenceInLevelByID(targetLevel, prerequisite.sequenceID);
+					if (existingTargetSequence != null && existingTargetSequence != copy)
+						remappedPrerequisites.Add(existingTargetSequence);
+				}
+			}
+
+			copy.prerequisiteSequences = remappedPrerequisites.ToArray();
+			EditorUtility.SetDirty(copy);
+
+			targetLevel.sequences = targetSequences.ToArray();
+			EditorUtility.SetDirty(targetLevel);
+			AssetDatabase.SaveAssets();
+
+			RefreshLevelList();
+			BuildLevelReorderableList();
+			_selectedLevel = targetLevel;
+			_selectedSequence = copy;
+			_selectedAction = null;
+			BuildSequenceReorderableList();
+			BuildActionReorderableList();
+			DestroyEmbeddedEditor();
+			Repaint();
+
+			return copy;
+		}
+
+		private SequenceData DuplicateSequenceAsset(SequenceData source, string targetLevelFolder, List<SequenceData> targetSequences)
+		{
+			string requestedName = source.sequenceName + "_Copy";
+			string seqFolder = GetUniqueSequenceFolder(targetLevelFolder, requestedName);
+			string uniqueSequenceName = Path.GetFileName(seqFolder);
+			string seqPath = $"{seqFolder}/{uniqueSequenceName}.asset";
+
+			SequenceData copy = Instantiate(source);
+			copy.sequenceID = uniqueSequenceName;
+			copy.sequenceName = uniqueSequenceName;
+			copy.actions = new ActionData[0];
+			copy.prerequisiteSequences = new SequenceData[0];
+			SaveAsset(copy, seqPath);
+
+			List<ActionData> copiedActions = new List<ActionData>();
+			if (source.actions != null)
+			{
+				foreach (ActionData sourceAction in source.actions)
+				{
+					if (sourceAction == null) continue;
+					ActionData actionCopy = DuplicateActionAsset(sourceAction, seqFolder);
+					copiedActions.Add(actionCopy);
+				}
+			}
+
+			copy.actions = copiedActions.ToArray();
+			EditorUtility.SetDirty(copy);
+			targetSequences.Add(copy);
+			return copy;
+		}
+
+		private ActionData DuplicateActionIntoSequence(ActionData source, SequenceData targetSequence)
+		{
+			if (source == null || targetSequence == null) return null;
+			EnsureSavePath();
+
+			string seqFolder = GetSequenceFolder(targetSequence);
+			ActionData copy = DuplicateActionAsset(source, seqFolder);
+
+			List<ActionData> actions = new List<ActionData>(targetSequence.actions ?? new ActionData[0]);
+			actions.Add(copy);
+			targetSequence.actions = actions.ToArray();
+			EditorUtility.SetDirty(targetSequence);
+			AssetDatabase.SaveAssets();
+
+			if (_selectedLevel != null)
+				BuildSequenceReorderableList();
+			_selectedSequence = targetSequence;
+			_selectedAction = copy;
+			BuildActionReorderableList();
+			DestroyEmbeddedEditor();
+			Repaint();
+
+			return copy;
+		}
+
+		private ActionData DuplicateActionAsset(ActionData source, string sequenceFolder)
+		{
+			string requestedName = source.actionName + "_Copy";
+			string actionPath = AssetDatabase.GenerateUniqueAssetPath($"{sequenceFolder}/{requestedName}.asset");
+
+			ActionData copy = Instantiate(source);
+			string uniqueActionName = Path.GetFileNameWithoutExtension(actionPath);
+			copy.actionID = uniqueActionName;
+			copy.actionName = uniqueActionName;
+			SaveAsset(copy, actionPath);
+			return copy;
+		}
+
+		private SequenceData FindSequenceInLevelByID(LevelData level, string sequenceID)
+		{
+			if (level?.sequences == null || string.IsNullOrEmpty(sequenceID))
+				return null;
+
+			foreach (SequenceData sequence in level.sequences)
+			{
+				if (sequence != null && sequence.sequenceID == sequenceID)
+					return sequence;
+			}
+
+			return null;
+		}
 
 		/// Levels kök klasörü
 		private string LevelsRoot => $"{_savePath}/Levels";
