@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
+  m_Name: "p an o 1 C op y"
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
+  sequenceID: pano1_Copy
+  sequenceName: "p an o 1 C op y"
+  sequenceDescription: 
+  actions:
+  - {fileID: 11400000, guid: 6931f9d827b252b45a104fc5b3436b0b, type: 2}
+  - {fileID: 11400000, guid: 58f99d9153405244788a99da915f058d, type: 2}
+  - {fileID: 11400000, guid: fde96777cfbfc0c44abf22310bf7b131, type: 2}
+  - {fileID: 11400000, guid: f55ee573824eeab4094fec788b4414f3, type: 2}
+  - {fileID: 11400000, guid: de66da54a18d6fa43ac3b32841de2583, type: 2}
+  - {fileID: 11400000, guid: e949d9042396d264998205514b4e8e9a, type: 2}
+  - {fileID: 11400000, guid: 7012caf42e34c7f4c91f51cd6250329b, type: 2}
+  targetObjectID: panoDepar2
+  buttonOffset: {x: 0, y: 1.5, z: 0}
+  entryCameraMode: 4
+  entryCameraID: camPano2
+  autoReturnOnComplete: 0
+  autoReturnOnExit: 1
+  resumeFromLastAction: 1
+  allowRestart: 0
+  hideButtonAfterComplete: 1
+  prerequisiteSequences:
+  - {fileID: 11400000, guid: 19031ee8b8501a048a2e13dbb7449b18, type: 2}
+  onPrerequisiteFail: 1
+  prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
+    tamamlay\u0131n."
+  hasSurvey: 1
+  surveyPanelPrefab: {fileID: 1286903722057059542, guid: 19fa24d4f5915f640b3fee1d4534a0fb, type: 3}
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions:
+    - questionText: "H\xFCcre plaka etiketi var m\u0131?"
+      options:
+      - Evet
+      - "Hay\u0131r"
+      correctOptionIndices: 01000000
+      isRequired: 1
+    - questionText: "SF6 %100 m\xFC?"
+      options:
+      - Evet
+      - "Hay\u0131r"
+      correctOptionIndices: 00000000
+      isRequired: 1
+    - questionText: "\u0130ndikat\xF6rde sorun var m\u0131?"
+      options:
+      - Evet
+      - "Hay\u0131r"
+      correctOptionIndices: 01000000
+      isRequired: 1
+    - questionText: "K\u0131smi de\u015Farj kontrol\xFC yap\u0131ld\u0131 m\u0131?"
+      options:
+      - Evet
+      - "Hay\u0131r"
+      correctOptionIndices: 00000000
+      isRequired: 1
+    photoSlotCount: 2
+    photoSlots:
+    - slotLabel: panoEtiket
+      targetObjectID: panoEtiket2
+      alignmentThreshold: 0.5
+      indicatorAlignedColor: {r: 0.13948512, g: 1, b: 0, a: 0}
+      indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
+    - slotLabel: panoDepar
+      targetObjectID: panoDepar2
+      alignmentThreshold: 0.5
+      indicatorAlignedColor: {r: 0.13948512, g: 1, b: 0, a: 0}
+      indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
+  spawnButtonAtStart: 0
+  sequenceIcon: {fileID: 0}
+  buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
+  completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}
+  onSequenceEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceExit:
+    m_PersistentCalls:
+      m_Calls: []

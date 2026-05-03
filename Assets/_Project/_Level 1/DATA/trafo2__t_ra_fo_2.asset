@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
+  m_Name: "t ra fo 2"
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
+  sequenceID: trafo2
+  sequenceName: "t ra fo 2"
+  sequenceDescription: 
+  actions:
+  - {fileID: 11400000, guid: 37f00ec64acdb564fb9006fbf62e08e5, type: 2}
+  - {fileID: 11400000, guid: b89792d69b7aaa042a72c1f0d0e98e09, type: 2}
+  - {fileID: 11400000, guid: f8c34cb292399a441baddf4bac464a58, type: 2}
+  - {fileID: 11400000, guid: 1bea2d97d8c0b504c9c9764424627580, type: 2}
+  - {fileID: 11400000, guid: e89d8c51368bbde459cc5bb6f6aa89ff, type: 2}
+  - {fileID: 11400000, guid: a155078fdcd052b469956ef51ccc3e0a, type: 2}
+  - {fileID: 11400000, guid: 62082fe7f807c55439f71246b7a1de3b, type: 2}
+  targetObjectID: kosk1
+  buttonOffset: {x: 0, y: 1.5, z: 0}
+  entryCameraMode: 4
+  entryCameraID: cam2
+  autoReturnOnComplete: 1
+  autoReturnOnExit: 1
+  resumeFromLastAction: 1
+  allowRestart: 0
+  hideButtonAfterComplete: 1
+  lockAfterComplete: 0
+  prerequisiteSequences:
+  - {fileID: 11400000, guid: 4d18524abb07db64f89b49413ae4b133, type: 2}
+  - {fileID: 11400000, guid: 48b1f1c35f907194398ba0dca2563302, type: 2}
+  - {fileID: 11400000, guid: b2120de8677d312499fece7b6e203f79, type: 2}
+  - {fileID: 11400000, guid: c9b9d4f959a83b04b9e61e3e4f848950, type: 2}
+  - {fileID: 11400000, guid: ad6a4600c3de8d948b9c56b2eddc8367, type: 2}
+  - {fileID: 11400000, guid: 2c4b469114df4034691f585c593fdcec, type: 2}
+  - {fileID: 11400000, guid: 7114164d87037be4e8759e65329a6f30, type: 2}
+  onPrerequisiteFail: 1
+  prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
+    tamamlay\u0131n."
+  hasSurvey: 1
+  surveyPanelPrefab: {fileID: 1286903722057059542, guid: 19fa24d4f5915f640b3fee1d4534a0fb, type: 3}
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions:
+    - questionText: "Armat\xFCr yan\u0131yor mu?"
+      options:
+      - Evet
+      - "Hay\u0131r"
+      correctOptionIndices: 00000000
+      isRequired: 1
+    photoSlotCount: 1
+    photoSlots:
+    - slotLabel: arm
+      targetObjectID: arm
+      alignmentThreshold: 0.5
+      indicatorAlignedColor: {r: 0.08960724, g: 1, b: 0, a: 0}
+      indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
+  spawnButtonAtStart: 0
+  sequenceIcon: {fileID: 0}
+  buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
+  completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}
+  onSequenceEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceExit:
+    m_PersistentCalls:
+      m_Calls: []
