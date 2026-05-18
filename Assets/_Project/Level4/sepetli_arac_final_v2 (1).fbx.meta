@@ -1,0 +1,205 @@
+fileFormatVersion: 2
+guid: b551daa535eb03944a689a6321343cc1
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BigTruck_Body
+    second: {fileID: 2100000, guid: 25dc2f6b128732840bbf5ad59e8d73fd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BigTruck_Lift
+    second: {fileID: 2100000, guid: dfd0a52d1b6b3884a8202045f96a50b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BigTruck_Wheels
+    second: {fileID: 2100000, guid: bbebcd9f9fa5b0b48891d9ee5d9d9962, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: License_Plates
+    second: {fileID: 2100000, guid: 3dc33af0ad936784ebf6452082c53b1f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sepet_arac_pano_buton
+    second: {fileID: 2100000, guid: 729c7819a573ff8468838c9a47028807, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sepet_pano_buton
+    second: {fileID: 2100000, guid: 4ae451ac5b67b9d42b17bd9d80d9cf10, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: setep_arac_pano_arka
+    second: {fileID: 2100000, guid: dc3b45149e0f0a34c8c814a83262c90c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: setep_pano_arka
+    second: {fileID: 2100000, guid: e4986f2a150ed0d4586f5708b2cfb752, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: 0dd0832c656749269d106da6c0eeddaa_N_BigTruck_Body_Normal
+    second: {fileID: 2800000, guid: 36aec75a1ff28ce4da90007576f59a70, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: 521874f473a64421b1c3c69f57e7b168_N_BigTruck_Wheels_Normal
+    second: {fileID: 2800000, guid: a2832ad05e347174e9ab3805d567e1e2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: 536e4fb630ed426bbaa5a201403e9dc7_RGB_BigTruck_Lift_Diffuse
+    second: {fileID: 2800000, guid: b81f87f291711b741b630ecb42fa89bd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: 9eef9c387b404cb9baab3249fc258a55_N_BigTruck_Lift_Normal
+    second: {fileID: 2800000, guid: 97c47c9e1368e6c47897a3721543b40f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: ChatGPT Image 6 May 2026 21_49_07
+    second: {fileID: 2800000, guid: 152e82db5f1382e44bd886e6735c519c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: aa86d192c01f4f15989236a0aaa2627d_RGB_BigTruck_Wheels_Diffuse
+    second: {fileID: 2800000, guid: 923fc94f8a08c9f43a163d6de046d59b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: aracsepetkonbtrolpaneli_arka
+    second: {fileID: 2800000, guid: ae6f682644accbf4cb0c04a58f2c9f3d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: aracsepetkonbtrolpaneli_buton
+    second: {fileID: 2800000, guid: a5cd75b1865c47545ad903d43fe0431f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: plaka
+    second: {fileID: 2800000, guid: c9b4c49a97996aa4b8c223e8b0db5780, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: sepetkonbtrolpaneli_arka
+    second: {fileID: 2800000, guid: 3eb5de79b477a6b40921d86032b49705, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: sepetkonbtrolpaneli_buton
+    second: {fileID: 2800000, guid: f99679ed75783a340813f1a6df7a7704, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1423,6 +1423,10 @@ namespace SafetyTraining
 						sb.AppendLine($"**Kamera ID:** `{action.virtualCameraID}`  ");
 					break;
 
+				case ActionType.Fade:
+					sb.AppendLine("**Efekt:** Tam ekran fade  ");
+					break;
+
 				case ActionType.Quiz:
 					if (action.quizData != null)
 					{
@@ -1732,6 +1736,7 @@ namespace SafetyTraining
 			ActionType.PanelInteraction => new Color(0.20f, 0.35f, 0.55f),
 			ActionType.Quiz => new Color(0.55f, 0.20f, 0.35f),
 			ActionType.Survey => new Color(0.20f, 0.45f, 0.45f),
+			ActionType.Fade => new Color(0.10f, 0.10f, 0.10f),
 			_ => new Color(0.35f, 0.35f, 0.35f)
 		};
 	}

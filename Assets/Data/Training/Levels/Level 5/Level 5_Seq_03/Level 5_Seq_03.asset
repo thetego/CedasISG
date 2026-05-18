@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
+  m_Name: Level 5_Seq_03
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
+  sequenceID: Level 5_Seq_03
+  sequenceName: Level 5_Seq_03
+  sequenceDescription: 
+  actions:
+  - {fileID: 11400000, guid: 061b520c2f6b3ed4faa797224d88bb6d, type: 2}
+  - {fileID: 11400000, guid: 2c5399ab617f5bb4aaedca0831c60cc9, type: 2}
+  - {fileID: 11400000, guid: 43ef066a6972c884f887406be1265d1d, type: 2}
+  - {fileID: 11400000, guid: 773777171a10f1643bfb032564c29e9e, type: 2}
+  - {fileID: 11400000, guid: f8aed8d904674744bbe79d71cebc714e, type: 2}
+  - {fileID: 11400000, guid: a4e0a452a674ede44972984e1156fb11, type: 2}
+  - {fileID: 11400000, guid: a5c04210e3333f74ba80d372e4c80109, type: 2}
+  - {fileID: 11400000, guid: 648f0147b3e9ba44793eb9be4613c029, type: 2}
+  - {fileID: 11400000, guid: 36f0d9bc27483174e80cfa0146b4632c, type: 2}
+  - {fileID: 11400000, guid: 9f3ccb3c407cac145bf457ace1e887c2, type: 2}
+  - {fileID: 11400000, guid: 30f6cfa54316888429e9b2c18ab79612, type: 2}
+  - {fileID: 11400000, guid: bc5d66540fcb6c24e86c7db57b4f528a, type: 2}
+  - {fileID: 11400000, guid: 0218e2dfc7f8fde46b18382579c84410, type: 2}
+  - {fileID: 11400000, guid: 687395ccaac0e144799fa74a662d2b64, type: 2}
+  - {fileID: 11400000, guid: f1dc99deceae4794d9de9fb2409e0ad9, type: 2}
+  - {fileID: 11400000, guid: 34bfa1804385929489f95f31ed97348d, type: 2}
+  - {fileID: 11400000, guid: 533ea797d88cb664496168073baec018, type: 2}
+  - {fileID: 11400000, guid: 473aaacc77cf20a419ada4597bd34e10, type: 2}
+  - {fileID: 11400000, guid: 22d51899fb054294489ca259d1a90493, type: 2}
+  - {fileID: 11400000, guid: 10dab7c655f7a9b479984a1e165092b1, type: 2}
+  - {fileID: 11400000, guid: e338a6d7add528c41b0e801044886cad, type: 2}
+  - {fileID: 11400000, guid: f21ba6ebf537d7540a9d35ad8917ec46, type: 2}
+  - {fileID: 11400000, guid: 21ee25689c4a33642957a0cfad0962c4, type: 2}
+  - {fileID: 11400000, guid: 3998a041aec604c4f99bd89e95e61318, type: 2}
+  - {fileID: 11400000, guid: 9b2cac99f1dfd5c49863898f1570134d, type: 2}
+  - {fileID: 11400000, guid: a7f96c491a0d70a46a3a3e5db50bd9b4, type: 2}
+  targetObjectID: cam7
+  buttonOffset: {x: 0, y: 1.5, z: 0}
+  entryCameraMode: 4
+  entryCameraID: cam7
+  autoReturnOnComplete: 1
+  autoReturnOnExit: 1
+  resumeFromLastAction: 1
+  allowRestart: 0
+  hideButtonAfterComplete: 0
+  prerequisiteSequences:
+  - {fileID: 11400000, guid: 226c870c341ed8042b2dc31a50d3d8ed, type: 2}
+  - {fileID: 11400000, guid: 83c16260cfc50b047bc9c795c73672e5, type: 2}
+  onPrerequisiteFail: 1
+  prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
+    tamamlay\u0131n."
+  hasSurvey: 0
+  surveyPanelPrefab: {fileID: 0}
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 0
+    photoSlots: []
+  spawnButtonAtStart: 1
+  sequenceIcon: {fileID: 0}
+  buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
+  completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}
+  onSequenceEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceExit:
+    m_PersistentCalls:
+      m_Calls: []

@@ -295,6 +295,7 @@ namespace SafetyTraining
 					break;
 
 				case ActionType.CameraMove:
+				case ActionType.Fade:
 					// Kamera hareketi için UI gerekmez
 					break;
 			}

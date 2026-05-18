@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using Michsky.MUIP;
+using UnityEngine.UI;
 
 namespace SafetyTraining
 {
@@ -27,6 +28,12 @@ namespace SafetyTraining
 		public GameObject warningPanel;
 		public TMPro.TextMeshProUGUI warningMessageText;
 		public UnityEngine.UI.Button backButton; // Sekanslardan geri dönme butonu
+
+		[Header("━━━ SEQUENCE FADE ━━━")]
+		public Image sequenceFadeOverlay;
+		[Min(0f)] public float sequenceFadeStartDelay = 0f;
+		[Min(0.01f)] public float sequenceFadeDuration = 0.35f;
+		[Min(0f)] public float sequenceFadeHoldDuration = 0.1f;
 
 		[Header("━━━ DEBUG ━━━")]
 		public bool debugMode = true;
@@ -53,6 +60,7 @@ namespace SafetyTraining
 		private int _score;
 		private int _mistakes;
 		private bool _inSequence; // Şu an bir sekans içinde miyiz?
+		private bool _isCompletingSequence;
 
 		// ═══════════════════════════════════════════════════════
 		// INITIALIZATION
@@ -69,6 +77,8 @@ namespace SafetyTraining
 				Destroy(gameObject);
 				return;
 			}
+
+			EnsureFadeOverlay();
 		}
 
 		private void Start()
@@ -138,6 +148,7 @@ namespace SafetyTraining
 
 		public void RestartLevel()
 		{
+			_isCompletingSequence = false;
 			ExitCurrentSequence(); // Önce mevcut sekansdan çık
 			StartLevel();
 		}
@@ -440,6 +451,15 @@ namespace SafetyTraining
 				}
 			}
 
+			if (_currentAction.actionType == ActionType.Fade)
+			{
+				if (debugMode)
+					Debug.Log("[SequenceManager] Fade auto-play started");
+
+				StartCoroutine(PlayFadeActionAndComplete(_currentAction.actionID));
+				return;
+			}
+
 			// WearEquipment için tracking sıfırla
 			if (_currentAction.actionType == ActionType.WearEquipment)
 			{
@@ -457,6 +477,11 @@ namespace SafetyTraining
 		/// Action tamamlandığında çağrılır
 		/// </summary>
 		public void OnActionCompleted(string actionID)
+		{
+			OnActionCompleted(actionID, true);
+		}
+
+		private void OnActionCompleted(string actionID, bool invokeCompletionEvents)
 		{
 			if (_currentAction == null || _currentAction.actionID != actionID)
 			{
@@ -484,11 +509,10 @@ namespace SafetyTraining
 			// Partikül
 			SpawnParticle();
 
-			// Events
-			_currentAction.onActionComplete?.Invoke();
-
-			// OnComplete scene events (ActionEventHandler)
-			TriggerSceneEvents(_currentAction.onCompleteEventIDs);
+			if (invokeCompletionEvents)
+			{
+				InvokeCurrentActionCompletionEvents(actionID);
+			}
 
 			// Kamera geri dön (varsa)
 			if (_currentAction.autoReturnCameraOnComplete)
@@ -581,6 +605,21 @@ namespace SafetyTraining
 			MoveToNextActionInSequence();
 		}
 
+		private IEnumerator PlayFadeActionAndComplete(string actionID)
+		{
+			if (sequenceFadeStartDelay > 0f)
+				yield return new WaitForSeconds(sequenceFadeStartDelay);
+
+			yield return PlaySequenceCompleteFade(() =>
+			{
+				if (_currentAction != null && _currentAction.actionID == actionID)
+					InvokeCurrentActionCompletionEvents(actionID);
+			});
+
+			if (_currentAction != null && _currentAction.actionID == actionID)
+				OnActionCompleted(actionID, false);
+		}
+
 		private void MoveToNextActionInSequence()
 		{
 			_currentActionIndex++;
@@ -592,52 +631,62 @@ namespace SafetyTraining
 		/// </summary>
 		private void CompleteSequence()
 		{
-			if (_currentSequence == null) return;
+			if (_currentSequence == null || _isCompletingSequence) return;
+			StartCoroutine(CompleteSequenceRoutine());
+		}
+
+		private IEnumerator CompleteSequenceRoutine()
+		{
+			if (_currentSequence == null)
+				yield break;
+
+			_isCompletingSequence = true;
+			SequenceData completedSequence = _currentSequence;
 
 			if (debugMode)
-				Debug.Log($"<color=lime>[SequenceManager] ★ Sekans tamamlandı: {_currentSequence.sequenceName} ★</color>");
+				Debug.Log($"<color=lime>[SequenceManager] ★ Sekans tamamlandı: {completedSequence.sequenceName} ★</color>");
 
 			_currentSequenceState.isCompleted = true;
 
 			// Sekans survey'i kapat
-			UISpawnManager.Instance?.OnSequenceEnded(_currentSequence);
+			UISpawnManager.Instance?.OnSequenceEnded(completedSequence);
 			_currentSequenceState.completionTime = Time.time;
 
 			// Events
-			_currentSequence.onSequenceComplete?.Invoke();
+			completedSequence.onSequenceComplete?.Invoke();
 
 			// Kamera geri dön
-			if (_currentSequence.autoReturnOnComplete)
+			if (completedSequence.autoReturnOnComplete)
 			{
 				CameraManager.Instance?.ResetToDefault();
 			}
 
 			// Sekans butonunu güncelle (completed state)
-			if (_sequenceButtons.TryGetValue(_currentSequence.sequenceID, out UISequenceButton btn))
+			if (_sequenceButtons.TryGetValue(completedSequence.sequenceID, out UISequenceButton btn))
 			{
 				// Her durumda completed state'i set et
 				btn.SetCompleted(true);
 
 				// Hide flag kontrolü - hemen gizle
-				if (_currentSequence.hideButtonAfterComplete)
+				if (completedSequence.hideButtonAfterComplete)
 				{
 					btn.gameObject.SetActive(false);
 
 					if (debugMode)
-						Debug.Log($"[SequenceManager] Sequence button hidden: '{_currentSequence.sequenceName}'");
+						Debug.Log($"[SequenceManager] Sequence button hidden: '{completedSequence.sequenceName}'");
 				}
 				// Restart izni yoksa kilitle
-				else if (!_currentSequence.allowRestart)
+				else if (!completedSequence.allowRestart)
 				{
 					btn.SetLocked(true);
 
 					if (debugMode)
-						Debug.Log($"[SequenceManager] Sequence '{_currentSequence.sequenceName}' locked (allowRestart=false)");
+						Debug.Log($"[SequenceManager] Sequence '{completedSequence.sequenceName}' locked (allowRestart=false)");
 				}
 				else
 				{
 					if (debugMode)
-						Debug.Log($"[SequenceManager] Sequence '{_currentSequence.sequenceName}' can be restarted");
+						Debug.Log($"[SequenceManager] Sequence '{completedSequence.sequenceName}' can be restarted");
 				}
 			}
 
@@ -668,6 +717,8 @@ namespace SafetyTraining
 			{
 				CompleteLevel();
 			}
+
+			_isCompletingSequence = false;
 		}
 
 		// ═══════════════════════════════════════════════════════
@@ -842,6 +893,98 @@ namespace SafetyTraining
 
 			if (debugMode)
 				Debug.Log($"<color=orange>[SequenceManager] ⚠ Warning: {message}</color>");
+		}
+
+		private void EnsureFadeOverlay()
+		{
+			if (sequenceFadeOverlay != null)
+			{
+				PrepareFadeOverlay(sequenceFadeOverlay);
+				return;
+			}
+
+			Canvas targetCanvas = FindObjectsOfType<Canvas>(true)
+				.FirstOrDefault(c => c.isRootCanvas && c.renderMode != RenderMode.WorldSpace);
+
+			if (targetCanvas == null)
+			{
+				if (debugMode)
+					Debug.LogWarning("[SequenceManager] Sequence fade overlay oluşturulamadı: uygun Canvas bulunamadı.");
+				return;
+			}
+
+			GameObject overlayObject = new GameObject("SequenceFadeOverlay", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+			overlayObject.transform.SetParent(targetCanvas.transform, false);
+			overlayObject.transform.SetAsLastSibling();
+
+			sequenceFadeOverlay = overlayObject.GetComponent<Image>();
+			PrepareFadeOverlay(sequenceFadeOverlay);
+
+			RectTransform rectTransform = overlayObject.GetComponent<RectTransform>();
+			rectTransform.anchorMin = Vector2.zero;
+			rectTransform.anchorMax = Vector2.one;
+			rectTransform.offsetMin = Vector2.zero;
+			rectTransform.offsetMax = Vector2.zero;
+		}
+
+		private void PrepareFadeOverlay(Image overlay)
+		{
+			if (overlay == null)
+				return;
+
+			overlay.color = new Color(0f, 0f, 0f, 0f);
+			overlay.raycastTarget = false;
+			overlay.gameObject.SetActive(true);
+		}
+
+		private void InvokeCurrentActionCompletionEvents(string actionID)
+		{
+			if (_currentAction == null || _currentAction.actionID != actionID)
+				return;
+
+			_currentAction.onActionComplete?.Invoke();
+			TriggerSceneEvents(_currentAction.onCompleteEventIDs);
+		}
+
+		private IEnumerator PlaySequenceCompleteFade(System.Action midpointAction = null)
+		{
+			EnsureFadeOverlay();
+			if (sequenceFadeOverlay == null)
+				yield break;
+
+			yield return FadeOverlayAlpha(0f, 1f, sequenceFadeDuration);
+			midpointAction?.Invoke();
+
+			if (sequenceFadeHoldDuration > 0f)
+				yield return new WaitForSeconds(sequenceFadeHoldDuration);
+
+			yield return FadeOverlayAlpha(1f, 0f, sequenceFadeDuration);
+		}
+
+		private IEnumerator FadeOverlayAlpha(float from, float to, float duration)
+		{
+			Color color = sequenceFadeOverlay.color;
+			color.a = from;
+			sequenceFadeOverlay.color = color;
+
+			if (duration <= 0f)
+			{
+				color.a = to;
+				sequenceFadeOverlay.color = color;
+				yield break;
+			}
+
+			float elapsed = 0f;
+			while (elapsed < duration)
+			{
+				elapsed += Time.deltaTime;
+				color.a = Mathf.Lerp(from, to, elapsed / duration);
+				sequenceFadeOverlay.color = color;
+				yield return null;
+			}
+
+			color.a = to;
+			sequenceFadeOverlay.color = color;
 		}
 
 		private void ShowGameOver(string message)

@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
+  m_Name: Level 4_Seq_02_Copy
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
+  sequenceID: Level 4_Seq_05
+  sequenceName: Level 4_Seq_05
+  sequenceDescription: 
+  actions:
+  - {fileID: 11400000, guid: a2cfee1f18923fd45af52e993b6b0059, type: 2}
+  - {fileID: 11400000, guid: 08074b3e93736e344b5d08358ac272bc, type: 2}
+  - {fileID: 11400000, guid: 2a3d87f5a6008e64ab0e2210f7b465ed, type: 2}
+  - {fileID: 11400000, guid: e99a5e40ae6dce949928477001af2ba2, type: 2}
+  targetObjectID: P1
+  buttonOffset: {x: 0, y: 1.5, z: 0}
+  entryCameraMode: 4
+  entryCameraID: camAltPanel
+  autoReturnOnComplete: 1
+  autoReturnOnExit: 1
+  resumeFromLastAction: 1
+  allowRestart: 0
+  hideButtonAfterComplete: 1
+  prerequisiteSequences:
+  - {fileID: 11400000, guid: afec1889249cda04fb53615e8199ca23, type: 2}
+  - {fileID: 11400000, guid: a158ec841218ef94190e504e4185e974, type: 2}
+  - {fileID: 11400000, guid: 39ed5aac78037d64994ecf5f289ef464, type: 2}
+  - {fileID: 11400000, guid: 4230e0d87a105f943a9fd9f63e44decd, type: 2}
+  onPrerequisiteFail: 1
+  prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
+    tamamlay\u0131n."
+  hasSurvey: 0
+  surveyPanelPrefab: {fileID: 0}
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 0
+    photoSlots: []
+  spawnButtonAtStart: 0
+  sequenceIcon: {fileID: 0}
+  buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
+  completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}
+  onSequenceEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceExit:
+    m_PersistentCalls:
+      m_Calls: []

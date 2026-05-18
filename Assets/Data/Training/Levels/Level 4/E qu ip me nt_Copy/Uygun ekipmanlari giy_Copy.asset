@@ -20,8 +20,8 @@ MonoBehaviour:
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
-  completionDelay: 0
-  autoCompleteAfterDelay: 0
+  completionDelay: 1
+  autoCompleteAfterDelay: 1
   cameraMode: 0
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
@@ -29,6 +29,7 @@ MonoBehaviour:
   requiredEquipments:
   - {fileID: 11400000, guid: fcdc16e91b1917b4ea1c295bc7be026f, type: 2}
   - {fileID: 11400000, guid: 4ac847364a3aa4e42bd843765db9f89f, type: 2}
+  - {fileID: 11400000, guid: 425aa1fae60a4d542bfb2fc672fbe1f1, type: 2}
   distractorEquipments:
   - {fileID: 11400000, guid: f95b91a99e0584541b92fc5ce77a1f47, type: 2}
   - {fileID: 11400000, guid: 5c90d32e8b04cb148b122b20c73b290e, type: 2}

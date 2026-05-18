@@ -13,7 +13,8 @@ namespace SafetyTraining
 		CameraMove,      // Otomatik kamera geçiş
 		PanelInteraction,// Panel aç → Panel içinde buton tıkla → Action tamamlanır
 		Quiz,            // Soru + 4 seçenek → Doğru → tamamlandı, Yanlış → game over
-		Survey           // Dropdown sorular + fotoğraf çekme → analytics
+		Survey,          // Dropdown sorular + fotoğraf çekme → analytics
+		Fade             // Tam ekran fade in/out efekti oynatır
 	}
 
 	public enum PrerequisiteFailAction

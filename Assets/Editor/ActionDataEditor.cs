@@ -1,5 +1,5 @@
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace SafetyTraining
 {
@@ -12,8 +12,7 @@ namespace SafetyTraining
 
 			ActionData action = (ActionData)target;
 
-			// ━━━ GENEL ━━━
-			DrawSection("━━━ GENEL ━━━", () =>
+			DrawSection("GENERAL", () =>
 			{
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("actionID"));
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("actionName"));
@@ -21,44 +20,41 @@ namespace SafetyTraining
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("actionType"));
 			});
 
-			// ━━━ PREREQUISITE ━━━
-			DrawSection("━━━ PREREQUISITE ━━━", () =>
+			DrawSection("PREREQUISITE", () =>
 			{
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("prerequisiteActionIDs"));
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("onPrerequisiteFail"));
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("prerequisiteFailMessage"));
 			});
 
-			// ━━━ TAMAMLANMA ━━━
-			DrawSection("━━━ TAMAMLANMA ━━━", () =>
+			DrawSection("COMPLETION", () =>
 			{
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("completionDelay"));
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("autoCompleteAfterDelay"));
 			});
 
-			// ━━━ KAMERA ━━━
-			DrawSection("━━━ KAMERA ━━━", () =>
+			DrawSection("CAMERA", () =>
 			{
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("cameraMode"));
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("virtualCameraID"));
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("autoReturnCameraOnComplete"));
 			});
 
-			// ━━━ HEDEF OBJE ━━━
-			// Quiz ve PanelInteraction dışında hepsinde göster
-			if (action.actionType != ActionType.Quiz && action.actionType != ActionType.PanelInteraction && action.actionType != ActionType.Survey)
+			if (action.actionType != ActionType.Quiz &&
+				action.actionType != ActionType.PanelInteraction &&
+				action.actionType != ActionType.Survey &&
+				action.actionType != ActionType.Fade)
 			{
-				DrawSection("━━━ HEDEF OBJE ━━━", () =>
+				DrawSection("TARGET OBJECT", () =>
 				{
 					EditorGUILayout.PropertyField(serializedObject.FindProperty("targetObjectID"));
 				});
 			}
 
-			// ━━━ ACTION TYPE'A ÖZEL ALANLAR ━━━
 			switch (action.actionType)
 			{
 				case ActionType.WearEquipment:
-					DrawSection("━━━ EKİPMAN ━━━", () =>
+					DrawSection("WEAR EQUIPMENT", () =>
 					{
 						EditorGUILayout.PropertyField(serializedObject.FindProperty("requiredEquipments"));
 						EditorGUILayout.PropertyField(serializedObject.FindProperty("distractorEquipments"));
@@ -66,7 +62,7 @@ namespace SafetyTraining
 					break;
 
 				case ActionType.DragToWorld:
-					DrawSection("━━━ DRAG TO WORLD ━━━", () =>
+					DrawSection("DRAG TO WORLD", () =>
 					{
 						EditorGUILayout.PropertyField(serializedObject.FindProperty("targetObjectID"));
 						EditorGUILayout.PropertyField(serializedObject.FindProperty("requiredTools"));
@@ -78,7 +74,7 @@ namespace SafetyTraining
 					break;
 
 				case ActionType.PanelInteraction:
-					DrawSection("━━━ PANEL INTERACTION ━━━", () =>
+					DrawSection("PANEL INTERACTION", () =>
 					{
 						EditorGUILayout.PropertyField(serializedObject.FindProperty("interactionPanelPrefab"));
 						EditorGUILayout.PropertyField(serializedObject.FindProperty("panelID"));
@@ -86,18 +82,20 @@ namespace SafetyTraining
 					break;
 
 				case ActionType.Quiz:
-					DrawSection("━━━ QUIZ ━━━", () =>
+					DrawSection("QUIZ", () =>
 					{
-						EditorGUILayout.PropertyField(serializedObject.FindProperty("interactionPanelPrefab"),
+						EditorGUILayout.PropertyField(
+							serializedObject.FindProperty("interactionPanelPrefab"),
 							new GUIContent("Quiz Panel Prefab"));
 						EditorGUILayout.PropertyField(serializedObject.FindProperty("quizData"), true);
 					});
 					break;
 
 				case ActionType.Survey:
-					DrawSection("━━━ SURVEY ━━━", () =>
+					DrawSection("SURVEY", () =>
 					{
-						EditorGUILayout.PropertyField(serializedObject.FindProperty("interactionPanelPrefab"),
+						EditorGUILayout.PropertyField(
+							serializedObject.FindProperty("interactionPanelPrefab"),
 							new GUIContent("Survey Panel Prefab"));
 						EditorGUILayout.PropertyField(serializedObject.FindProperty("surveyData"), true);
 					});
@@ -105,48 +103,45 @@ namespace SafetyTraining
 
 				case ActionType.Click:
 				case ActionType.OpenClose:
-					// Hedef obje zaten üstte çizildi, ekstra alan yok
-					DrawSection("━━━ CLICK / OPEN CLOSE ━━━", () =>
+					DrawSection("CLICK / OPEN CLOSE", () =>
 					{
 						EditorGUILayout.PropertyField(serializedObject.FindProperty("targetObjectID"));
 					});
 					break;
 
 				case ActionType.CameraMove:
-					// Kamera ayarları üstteki KAMERA section'ında mevcut
+				case ActionType.Fade:
 					break;
 			}
 
-			// ━━━ UI BEHAVIOR ━━━
-			DrawSection("━━━ TABLET ━━━", () =>
+			DrawSection("TABLET", () =>
 			{
-				EditorGUILayout.PropertyField(serializedObject.FindProperty("activatesTablet"),
-					new GUIContent("Tablet Aktifleştir", "Bu action tamamlanınca tablet butonu aktifleşir"));
-				EditorGUILayout.PropertyField(serializedObject.FindProperty("deactivatesTablet"),
-					new GUIContent("Tablet Pasifleştir", "Bu action tamamlanınca tablet butonu pasifleşir"));
+				EditorGUILayout.PropertyField(
+					serializedObject.FindProperty("activatesTablet"),
+					new GUIContent("Activate Tablet", "Enable tablet button when this action completes"));
+				EditorGUILayout.PropertyField(
+					serializedObject.FindProperty("deactivatesTablet"),
+					new GUIContent("Deactivate Tablet", "Disable tablet button when this action starts"));
 			});
 
-			DrawSection("━━━ UI BEHAVIOR ━━━", () =>
+			DrawSection("UI BEHAVIOR", () =>
 			{
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("hideButtonAfterComplete"));
 			});
 
-			// ━━━ ANİMASYONLAR ━━━
-			DrawSection("━━━ ANİMASYONLAR ━━━", () =>
+			DrawSection("ANIMATIONS", () =>
 			{
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("animationTriggers"), true);
 			});
 
-			// ━━━ EFEKTLER ━━━
-			DrawSection("━━━ EFEKTLER ━━━", () =>
+			DrawSection("EFFECTS", () =>
 			{
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("soundClip"));
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("particleEffectID"));
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("particleSpawnOffset"));
 			});
 
-			// ━━━ EVENTS ━━━
-			DrawSection("━━━ EVENTS ━━━", () =>
+			DrawSection("EVENTS", () =>
 			{
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("onActionStart"));
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("onActionComplete"));
@@ -160,7 +155,6 @@ namespace SafetyTraining
 			serializedObject.ApplyModifiedProperties();
 		}
 
-		// ─── Helper: Başlıklı bölüm çizer ───
 		private void DrawSection(string title, System.Action drawContent)
 		{
 			EditorGUILayout.Space(6);

@@ -17,6 +17,15 @@ MonoBehaviour:
   levelDescription: 
   sequences:
   - {fileID: 11400000, guid: afec1889249cda04fb53615e8199ca23, type: 2}
+  - {fileID: 11400000, guid: a158ec841218ef94190e504e4185e974, type: 2}
+  - {fileID: 11400000, guid: 39ed5aac78037d64994ecf5f289ef464, type: 2}
+  - {fileID: 11400000, guid: 4230e0d87a105f943a9fd9f63e44decd, type: 2}
+  - {fileID: 11400000, guid: e3c69caa6fab1b1459a7732dcdb321c9, type: 2}
+  - {fileID: 11400000, guid: ffa4cd9c87e38a04abe8ba5baabfe9a4, type: 2}
+  - {fileID: 11400000, guid: 751e3992be5591e49b07394e9e94db13, type: 2}
+  - {fileID: 11400000, guid: b9ac69e4a348c7542963a197485e30b6, type: 2}
+  - {fileID: 11400000, guid: 3bbd8754a96610f47bd7f7ab8a3f3975, type: 2}
+  - {fileID: 11400000, guid: 77237b67339428a4dae1d110433849de, type: 2}
   timeLimit: 0
   allowSequenceSwitching: 1
   maxScore: 100
