@@ -28,9 +28,18 @@ MonoBehaviour:
   targetObjectID: C5
   requiredEquipments: []
   distractorEquipments: []
-  requiredTools: []
-  distractorTools: []
-  toolDropMappings: []
+  requiredTools:
+  - {fileID: 11400000, guid: 9bb471e52fec2f641b332cd8a745a4a8, type: 2}
+  distractorTools:
+  - {fileID: 11400000, guid: 7598b8e53f2ae2c458cb501a0fa46352, type: 2}
+  - {fileID: 11400000, guid: 1132fef60912dd84ca6830bf909d5d94, type: 2}
+  - {fileID: 11400000, guid: fcddd625d347d9944a5bcb009dd15907, type: 2}
+  - {fileID: 11400000, guid: cae7644f9562bff4bb316c13065c8148, type: 2}
+  toolDropMappings:
+  - uniqueID: rts2
+    toolID: RotTool
+    dropTargetObjectID: C5
+    onDropEventID: 
   dropZoneSize: {x: 120, y: 120}
   toolDropMode: 0
   interactionPanelPrefab: {fileID: 0}
@@ -54,7 +63,13 @@ MonoBehaviour:
   activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0
-  animationTriggers: []
+  animationTriggers:
+  - animatorObjectID: an10
+    triggerName: Rot
+    parameterType: 0
+    parameterValue: 0
+    timing: 1
+    autoResetTrigger: 0
   soundClip: {fileID: 0}
   particleEffectID: 
   particleSpawnOffset: {x: 0, y: 0, z: 0}

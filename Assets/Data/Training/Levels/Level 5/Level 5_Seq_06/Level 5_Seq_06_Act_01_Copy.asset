@@ -20,17 +20,25 @@ MonoBehaviour:
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
-  completionDelay: 0
-  autoCompleteAfterDelay: 0
+  completionDelay: 1
+  autoCompleteAfterDelay: 1
   cameraMode: 0
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
   targetObjectID: D2
   requiredEquipments: []
   distractorEquipments: []
-  requiredTools: []
-  distractorTools: []
-  toolDropMappings: []
+  requiredTools:
+  - {fileID: 11400000, guid: d90dfae7d7fd9ef43b06572b302c56cb, type: 2}
+  distractorTools:
+  - {fileID: 11400000, guid: 4918ea0877336624bac51790748b511e, type: 2}
+  - {fileID: 11400000, guid: 25329869e94367b47804998461392975, type: 2}
+  - {fileID: 11400000, guid: fc21f06335dc023439489ccc77b51805, type: 2}
+  toolDropMappings:
+  - uniqueID: megg2
+    toolID: "MeggerK\u0131ska\xE7"
+    dropTargetObjectID: D2
+    onDropEventID: meg2
   dropZoneSize: {x: 120, y: 120}
   toolDropMode: 0
   interactionPanelPrefab: {fileID: 0}

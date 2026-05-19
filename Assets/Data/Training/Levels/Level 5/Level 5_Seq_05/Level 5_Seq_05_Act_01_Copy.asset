@@ -28,9 +28,17 @@ MonoBehaviour:
   targetObjectID: A11
   requiredEquipments: []
   distractorEquipments: []
-  requiredTools: []
-  distractorTools: []
-  toolDropMappings: []
+  requiredTools:
+  - {fileID: 11400000, guid: 7598b8e53f2ae2c458cb501a0fa46352, type: 2}
+  distractorTools:
+  - {fileID: 11400000, guid: 1132fef60912dd84ca6830bf909d5d94, type: 2}
+  - {fileID: 11400000, guid: a93354739132d324ca366d6aa3717b89, type: 2}
+  - {fileID: 11400000, guid: 86d86a9b559bb8e409a17f1fbd72b7a9, type: 2}
+  toolDropMappings:
+  - uniqueID: bt2
+    toolID: BoxTool
+    dropTargetObjectID: A11
+    onDropEventID: 
   dropZoneSize: {x: 120, y: 120}
   toolDropMode: 0
   interactionPanelPrefab: {fileID: 0}

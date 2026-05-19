@@ -71,5 +71,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onStartEventIDs: []
-  onCompleteEventIDs: []
+  onCompleteEventIDs:
+  - b16
   onFailEventIDs: []

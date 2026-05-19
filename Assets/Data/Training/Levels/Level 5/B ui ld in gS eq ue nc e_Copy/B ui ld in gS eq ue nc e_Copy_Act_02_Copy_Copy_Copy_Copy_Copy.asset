@@ -67,6 +67,7 @@ MonoBehaviour:
   onActionFail:
     m_PersistentCalls:
       m_Calls: []
-  onStartEventIDs: []
+  onStartEventIDs:
+  - neon3off
   onCompleteEventIDs: []
   onFailEventIDs: []

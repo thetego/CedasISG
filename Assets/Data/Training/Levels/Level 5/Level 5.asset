@@ -22,6 +22,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 54937fc837d0098478d27070f5f3c111, type: 2}
   - {fileID: 11400000, guid: 8c00dddc7d77779429392ffb5375cd83, type: 2}
   - {fileID: 11400000, guid: e4301d292c76f4b4fb31c20734047064, type: 2}
+  - {fileID: 11400000, guid: d927e72d98d85b84f99a19ec87085cc5, type: 2}
   timeLimit: 3600
   allowSequenceSwitching: 1
   maxScore: 100

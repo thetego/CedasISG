@@ -28,9 +28,18 @@ MonoBehaviour:
   targetObjectID: A11
   requiredEquipments: []
   distractorEquipments: []
-  requiredTools: []
-  distractorTools: []
-  toolDropMappings: []
+  requiredTools:
+  - {fileID: 11400000, guid: 1132fef60912dd84ca6830bf909d5d94, type: 2}
+  distractorTools:
+  - {fileID: 11400000, guid: 25329869e94367b47804998461392975, type: 2}
+  - {fileID: 11400000, guid: 4918ea0877336624bac51790748b511e, type: 2}
+  - {fileID: 11400000, guid: cae7644f9562bff4bb316c13065c8148, type: 2}
+  - {fileID: 11400000, guid: a93354739132d324ca366d6aa3717b89, type: 2}
+  toolDropMappings:
+  - uniqueID: n2
+    toolID: Neon
+    dropTargetObjectID: A11
+    onDropEventID: neon2
   dropZoneSize: {x: 120, y: 120}
   toolDropMode: 0
   interactionPanelPrefab: {fileID: 0}
