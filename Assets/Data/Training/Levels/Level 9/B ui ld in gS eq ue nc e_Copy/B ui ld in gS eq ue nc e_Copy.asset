@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
+  m_Name: B ui ld in gS eq ue nc e_Copy
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
+  sequenceID: B ui ld in gS eq ue nc e_Copy
+  sequenceName: B ui ld in gS eq ue nc e_Copy
+  sequenceDescription: 
+  actions:
+  - {fileID: 11400000, guid: d48b4d0e6b4cbfc41bd773ec046fca5b, type: 2}
+  - {fileID: 11400000, guid: 56a104d1c7dead84b94060f1ac3822d5, type: 2}
+  - {fileID: 11400000, guid: bbd25abe3465b1e4893d846a50f1e07f, type: 2}
+  - {fileID: 11400000, guid: fbec75f35345c6949b9649d87102b2e1, type: 2}
+  - {fileID: 11400000, guid: a2e870136678097479a7dfacd65a6c09, type: 2}
+  - {fileID: 11400000, guid: 66d9a0364d096c84fa58b977a6abbe0b, type: 2}
+  - {fileID: 11400000, guid: 63c50f5e5fc46f14b917382099eecbe2, type: 2}
+  - {fileID: 11400000, guid: 000777fa0d1622f41ba561b048efcfd9, type: 2}
+  - {fileID: 11400000, guid: 7920315d84e41a34a89011cb51666689, type: 2}
+  - {fileID: 11400000, guid: 0858ecfc146b5844dbbe83520d109eab, type: 2}
+  targetObjectID: kosk1
+  buttonOffset: {x: 0, y: 0, z: 0}
+  entryCameraMode: 4
+  entryCameraID: cam1
+  autoReturnOnComplete: 1
+  autoReturnOnExit: 1
+  resumeFromLastAction: 1
+  allowRestart: 0
+  hideButtonAfterComplete: 1
+  prerequisiteSequences:
+  - {fileID: 11400000, guid: 0e8a65c66599904409a5a9c3e0883c5d, type: 2}
+  onPrerequisiteFail: 1
+  prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
+    tamamlay\u0131n."
+  hasSurvey: 0
+  surveyPanelPrefab: {fileID: 0}
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 0
+    photoSlots: []
+  spawnButtonAtStart: 1
+  sequenceIcon: {fileID: 0}
+  buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
+  completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}
+  onSequenceEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceExit:
+    m_PersistentCalls:
+      m_Calls: []

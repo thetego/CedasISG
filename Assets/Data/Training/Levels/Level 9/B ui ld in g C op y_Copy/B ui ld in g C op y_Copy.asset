@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
+  m_Name: B ui ld in g C op y_Copy
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
+  sequenceID: B ui ld in g C op y_Copy
+  sequenceName: B ui ld in g C op y_Copy
+  sequenceDescription: 
+  actions:
+  - {fileID: 11400000, guid: 8e2734baf178f8048bf1d7bc3e6329a6, type: 2}
+  - {fileID: 11400000, guid: d4daf114909f6e54292fc8523f4abf1a, type: 2}
+  - {fileID: 11400000, guid: 5a7dc86dd7065674c9d8d6d98ab10c3e, type: 2}
+  - {fileID: 11400000, guid: 1cf20b85cb46ece4a95e7ed3d848e2d3, type: 2}
+  - {fileID: 11400000, guid: b51fc303b4739cd44b597b0b609299b9, type: 2}
+  - {fileID: 11400000, guid: 419eb0b4355a7b046bbf27f0707e9b8e, type: 2}
+  - {fileID: 11400000, guid: 46af53f737465944c916363be31f5f3a, type: 2}
+  - {fileID: 11400000, guid: 35d3560726358284dbcd14636738da91, type: 2}
+  targetObjectID: kosk1
+  buttonOffset: {x: 0, y: 0, z: 0}
+  entryCameraMode: 4
+  entryCameraID: cam1
+  autoReturnOnComplete: 1
+  autoReturnOnExit: 1
+  resumeFromLastAction: 1
+  allowRestart: 0
+  hideButtonAfterComplete: 1
+  prerequisiteSequences:
+  - {fileID: 11400000, guid: 0e8a65c66599904409a5a9c3e0883c5d, type: 2}
+  - {fileID: 11400000, guid: 268c9acf72d09f8429c16bc2eee50d9e, type: 2}
+  - {fileID: 11400000, guid: b1b9b48888393f74dae0849db11b1669, type: 2}
+  onPrerequisiteFail: 1
+  prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
+    tamamlay\u0131n."
+  hasSurvey: 0
+  surveyPanelPrefab: {fileID: 0}
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 0
+    photoSlots: []
+  spawnButtonAtStart: 0
+  sequenceIcon: {fileID: 0}
+  buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
+  completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}
+  onSequenceEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceExit:
+    m_PersistentCalls:
+      m_Calls: []

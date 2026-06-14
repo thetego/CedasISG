@@ -236,9 +236,18 @@ namespace SafetyTraining
 
 			if (list == null) return;
 
-			scroll = GUI.BeginScrollView(listArea, scroll,
-				new Rect(0, 0, rect.width - 16, list.count * ITEM_HEIGHT + 40));
-			list.DoList(new Rect(4, 4, rect.width - 20, list.count * ITEM_HEIGHT + 40));
+			float contentHeight = Mathf.Max(list.GetHeight() + 8f, listArea.height + 1f);
+			Rect contentRect = new Rect(0, 0, rect.width - 16, contentHeight);
+
+			if (Event.current.type == EventType.ScrollWheel && listArea.Contains(Event.current.mousePosition))
+			{
+				float maxScroll = Mathf.Max(0f, contentHeight - listArea.height);
+				scroll.y = Mathf.Clamp(scroll.y + Event.current.delta.y * 20f, 0f, maxScroll);
+				Event.current.Use();
+			}
+
+			scroll = GUI.BeginScrollView(listArea, scroll, contentRect, false, true);
+			list.DoList(new Rect(4, 4, rect.width - 20, contentHeight - 8f));
 			GUI.EndScrollView();
 		}
 

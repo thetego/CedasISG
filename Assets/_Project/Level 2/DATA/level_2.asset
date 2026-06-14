@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9161bf1027ff61439a7793cfc71ac08, type: 3}
-  m_Name: "Level 2"
+  m_Name: Level 2
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.LevelData
   levelID: lvl1
-  levelName: "Level 2"
+  levelName: Level 2
   levelDescription: 
   sequences:
   - {fileID: 11400000, guid: f03acee37abe2ce40b010f233660c612, type: 2}
@@ -21,6 +21,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ca3a750534fa6034e910370f12bbcfaa, type: 2}
   - {fileID: 11400000, guid: 1060d50668e5b3745bec77dc664d0d86, type: 2}
   - {fileID: 11400000, guid: 6a34b67aa9b8dab4e8ba11608169fff4, type: 2}
+  - {fileID: 11400000, guid: 7ee28f3b3c03f4247877103f4582d8d6, type: 2}
   timeLimit: 3600
   allowSequenceSwitching: 1
   maxScore: 100

@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
+  m_Name: B ui ld in g C op y_Copy
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
+  sequenceID: B ui ld in g C op y_Copy
+  sequenceName: B ui ld in g C op y_Copy
+  sequenceDescription: 
+  actions:
+  - {fileID: 11400000, guid: a8649ae8c7d5eb44691f64aa61b86db0, type: 2}
+  - {fileID: 11400000, guid: 2027b447aa0e0fc428eaa96032d13b98, type: 2}
+  - {fileID: 11400000, guid: 89b7e07b829d7fb4da1b5b6994afb16b, type: 2}
+  - {fileID: 11400000, guid: d3b0c92c84d215f438ddd58379b5a4ce, type: 2}
+  - {fileID: 11400000, guid: 99ec3de974810174bb4b49e76cb583bf, type: 2}
+  - {fileID: 11400000, guid: a8aabc1807a6ae046934a768655a156d, type: 2}
+  - {fileID: 11400000, guid: aefb6513470b2d048addd697d755eacf, type: 2}
+  - {fileID: 11400000, guid: 37bbde6e60a306c449198f66bc68f7fc, type: 2}
+  - {fileID: 11400000, guid: 6d64a5d80cb5ead4b8905e8c8847c94f, type: 2}
+  targetObjectID: mainPano
+  buttonOffset: {x: 0, y: 0, z: 0}
+  entryCameraMode: 4
+  entryCameraID: cam1
+  autoReturnOnComplete: 1
+  autoReturnOnExit: 1
+  resumeFromLastAction: 1
+  allowRestart: 0
+  hideButtonAfterComplete: 1
+  prerequisiteSequences:
+  - {fileID: 11400000, guid: 36665461544171842999c9bcbaf4d54a, type: 2}
+  - {fileID: 11400000, guid: 20118665a8accff4c869f637eebf9c55, type: 2}
+  - {fileID: 11400000, guid: f0d21644e625f6a4da84c69b631baed1, type: 2}
+  - {fileID: 11400000, guid: 83fc56a9a49c17a42ba683a7b7c23f36, type: 2}
+  onPrerequisiteFail: 1
+  prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
+    tamamlay\u0131n."
+  hasSurvey: 0
+  surveyPanelPrefab: {fileID: 0}
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 0
+    photoSlots: []
+  spawnButtonAtStart: 0
+  sequenceIcon: {fileID: 0}
+  buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
+  completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}
+  onSequenceEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceExit:
+    m_PersistentCalls:
+      m_Calls: []

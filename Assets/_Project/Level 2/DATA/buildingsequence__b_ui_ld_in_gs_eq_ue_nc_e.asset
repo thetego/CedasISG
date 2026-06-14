@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "B ui ld in gS eq ue nc e"
+  m_Name: B ui ld in gS eq ue nc e
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
   sequenceID: BuildingSequence
-  sequenceName: "B ui ld in gS eq ue nc e"
+  sequenceName: B ui ld in gS eq ue nc e
   sequenceDescription: 
   actions:
-  - {fileID: 11400000, guid: 4f2c52b801030504a9447c94ef1dd340, type: 2}
+  - {fileID: 11400000, guid: dc919deb7923dc34e80f88a9c2cd2762, type: 2}
   - {fileID: 11400000, guid: e236903b6a575ff4f9721207f396ffdf, type: 2}
   - {fileID: 11400000, guid: 10fdc12ff56988b4ca280446f069c5af, type: 2}
   - {fileID: 11400000, guid: 97425f962255f8a4bb80ddc586e13a8d, type: 2}

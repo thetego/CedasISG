@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
+  m_Name: Cable 2
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
+  sequenceID: Cable2
+  sequenceName: Cable 2
+  sequenceDescription: 
+  actions:
+  - {fileID: 11400000, guid: 0acefce647e5ca14ba058a798646ffba, type: 2}
+  - {fileID: 11400000, guid: fc60b2be471aebe4fb8ef7f0efb6af8b, type: 2}
+  - {fileID: 11400000, guid: e40ad608b1af96343ac1820a08826404, type: 2}
+  - {fileID: 11400000, guid: 5673427b22edfa84da02332a77375a52, type: 2}
+  - {fileID: 11400000, guid: 04d2ce9d64875864dbedd1f322584f3b, type: 2}
+  - {fileID: 11400000, guid: cf84f8ba3a118ee40bf8d5b044b440d2, type: 2}
+  - {fileID: 11400000, guid: b1b03316241e53542bef98a36874b0c6, type: 2}
+  - {fileID: 11400000, guid: e21d71b99264cf64ba823aa4da5bf4e1, type: 2}
+  - {fileID: 11400000, guid: bb139e9e26514a04d89ccca9460267e7, type: 2}
+  - {fileID: 11400000, guid: a0d2317bdc1943645839a83084cbd1b3, type: 2}
+  - {fileID: 11400000, guid: 30f471f14a58f324f8d6fed13fe7e1b0, type: 2}
+  - {fileID: 11400000, guid: 1c7a9b8d8b462e74e87a55c7ce9097c1, type: 2}
+  - {fileID: 11400000, guid: 0093cd17e3cbd554a827faa7d6881008, type: 2}
+  - {fileID: 11400000, guid: 41cba5c82aad9c64f986be05a7bf5f81, type: 2}
+  - {fileID: 11400000, guid: c0e0ed534f189da4f88305a475d992fd, type: 2}
+  - {fileID: 11400000, guid: 715ebc69043de2c47b53d5baa0197003, type: 2}
+  - {fileID: 11400000, guid: 8ce5c34c2543cbe40b9f275ad5e6dd29, type: 2}
+  - {fileID: 11400000, guid: f58b5e8a52e020a48972f63e7682dbc9, type: 2}
+  - {fileID: 11400000, guid: 5c475307f0262ac48a60515ec7582b26, type: 2}
+  - {fileID: 11400000, guid: ae9445c1a2d578d47aa8a6a52ec4177d, type: 2}
+  - {fileID: 11400000, guid: 00fac46a3018f02449205a565df247d2, type: 2}
+  - {fileID: 11400000, guid: 937bba8f0972a48428b95406d3c57d44, type: 2}
+  - {fileID: 11400000, guid: e191b5daa19681d44bd272eefd3b4344, type: 2}
+  - {fileID: 11400000, guid: 62e53b8fdcf7bfb4294e56b852c69402, type: 2}
+  - {fileID: 11400000, guid: 5d953fec4cb2df54383153d2e5e3cee9, type: 2}
+  - {fileID: 11400000, guid: 6fd523288e4856648bb809ae6e1d6baa, type: 2}
+  - {fileID: 11400000, guid: aa7753c625e065c478fe352329d5236c, type: 2}
+  - {fileID: 11400000, guid: aaff2c6e26fae5740a4ad8e2d8bdb424, type: 2}
+  - {fileID: 11400000, guid: 1c4bb1b859199c447825ee792d8d37ac, type: 2}
+  - {fileID: 11400000, guid: 02c120720b7c3324caa95f62344d6748, type: 2}
+  - {fileID: 11400000, guid: 08830a6de3bdad6448059e1ca9c2376c, type: 2}
+  - {fileID: 11400000, guid: d87cdc64a29e46b439500b9f7b21c47e, type: 2}
+  - {fileID: 11400000, guid: 77c41f6457c34c549b2a7826bd3ee24d, type: 2}
+  - {fileID: 11400000, guid: 0958561f0dc47864bac4875fdd6de2ed, type: 2}
+  targetObjectID: cable3
+  buttonOffset: {x: 0, y: 1.5, z: 0}
+  entryCameraMode: 4
+  entryCameraID: cable3cam
+  autoReturnOnComplete: 1
+  autoReturnOnExit: 1
+  resumeFromLastAction: 1
+  allowRestart: 0
+  hideButtonAfterComplete: 0
+  prerequisiteSequences: []
+  onPrerequisiteFail: 1
+  prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
+    tamamlay\u0131n."
+  hasSurvey: 0
+  surveyPanelPrefab: {fileID: 0}
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 0
+    photoSlots: []
+  spawnButtonAtStart: 1
+  sequenceIcon: {fileID: 0}
+  buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
+  completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}
+  onSequenceEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceExit:
+    m_PersistentCalls:
+      m_Calls: []
