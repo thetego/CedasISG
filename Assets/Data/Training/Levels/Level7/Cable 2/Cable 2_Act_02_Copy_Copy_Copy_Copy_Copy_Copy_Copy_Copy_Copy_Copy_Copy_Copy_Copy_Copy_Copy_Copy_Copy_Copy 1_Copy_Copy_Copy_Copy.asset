@@ -10,29 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: Anahtari cevir_Copy
+  m_Name: Cable 2_Act_02_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy
+    1_Copy_Copy_Copy_Copy
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: Anahtari cevir_Copyasf
-  actionName: Anahtari cevir_Copy
-  instructionText: "Anahtar\u0131 \xE7evir."
+  actionID: Cable 2_Act_02_Copy_Copy_Copy_Copy_Caerg
+  actionName: Cable 2_Act_02_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy
+    1_Copy_Copy_Copy_Copy
+  instructionText: 
   actionType: 3
-  prerequisiteActionIDs:
-  - opendoors
-  - insideCam
-  - bottomKey
-  - openHatch
-  - upCam
-  - keys2
-  - switch1
+  prerequisiteActionIDs: []
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
   completionDelay: 0
   autoCompleteAfterDelay: 0
-  cameraMode: 4
+  cameraMode: 0
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  targetObjectID: key3
+  targetObjectID: B18
   requiredEquipments: []
   distractorEquipments: []
   requiredTools: []
@@ -76,5 +71,5 @@ MonoBehaviour:
       m_Calls: []
   onStartEventIDs: []
   onCompleteEventIDs:
-  - Key1
+  - Bant2
   onFailEventIDs: []

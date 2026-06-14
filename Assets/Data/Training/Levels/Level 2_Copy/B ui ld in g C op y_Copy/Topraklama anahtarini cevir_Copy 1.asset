@@ -80,5 +80,5 @@ MonoBehaviour:
       m_Calls: []
   onStartEventIDs: []
   onCompleteEventIDs:
-  - kes3
+  - kes1
   onFailEventIDs: []

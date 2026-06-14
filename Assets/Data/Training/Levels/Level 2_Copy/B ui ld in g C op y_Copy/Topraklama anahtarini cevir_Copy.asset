@@ -83,4 +83,5 @@ MonoBehaviour:
   onStartEventIDs: []
   onCompleteEventIDs:
   - kes4
+  - st4
   onFailEventIDs: []

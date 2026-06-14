@@ -10,34 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: Anahtari cevir_Copy 1
+  m_Name: Cable 1_Act_01_Copy 4_Copy
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: Anahtari cevir_Copy 1
-  actionName: Anahtari cevir_Copy 1
-  instructionText: "Anahtar\u0131 \xE7evir."
-  actionType: 3
-  prerequisiteActionIDs:
-  - opendoors
-  - insideCam
-  - bottomKey
-  - openHatch
-  - upCam
-  - keys2
-  - switch1
+  actionID: Cable 1_Act_01_Copy 4_Copy
+  actionName: Cable 1_Act_01_Copy 4_Copy
+  instructionText: 
+  actionType: 2
+  prerequisiteActionIDs: []
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
   completionDelay: 0
   autoCompleteAfterDelay: 0
-  cameraMode: 4
+  cameraMode: 0
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  targetObjectID: key3
+  targetObjectID: A3
   requiredEquipments: []
   distractorEquipments: []
-  requiredTools: []
-  distractorTools: []
-  toolDropMappings: []
+  requiredTools:
+  - {fileID: 11400000, guid: 535d2d5b26496e944a09ea33019c2dfe, type: 2}
+  distractorTools:
+  - {fileID: 11400000, guid: afbe12278e54aa24db395e7d77e8af0f, type: 2}
+  - {fileID: 11400000, guid: 557a652588dcd9a4a9ee1f6c30a390df, type: 2}
+  - {fileID: 11400000, guid: 97ff03f8b76a2c24fbb1e511fce11bf5, type: 2}
+  - {fileID: 11400000, guid: 156c004f20bfa7744872e179400d1df4, type: 2}
+  toolDropMappings:
+  - uniqueID: Yag2
+    toolID: Yag
+    dropTargetObjectID: A3
+    onDropEventID: 
   dropZoneSize: {x: 120, y: 120}
   toolDropMode: 0
   interactionPanelPrefab: {fileID: 0}
@@ -76,5 +78,5 @@ MonoBehaviour:
       m_Calls: []
   onStartEventIDs: []
   onCompleteEventIDs:
-  - Key1
+  - Yag2
   onFailEventIDs: []

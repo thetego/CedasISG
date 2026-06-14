@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
   m_Name: Topraklama anahtarini cevir_Copy
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: Topraklama anahtarini cevir_Copy
+  actionID: Topraklama anahtarini cevir_Copyjtr
   actionName: Topraklama anahtarini cevir_Copy
   instructionText: "Topraklama anahtar\u0131n\u0131 \xE7evir."
   actionType: 2
@@ -80,5 +80,5 @@ MonoBehaviour:
       m_Calls: []
   onStartEventIDs: []
   onCompleteEventIDs:
-  - kes1
+  - ToprakKapa
   onFailEventIDs: []
