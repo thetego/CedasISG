@@ -10,17 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "d ir ek 2"
+  m_Name: d ir ek 2
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
   sequenceID: direk2
-  sequenceName: "d ir ek 2"
-  sequenceDescription: 
+  sequenceName: d ir ek 2
+  sequenceDescription: "Tablet ile foto\u011Fraf \xE7ekin"
   actions:
-  - {fileID: 11400000, guid: fae3c0b6b94878443ac1aa0d35a7449d, type: 2}
+  - {fileID: 11400000, guid: 8761d92eab7f33d48a4826fcf8c44188, type: 2}
+  - {fileID: 11400000, guid: 9d1d49b9d35e20646b28584a422b5b46, type: 2}
+  - {fileID: 11400000, guid: 813f0d2f519328143819d2f250cc4f8d, type: 2}
   - {fileID: 11400000, guid: f5fca14545ed86346ad83c7a7d117693, type: 2}
   - {fileID: 11400000, guid: 6c519828aba775a4fa7928f8665298e9, type: 2}
+  - {fileID: 11400000, guid: f333a577a5f67c44680161a2ab53110d, type: 2}
   - {fileID: 11400000, guid: f83b307bc18efb04e890372f47fb2711, type: 2}
   - {fileID: 11400000, guid: 36f0931ddaf76054e89332a0f96aa572, type: 2}
+  - {fileID: 11400000, guid: 90119bfb8e9ce404f827a325bba1b259, type: 2}
   targetObjectID: direk
   buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4
@@ -30,7 +34,6 @@ MonoBehaviour:
   resumeFromLastAction: 1
   allowRestart: 0
   hideButtonAfterComplete: 1
-  lockAfterComplete: 0
   prerequisiteSequences:
   - {fileID: 11400000, guid: 4d18524abb07db64f89b49413ae4b133, type: 2}
   - {fileID: 11400000, guid: 48b1f1c35f907194398ba0dca2563302, type: 2}
@@ -48,10 +51,10 @@ MonoBehaviour:
     photoSlotCount: 1
     photoSlots:
     - slotLabel: p1
-      targetObjectID: p1
+      targetObjectID: DirekPlate
       alignmentThreshold: 0.5
-      indicatorAlignedColor: {r: 0.20301843, g: 1, b: 0, a: 0}
-      indicatorOffColor: {r: 1, g: 0, b: 0.11461401, a: 0}
+      indicatorAlignedColor: {r: 0.35684776, g: 1, b: 0, a: 0}
+      indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
   spawnButtonAtStart: 0
   sequenceIcon: {fileID: 0}
   buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}

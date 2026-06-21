@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: S wi tc hI n
+  m_Name: E qu ip me nt_Act_02
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: SwitchIn
-  actionName: S wi tc hI n
-  instructionText: "Ayd\u0131nlatma panosunun kapa\u011F\u0131n\u0131 a\xE7\u0131n"
-  actionType: 4
+  actionID: E qu ip me nt_Act_02
+  actionName: E qu ip me nt_Act_02
+  instructionText: 
+  actionType: 6
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
-  completionDelay: 2
-  autoCompleteAfterDelay: 1
-  cameraMode: 4
-  virtualCameraID: cam3
+  completionDelay: 0
+  autoCompleteAfterDelay: 0
+  cameraMode: 0
+  virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  targetObjectID: doorHandle
+  targetObjectID: 
   requiredEquipments: []
   distractorEquipments: []
   requiredTools: []
@@ -33,16 +33,17 @@ MonoBehaviour:
   toolDropMappings: []
   dropZoneSize: {x: 120, y: 120}
   toolDropMode: 0
-  interactionPanelPrefab: {fileID: 0}
+  interactionPanelPrefab: {fileID: 6338254789560939439, guid: d5449d2ba1c07544aa4d5efb9a98cfbd, type: 3}
   panelID: 
   quizData:
-    questionText: 
+    questionText: "Ayd\u0131nlatma dire\u011Finde \xE7al\u0131\u015Fmaya ba\u015Flamadan
+      \xF6nce yap\u0131lmas\u0131 gereken ilk i\u015Flem hangisidir?"
     options:
-    - 
-    - 
-    - 
-    - 
-    correctOptionIndex: 0
+    - "Direk kapa\u011F\u0131n\u0131 a\xE7mak"
+    - "Uygun \u0130SG ekipmanlar\u0131n\u0131 se\xE7mek"
+    - "R\xF6leden enerji vermek"
+    - "Foto\u011Fraf \xE7ekmek"
+    correctOptionIndex: 1
     correctFeedbackText: "Do\u011Fru! Tebrikler."
     wrongFeedbackText: "Yanl\u0131\u015F cevap! \u0130\u015Flem sonland\u0131r\u0131ld\u0131."
   surveyData:
@@ -54,13 +55,7 @@ MonoBehaviour:
   activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0
-  animationTriggers:
-  - animatorObjectID: kosk1
-    triggerName: Open
-    parameterType: 0
-    parameterValue: 0
-    timing: 1
-    autoResetTrigger: 0
+  animationTriggers: []
   soundClip: {fileID: 0}
   particleEffectID: 
   particleSpawnOffset: {x: 0, y: 0, z: 0}

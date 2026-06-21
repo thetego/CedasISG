@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "Pano kapagini ac"
+  m_Name: Pano kapagini ac
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: openin
-  actionName: "Pano kapagini ac"
-  instructionText: "Pano kapa\u011F\u0131n\u0131 a\xE7."
+  actionName: Pano kapagini ac
+  instructionText: "Ayd\u0131nlatma panosunun kapa\u011F\u0131n\u0131 a\xE7\u0131n"
   actionType: 3
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
@@ -25,11 +25,6 @@ MonoBehaviour:
   cameraMode: 0
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  cameraTargetID: 
-  cameraMoveSpeed: 5
-  autoCompleteAfterCamera: 1
-  requiresPreviousAction: 1
-  prerequisiteActions: []
   targetObjectID: DolapHandle
   requiredEquipments: []
   distractorEquipments: []
@@ -40,6 +35,24 @@ MonoBehaviour:
   toolDropMode: 0
   interactionPanelPrefab: {fileID: 0}
   panelID: 
+  quizData:
+    questionText: 
+    options:
+    - 
+    - 
+    - 
+    - 
+    correctOptionIndex: 0
+    correctFeedbackText: "Do\u011Fru! Tebrikler."
+    wrongFeedbackText: "Yanl\u0131\u015F cevap! \u0130\u015Flem sonland\u0131r\u0131ld\u0131."
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 0
+    photoSlots: []
+  activatesTablet: 0
+  deactivatesTablet: 0
   hideButtonAfterComplete: 0
   animationTriggers:
   - animatorObjectID: traf

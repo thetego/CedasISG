@@ -1524,6 +1524,82 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: sadt
+    onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8416073840145338395}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1833184774020371456}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 7959830828109386920}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 6479824201123039333}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 7554390997690197397}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 3236307821450905607}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   debugMode: 1
 --- !u!4 &132114489
 Transform:
@@ -7934,8 +8010,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b4ba26f62e7a445952ea9969009abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SurveyCameraController
-  surveyCamera: {fileID: 948629620}
-  renderTexture: {fileID: 8400000, guid: d49699ec2768a9943bd5a7dd234b337a, type: 2}
   panSensitivity: 0.003
   minPitch: -30
   maxPitch: 30
@@ -7944,9 +8018,10 @@ MonoBehaviour:
   minFOV: 20
   maxFOV: 70
   zoomSensitivity: 0.05
-  targetIndicatorPrefab: {fileID: 3782834014789657681, guid: 31a8476bf08a8e34baf9fc1f6c3b57e0, type: 3}
-  indicatorSize: 32
-  cameraViewImage: {fileID: 0}
+  worldIndicatorPrefab: {fileID: 0}
+  indicatorScale: 0.2
+  cameraViewRect: {fileID: 0}
+  thermalRenderer: {fileID: 0}
   debugMode: 0
 --- !u!1 &949366972
 GameObject:
@@ -15751,6 +15826,10 @@ MonoBehaviour:
   warningPanel: {fileID: 667625579}
   warningMessageText: {fileID: 1725382934}
   backButton: {fileID: 933810838}
+  sequenceFadeOverlay: {fileID: 0}
+  sequenceFadeStartDelay: 0
+  sequenceFadeDuration: 0.35
+  sequenceFadeHoldDuration: 0.1
   debugMode: 1
   _waitingForTablet: 0
 --- !u!1 &1887199058 stripped
@@ -16262,6 +16341,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8718113632211287948, guid: b5325ad8ab884c44cb82a76c02ba27b5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8610901109836366528, guid: b5325ad8ab884c44cb82a76c02ba27b5, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -16585,6 +16668,10 @@ PrefabInstance:
     - target: {fileID: 4975675690651838746, guid: b5325ad8ab884c44cb82a76c02ba27b5, type: 3}
       propertyPath: m_AABB.m_Extent.z
       value: 0.052303433
+      objectReference: {fileID: 0}
+    - target: {fileID: 5857605977892115173, guid: b5325ad8ab884c44cb82a76c02ba27b5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6664493236176983118, guid: b5325ad8ab884c44cb82a76c02ba27b5, type: 3}
       propertyPath: m_DirtyAABB

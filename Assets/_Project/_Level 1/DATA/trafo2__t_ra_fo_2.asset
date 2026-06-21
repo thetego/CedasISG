@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "t ra fo 2"
+  m_Name: t ra fo 2
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
   sequenceID: trafo2
-  sequenceName: "t ra fo 2"
+  sequenceName: t ra fo 2
   sequenceDescription: 
   actions:
+  - {fileID: 11400000, guid: 517da288fbfdefc4188bd7507003ccec, type: 2}
   - {fileID: 11400000, guid: 37f00ec64acdb564fb9006fbf62e08e5, type: 2}
   - {fileID: 11400000, guid: b89792d69b7aaa042a72c1f0d0e98e09, type: 2}
   - {fileID: 11400000, guid: f8c34cb292399a441baddf4bac464a58, type: 2}
@@ -32,7 +33,6 @@ MonoBehaviour:
   resumeFromLastAction: 1
   allowRestart: 0
   hideButtonAfterComplete: 1
-  lockAfterComplete: 0
   prerequisiteSequences:
   - {fileID: 11400000, guid: 4d18524abb07db64f89b49413ae4b133, type: 2}
   - {fileID: 11400000, guid: 48b1f1c35f907194398ba0dca2563302, type: 2}

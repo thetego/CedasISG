@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "E qu ip me nt 2"
+  m_Name: E qu ip me nt 2
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
   sequenceID: equipment2
-  sequenceName: "E qu ip me nt 2"
+  sequenceName: E qu ip me nt 2
   sequenceDescription: 
   actions:
+  - {fileID: 11400000, guid: 470f061b225512f45b0f059ac12b18ca, type: 2}
   - {fileID: 11400000, guid: d0eeadac9a423bf43a37565e85590352, type: 2}
   targetObjectID: character
   buttonOffset: {x: 0, y: 1.5, z: 0}
@@ -26,7 +27,6 @@ MonoBehaviour:
   resumeFromLastAction: 1
   allowRestart: 0
   hideButtonAfterComplete: 1
-  lockAfterComplete: 0
   prerequisiteSequences:
   - {fileID: 11400000, guid: 4d18524abb07db64f89b49413ae4b133, type: 2}
   - {fileID: 11400000, guid: 48b1f1c35f907194398ba0dca2563302, type: 2}
@@ -34,6 +34,14 @@ MonoBehaviour:
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."
+  hasSurvey: 0
+  surveyPanelPrefab: {fileID: 0}
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 0
+    photoSlots: []
   spawnButtonAtStart: 0
   sequenceIcon: {fileID: 0}
   buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}

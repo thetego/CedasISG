@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "Kablolarda kacak kontrolu yap"
+  m_Name: d ir ek 1_Act_04
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: checkEnergy2
-  actionName: "Kablolarda kacak kontrolu yap"
-  instructionText: "Kablolarda ka\xE7ak kontrol\xFC yap."
-  actionType: 2
+  actionID: d ir ek 1_Act_04
+  actionName: d ir ek 1_Act_04
+  instructionText: 
+  actionType: 6
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
@@ -25,55 +25,24 @@ MonoBehaviour:
   cameraMode: 0
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  cameraTargetID: 
-  cameraMoveSpeed: 2
-  autoCompleteAfterCamera: 1
-  requiresPreviousAction: 1
-  prerequisiteActions: []
-  targetObjectID: cable1
-  requiredEquipments:
-  - {fileID: 0}
+  targetObjectID: 
+  requiredEquipments: []
   distractorEquipments: []
-  requiredTools:
-  - {fileID: 11400000, guid: 86d86a9b559bb8e409a17f1fbd72b7a9, type: 2}
-  distractorTools:
-  - {fileID: 11400000, guid: fc21f06335dc023439489ccc77b51805, type: 2}
-  - {fileID: 11400000, guid: daa0bc5b2e9ae1543b47dfe642e053c5, type: 2}
-  - {fileID: 11400000, guid: fcddd625d347d9944a5bcb009dd15907, type: 2}
-  - {fileID: 11400000, guid: 79330b301c7c8324b983aba5a70adb6a, type: 2}
-  toolDropMappings:
-  - uniqueID: p1
-    toolID: Pen
-    dropTargetObjectID: cable1
-    onDropEventID: 
-  - uniqueID: p2
-    toolID: Pen
-    dropTargetObjectID: cable2
-    onDropEventID: 
-  - uniqueID: p3
-    toolID: Pen
-    dropTargetObjectID: cable3
-    onDropEventID: 
-  - uniqueID: p4
-    toolID: Pen
-    dropTargetObjectID: cable4
-    onDropEventID: 
-  - uniqueID: p5
-    toolID: Pen
-    dropTargetObjectID: cable5
-    onDropEventID: 
+  requiredTools: []
+  distractorTools: []
+  toolDropMappings: []
   dropZoneSize: {x: 120, y: 120}
-  toolDropMode: 1
-  interactionPanelPrefab: {fileID: 0}
+  toolDropMode: 0
+  interactionPanelPrefab: {fileID: 6338254789560939439, guid: d5449d2ba1c07544aa4d5efb9a98cfbd, type: 3}
   panelID: 
   quizData:
-    questionText: 
+    questionText: "Enerji kesildikten sonra direkte hangi kontrol yap\u0131lmal\u0131d\u0131r?"
     options:
-    - 
-    - 
-    - 
-    - 
-    correctOptionIndex: 0
+    - "Foto\u011Fraf \xE7ekilmelidir"
+    - "Gerilim kontrol\xFC yap\u0131lmal\u0131d\u0131r"
+    - "Sigorta tak\u0131lmal\u0131d\u0131r"
+    - "Klemens montaj\u0131 yap\u0131lmal\u0131d\u0131r"
+    correctOptionIndex: 1
     correctFeedbackText: "Do\u011Fru! Tebrikler."
     wrongFeedbackText: "Yanl\u0131\u015F cevap! \u0130\u015Flem sonland\u0131r\u0131ld\u0131."
   surveyData:

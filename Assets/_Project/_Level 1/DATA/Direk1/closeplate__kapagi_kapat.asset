@@ -10,26 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "Kapagi kapat"
+  m_Name: Kapagi kapat
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: closePlate
-  actionName: "Kapagi kapat"
-  instructionText: "Kapa\u011F\u0131 kapat."
+  actionName: Kapagi kapat
+  instructionText: "Dire\u011Fin kapa\u011F\u0131n\u0131 kapat\u0131n\r\n"
   actionType: 2
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
-  completionDelay: 1.79
-  autoCompleteAfterDelay: 1
+  completionDelay: 0
+  autoCompleteAfterDelay: 0
   cameraMode: 0
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  cameraTargetID: 
-  cameraMoveSpeed: 2
-  autoCompleteAfterCamera: 1
-  requiresPreviousAction: 1
-  prerequisiteActions: []
   targetObjectID: ScrewPlate
   requiredEquipments: []
   distractorEquipments: []

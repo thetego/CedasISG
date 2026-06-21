@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "Kapagi Ac"
+  m_Name: Kapagi Ac
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: openPlate
-  actionName: "Kapagi Ac"
-  instructionText: "Kapa\u011F\u0131 A\xE7"
+  actionName: Kapagi Ac
+  instructionText: "Dire\u011Fin kapa\u011F\u0131n\u0131 a\xE7\u0131n."
   actionType: 2
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
@@ -25,11 +25,6 @@ MonoBehaviour:
   cameraMode: 0
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  cameraTargetID: 
-  cameraMoveSpeed: 2
-  autoCompleteAfterCamera: 1
-  requiresPreviousAction: 1
-  prerequisiteActions: []
   targetObjectID: ScrewPlate
   requiredEquipments: []
   distractorEquipments: []

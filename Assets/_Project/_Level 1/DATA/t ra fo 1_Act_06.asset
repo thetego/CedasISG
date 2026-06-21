@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: S wi tc hI n
+  m_Name: t ra fo 1_Act_06
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: SwitchIn
-  actionName: S wi tc hI n
-  instructionText: "Ayd\u0131nlatma panosunun kapa\u011F\u0131n\u0131 a\xE7\u0131n"
+  actionID: t ra fo 1_Act_06
+  actionName: t ra fo 1_Act_06
+  instructionText: "Ayd\u0131nlatma dire\u011Fine gidin."
   actionType: 4
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
-  completionDelay: 2
+  completionDelay: 1
   autoCompleteAfterDelay: 1
-  cameraMode: 4
-  virtualCameraID: cam3
+  cameraMode: 1
+  virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  targetObjectID: doorHandle
+  targetObjectID: 
   requiredEquipments: []
   distractorEquipments: []
   requiredTools: []
@@ -54,13 +54,7 @@ MonoBehaviour:
   activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0
-  animationTriggers:
-  - animatorObjectID: kosk1
-    triggerName: Open
-    parameterType: 0
-    parameterValue: 0
-    timing: 1
-    autoResetTrigger: 0
+  animationTriggers: []
   soundClip: {fileID: 0}
   particleEffectID: 
   particleSpawnOffset: {x: 0, y: 0, z: 0}

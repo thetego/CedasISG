@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "d ir ek 3"
+  m_Name: d ir ek 3
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
   sequenceID: direk3
-  sequenceName: "d ir ek 3"
+  sequenceName: d ir ek 3
   sequenceDescription: 
   actions:
   - {fileID: 11400000, guid: e61b9aaae32cd2540a8a5fc0ccbff9bb, type: 2}
   - {fileID: 11400000, guid: f9a6db5321a456344a6f98395423a248, type: 2}
+  - {fileID: 11400000, guid: 868ae03058384c0488ff638a680fe839, type: 2}
+  - {fileID: 11400000, guid: 802ab6ca8856e2b4a93de1e4fa95f1dc, type: 2}
   targetObjectID: direk
   buttonOffset: {x: 0, y: 3, z: 0}
   entryCameraMode: 4
@@ -27,7 +29,6 @@ MonoBehaviour:
   resumeFromLastAction: 1
   allowRestart: 0
   hideButtonAfterComplete: 1
-  lockAfterComplete: 0
   prerequisiteSequences:
   - {fileID: 11400000, guid: 4d18524abb07db64f89b49413ae4b133, type: 2}
   - {fileID: 11400000, guid: 48b1f1c35f907194398ba0dca2563302, type: 2}
@@ -45,7 +46,7 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 1
     photoSlots:
-    - slotLabel: DirekUst
+    - slotLabel: p1
       targetObjectID: DirekUst
       alignmentThreshold: 0.5
       indicatorAlignedColor: {r: 0.03127098, g: 1, b: 0, a: 0}

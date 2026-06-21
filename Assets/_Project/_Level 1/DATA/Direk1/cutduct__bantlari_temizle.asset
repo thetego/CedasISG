@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "Bantlari temizle"
+  m_Name: Bantlari temizle
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: cutDuct
-  actionName: "Bantlari temizle"
-  instructionText: "Bantlar\u0131 temizle."
+  actionName: Bantlari temizle
+  instructionText: "Fazlardaki bantlar\u0131 \xE7\u0131kart\u0131n"
   actionType: 2
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
@@ -25,11 +25,6 @@ MonoBehaviour:
   cameraMode: 0
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  cameraTargetID: 
-  cameraMoveSpeed: 2
-  autoCompleteAfterCamera: 1
-  requiresPreviousAction: 1
-  prerequisiteActions: []
   targetObjectID: cable1
   requiredEquipments: []
   distractorEquipments: []
@@ -65,6 +60,24 @@ MonoBehaviour:
   toolDropMode: 1
   interactionPanelPrefab: {fileID: 0}
   panelID: 
+  quizData:
+    questionText: 
+    options:
+    - 
+    - 
+    - 
+    - 
+    correctOptionIndex: 0
+    correctFeedbackText: "Do\u011Fru! Tebrikler."
+    wrongFeedbackText: "Yanl\u0131\u015F cevap! \u0130\u015Flem sonland\u0131r\u0131ld\u0131."
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 0
+    photoSlots: []
+  activatesTablet: 0
+  deactivatesTablet: 0
   hideButtonAfterComplete: 0
   animationTriggers: []
   soundClip: {fileID: 0}

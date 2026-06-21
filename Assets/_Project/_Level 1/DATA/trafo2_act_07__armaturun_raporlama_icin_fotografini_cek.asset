@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "Armaturun raporlama icin fotografini cek"
+  m_Name: Armaturun raporlama icin fotografini cek
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: trafo2_Act_07
-  actionName: "Armaturun raporlama icin fotografini cek"
-  instructionText: "Armat\xFCr\xFCn raporlama i\xE7in foto\u011Fraf\u0131n\u0131
-    \xE7ek."
+  actionName: Armaturun raporlama icin fotografini cek
+  instructionText: "Armat\xFCr\xFCn foto\u011Fraf\u0131n\u0131 \xE7ekin."
   actionType: 4
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
@@ -26,11 +25,6 @@ MonoBehaviour:
   cameraMode: 4
   virtualCameraID: camDirekLamba
   autoReturnCameraOnComplete: 0
-  cameraTargetID: 
-  cameraMoveSpeed: 2
-  autoCompleteAfterCamera: 1
-  requiresPreviousAction: 1
-  prerequisiteActions: []
   targetObjectID: 
   requiredEquipments: []
   distractorEquipments: []

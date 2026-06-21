@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "Uygun ekipmanlari giy"
+  m_Name: Uygun ekipmanlari giy
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: wear
-  actionName: "Uygun ekipmanlari giy"
-  instructionText: "Uygun ekipmanlar\u0131 giy."
+  actionName: Uygun ekipmanlari giy
+  instructionText: "G\xF6reve ba\u015Flamak i\xE7in uygun \u0130SG ekipmanlar\u0131n\u0131
+    se\xE7in."
   actionType: 0
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
@@ -25,17 +26,13 @@ MonoBehaviour:
   cameraMode: 0
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  cameraTargetID: 
-  cameraMoveSpeed: 2
-  autoCompleteAfterCamera: 1
-  requiresPreviousAction: 1
-  prerequisiteActions: []
   targetObjectID: 
   requiredEquipments:
   - {fileID: 11400000, guid: 86addf9b03aae22488fba5af40b0b8c5, type: 2}
   - {fileID: 11400000, guid: fcdc16e91b1917b4ea1c295bc7be026f, type: 2}
   - {fileID: 11400000, guid: 7f63b998400853f4ebf1418bad348778, type: 2}
   - {fileID: 11400000, guid: 4ac847364a3aa4e42bd843765db9f89f, type: 2}
+  - {fileID: 11400000, guid: 87c55dc7c9e221b47af5fec19541219c, type: 2}
   distractorEquipments:
   - {fileID: 11400000, guid: f95b91a99e0584541b92fc5ce77a1f47, type: 2}
   - {fileID: 11400000, guid: 5c90d32e8b04cb148b122b20c73b290e, type: 2}
