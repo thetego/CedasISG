@@ -466,7 +466,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2220236851053357641, guid: 5a3d4015994ccef4cb65557606666b05, type: 3}
+  - {fileID: 2100000, guid: 61de71b62079b9548997209844ddd7b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6836,7 +6836,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2220236851053357641, guid: 5a3d4015994ccef4cb65557606666b05, type: 3}
+  - {fileID: 2100000, guid: 61de71b62079b9548997209844ddd7b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20658,7 +20658,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2220236851053357641, guid: 5a3d4015994ccef4cb65557606666b05, type: 3}
+  - {fileID: 2100000, guid: 61de71b62079b9548997209844ddd7b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29094,6 +29094,10 @@ MonoBehaviour:
   warningPanel: {fileID: 667625579}
   warningMessageText: {fileID: 1725382934}
   backButton: {fileID: 933810838}
+  sequenceFadeOverlay: {fileID: 0}
+  sequenceFadeStartDelay: 0
+  sequenceFadeDuration: 0.35
+  sequenceFadeHoldDuration: 0.1
   debugMode: 1
   _waitingForTablet: 0
 --- !u!4 &1812194273 stripped
@@ -36308,7 +36312,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -140284654203648919, guid: 7ed8dcf24103fce4190f56e64e8eb78a, type: 3}
+  - {fileID: 2100000, guid: c9de0a218d757204484c5ddf7a6d9bbe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -37030,7 +37034,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2220236851053357641, guid: 5a3d4015994ccef4cb65557606666b05, type: 3}
+  - {fileID: 2100000, guid: 61de71b62079b9548997209844ddd7b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

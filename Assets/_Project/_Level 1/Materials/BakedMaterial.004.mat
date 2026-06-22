@@ -45,7 +45,7 @@ Material:
         m_Scale: {x: 0, y: 0}
         m_Offset: {x: 0, y: 0}
     - baseColorTexture:
-        m_Texture: {fileID: -7654213746481739556, guid: fe9c7d014446bf944a5e11ca98d2662f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 29dfa0d1dbd7f454db546531d7efcd45, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - clearcoatRoughnessTexture:
