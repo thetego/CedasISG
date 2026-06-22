@@ -10,32 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: Testi baslat_Copy 1
+  m_Name: E qu ip me nt Se qu en ce_Act_02
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: Testi baslat_Copy 1
-  actionName: Testi baslat_Copy 1
-  instructionText: "Testi ba\u015Flat."
-  actionType: 3
-  prerequisiteActionIDs:
-  - boxOpen
-  - boxCable
-  - cableCam
-  - kesCable
-  - "icH\xFCcre"
-  - kutuCheck1
-  - boxCamSwitch1
-  - boxClick1
-  - kutuCheck2
-  - boxCamSwitch2
+  actionID: E qu ip me nt Se qu en ce_Act_02
+  actionName: E qu ip me nt Se qu en ce_Act_02
+  instructionText: 
+  actionType: 6
+  prerequisiteActionIDs: []
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
   completionDelay: 0
   autoCompleteAfterDelay: 0
-  cameraMode: 4
+  cameraMode: 0
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  targetObjectID: boxClick
+  targetObjectID: 
   requiredEquipments: []
   distractorEquipments: []
   requiredTools: []
@@ -46,13 +36,14 @@ MonoBehaviour:
   interactionPanelPrefab: {fileID: 0}
   panelID: 
   quizData:
-    questionText: 
+    questionText: "G\xF6reve ba\u015Flamadan \xF6nce a\u015Fa\u011F\u0131dakilerden
+      hangisi ilk olarak kontrol edilmelidir?"
     options:
-    - 
-    - 
-    - 
-    - 
-    correctOptionIndex: 0
+    - "Test cihaz\u0131n\u0131n kablolar\u0131"
+    - "H\xFCcre kapa\u011F\u0131"
+    - "Ki\u015Fisel koruyucu donan\u0131mlar (\u0130SG ekipmanlar\u0131)"
+    - "SCADA ba\u011Flant\u0131s\u0131"
+    correctOptionIndex: 2
     correctFeedbackText: "Do\u011Fru! Tebrikler."
     wrongFeedbackText: "Yanl\u0131\u015F cevap! \u0130\u015Flem sonland\u0131r\u0131ld\u0131."
   surveyData:

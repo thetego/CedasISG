@@ -10,36 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: Kutuyu kapat_Copy
+  m_Name: B ui ld in gS eq ue nc e_Act_17_Copy
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: Kutuyu kapat_Copy
-  actionName: Kutuyu kapat_Copy
-  instructionText: Kutuyu kapat.
-  actionType: 3
-  prerequisiteActionIDs:
-  - boxOpen
-  - boxCable
-  - cableCam
-  - kesCable
-  - "icH\xFCcre"
-  - kutuCheck1
-  - boxCamSwitch1
-  - boxClick1
-  - kutuCheck2
-  - boxCamSwitch2
-  - boxClick2
-  - kutuCheck3
-  - boxCamSwitch3
-  - boxClick3
+  actionID: B ui ld in gS eq ue nc e_Act_17_Copy
+  actionName: B ui ld in gS eq ue nc e_Act_17_Copy
+  instructionText: 
+  actionType: 6
+  prerequisiteActionIDs: []
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
-  completionDelay: 1.25
+  completionDelay: 0
   autoCompleteAfterDelay: 0
   cameraMode: 0
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  targetObjectID: box
+  targetObjectID: 
   requiredEquipments: []
   distractorEquipments: []
   requiredTools: []
@@ -50,13 +36,15 @@ MonoBehaviour:
   interactionPanelPrefab: {fileID: 0}
   panelID: 
   quizData:
-    questionText: 
+    questionText: "Ay\u0131r\u0131c\u0131 a\xE7\u0131ld\u0131ktan sonra h\xFCcre
+      \xFCzerinde \xE7al\u0131\u015Fmaya ba\u015Flamadan \xF6nce hangi i\u015Flem
+      yap\u0131lmal\u0131d\u0131r?"
     options:
-    - 
-    - 
-    - 
-    - 
-    correctOptionIndex: 0
+    - "Test cihaz\u0131 ba\u011Flanmal\u0131d\u0131r"
+    - "H\xFCcre topraklanmal\u0131d\u0131r"
+    - "SCADA aranmal\u0131d\u0131r"
+    - "Uyar\u0131 levhas\u0131 as\u0131lmal\u0131d\u0131r"
+    correctOptionIndex: 1
     correctFeedbackText: "Do\u011Fru! Tebrikler."
     wrongFeedbackText: "Yanl\u0131\u015F cevap! \u0130\u015Flem sonland\u0131r\u0131ld\u0131."
   surveyData:
@@ -68,13 +56,7 @@ MonoBehaviour:
   activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0
-  animationTriggers:
-  - animatorObjectID: box
-    triggerName: Close
-    parameterType: 0
-    parameterValue: 0
-    timing: 1
-    autoResetTrigger: 0
+  animationTriggers: []
   soundClip: {fileID: 0}
   particleEffectID: 
   particleSpawnOffset: {x: 0, y: 0, z: 0}
@@ -88,6 +70,5 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onStartEventIDs: []
-  onCompleteEventIDs:
-  - kablokapa
+  onCompleteEventIDs: []
   onFailEventIDs: []

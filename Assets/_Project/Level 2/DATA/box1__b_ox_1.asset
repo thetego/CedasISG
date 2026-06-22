@@ -10,18 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "B ox 1"
+  m_Name: B ox 1
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
   sequenceID: Box1
-  sequenceName: "B ox 1"
+  sequenceName: B ox 1
   sequenceDescription: 
   actions:
+  - {fileID: 11400000, guid: cd7cea13bd972f943a2f5c940f5e833c, type: 2}
   - {fileID: 11400000, guid: f3cd59d70288dbe4684e0bcfadd291b9, type: 2}
   - {fileID: 11400000, guid: ee2d6f01c80be11469a18e0eb81e49f8, type: 2}
   - {fileID: 11400000, guid: b394d7a798a11b048b075a86b49fa3ee, type: 2}
   - {fileID: 11400000, guid: ee5d3efde60d3d043a316d6b5dde53cf, type: 2}
   - {fileID: 11400000, guid: ea334266f6ec2074aa1ac0c5b70c9c6f, type: 2}
   - {fileID: 11400000, guid: ff664c329bacb014c81e1f9d0482af94, type: 2}
+  - {fileID: 11400000, guid: 11361ff38ea165443be04e9ab8dbc1d8, type: 2}
   - {fileID: 11400000, guid: bb9e31a1c15cecb4a8780c368bb8dadd, type: 2}
   - {fileID: 11400000, guid: 0b13883d10bd10e43bb706b77a37e33b, type: 2}
   - {fileID: 11400000, guid: d5664c19eda87b74990172eacf28aa66, type: 2}

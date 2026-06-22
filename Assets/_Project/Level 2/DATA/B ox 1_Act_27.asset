@@ -10,28 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: b ox Ca mS wi tc h 1_Copy
+  m_Name: B ox 1_Act_27
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: b ox Ca mS wi tc h 1_Copy
-  actionName: b ox Ca mS wi tc h 1_Copy
-  instructionText: 
-  actionType: 4
-  prerequisiteActionIDs:
-  - boxOpen
-  - boxCable
-  - cableCam
-  - kesCable
-  - "icH\xFCcre"
-  - kutuCheck1
+  actionID: B ox 1_Act_27
+  actionName: B ox 1_Act_27
+  instructionText: "Test cihaz\u0131n\u0131 getirin."
+  actionType: 3
+  prerequisiteActionIDs: []
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
-  completionDelay: 1
-  autoCompleteAfterDelay: 1
-  cameraMode: 4
-  virtualCameraID: camBox
+  completionDelay: 0
+  autoCompleteAfterDelay: 0
+  cameraMode: 0
+  virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  targetObjectID: 
+  targetObjectID: box
   requiredEquipments: []
   distractorEquipments: []
   requiredTools: []

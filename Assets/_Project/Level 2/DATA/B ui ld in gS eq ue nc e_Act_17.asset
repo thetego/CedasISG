@@ -10,32 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: b ox Ca mS wi tc h 3_Copy
+  m_Name: B ui ld in gS eq ue nc e_Act_17
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: b ox Ca mS wi tc h 3_Copy
-  actionName: b ox Ca mS wi tc h 3_Copy
+  actionID: B ui ld in gS eq ue nc e_Act_17
+  actionName: B ui ld in gS eq ue nc e_Act_17
   instructionText: 
-  actionType: 4
-  prerequisiteActionIDs:
-  - boxOpen
-  - boxCable
-  - cableCam
-  - kesCable
-  - "icH\xFCcre"
-  - kutuCheck1
-  - boxCamSwitch1
-  - boxClick1
-  - kutuCheck2
-  - boxCamSwitch2
-  - boxClick2
-  - kutuCheck3
+  actionType: 6
+  prerequisiteActionIDs: []
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
-  completionDelay: 1
-  autoCompleteAfterDelay: 1
-  cameraMode: 4
-  virtualCameraID: camBox
+  completionDelay: 0
+  autoCompleteAfterDelay: 0
+  cameraMode: 0
+  virtualCameraID: 
   autoReturnCameraOnComplete: 0
   targetObjectID: 
   requiredEquipments: []
@@ -48,13 +36,14 @@ MonoBehaviour:
   interactionPanelPrefab: {fileID: 0}
   panelID: 
   quizData:
-    questionText: 
+    questionText: "Kesici a\xE7\u0131ld\u0131ktan sonra ger\xE7ekle\u015Ftirilecek
+      bir sonraki i\u015Flem hangisidir?"
     options:
-    - 
-    - 
-    - 
-    - 
-    correctOptionIndex: 0
+    - "H\xFCcre kapa\u011F\u0131n\u0131 a\xE7mak"
+    - Fazlara gerilim uygulamak
+    - "Kesici anahtar\u0131n\u0131 \xE7\u0131kar\u0131p \xFCst b\xF6l\xFCme takmak"
+    - "Test cihaz\u0131n\u0131 ba\u011Flamak"
+    correctOptionIndex: 2
     correctFeedbackText: "Do\u011Fru! Tebrikler."
     wrongFeedbackText: "Yanl\u0131\u015F cevap! \u0130\u015Flem sonland\u0131r\u0131ld\u0131."
   surveyData:

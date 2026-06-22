@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "Kablolari bagla"
+  m_Name: Kablolari bagla
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: kesCable
-  actionName: "Kablolari bagla"
-  instructionText: "Kablolar\u0131 ba\u011Fla."
+  actionName: Kablolari bagla
+  instructionText: "Kablolar\u0131n\u0131 fazlara tak\u0131n."
   actionType: 3
   prerequisiteActionIDs:
   - boxOpen
@@ -28,11 +28,6 @@ MonoBehaviour:
   cameraMode: 0
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  cameraTargetID: 
-  cameraMoveSpeed: 2
-  autoCompleteAfterCamera: 1
-  requiresPreviousAction: 1
-  prerequisiteActions: []
   targetObjectID: kesiciCable
   requiredEquipments: []
   distractorEquipments: []
@@ -43,6 +38,24 @@ MonoBehaviour:
   toolDropMode: 0
   interactionPanelPrefab: {fileID: 0}
   panelID: 
+  quizData:
+    questionText: 
+    options:
+    - 
+    - 
+    - 
+    - 
+    correctOptionIndex: 0
+    correctFeedbackText: "Do\u011Fru! Tebrikler."
+    wrongFeedbackText: "Yanl\u0131\u015F cevap! \u0130\u015Flem sonland\u0131r\u0131ld\u0131."
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 0
+    photoSlots: []
+  activatesTablet: 0
+  deactivatesTablet: 0
   hideButtonAfterComplete: 0
   animationTriggers:
   - animatorObjectID: box

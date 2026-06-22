@@ -10,35 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: Testi baslat_Copy 2
+  m_Name: B ui ld in gS eq ue nc e_Act_16 1
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: Testi baslat_Copy 2
-  actionName: Testi baslat_Copy 2
-  instructionText: "Testi ba\u015Flat."
-  actionType: 3
-  prerequisiteActionIDs:
-  - boxOpen
-  - boxCable
-  - cableCam
-  - kesCable
-  - "icH\xFCcre"
-  - kutuCheck1
-  - boxCamSwitch1
-  - boxClick1
-  - kutuCheck2
-  - boxCamSwitch2
-  - boxClick2
-  - kutuCheck3
-  - boxCamSwitch3
+  actionID: B ui ld in gS eq ue nc e_Act_16 1
+  actionName: B ui ld in gS eq ue nc e_Act_16 1
+  instructionText: 
+  actionType: 6
+  prerequisiteActionIDs: []
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
   completionDelay: 0
   autoCompleteAfterDelay: 0
-  cameraMode: 4
+  cameraMode: 0
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  targetObjectID: boxClick
+  targetObjectID: 
   requiredEquipments: []
   distractorEquipments: []
   requiredTools: []
@@ -49,13 +36,14 @@ MonoBehaviour:
   interactionPanelPrefab: {fileID: 0}
   panelID: 
   quizData:
-    questionText: 
+    questionText: "Kesici \xFCzerinde ye\u015Fil butona bas\u0131ld\u0131ktan sonra
+      hangi durum g\xF6zlemlenmelidir?"
     options:
-    - 
-    - 
-    - 
-    - 
-    correctOptionIndex: 0
+    - '"1" konumu'
+    - '"0" konumu'
+    - "Ar\u0131za konumu"
+    - Topraklama konumu
+    correctOptionIndex: 1
     correctFeedbackText: "Do\u011Fru! Tebrikler."
     wrongFeedbackText: "Yanl\u0131\u015F cevap! \u0130\u015Flem sonland\u0131r\u0131ld\u0131."
   surveyData:

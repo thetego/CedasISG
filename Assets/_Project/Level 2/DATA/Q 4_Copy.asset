@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: b ox Ca mS wi tc h 2_Copy
+  m_Name: Q 4_Copy
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: b ox Ca mS wi tc h 2_Copy
-  actionName: b ox Ca mS wi tc h 2_Copy
+  actionID: Q 4_Copy
+  actionName: Q 4_Copy
   instructionText: 
-  actionType: 4
+  actionType: 6
   prerequisiteActionIDs:
-  - boxOpen
-  - boxCable
-  - cableCam
-  - kesCable
-  - "icH\xFCcre"
-  - kutuCheck1
-  - boxCamSwitch1
-  - boxClick1
-  - kutuCheck2
+  - opendoors
+  - insideCam
+  - bottomKey
+  - openHatch
+  - upCam
+  - keys2
+  - switch1
+  - keys3
+  - switch2
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
-  completionDelay: 1
-  autoCompleteAfterDelay: 1
+  completionDelay: 0.5
+  autoCompleteAfterDelay: 0
   cameraMode: 4
-  virtualCameraID: camBox
+  virtualCameraID: 
   autoReturnCameraOnComplete: 0
   targetObjectID: 
   requiredEquipments: []
@@ -42,16 +42,16 @@ MonoBehaviour:
   toolDropMappings: []
   dropZoneSize: {x: 120, y: 120}
   toolDropMode: 0
-  interactionPanelPrefab: {fileID: 0}
+  interactionPanelPrefab: {fileID: 6338254789560939439, guid: d5449d2ba1c07544aa4d5efb9a98cfbd, type: 3}
   panelID: 
   quizData:
-    questionText: 
+    questionText: "Test \xE7ubu\u011Fu ile faza gerilim verilmesinin amac\u0131 nedir?"
     options:
-    - 
-    - 
-    - 
-    - 
-    correctOptionIndex: 0
+    - "Ay\u0131r\u0131c\u0131y\u0131 kapatmak"
+    - "Ar\u0131zal\u0131 faz\u0131 tespit etmek"
+    - Topraklama yapmak
+    - "H\xFCcreyi enerjilendirmek"
+    correctOptionIndex: 1
     correctFeedbackText: "Do\u011Fru! Tebrikler."
     wrongFeedbackText: "Yanl\u0131\u015F cevap! \u0130\u015Flem sonland\u0131r\u0131ld\u0131."
   surveyData:

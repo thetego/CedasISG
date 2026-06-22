@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "E qu ip me nt Se qu en ce"
+  m_Name: E qu ip me nt Se qu en ce
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
   sequenceID: EquipmentSequence
-  sequenceName: "E qu ip me nt Se qu en ce"
+  sequenceName: E qu ip me nt Se qu en ce
   sequenceDescription: "Uygun ekipmanlar\u0131 giy."
   actions:
+  - {fileID: 11400000, guid: 2e4eba0210913964c984939e72206083, type: 2}
   - {fileID: 11400000, guid: 2704c639a9aa23443a427020417e4a83, type: 2}
   targetObjectID: character
   buttonOffset: {x: 0, y: 1, z: 0}

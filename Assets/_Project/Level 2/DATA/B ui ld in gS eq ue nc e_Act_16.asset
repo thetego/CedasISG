@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: B ui ld in gS eq ue nc e_Act_16
   actionName: B ui ld in gS eq ue nc e_Act_16
-  instructionText: 
+  instructionText: Trafo merkezine girin
   actionType: 1
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0

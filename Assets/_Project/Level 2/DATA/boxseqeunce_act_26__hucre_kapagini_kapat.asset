@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: BoxSeqeunce_Act_26
   actionName: Hucre kapagini kapat
-  instructionText: "H\xFCcre kapa\u011F\u0131n\u0131 kapat."
+  instructionText: "H\xFCcre kapa\u011F\u0131n\u0131 kapat\u0131n"
   actionType: 3
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0

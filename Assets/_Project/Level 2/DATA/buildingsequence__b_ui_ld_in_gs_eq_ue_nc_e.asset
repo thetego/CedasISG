@@ -19,17 +19,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dc919deb7923dc34e80f88a9c2cd2762, type: 2}
   - {fileID: 11400000, guid: e236903b6a575ff4f9721207f396ffdf, type: 2}
   - {fileID: 11400000, guid: 10fdc12ff56988b4ca280446f069c5af, type: 2}
+  - {fileID: 11400000, guid: d1f6745202154be4497f718bc21f43f6, type: 2}
   - {fileID: 11400000, guid: 97425f962255f8a4bb80ddc586e13a8d, type: 2}
+  - {fileID: 11400000, guid: 6c025f04577de614e88c79b0d2d8211c, type: 2}
   - {fileID: 11400000, guid: 68b1ea793d35042478af076c1a0023d9, type: 2}
+  - {fileID: 11400000, guid: efc1aed2f6ed8bb4694a0baea4531e74, type: 2}
   - {fileID: 11400000, guid: be52e8200916fa7458dc16c617baa438, type: 2}
   - {fileID: 11400000, guid: 62c1ac5c2ea4d5d42b8fd22f8f389085, type: 2}
   - {fileID: 11400000, guid: acd51873b688558448150db0f21300ff, type: 2}
   - {fileID: 11400000, guid: 75e07c6c78166e749a884811f80ac29d, type: 2}
   - {fileID: 11400000, guid: fbe5c2ccf06f3ef4b81fd94774e803ca, type: 2}
-  - {fileID: 11400000, guid: 0f61aa6a5c0222d4abd4e722c29ae464, type: 2}
+  - {fileID: 11400000, guid: 5f3ca72f4157a264dbdb7450d35913dd, type: 2}
   - {fileID: 11400000, guid: 8a947bd1fe9b6014eaf77751ff8b1d74, type: 2}
   - {fileID: 11400000, guid: 115a5f1141f8ca6418d77aa470e0095c, type: 2}
   - {fileID: 11400000, guid: de1fe01dba66e514693377c82b5e4e63, type: 2}
+  - {fileID: 11400000, guid: 0ecf3fe1b183b5a448f1f4893127b819, type: 2}
   - {fileID: 11400000, guid: aefa128928cf7fa45a01017199f3fdcc, type: 2}
   targetObjectID: kosk1
   buttonOffset: {x: 0, y: 0, z: 0}

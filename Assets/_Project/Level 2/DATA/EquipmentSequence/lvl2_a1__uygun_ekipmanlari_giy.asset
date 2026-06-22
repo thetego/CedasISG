@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "Uygun ekipmanlari giy"
+  m_Name: Uygun ekipmanlari giy
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: lvl2-a1
-  actionName: "Uygun ekipmanlari giy"
-  instructionText: "Uygun ekipmanlar\u0131 giy."
+  actionName: Uygun ekipmanlari giy
+  instructionText: "G\xF6reve ba\u015Flamak i\xE7in uygun \u0130SG ekipmanlar\u0131n\u0131
+    se\xE7in"
   actionType: 0
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
@@ -25,11 +26,6 @@ MonoBehaviour:
   cameraMode: 4
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  cameraTargetID: 
-  cameraMoveSpeed: 2
-  autoCompleteAfterCamera: 0
-  requiresPreviousAction: 1
-  prerequisiteActions: []
   targetObjectID: 
   requiredEquipments:
   - {fileID: 11400000, guid: f95b91a99e0584541b92fc5ce77a1f47, type: 2}
@@ -53,6 +49,14 @@ MonoBehaviour:
     correctOptionIndex: 0
     correctFeedbackText: "Do\u011Fru! Tebrikler."
     wrongFeedbackText: "Yanl\u0131\u015F cevap! \u0130\u015Flem sonland\u0131r\u0131ld\u0131."
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 0
+    photoSlots: []
+  activatesTablet: 0
+  deactivatesTablet: 0
   hideButtonAfterComplete: 0
   animationTriggers: []
   soundClip: {fileID: 0}

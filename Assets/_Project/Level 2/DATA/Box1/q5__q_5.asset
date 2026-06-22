@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "Q 5"
+  m_Name: Q 5
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: Q5
-  actionName: "Q 5"
+  actionName: Q 5
   instructionText: 
   actionType: 6
   prerequisiteActionIDs:
@@ -34,11 +34,6 @@ MonoBehaviour:
   cameraMode: 4
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  cameraTargetID: 
-  cameraMoveSpeed: 2
-  autoCompleteAfterCamera: 1
-  requiresPreviousAction: 0
-  prerequisiteActions: []
   targetObjectID: 
   requiredEquipments: []
   distractorEquipments: []
@@ -50,17 +45,24 @@ MonoBehaviour:
   interactionPanelPrefab: {fileID: 6338254789560939439, guid: d5449d2ba1c07544aa4d5efb9a98cfbd, type: 3}
   panelID: 
   quizData:
-    questionText: "Fazlar\u0131 test ettiniz Ar\u0131zal\u0131 faz\u0131 bulmak \u0130\xE7in
-      hangi y\xF6ntemi \u0130zlersiniz?"
+    questionText: "\xDC\xE7 faz\u0131n tamam\u0131 test edildikten sonra ilk yap\u0131lmas\u0131
+      gereken i\u015Flem hangisidir?"
     options:
-    - "LI 'den ba\u015Flay\u0131p s\u0131rayla L2 ve L3 'e ge\xE7mek"
-    - "\xD6nce en \u015F\xFCpheli faz\u0131 kontrol etmek"
-    - Rastgele fazlan kontrol etmek
-    - "Hepsin\u0131 ayn\u0131 anda kontrol etmek"
-    - Hepsi
-    correctOptionIndex: 0
+    - "H\xFCcre kap\u0131s\u0131n\u0131 kapatmak"
+    - "SCADA'y\u0131 aramak"
+    - "Test cihaz\u0131n\u0131 kald\u0131r\u0131p ba\u011Flant\u0131lar\u0131 s\xF6kmek"
+    - "Uyar\u0131 levhas\u0131n\u0131 asmak"
+    correctOptionIndex: 2
     correctFeedbackText: "Do\u011Fru! Tebrikler."
     wrongFeedbackText: "Yanl\u0131\u015F cevap! \u0130\u015Flem sonland\u0131r\u0131ld\u0131."
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 0
+    photoSlots: []
+  activatesTablet: 0
+  deactivatesTablet: 0
   hideButtonAfterComplete: 0
   animationTriggers: []
   soundClip: {fileID: 0}
