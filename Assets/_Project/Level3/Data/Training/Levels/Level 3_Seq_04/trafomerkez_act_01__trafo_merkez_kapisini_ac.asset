@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "Trafo Merkez kapisini ac"
+  m_Name: Trafo Merkez kapisini ac
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: TrafoMerkez_Act_01
-  actionName: "Trafo Merkez kapisini ac"
-  instructionText: "Trafo Merkez kap\u0131s\u0131n\u0131 a\xE7."
+  actionName: Trafo Merkez kapisini ac
+  instructionText: "OG odas\u0131n\u0131n kap\u0131s\u0131n\u0131 a\xE7\u0131n"
   actionType: 3
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
@@ -25,11 +25,6 @@ MonoBehaviour:
   cameraMode: 0
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  cameraTargetID: 
-  cameraMoveSpeed: 2
-  autoCompleteAfterCamera: 1
-  requiresPreviousAction: 1
-  prerequisiteActions: []
   targetObjectID: TMLock
   requiredEquipments: []
   distractorEquipments: []

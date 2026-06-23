@@ -31395,6 +31395,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8718113632211287948, guid: b5325ad8ab884c44cb82a76c02ba27b5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8610901109836366528, guid: b5325ad8ab884c44cb82a76c02ba27b5, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -31426,6 +31430,10 @@ PrefabInstance:
     - target: {fileID: -7871310690168210767, guid: b5325ad8ab884c44cb82a76c02ba27b5, type: 3}
       propertyPath: m_AABB.m_Extent.z
       value: 0.17869616
+      objectReference: {fileID: 0}
+    - target: {fileID: -7845410708003791343, guid: b5325ad8ab884c44cb82a76c02ba27b5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7129242811395562976, guid: b5325ad8ab884c44cb82a76c02ba27b5, type: 3}
       propertyPath: m_DirtyAABB
@@ -31579,6 +31587,10 @@ PrefabInstance:
       propertyPath: m_AABB.m_Extent.z
       value: 0.29476392
       objectReference: {fileID: 0}
+    - target: {fileID: -2798897251393236952, guid: b5325ad8ab884c44cb82a76c02ba27b5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -446161537390635500, guid: b5325ad8ab884c44cb82a76c02ba27b5, type: 3}
       propertyPath: m_DirtyAABB
       value: 0
@@ -31694,6 +31706,10 @@ PrefabInstance:
     - target: {fileID: 4229568742246896335, guid: b5325ad8ab884c44cb82a76c02ba27b5, type: 3}
       propertyPath: m_AABB.m_Extent.z
       value: 0.3268218
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332413663298160026, guid: b5325ad8ab884c44cb82a76c02ba27b5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4975675690651838746, guid: b5325ad8ab884c44cb82a76c02ba27b5, type: 3}
       propertyPath: m_DirtyAABB

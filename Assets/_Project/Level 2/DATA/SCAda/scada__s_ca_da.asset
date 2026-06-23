@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "s ca da"
+  m_Name: s ca da
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
   sequenceID: scada
-  sequenceName: "s ca da"
+  sequenceName: s ca da
   sequenceDescription: 
   actions:
   - {fileID: 11400000, guid: 94ce213d08f393a43985589c4c751455, type: 2}
@@ -21,7 +21,7 @@ MonoBehaviour:
   targetObjectID: fdas
   buttonOffset: {x: 0, y: 0.5, z: 0}
   entryCameraMode: 4
-  entryCameraID: camCharacter2
+  entryCameraID: camCharacter
   autoReturnOnComplete: 1
   autoReturnOnExit: 1
   resumeFromLastAction: 1
@@ -42,7 +42,7 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
-  spawnButtonAtStart: 1
+  spawnButtonAtStart: 0
   sequenceIcon: {fileID: 0}
   buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
   completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}

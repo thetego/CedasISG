@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "AG Eldivenleri"
+  m_Name: AG Eldivenleri
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
   sequenceID: Level 3_Seq_09
-  sequenceName: "AG Eldivenleri"
-  sequenceDescription: 
+  sequenceName: AG Eldivenleri
+  sequenceDescription: AG eldivenlerinizi giyin
   actions:
   - {fileID: 11400000, guid: a51501d3cdc36bf4fa3658ddb33569fe, type: 2}
   targetObjectID: character

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "AG kapisini kapat"
+  m_Name: AG kapisini kapat
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: AGCheck_Act_01_Copy
-  actionName: "AG kapisini kapat"
-  instructionText: "AG kap\u0131s\u0131n\u0131 kapat."
+  actionName: AG kapisini kapat
+  instructionText: "AG odas\u0131ndan \xE7\u0131k\u0131n"
   actionType: 3
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
@@ -25,11 +25,6 @@ MonoBehaviour:
   cameraMode: 0
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  cameraTargetID: 
-  cameraMoveSpeed: 2
-  autoCompleteAfterCamera: 1
-  requiresPreviousAction: 1
-  prerequisiteActions: []
   targetObjectID: agDoor
   requiredEquipments: []
   distractorEquipments: []

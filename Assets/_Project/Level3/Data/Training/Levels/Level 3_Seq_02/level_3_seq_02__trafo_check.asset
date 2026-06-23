@@ -10,17 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "Trafo Check"
+  m_Name: Trafo Check
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
   sequenceID: Level 3_Seq_02
-  sequenceName: "Trafo Check"
+  sequenceName: Trafo Check
   sequenceDescription: 
   actions:
+  - {fileID: 11400000, guid: 96b884bd10f98aa4a805c0a61154d96a, type: 2}
   - {fileID: 11400000, guid: 70a296d2583fd6c419769bb71827efae, type: 2}
   - {fileID: 11400000, guid: abecf5a00add75b448137543b0819b67, type: 2}
   - {fileID: 11400000, guid: 4910fe1c5e7284947b4eead5ec3a0b7b, type: 2}
+  - {fileID: 11400000, guid: 019e611c5edf5ca4287231112d657216, type: 2}
   - {fileID: 11400000, guid: 7b010d0f8ab81c2409cb9f2d3523fd86, type: 2}
   - {fileID: 11400000, guid: c18e90729d8c519429a19f726db79dc7, type: 2}
+  - {fileID: 11400000, guid: e273029dc027b56439e9680905d7d094, type: 2}
   - {fileID: 11400000, guid: 1850ebb6928af1f42a78d3a242b16f61, type: 2}
   - {fileID: 11400000, guid: 7010529f93de7164da39c3186c322ec8, type: 2}
   - {fileID: 11400000, guid: b740a3b60fa3c3b4ba678576ad005b2b, type: 2}

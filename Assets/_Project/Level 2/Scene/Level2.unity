@@ -1612,6 +1612,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 125252427}
   m_CullTransparentMesh: 0
+--- !u!1 &129545322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8416272007918961125, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
+  m_PrefabInstance: {fileID: 1190745991}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &132114486
 GameObject:
   m_ObjectHideFlags: 0
@@ -1824,7 +1829,7 @@ MonoBehaviour:
     onEventTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1960651875}
+        - m_Target: {fileID: 1190745998}
           m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
           m_MethodName: SetTrigger
           m_Mode: 5
@@ -1836,7 +1841,7 @@ MonoBehaviour:
             m_StringArgument: SC
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1734984176}
+        - m_Target: {fileID: 129545322}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -2099,6 +2104,22 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: asd2
             m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: ygON
+    onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1828448600}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: asd2
+            m_BoolArgument: 1
           m_CallState: 2
   debugMode: 1
 --- !u!4 &132114489
@@ -5161,6 +5182,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 397137027}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &409552701 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
+  m_PrefabInstance: {fileID: 1190745991}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -13771,6 +13797,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 70a5107ddc9488140ac472d15aec60d6, type: 2}
+    - target: {fileID: 8416272007918961125, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9155276747989737948, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -13788,6 +13818,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1695149690}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1190745998}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1190745997}
     - targetCorrespondingSourceObject: {fileID: -516098083770646512, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1190745996}
@@ -13857,6 +13893,50 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   showGizmo: 1
+--- !u!114 &1190745997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409552701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 167c8571c5a2e1842b7642ac747824e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SceneObject
+  objectID: fdas
+  objectName: 
+  animator: {fileID: 0}
+  onActivated:
+    m_PersistentCalls:
+      m_Calls: []
+  onCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  showGizmo: 1
+--- !u!95 &1190745998
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409552701}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4af87f1c40c589b4d9275e6bbe5ac04f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1192064672
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13940,6 +14020,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fa6c6df3a52401c4c951cdf21355d612, type: 3}
       propertyPath: m_Name
       value: yg_kutu
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fa6c6df3a52401c4c951cdf21355d612, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20763,11 +20847,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1730846295}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1734984176 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8416272007918961125, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
-  m_PrefabInstance: {fileID: 1960651869}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1736451418
 GameObject:
   m_ObjectHideFlags: 0
@@ -21607,6 +21686,10 @@ MonoBehaviour:
   warningPanel: {fileID: 667625579}
   warningMessageText: {fileID: 1725382934}
   backButton: {fileID: 933810838}
+  sequenceFadeOverlay: {fileID: 0}
+  sequenceFadeStartDelay: 0
+  sequenceFadeDuration: 0.35
+  sequenceFadeHoldDuration: 0.1
   debugMode: 1
   _waitingForTablet: 0
 --- !u!1 &1828448600 stripped
@@ -22937,7 +23020,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.21
+      value: 8.97
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22945,23 +23028,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -36.93
+      value: -37.004
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.38268355
+      value: 0.25881913
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.9238795
+      value: -0.9659258
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -23031,6 +23114,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bedas_character_lvl2_v2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3695225264953967585, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -23053,7 +23140,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 70a5107ddc9488140ac472d15aec60d6, type: 2}
     - target: {fileID: 8416272007918961125, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9155276747989737948, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -23066,9 +23153,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1960651875}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1960651876}
   m_SourcePrefab: {fileID: 100100000, guid: 8a13649aa26e70944b0b5d5b787dd50f, type: 3}
 --- !u!1 &1960651870 stripped
 GameObject:
@@ -23097,28 +23181,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1960651876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1960651870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 167c8571c5a2e1842b7642ac747824e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SceneObject
-  objectID: fdas
-  objectName: 
-  animator: {fileID: 0}
-  onActivated:
-    m_PersistentCalls:
-      m_Calls: []
-  onCompleted:
-    m_PersistentCalls:
-      m_Calls: []
-  showGizmo: 1
 --- !u!1 &1994076399
 GameObject:
   m_ObjectHideFlags: 0

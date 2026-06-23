@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "Hucre plaka etiketinin fotografini cek"
+  m_Name: Hucre plaka etiketinin fotografini cek
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: pano1_Act_01_Copy_Copy
-  actionName: "Hucre plaka etiketinin fotografini cek"
-  instructionText: "H\xFCcre plaka etiketinin foto\u011Fraf\u0131n\u0131 \xE7ek."
+  actionName: Hucre plaka etiketinin fotografini cek
+  instructionText: "H\xFCcre plaka etiketini teyit edin ve kontrol formunu doldurun"
   actionType: 4
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
@@ -25,11 +25,6 @@ MonoBehaviour:
   cameraMode: 4
   virtualCameraID: camPano3-3
   autoReturnCameraOnComplete: 0
-  cameraTargetID: 
-  cameraMoveSpeed: 2
-  autoCompleteAfterCamera: 1
-  requiresPreviousAction: 1
-  prerequisiteActions: []
   targetObjectID: 
   requiredEquipments: []
   distractorEquipments: []

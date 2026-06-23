@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "p an o 1 C op y"
+  m_Name: p an o 1 C op y
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
   sequenceID: pano1_Copy
-  sequenceName: "p an o 1 C op y"
+  sequenceName: p an o 1 C op y
   sequenceDescription: 
   actions:
   - {fileID: 11400000, guid: 6931f9d827b252b45a104fc5b3436b0b, type: 2}
   - {fileID: 11400000, guid: 58f99d9153405244788a99da915f058d, type: 2}
   - {fileID: 11400000, guid: fde96777cfbfc0c44abf22310bf7b131, type: 2}
+  - {fileID: 11400000, guid: 61387943dc5cc9e49b580b1b7a6f1286, type: 2}
   - {fileID: 11400000, guid: f55ee573824eeab4094fec788b4414f3, type: 2}
+  - {fileID: 11400000, guid: aab59e2ec4410b44daadcc61ffdcd2e4, type: 2}
   - {fileID: 11400000, guid: de66da54a18d6fa43ac3b32841de2583, type: 2}
   - {fileID: 11400000, guid: e949d9042396d264998205514b4e8e9a, type: 2}
   - {fileID: 11400000, guid: 7012caf42e34c7f4c91f51cd6250329b, type: 2}
@@ -33,6 +35,11 @@ MonoBehaviour:
   allowRestart: 0
   hideButtonAfterComplete: 1
   prerequisiteSequences:
+  - {fileID: 11400000, guid: 50c0b1333e1279b42af9af7114f76912, type: 2}
+  - {fileID: 11400000, guid: 67b089813e549074380f691473682511, type: 2}
+  - {fileID: 11400000, guid: 8cbe788c18ed488418b16d2538b70f9b, type: 2}
+  - {fileID: 11400000, guid: 8c0a3b21e8fc5da42b3e92fb26f2ff0f, type: 2}
+  - {fileID: 11400000, guid: c7001038dd1d6ab488a746cff7ac47f6, type: 2}
   - {fileID: 11400000, guid: 19031ee8b8501a048a2e13dbb7449b18, type: 2}
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131

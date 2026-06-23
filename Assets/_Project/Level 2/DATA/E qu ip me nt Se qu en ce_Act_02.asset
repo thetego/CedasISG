@@ -33,7 +33,7 @@ MonoBehaviour:
   toolDropMappings: []
   dropZoneSize: {x: 120, y: 120}
   toolDropMode: 0
-  interactionPanelPrefab: {fileID: 0}
+  interactionPanelPrefab: {fileID: 6338254789560939439, guid: d5449d2ba1c07544aa4d5efb9a98cfbd, type: 3}
   panelID: 
   quizData:
     questionText: "G\xF6reve ba\u015Flamadan \xF6nce a\u015Fa\u011F\u0131dakilerden

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "AG eldivenlerini giy"
+  m_Name: AG eldivenlerini giy
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: EQUIPMENT_Act_01
-  actionName: "AG eldivenlerini giy"
-  instructionText: AG eldivenlerini giy.
+  actionName: AG eldivenlerini giy
+  instructionText: AG eldivenlerinizi giyin
   actionType: 0
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
@@ -28,6 +28,7 @@ MonoBehaviour:
   targetObjectID: 
   requiredEquipments:
   - {fileID: 11400000, guid: 31dbcd75e90e0db45a56e8d7e1586ca4, type: 2}
+  - {fileID: 11400000, guid: 4ac847364a3aa4e42bd843765db9f89f, type: 2}
   distractorEquipments:
   - {fileID: 11400000, guid: 5c90d32e8b04cb148b122b20c73b290e, type: 2}
   - {fileID: 11400000, guid: 660fad51c4cbad145800d762529151cb, type: 2}

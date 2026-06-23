@@ -63,13 +63,7 @@ MonoBehaviour:
   activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0
-  animationTriggers:
-  - animatorObjectID: cable3
-    triggerName: T8
-    parameterType: 0
-    parameterValue: 0
-    timing: 1
-    autoResetTrigger: 0
+  animationTriggers: []
   soundClip: {fileID: 0}
   particleEffectID: 
   particleSpawnOffset: {x: 0, y: 0, z: 0}

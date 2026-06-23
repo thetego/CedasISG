@@ -10,19 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "AG Check"
+  m_Name: AG Check
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
   sequenceID: Level 3_Seq_03
-  sequenceName: "AG Check"
+  sequenceName: AG Check
   sequenceDescription: 
   actions:
   - {fileID: 11400000, guid: e05e5ab89834cc64096fbfdaa0b03852, type: 2}
   - {fileID: 11400000, guid: 72ba1471dbb2925418c3f5e02e9c5dc9, type: 2}
+  - {fileID: 11400000, guid: 9a0a6d9a3d9979f4fb54d6716544aaf9, type: 2}
   - {fileID: 11400000, guid: 7b42da042c36da7489927598f3fbc973, type: 2}
   - {fileID: 11400000, guid: 8e257dd70c1affc4ca5f1d96db8e22b5, type: 2}
+  - {fileID: 11400000, guid: 6cbe79138fcd17d4b94f70fe66eb3d89, type: 2}
   - {fileID: 11400000, guid: 28d12ab61b33efe45a15f44dfddf3f85, type: 2}
   - {fileID: 11400000, guid: efa846bc578df6b4ebbd5c908964eb45, type: 2}
   - {fileID: 11400000, guid: 1002e93cb3e5c254ebc440a05ee8a238, type: 2}
+  - {fileID: 11400000, guid: 5dd1f209dbaa2eb49bdda88266127b61, type: 2}
   - {fileID: 11400000, guid: e9db53ce31d585e4e999dfec51aa4aa4, type: 2}
   - {fileID: 11400000, guid: 3b4dc811f177c1e4f9627ad027408e80, type: 2}
   - {fileID: 11400000, guid: 9767cbba640505f4cb9f6071f69b16f3, type: 2}

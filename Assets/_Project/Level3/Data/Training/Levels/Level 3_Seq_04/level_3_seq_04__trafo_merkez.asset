@@ -10,16 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "Trafo Merkez"
+  m_Name: Trafo Merkez
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
   sequenceID: Level 3_Seq_04
-  sequenceName: "Trafo Merkez"
+  sequenceName: Trafo Merkez
   sequenceDescription: 
   actions:
   - {fileID: 11400000, guid: 7ab614dcddd47074eaf894b96f348c61, type: 2}
   - {fileID: 11400000, guid: f92cfd707d0bcee49aefc2cf5c64f371, type: 2}
   - {fileID: 11400000, guid: 574382927e4f51b4fb39cec99ac57012, type: 2}
+  - {fileID: 11400000, guid: 60b49f5e5517679439ddda6297fa7318, type: 2}
+  - {fileID: 11400000, guid: d65317692494fa440a9b6bfcf8a8a616, type: 2}
+  - {fileID: 11400000, guid: e7b51e4d044f9df4893ddbfe34fa5e04, type: 2}
   - {fileID: 11400000, guid: d909fa5d288e54c46bd83827f00889e7, type: 2}
+  - {fileID: 11400000, guid: c7f7eb2110f5c834d9e799378498bd5b, type: 2}
   - {fileID: 11400000, guid: 1c2aa4ec8d4c7b740a8c79cf10e73c40, type: 2}
   - {fileID: 11400000, guid: b4903fb2299e9674283a72a64d371e8c, type: 2}
   targetObjectID: TMLock
@@ -31,7 +35,11 @@ MonoBehaviour:
   resumeFromLastAction: 1
   allowRestart: 0
   hideButtonAfterComplete: 1
-  prerequisiteSequences: []
+  prerequisiteSequences:
+  - {fileID: 11400000, guid: 50c0b1333e1279b42af9af7114f76912, type: 2}
+  - {fileID: 11400000, guid: 67b089813e549074380f691473682511, type: 2}
+  - {fileID: 11400000, guid: 8cbe788c18ed488418b16d2538b70f9b, type: 2}
+  - {fileID: 11400000, guid: 8c0a3b21e8fc5da42b3e92fb26f2ff0f, type: 2}
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."
