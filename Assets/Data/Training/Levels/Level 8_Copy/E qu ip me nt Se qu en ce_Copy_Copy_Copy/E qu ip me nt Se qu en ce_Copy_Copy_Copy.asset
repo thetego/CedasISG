@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
+  m_Name: E qu ip me nt Se qu en ce_Copy_Copy_Copy
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
+  sequenceID: E qu ip me nt Se qu en ce_Copy_Copy_Copy
+  sequenceName: E qu ip me nt Se qu en ce_Copy_Copy_Copy
+  sequenceDescription: "Uygun ekipmanlar\u0131 giy."
+  actions:
+  - {fileID: 11400000, guid: 7d2fe73b589acdf4fb23047e16ad1f02, type: 2}
+  - {fileID: 11400000, guid: 8bce3e0d2f167d14eb4ca907892d37f9, type: 2}
+  - {fileID: 11400000, guid: 6b30ef9ede5a82743af788405865f4f8, type: 2}
+  - {fileID: 11400000, guid: 0fa1aa9ab0e9d414789ba20621374b2f, type: 2}
+  targetObjectID: character
+  buttonOffset: {x: 0, y: 1, z: 0}
+  entryCameraMode: 4
+  entryCameraID: camCharacter
+  autoReturnOnComplete: 1
+  autoReturnOnExit: 1
+  resumeFromLastAction: 1
+  allowRestart: 0
+  hideButtonAfterComplete: 1
+  prerequisiteSequences: []
+  onPrerequisiteFail: 1
+  prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
+    tamamlay\u0131n."
+  hasSurvey: 0
+  surveyPanelPrefab: {fileID: 0}
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 0
+    photoSlots: []
+  spawnButtonAtStart: 1
+  sequenceIcon: {fileID: 0}
+  buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
+  completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}
+  onSequenceEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceExit:
+    m_PersistentCalls:
+      m_Calls: []

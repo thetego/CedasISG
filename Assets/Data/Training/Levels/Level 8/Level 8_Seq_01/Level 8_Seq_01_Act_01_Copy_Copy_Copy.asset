@@ -69,5 +69,5 @@ MonoBehaviour:
       m_Calls: []
   onStartEventIDs: []
   onCompleteEventIDs:
-  - AC3
+  - AC3-2
   onFailEventIDs: []

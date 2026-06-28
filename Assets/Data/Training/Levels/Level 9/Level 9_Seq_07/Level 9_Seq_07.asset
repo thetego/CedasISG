@@ -40,12 +40,12 @@ MonoBehaviour:
   allowRestart: 0
   hideButtonAfterComplete: 0
   prerequisiteSequences:
-  - {fileID: 11400000, guid: 0e8a65c66599904409a5a9c3e0883c5d, type: 2}
+  - {fileID: 11400000, guid: 4f5a6539e7b1da143871cd181439e377, type: 2}
+  - {fileID: 11400000, guid: d8faf7913800703478b10aacd0ce4fc7, type: 2}
   - {fileID: 11400000, guid: 268c9acf72d09f8429c16bc2eee50d9e, type: 2}
   - {fileID: 11400000, guid: b1b9b48888393f74dae0849db11b1669, type: 2}
   - {fileID: 11400000, guid: f444aecf0de65b541b003093bef84a3c, type: 2}
   - {fileID: 11400000, guid: 1689d0ab36329874e97ad8d29920c871, type: 2}
-  - {fileID: 11400000, guid: 435b894d487b28941847f35501ff483c, type: 2}
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."
