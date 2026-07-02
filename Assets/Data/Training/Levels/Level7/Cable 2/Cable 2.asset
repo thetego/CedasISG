@@ -15,6 +15,7 @@ MonoBehaviour:
   sequenceID: Cable2
   sequenceName: Cable 2
   sequenceDescription: 
+  instructionText: 
   actions:
   - {fileID: 11400000, guid: 0acefce647e5ca14ba058a798646ffba, type: 2}
   - {fileID: 11400000, guid: fc60b2be471aebe4fb8ef7f0efb6af8b, type: 2}
@@ -55,6 +56,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aaff2c6e26fae5740a4ad8e2d8bdb424, type: 2}
   - {fileID: 11400000, guid: 1c4bb1b859199c447825ee792d8d37ac, type: 2}
   - {fileID: 11400000, guid: 02c120720b7c3324caa95f62344d6748, type: 2}
+  - {fileID: 11400000, guid: 440abb2eb4df89d4fa9e0eafa15e1c5c, type: 2}
+  - {fileID: 11400000, guid: 12124effe9dd5f04395436d9395fdd4e, type: 2}
+  - {fileID: 11400000, guid: 133f096bcc87e9d448736d3a20e7aae4, type: 2}
+  - {fileID: 11400000, guid: 08b0689f13a190a458a0c6f22e46c91d, type: 2}
+  - {fileID: 11400000, guid: eaa5cb09db575f642b1d4e02c2a0e4f5, type: 2}
+  - {fileID: 11400000, guid: 79811b02561794c428d6e69b1a36c735, type: 2}
+  - {fileID: 11400000, guid: aa4e72cdfd1d2f240badd0e5cb942a76, type: 2}
   - {fileID: 11400000, guid: 08830a6de3bdad6448059e1ca9c2376c, type: 2}
   - {fileID: 11400000, guid: d87cdc64a29e46b439500b9f7b21c47e, type: 2}
   - {fileID: 11400000, guid: 77c41f6457c34c549b2a7826bd3ee24d, type: 2}

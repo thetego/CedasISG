@@ -15,6 +15,7 @@ MonoBehaviour:
   sequenceID: BuildingSequence
   sequenceName: B ui ld in gS eq ue nc e
   sequenceDescription: 
+  instructionText: Trafo merkezine girin
   actions:
   - {fileID: 11400000, guid: dc919deb7923dc34e80f88a9c2cd2762, type: 2}
   - {fileID: 11400000, guid: e236903b6a575ff4f9721207f396ffdf, type: 2}

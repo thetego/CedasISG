@@ -15,6 +15,7 @@ MonoBehaviour:
   sequenceID: Level 3_Seq_04
   sequenceName: Trafo Merkez
   sequenceDescription: 
+  instructionText: "OG odas\u0131na gidin"
   actions:
   - {fileID: 11400000, guid: 7ab614dcddd47074eaf894b96f348c61, type: 2}
   - {fileID: 11400000, guid: f92cfd707d0bcee49aefc2cf5c64f371, type: 2}

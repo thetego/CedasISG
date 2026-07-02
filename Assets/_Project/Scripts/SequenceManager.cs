@@ -139,8 +139,7 @@ namespace SafetyTraining
 			CameraManager.Instance?.ResetToDefault();
 
 			// Talimat
-			if (instructionText)
-				instructionText.text = "Bir sekans seçin";
+			SetSequenceSelectionInstruction();
 
 			if (currentSequenceText)
 				currentSequenceText.text = "";
@@ -294,7 +293,7 @@ namespace SafetyTraining
 
 			// UI güncelle
 			if (currentSequenceText)
-				currentSequenceText.text = $"Sekans: {sequence.sequenceName}";
+				currentSequenceText.text = BuildSequenceHeaderText(sequence);
 
 			if (backButton != null)
 				backButton.gameObject.SetActive(true);
@@ -360,8 +359,7 @@ namespace SafetyTraining
 			if (currentSequenceText)
 				currentSequenceText.text = "";
 
-			if (instructionText)
-				instructionText.text = "Bir sekans seçin";
+			SetSequenceSelectionInstruction();
 
 			if (backButton != null)
 				backButton.gameObject.SetActive(false);
@@ -700,8 +698,7 @@ namespace SafetyTraining
 			if (currentSequenceText)
 				currentSequenceText.text = "";
 
-			if (instructionText)
-				instructionText.text = "Bir sekans seçin";
+			SetSequenceSelectionInstruction();
 
 			if (backButton != null)
 				backButton.gameObject.SetActive(false);
@@ -893,6 +890,29 @@ namespace SafetyTraining
 
 			if (debugMode)
 				Debug.Log($"<color=orange>[SequenceManager] ⚠ Warning: {message}</color>");
+		}
+
+		private void SetSequenceSelectionInstruction()
+		{
+			if (instructionText == null)
+				return;
+
+			string message = currentLevel != null && !string.IsNullOrWhiteSpace(currentLevel.sequenceSelectionInstructionText)
+				? currentLevel.sequenceSelectionInstructionText
+				: "Bir sekans seçin";
+
+			instructionText.text = message;
+		}
+
+		private string BuildSequenceHeaderText(SequenceData sequence)
+		{
+			if (sequence == null)
+				return string.Empty;
+
+			if (string.IsNullOrWhiteSpace(sequence.instructionText))
+				return $"Sekans: {sequence.sequenceName}";
+
+			return $"Sekans: {sequence.sequenceName}\n{sequence.instructionText}";
 		}
 
 		private void EnsureFadeOverlay()

@@ -15,6 +15,7 @@ MonoBehaviour:
   sequenceID: trafo1
   sequenceName: t ra fo 1
   sequenceDescription: 
+  instructionText: Trafo merkezine girin
   actions:
   - {fileID: 11400000, guid: 9d5b7259084c9254381c8296c5115da9, type: 2}
   - {fileID: 11400000, guid: 3c9e2fd43a722e248b2e03968d96d6f5, type: 2}

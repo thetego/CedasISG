@@ -15,6 +15,7 @@ MonoBehaviour:
   sequenceID: Level 3_Seq_09
   sequenceName: AG Eldivenleri
   sequenceDescription: AG eldivenlerinizi giyin
+  instructionText: AG eldivenlerinizi giyin
   actions:
   - {fileID: 11400000, guid: a51501d3cdc36bf4fa3658ddb33569fe, type: 2}
   targetObjectID: character

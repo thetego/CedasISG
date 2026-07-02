@@ -15,6 +15,7 @@ MonoBehaviour:
   sequenceID: pano2_Copy
   sequenceName: p an o 2 C op y
   sequenceDescription: 
+  instructionText: "Panolar \xFCst\xFCnde gerekli i\u015Flemleri ger\xE7ekle\u015Ftirin."
   actions:
   - {fileID: 11400000, guid: 0d664298506d31a40ad86e62fe93047b, type: 2}
   - {fileID: 11400000, guid: a742ebd3e5d738a47b98f37199009a2b, type: 2}

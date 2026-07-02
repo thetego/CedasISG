@@ -15,6 +15,8 @@ MonoBehaviour:
   sequenceID: equipment
   sequenceName: E qu ip me nt
   sequenceDescription: 
+  instructionText: "G\xF6reve ba\u015Flamadan \xF6nce uygun \u0130SG ekipmanlar\u0131n\u0131
+    se\xE7in."
   actions:
   - {fileID: 11400000, guid: bfd06abdc5079224f82bcf3cf1be81a4, type: 2}
   - {fileID: 11400000, guid: 3df695f35af3dc5498c4ab3a3339e240, type: 2}

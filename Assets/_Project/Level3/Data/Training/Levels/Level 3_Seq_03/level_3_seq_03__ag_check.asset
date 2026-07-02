@@ -15,6 +15,7 @@ MonoBehaviour:
   sequenceID: Level 3_Seq_03
   sequenceName: AG Check
   sequenceDescription: 
+  instructionText: "AG odas\u0131na girin"
   actions:
   - {fileID: 11400000, guid: e05e5ab89834cc64096fbfdaa0b03852, type: 2}
   - {fileID: 11400000, guid: 72ba1471dbb2925418c3f5e02e9c5dc9, type: 2}

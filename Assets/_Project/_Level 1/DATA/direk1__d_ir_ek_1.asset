@@ -15,6 +15,7 @@ MonoBehaviour:
   sequenceID: direk1
   sequenceName: d ir ek 1
   sequenceDescription: 
+  instructionText: "Ayd\u0131nlatma dire\u011Fine gidin"
   actions:
   - {fileID: 11400000, guid: 7c938628a321c254783fb97f5bca6854, type: 2}
   - {fileID: 11400000, guid: 03f3288efb359bf419ef3235fd04ece4, type: 2}

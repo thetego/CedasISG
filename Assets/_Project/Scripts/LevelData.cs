@@ -15,6 +15,10 @@ namespace SafetyTraining
 		[TextArea(2, 4)]
 		public string levelDescription;
 
+		[TextArea(1, 3)]
+		[Tooltip("Level genel ekranında sekans seçimi sırasında gösterilecek talimat")]
+		public string sequenceSelectionInstructionText = "Bir sekans seçin";
+
 		[Header("━━━ YENİ SİSTEM: SEKANSLAR ━━━")]
 		[Tooltip("Sekans bazlı sistem için (SequenceManager)")]
 		public SequenceData[] sequences;

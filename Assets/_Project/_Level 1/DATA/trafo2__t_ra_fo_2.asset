@@ -15,6 +15,7 @@ MonoBehaviour:
   sequenceID: trafo2
   sequenceName: t ra fo 2
   sequenceDescription: 
+  instructionText: "Armat\xFCr\xFCn foto\u011Fraf\u0131n\u0131 \xE7ekin"
   actions:
   - {fileID: 11400000, guid: 517da288fbfdefc4188bd7507003ccec, type: 2}
   - {fileID: 11400000, guid: 37f00ec64acdb564fb9006fbf62e08e5, type: 2}

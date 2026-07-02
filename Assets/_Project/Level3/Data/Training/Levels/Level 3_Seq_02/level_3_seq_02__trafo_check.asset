@@ -15,6 +15,7 @@ MonoBehaviour:
   sequenceID: Level 3_Seq_02
   sequenceName: Trafo Check
   sequenceDescription: 
+  instructionText: "Trafo odas\u0131na gidin"
   actions:
   - {fileID: 11400000, guid: 96b884bd10f98aa4a805c0a61154d96a, type: 2}
   - {fileID: 11400000, guid: 70a296d2583fd6c419769bb71827efae, type: 2}

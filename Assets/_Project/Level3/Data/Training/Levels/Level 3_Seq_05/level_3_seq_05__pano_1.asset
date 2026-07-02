@@ -15,6 +15,7 @@ MonoBehaviour:
   sequenceID: Level 3_Seq_05
   sequenceName: Pano 1
   sequenceDescription: 
+  instructionText: "Panolar \xFCst\xFCnde gerekli i\u015Flemleri ger\xE7ekle\u015Ftirin."
   actions:
   - {fileID: 11400000, guid: 2bbd5c3640b11a5438c5a2a4d43e4b92, type: 2}
   - {fileID: 11400000, guid: 1e2c193d617683c4187429b9d789bd3c, type: 2}

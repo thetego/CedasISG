@@ -15,6 +15,7 @@ MonoBehaviour:
   sequenceID: direk3
   sequenceName: d ir ek 3
   sequenceDescription: 
+  instructionText: "\xD6TL ve plaka etiketi tak\u0131n"
   actions:
   - {fileID: 11400000, guid: e61b9aaae32cd2540a8a5fc0ccbff9bb, type: 2}
   - {fileID: 11400000, guid: f9a6db5321a456344a6f98395423a248, type: 2}

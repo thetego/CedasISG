@@ -21,6 +21,10 @@ namespace SafetyTraining
 		[Tooltip("Sekans açıklaması")]
 		public string sequenceDescription;
 
+		[TextArea(2, 4)]
+		[Tooltip("Sekans ekranında gösterilecek talimat metni")]
+		public string instructionText;
+
 		[Header("━━━ AKSİYONLAR ━━━")]
 		[Tooltip("Bu sekansın action'ları (sırayla)")]
 		public ActionData[] actions;

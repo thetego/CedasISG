@@ -15,6 +15,7 @@ MonoBehaviour:
   sequenceID: Box1
   sequenceName: B ox 1
   sequenceDescription: 
+  instructionText: "Test cihaz\u0131n\u0131 getirin."
   actions:
   - {fileID: 11400000, guid: cd7cea13bd972f943a2f5c940f5e833c, type: 2}
   - {fileID: 11400000, guid: f3cd59d70288dbe4684e0bcfadd291b9, type: 2}

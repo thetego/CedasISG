@@ -15,6 +15,7 @@ MonoBehaviour:
   sequenceID: equipment2
   sequenceName: E qu ip me nt 2
   sequenceDescription: 
+  instructionText: AG eldiveni giyin
   actions:
   - {fileID: 11400000, guid: 470f061b225512f45b0f059ac12b18ca, type: 2}
   - {fileID: 11400000, guid: d0eeadac9a423bf43a37565e85590352, type: 2}

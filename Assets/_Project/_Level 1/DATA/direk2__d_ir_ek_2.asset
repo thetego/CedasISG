@@ -15,6 +15,7 @@ MonoBehaviour:
   sequenceID: direk2
   sequenceName: d ir ek 2
   sequenceDescription: "Tablet ile foto\u011Fraf \xE7ekin"
+  instructionText: "Ayd\u0131nlatma dire\u011Fine gidin"
   actions:
   - {fileID: 11400000, guid: 8761d92eab7f33d48a4826fcf8c44188, type: 2}
   - {fileID: 11400000, guid: 9d1d49b9d35e20646b28584a422b5b46, type: 2}

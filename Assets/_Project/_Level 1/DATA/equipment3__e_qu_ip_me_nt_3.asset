@@ -15,6 +15,7 @@ MonoBehaviour:
   sequenceID: equipment3
   sequenceName: E qu ip me nt 3
   sequenceDescription: "Trafo merkezine girmek i\xE7in \u0130SG ekipman\u0131 de\u011Fi\u015Ftirin"
+  instructionText: "Trafo merkezine girmek i\xE7in \u0130SG ekipman\u0131 de\u011Fi\u015Ftirin"
   actions:
   - {fileID: 11400000, guid: 891e181fd568f714b8cc16512fec835b, type: 2}
   targetObjectID: character
