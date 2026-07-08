@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: Level 10_Seq_03
+  m_Name: Level 10 Seq 03
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: Level 10_Seq_03
-  sequenceName: Level 10_Seq_03
+  sequenceID: Level10_Seq_03
+  sequenceName: Level 10 Seq 03
   sequenceDescription: 
+  instructionText: 
   actions:
   - {fileID: 11400000, guid: 0bc89613c16ec89448c26a59ad19f46b, type: 2}
   - {fileID: 11400000, guid: f7f4804b5813f6f40b5e9f385495585d, type: 2}
   - {fileID: 11400000, guid: 98e0fdd2f08757f478087e789970c638, type: 2}
+  - {fileID: 11400000, guid: 2355b573b15912141b63fa60849c8e9a, type: 2}
   targetObjectID: A2
   buttonOffset: {x: 0, y: 1.5, z: 0}
   entryCameraMode: 4

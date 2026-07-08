@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: B ui ld in gS eq ue nc e_Copy_Act_05_Copy
+  m_Name: seq2_act12
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: B ui ld in gS eq ue nc e_Copy_Act_05_Copy
-  actionName: B ui ld in gS eq ue nc e_Copy_Act_05_Copy
+  actionID: seq2_act12
+  actionName: seq2_act12
   instructionText: 
   actionType: 2
   prerequisiteActionIDs: []
@@ -65,7 +65,7 @@ MonoBehaviour:
   hideButtonAfterComplete: 0
   animationTriggers:
   - animatorObjectID: an4
-    triggerName: Rot
+    triggerName: Rot2
     parameterType: 0
     parameterValue: 0
     timing: 1

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: B ui ld in g C op y_Copy
+  m_Name: "B ui ld in G C op Y Copy"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: B ui ld in g C op y_Copyasd
-  sequenceName: B ui ld in g C op y_Copy
+  sequenceID: "BuildingCopy_Copyasd"
+  sequenceName: "B ui ld in G C op Y Copy"
   sequenceDescription: 
   actions:
   - {fileID: 11400000, guid: a8649ae8c7d5eb44691f64aa61b86db0, type: 2}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
   m_Name: "b ox Cl ic k 22"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: boxClick22
+  actionID: "boxClick22_2"
   actionName: "b ox Cl ic k 22"
   instructionText: 
   actionType: 5

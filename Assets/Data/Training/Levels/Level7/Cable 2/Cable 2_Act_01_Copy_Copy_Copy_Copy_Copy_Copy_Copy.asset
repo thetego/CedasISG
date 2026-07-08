@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: Cable 2_Act_01_Copy_Copy_Copy_Copy_Copy_Copy_Copy
+  m_Name: "Cable 2 Act 01 Copy Copy Copy Copy Copy Copy Copy"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: Cable 2_Act_01_Copy_Copy_Copy_Copy_Copy_Copy_Copy
-  actionName: Cable 2_Act_01_Copy_Copy_Copy_Copy_Copy_Copy_Copy
+  actionID: "Cable2_Act_01_15"
+  actionName: "Cable 2 Act 01 Copy Copy Copy Copy Copy Copy Copy"
   instructionText: 
   actionType: 2
   prerequisiteActionIDs: []

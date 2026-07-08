@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: Level 5_Seq_05
+  m_Name: seq5
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: Level 5_Seq_05
-  sequenceName: Level 5_Seq_05
+  sequenceID: seq5
+  sequenceName: seq5
   sequenceDescription: 
+  instructionText: 
   actions:
   - {fileID: 11400000, guid: bb3c488341320e641b497d84662516ab, type: 2}
   - {fileID: 11400000, guid: 60006c8f756c0aa409425d77ee4562d7, type: 2}
@@ -27,7 +28,7 @@ MonoBehaviour:
   autoReturnOnExit: 1
   resumeFromLastAction: 1
   allowRestart: 0
-  hideButtonAfterComplete: 0
+  hideButtonAfterComplete: 1
   prerequisiteSequences:
   - {fileID: 11400000, guid: 226c870c341ed8042b2dc31a50d3d8ed, type: 2}
   - {fileID: 11400000, guid: 83c16260cfc50b047bc9c795c73672e5, type: 2}
@@ -43,7 +44,7 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
-  spawnButtonAtStart: 1
+  spawnButtonAtStart: 0
   sequenceIcon: {fileID: 0}
   buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
   completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}

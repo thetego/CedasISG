@@ -15,6 +15,7 @@ MonoBehaviour:
   sequenceID: CarSequence
   sequenceName: C ar Se qu en ce
   sequenceDescription: 
+  instructionText: 
   actions:
   - {fileID: 11400000, guid: ecce1323eba912c47a018c81f3a3d263, type: 2}
   - {fileID: 11400000, guid: bbbaba537a00dd04e80e041d9638014e, type: 2}

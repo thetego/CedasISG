@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: Odanin fotografini cek
+  m_Name: "Odanin fotografini cek"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: AGCheck_Act_02_Copy 2
-  actionName: Odanin fotografini cek
+  actionID: "AGCheck_Act_02_4"
+  actionName: "Odanin fotografini cek"
   instructionText: "Kap\u0131n\u0131n d\u0131\u015Far\u0131dan foto\u011Fraf\u0131n\u0131
     \xE7ekin."
   actionType: 4

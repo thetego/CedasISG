@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: Pano 1_Act_11
+  m_Name: "Pano 1 Act 11"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: Pano 1_Act_11
-  actionName: Pano 1_Act_11
+  actionID: "Pano1_Act_11"
+  actionName: "Pano 1 Act 11"
   instructionText: 
   actionType: 6
   prerequisiteActionIDs: []

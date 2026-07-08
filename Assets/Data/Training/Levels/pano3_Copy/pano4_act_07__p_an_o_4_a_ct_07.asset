@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: p an o 4 A ct 07
+  m_Name: "p an o 4 A ct 07"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: pano4_Act_07
-  actionName: p an o 4 A ct 07
+  actionID: "pano4_Act_07"
+  actionName: "p an o 4 A ct 07"
   instructionText: "R\xF6lenin \xE7al\u0131\u015F\u0131rl\u0131\u011F\u0131n\u0131
     kontrol edin"
   actionType: 3

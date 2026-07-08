@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: d ir ek 1
+  m_Name: "d ir ek 1"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: direk1
-  sequenceName: d ir ek 1
+  sequenceID: "direk1"
+  sequenceName: "d ir ek 1"
   sequenceDescription: 
   instructionText: "Ayd\u0131nlatma dire\u011Fine gidin"
   actions:

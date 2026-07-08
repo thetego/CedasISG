@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: Trafo Merkez_Act_07
+  m_Name: "Trafo Merkez Act 07"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: Trafo Merkez_Act_07
-  actionName: Trafo Merkez_Act_07
+  actionID: "TrafoMerkez_Act_07"
+  actionName: "Trafo Merkez Act 07"
   instructionText: 
   actionType: 6
   prerequisiteActionIDs: []

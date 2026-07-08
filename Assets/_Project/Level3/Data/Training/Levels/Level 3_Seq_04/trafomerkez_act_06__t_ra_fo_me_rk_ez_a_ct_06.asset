@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: T ra fo Me rk ez A ct 06
+  m_Name: "T ra fo Me rk ez A ct 06"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: TrafoMerkez_Act_06
-  actionName: T ra fo Me rk ez A ct 06
+  actionID: "TrafoMerkez_Act_06"
+  actionName: "T ra fo Me rk ez A ct 06"
   instructionText: "Ayd\u0131nlatma varl\u0131\u011F\u0131n\u0131 teyit edin ve kontrol
     formunu doldurun"
   actionType: 4

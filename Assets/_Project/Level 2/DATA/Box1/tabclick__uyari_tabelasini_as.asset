@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: Uyari tabelasini as
+  m_Name: "Uyari tabelasini as"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: tabClick
-  actionName: Uyari tabelasini as
+  actionID: "tabClick"
+  actionName: "Uyari tabelasini as"
   instructionText: "Uyar\u0131 levhas\u0131n\u0131 as\u0131n"
   actionType: 3
   prerequisiteActionIDs: []

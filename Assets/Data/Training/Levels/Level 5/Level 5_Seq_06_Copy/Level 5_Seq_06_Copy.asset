@@ -10,13 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: Level 5_Seq_06_Copy
+  m_Name: seq7
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: Level 5_Seq_06_Copy
-  sequenceName: Level 5_Seq_06_Copy
+  sequenceID: seq7
+  sequenceName: seq7
   sequenceDescription: 
+  instructionText: 
   actions:
   - {fileID: 11400000, guid: 98e720058a07f5c4a80595bb866ebdd3, type: 2}
+  - {fileID: 11400000, guid: be833daaf3e974a40800be5d720d4c02, type: 2}
+  - {fileID: 11400000, guid: 1e2a9327ec63e3943a490eebdc6ef1a1, type: 2}
+  - {fileID: 11400000, guid: 90817ed864721fd4a96f4a2e3819f7fa, type: 2}
+  - {fileID: 11400000, guid: 988789d4df8b49f409619e3862645fab, type: 2}
+  - {fileID: 11400000, guid: b3ec860405591f147ba7aafddd912b4c, type: 2}
+  - {fileID: 11400000, guid: c399b1d8819c4574faa40f0650d4811a, type: 2}
+  - {fileID: 11400000, guid: c539e673d37465c44af6170c5f8b7de6, type: 2}
+  - {fileID: 11400000, guid: c4e310587e98ba64a9b200b046ab2581, type: 2}
+  - {fileID: 11400000, guid: ba5004a57171db64bae4100a6b20d7f6, type: 2}
+  - {fileID: 11400000, guid: 145b04b35e8775c4286d45e513c4f839, type: 2}
+  - {fileID: 11400000, guid: 54217e16003064a429024cd877562471, type: 2}
+  - {fileID: 11400000, guid: 9a8e41abfe7086a44a46af366369fd1a, type: 2}
+  - {fileID: 11400000, guid: 7bc35b5a96e982e49a74bd9ff46862d3, type: 2}
+  - {fileID: 11400000, guid: 44fd1f722a15f7644be9fc03fa3e576a, type: 2}
+  - {fileID: 11400000, guid: 67ecddcd1036e734a9b85d664ab23276, type: 2}
+  - {fileID: 11400000, guid: 493a0c1dfa5806442aafdea1f1bad834, type: 2}
+  - {fileID: 11400000, guid: 30b269976d36c5e4bafeb81cb43fec6e, type: 2}
+  - {fileID: 11400000, guid: 279225a65d27a7e499037feb3921e1f4, type: 2}
+  - {fileID: 11400000, guid: f576d3769ed51de44884dff831d9c326, type: 2}
   targetObjectID: cam12
   buttonOffset: {x: 0, y: 1.5, z: 0}
   entryCameraMode: 4
@@ -25,13 +45,15 @@ MonoBehaviour:
   autoReturnOnExit: 1
   resumeFromLastAction: 1
   allowRestart: 0
-  hideButtonAfterComplete: 0
+  hideButtonAfterComplete: 1
   prerequisiteSequences:
   - {fileID: 11400000, guid: 226c870c341ed8042b2dc31a50d3d8ed, type: 2}
   - {fileID: 11400000, guid: 83c16260cfc50b047bc9c795c73672e5, type: 2}
   - {fileID: 11400000, guid: 621756ebe7a0e4746a24d36b3e50af42, type: 2}
   - {fileID: 11400000, guid: 54937fc837d0098478d27070f5f3c111, type: 2}
   - {fileID: 11400000, guid: 8c00dddc7d77779429392ffb5375cd83, type: 2}
+  - {fileID: 11400000, guid: e4301d292c76f4b4fb31c20734047064, type: 2}
+  - {fileID: 11400000, guid: 2be12bc95a7601740b9601b3278be0cd, type: 2}
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."
@@ -43,7 +65,7 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
-  spawnButtonAtStart: 1
+  spawnButtonAtStart: 0
   sequenceIcon: {fileID: 0}
   buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
   completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}

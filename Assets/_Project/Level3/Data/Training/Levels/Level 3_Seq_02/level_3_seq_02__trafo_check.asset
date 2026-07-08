@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: Trafo Check
+  m_Name: "Trafo Check"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: Level 3_Seq_02
-  sequenceName: Trafo Check
+  sequenceID: "Level3_Seq_02"
+  sequenceName: "Trafo Check"
   sequenceDescription: 
   instructionText: "Trafo odas\u0131na gidin"
   actions:

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
   m_Name: "p an o 1 A ct 01 C op y 1 C op y"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: pano1_Act_01_Copy 1_Copy
+  actionID: "pano1_Act_01_14"
   actionName: "p an o 1 A ct 01 C op y 1 C op y"
   instructionText: 
   actionType: 4

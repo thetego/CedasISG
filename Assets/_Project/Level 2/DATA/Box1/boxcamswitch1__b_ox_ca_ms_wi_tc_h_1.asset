@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
   m_Name: "b ox Ca mS wi tc h 1"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: boxCamSwitch1
+  actionID: "boxCamSwitch1"
   actionName: "b ox Ca mS wi tc h 1"
   instructionText: 
   actionType: 4

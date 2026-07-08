@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
   m_Name: "o pe nP la te"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: openPlate
+  actionID: "openPlate_2"
   actionName: "o pe nP la te"
   instructionText: 
   actionType: 2

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: Scada islemini yap
+  m_Name: "Scada islemini yap"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: scada
-  actionName: Scada islemini yap
+  actionID: "scada_2"
+  actionName: "Scada islemini yap"
   instructionText: "SCADA operat\xF6r\xFCne \xE7al\u0131\u015Fma sonucunu bildirin."
   actionType: 5
   prerequisiteActionIDs:

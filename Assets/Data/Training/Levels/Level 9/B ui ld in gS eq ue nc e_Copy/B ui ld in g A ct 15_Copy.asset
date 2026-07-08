@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: B ui ld in g A ct 15_Copy
+  m_Name: "B ui ld in G A ct 15 Copy"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: B ui ld in g A ct 15_Copy
-  actionName: B ui ld in g A ct 15_Copy
+  actionID: "BuildingAct15_2"
+  actionName: "B ui ld in G A ct 15 Copy"
   instructionText: 
   actionType: 4
   prerequisiteActionIDs: []

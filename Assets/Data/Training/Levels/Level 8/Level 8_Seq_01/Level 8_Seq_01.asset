@@ -10,23 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: Level 8_Seq_01
+  m_Name: Level 8 Seq 01
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: Level 8_Seq_01
-  sequenceName: Level 8_Seq_01
+  sequenceID: Level8_Seq_01
+  sequenceName: Level 8 Seq 01
   sequenceDescription: 
+  instructionText: 
   actions:
   - {fileID: 11400000, guid: 5f94542f67945124d9e930c6a6cdaeea, type: 2}
   - {fileID: 11400000, guid: f5bf1bd6e7270a04c861a2cd1c2e2de1, type: 2}
   - {fileID: 11400000, guid: e88f5c2d2dad79c42866ced7ee8aee79, type: 2}
   - {fileID: 11400000, guid: 68315418f6039974b8a850ed5119a28b, type: 2}
   - {fileID: 11400000, guid: c1fbef3545291a54c8585036a2d6fbf0, type: 2}
-  - {fileID: 11400000, guid: 53077dcf43a645441948300b57a673ed, type: 2}
-  - {fileID: 11400000, guid: ccd7403a86c65384ab90e40d0437ed2b, type: 2}
+  - {fileID: 11400000, guid: f417d18c4cf82e3409640f9a0ade5e65, type: 2}
+  - {fileID: 11400000, guid: 4b5f59722060d644fbe258d02cb39c6a, type: 2}
+  - {fileID: 11400000, guid: dc50e15898af8d946a267c67e8c5ac8c, type: 2}
   - {fileID: 11400000, guid: 9ff947f8c5e24304d928fa5b07e48a86, type: 2}
   - {fileID: 11400000, guid: 0b4c6809fe210c1429d041462e5eb5f1, type: 2}
   - {fileID: 11400000, guid: 8640e05a37d7bf44eb77ffd89b698aaa, type: 2}
   - {fileID: 11400000, guid: 40515ccd0434a0848820f2f517b1fff9, type: 2}
+  - {fileID: 11400000, guid: 53077dcf43a645441948300b57a673ed, type: 2}
+  - {fileID: 11400000, guid: ccd7403a86c65384ab90e40d0437ed2b, type: 2}
   - {fileID: 11400000, guid: b65b11273fe14ea40b7a8409e773b981, type: 2}
   - {fileID: 11400000, guid: 488c8ecd59f31664eb79bab577d85cf1, type: 2}
   - {fileID: 11400000, guid: d49c9c9d7280c2049a81fd07cffb4838, type: 2}
@@ -44,8 +48,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d3ca8dc687ac054fb513b4e4d562f0a, type: 2}
   - {fileID: 11400000, guid: a29868380d554a3458f5ff0e5fb14e42, type: 2}
   - {fileID: 11400000, guid: f44c3e5e8a68f6648af16017e4bb4c81, type: 2}
+  - {fileID: 11400000, guid: ee309d23aaf6e1447baa757a47eb674b, type: 2}
   - {fileID: 11400000, guid: 8412bf52ee709ba4b86d096fdb37fb62, type: 2}
   - {fileID: 11400000, guid: cc982934f9bce3641b9a04ede65aa52d, type: 2}
+  - {fileID: 11400000, guid: 7b79d37b0690dad44b93685e649c0aa2, type: 2}
+  - {fileID: 11400000, guid: f9d2532a593f47d438d29da09d7874e3, type: 2}
   targetObjectID: A1
   buttonOffset: {x: 0, y: 1.5, z: 0}
   entryCameraMode: 4

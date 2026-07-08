@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: E qu ip me nt A ct 01
+  m_Name: "E qu ip me nt A ct 01"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: Equipment_Act_01
-  actionName: E qu ip me nt A ct 01
+  actionID: "Equipment_Act_01_2"
+  actionName: "E qu ip me nt A ct 01"
   instructionText: "\u0130SG ekipmanlar\u0131n\u0131z\u0131 giyin"
   actionType: 0
   prerequisiteActionIDs: []

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: s ca da
+  m_Name: "s ca da"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: scada
-  sequenceName: s ca da
+  sequenceID: "scada"
+  sequenceName: "s ca da"
   sequenceDescription: 
   instructionText: "SCADA operat\xF6r\xFCne \xE7al\u0131\u015Fma sonucunu bildirin."
   actions:

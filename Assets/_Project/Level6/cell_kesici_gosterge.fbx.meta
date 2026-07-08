@@ -13,7 +13,7 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: RTEFref
-    second: {fileID: 2800000, guid: b30db983a9e8fd742a0c05c5a6f230c9, type: 3}
+    second: {fileID: 2800000, guid: 6ad027cf6f85a8d46a5a17c9b773eeeb, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

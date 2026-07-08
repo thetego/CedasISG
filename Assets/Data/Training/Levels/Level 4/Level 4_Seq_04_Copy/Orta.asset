@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: Orta
+  m_Name: "Orta"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: Level 4_Seq_04_Copy
-  sequenceName: Orta
+  sequenceID: "Level4_Seq_04_2"
+  sequenceName: "Orta"
   sequenceDescription: 
   actions:
   - {fileID: 11400000, guid: 5b97d7c05ae39cc4bab94c7167d20e7d, type: 2}

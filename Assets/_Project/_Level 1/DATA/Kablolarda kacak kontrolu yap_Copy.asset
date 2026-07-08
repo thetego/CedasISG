@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: Kablolarda kacak kontrolu yap_Copy
+  m_Name: "Kablolarda kacak kontrolu yap"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: Kablolarda kacak kontrolu yap_Copy
-  actionName: Kablolarda kacak kontrolu yap_Copy
+  actionID: "Kablolardakacakkontroluyap"
+  actionName: "Kablolarda kacak kontrolu yap"
   instructionText: "Faz kalemi ile kablolarda gerilim kontrol\xFC yap\u0131n"
   actionType: 2
   prerequisiteActionIDs: []

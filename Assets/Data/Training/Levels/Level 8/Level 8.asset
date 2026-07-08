@@ -15,6 +15,7 @@ MonoBehaviour:
   levelID: NewLevel
   levelName: Level 8
   levelDescription: 
+  sequenceSelectionInstructionText: "Bir sekans se\xE7in"
   sequences:
   - {fileID: 11400000, guid: c32282a15c9b86c4d9474a0ddf1dc4de, type: 2}
   - {fileID: 11400000, guid: 15de2bb22986b924796db9bb8cae2684, type: 2}

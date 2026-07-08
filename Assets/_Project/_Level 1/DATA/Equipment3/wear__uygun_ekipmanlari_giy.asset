@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
   m_Name: "Uygun ekipmanlari giy"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: wear
+  actionID: "wear_2"
   actionName: "Uygun ekipmanlari giy"
   instructionText: "Uygun ekipmanlar\u0131 giy."
   actionType: 0

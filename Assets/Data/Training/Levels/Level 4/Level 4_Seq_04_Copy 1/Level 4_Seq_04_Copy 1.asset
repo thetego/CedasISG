@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: Level 4_Seq_04_Copy 1
+  m_Name: "Level 4 Seq 04 Copy 1"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: Level 4_Seq_07
-  sequenceName: Level 4_Seq_07
+  sequenceID: "Level4_Seq_07"
+  sequenceName: "Level 4 Seq 04 Copy 1"
   sequenceDescription: 
   actions:
   - {fileID: 11400000, guid: f1fda854339a3534ba3729c0fc34d9dc, type: 2}

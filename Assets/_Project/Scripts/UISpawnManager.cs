@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Collections;
 
+using Michsky.MUIP;
+
 namespace SafetyTraining
 {
 	/// <summary>
@@ -247,6 +249,20 @@ namespace SafetyTraining
 				}
 			}
 
+			if (action.actionType == ActionType.ModalWindow &&
+				_spawnedButtons.TryGetValue(action.actionID, out GameObject modalObj) &&
+				modalObj != null)
+			{
+				ModalWindowManager modal = modalObj.GetComponent<ModalWindowManager>();
+				if (modal != null)
+				{
+					modal.Close();
+				}
+
+				Destroy(modalObj);
+				_spawnedButtons.Remove(action.actionID);
+			}
+
 			// Ekipman panelini kapat (WearEquipment için)
 			if (action.actionType == ActionType.WearEquipment && equipmentPanel != null)
 				equipmentPanel.SetActive(false);
@@ -287,6 +303,10 @@ namespace SafetyTraining
 				case ActionType.Quiz:
 					GameObject quizPanel = SpawnQuizPanel(action);
 					if (quizPanel != null) uiElements.Add(quizPanel);
+					break;
+
+				case ActionType.ModalWindow:
+					SpawnModalWindow(action);
 					break;
 
 				case ActionType.Survey:
@@ -623,6 +643,71 @@ namespace SafetyTraining
 				Debug.Log($"<color=lime>[UISpawnManager] ✓ Quiz panel spawned: {panelObj.name}</color>");
 
 			return panelObj;
+		}
+
+		private GameObject SpawnModalWindow(ActionData action)
+		{
+			GameObject prefab = action.modalWindowPrefab != null ? action.modalWindowPrefab : action.interactionPanelPrefab;
+			if (prefab == null)
+			{
+				Debug.LogError($"[UISpawnManager] modalWindowPrefab null for action '{action.actionID}'!");
+				return null;
+			}
+
+			Canvas canvas = worldButtonContainer?.GetComponentInParent<Canvas>();
+			if (canvas == null)
+			{
+				Debug.LogError("[UISpawnManager] Canvas not found!");
+				return null;
+			}
+
+			GameObject modalObj = Instantiate(prefab, canvas.transform);
+			ModalWindowManager modal = modalObj.GetComponent<ModalWindowManager>();
+			if (modal == null)
+			{
+				Debug.LogWarning($"[UISpawnManager] ModalWindowManager component missing on '{modalObj.name}'!");
+				return null;
+			}
+
+			string title = string.IsNullOrWhiteSpace(action.modalWindowTitle)
+				? action.actionName
+				: action.modalWindowTitle;
+			string description = string.IsNullOrWhiteSpace(action.modalWindowDescription)
+				? action.instructionText
+				: action.modalWindowDescription;
+
+			modal.useCustomContent = false;
+			modal.titleText = title;
+			modal.descriptionText = description;
+			modal.showCancelButton = false;
+			modal.showConfirmButton = true;
+
+			if (modal.confirmButton != null)
+			{
+				modal.confirmButton.buttonText = string.IsNullOrWhiteSpace(action.modalConfirmButtonText)
+					? "Tamam"
+					: action.modalConfirmButtonText;
+				modal.confirmButton.UpdateUI();
+			}
+
+			modal.UpdateUI();
+			modal.onConfirm.AddListener(() =>
+			{
+				if (SequenceManager.Instance != null)
+				{
+					SequenceManager.Instance.OnActionCompleted(action.actionID);
+				}
+			});
+
+			modal.Open();
+
+			modalObj.name = $"ModalWindow_{action.actionID}";
+			_spawnedButtons[action.actionID] = modalObj;
+
+			if (debugMode)
+				Debug.Log($"<color=lime>[UISpawnManager] ✓ Modal window spawned: {modalObj.name}</color>");
+
+			return modalObj;
 		}
 
 		// ═══════════════════════════════════════════════════════

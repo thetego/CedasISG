@@ -14,6 +14,7 @@ namespace SafetyTraining
 		PanelInteraction,// Panel aç → Panel içinde buton tıkla → Action tamamlanır
 		Quiz,            // Soru + 4 seçenek → Doğru → tamamlandı, Yanlış → game over
 		Survey,          // Dropdown sorular + fotoğraf çekme → analytics
+		ModalWindow,     // Modal pencere aç → confirm ile kapat → devam et
 		Fade             // Tam ekran fade in/out efekti oynatır
 	}
 
@@ -144,6 +145,23 @@ namespace SafetyTraining
 		[Header("━━━ SURVEY ━━━")]
 		[Tooltip("Dropdown anket, fotoğraf çekme ve analytics verisi")]
 		public SurveyActionData surveyData;
+
+		// ───────────────────────────────────────
+		// Modal Window
+		// ───────────────────────────────────────
+		[Header("━━━ MODAL WINDOW ━━━")]
+		[Tooltip("Açılacak modal window prefab'ı (ModalWindowManager içermeli)")]
+		public GameObject modalWindowPrefab;
+
+		[Tooltip("Modal başlığı")]
+		public string modalWindowTitle;
+
+		[Tooltip("Modal açıklaması")]
+		[TextArea(2, 5)]
+		public string modalWindowDescription;
+
+		[Tooltip("Confirm butonu metni")]
+		public string modalConfirmButtonText = "Tamam";
 
 		// ───────────────────────────────────────
 		// Tablet

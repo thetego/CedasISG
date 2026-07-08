@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
   m_Name: "s ig or ta"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: sigorta
+  actionID: "sigorta_2"
   actionName: "s ig or ta"
   instructionText: 
   actionType: 2

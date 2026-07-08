@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: Kosk kapisini kapat
+  m_Name: "Kosk kapisini kapat"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: openDoor
-  actionName: Kosk kapisini kapat
+  actionID: "openDoor_2"
+  actionName: "Kosk kapisini kapat"
   instructionText: "Trafo merkezinin kap\u0131s\u0131n\u0131 kapat\u0131n."
   actionType: 3
   prerequisiteActionIDs: []

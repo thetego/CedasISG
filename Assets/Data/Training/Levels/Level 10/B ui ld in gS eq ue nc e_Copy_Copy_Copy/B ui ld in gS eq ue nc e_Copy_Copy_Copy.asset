@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: B ui ld in gS eq ue nc e_Copy_Copy_Copy
+  m_Name: B ui ld in gS eq ue nc e
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: B ui ld in gS eq ue nc e_Copy_Copy_Copy
-  sequenceName: B ui ld in gS eq ue nc e_Copy_Copy_Copy
+  sequenceID: BuildingSequence_3
+  sequenceName: B ui ld in gS eq ue nc e
   sequenceDescription: 
+  instructionText: 
   actions:
   - {fileID: 11400000, guid: 27d05beb57f032c489f594240297d24d, type: 2}
   - {fileID: 11400000, guid: c7f291628c51b6f438e56d756c6e0437, type: 2}
@@ -22,6 +23,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7e7113026db2224419dd44558c127648, type: 2}
   - {fileID: 11400000, guid: 5a370eb615054884b923060c85cad380, type: 2}
   - {fileID: 11400000, guid: 7a1d24a8a7aab3f45b85f335e09133e8, type: 2}
+  - {fileID: 11400000, guid: 46564b7d2716d204d87e18f65bc27fd2, type: 2}
   targetObjectID: kosk1
   buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4

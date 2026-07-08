@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: B ui ld in gS eq ue nc e_Copy
+  m_Name: seq2
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: B ui ld in gS eq ue nc e_Copy
-  sequenceName: B ui ld in gS eq ue nc e_Copy
+  sequenceID: seq2
+  sequenceName: seq2
   sequenceDescription: 
+  instructionText: 
   actions:
   - {fileID: 11400000, guid: 287af7314fe1707488f8c4b3b0162298, type: 2}
   - {fileID: 11400000, guid: 4bf7f74465d4e9d4ba245bfd583ca631, type: 2}
@@ -23,6 +24,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6320a88227086f442b860506d5f0e300, type: 2}
   - {fileID: 11400000, guid: 570f82ab4a3669b4baae63a3ba145663, type: 2}
   - {fileID: 11400000, guid: 55b162573c753834cacfabcfc8748c7a, type: 2}
+  - {fileID: 11400000, guid: 09d0c02e54edcf243a9dc85f14f4d95e, type: 2}
   - {fileID: 11400000, guid: 4527ef9355717ce4f8634e33ac5ec6ee, type: 2}
   - {fileID: 11400000, guid: 519c67443e6ac0548bfe6570ba455bf1, type: 2}
   - {fileID: 11400000, guid: acf14903214c3d448adcadd72d4add50, type: 2}
@@ -40,6 +42,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4ec43559b35095542b3fe111af4ca880, type: 2}
   - {fileID: 11400000, guid: 289015ab74470394da5fbb8ea6a09308, type: 2}
   - {fileID: 11400000, guid: 0a183a22307c5db498caddd7c7a40670, type: 2}
+  - {fileID: 11400000, guid: 8c77160bbcf43f94cb52570f8bc258bf, type: 2}
   targetObjectID: kosk1
   buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4
@@ -62,7 +65,7 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
-  spawnButtonAtStart: 1
+  spawnButtonAtStart: 0
   sequenceIcon: {fileID: 0}
   buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
   completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}

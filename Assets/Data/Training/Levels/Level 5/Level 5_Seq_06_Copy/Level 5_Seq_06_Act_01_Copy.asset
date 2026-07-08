@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: Level 5_Seq_06_Act_01_Copy
+  m_Name: seq7_act1
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: Level 5_Seq_06_Act_01_Copy
-  actionName: Level 5_Seq_06_Act_01_Copy
+  actionID: seq7_act1
+  actionName: seq7_act1
   instructionText: 
   actionType: 2
   prerequisiteActionIDs: []
@@ -25,7 +25,7 @@ MonoBehaviour:
   cameraMode: 0
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  targetObjectID: D1
+  targetObjectID: A10
   requiredEquipments: []
   distractorEquipments: []
   requiredTools:
@@ -38,7 +38,7 @@ MonoBehaviour:
   toolDropMappings:
   - uniqueID: spr
     toolID: Sprey
-    dropTargetObjectID: D1
+    dropTargetObjectID: A10
     onDropEventID: 
   dropZoneSize: {x: 120, y: 120}
   toolDropMode: 0

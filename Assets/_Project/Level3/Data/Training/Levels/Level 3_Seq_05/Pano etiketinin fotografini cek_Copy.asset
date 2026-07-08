@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: Pano etiketinin fotografini cek_Copy
+  m_Name: "Pano etiketinin fotografini cek"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: Pano etiketinin fotografini cek_Copy
-  actionName: Pano etiketinin fotografini cek_Copy
+  actionID: "Panoetiketininfotografinicek"
+  actionName: "Pano etiketinin fotografini cek"
   instructionText: "\u0130ndikat\xF6r\xFC kontrol edin ve kontrol formunu doldurun"
   actionType: 4
   prerequisiteActionIDs: []

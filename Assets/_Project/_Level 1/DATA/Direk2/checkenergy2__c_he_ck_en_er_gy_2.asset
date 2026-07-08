@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
   m_Name: "c he ck En er gy 2"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: checkEnergy2
+  actionID: "checkEnergy2"
   actionName: "c he ck En er gy 2"
   instructionText: 
   actionType: 2

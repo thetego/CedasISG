@@ -1312,6 +1312,15 @@ namespace SafetyTraining
 					sb.AppendLine($"| Foto Slotu | {a.surveyData.photoSlotCount} |");
 					break;
 
+				case ActionType.ModalWindow:
+					if (!string.IsNullOrEmpty(a.modalWindowTitle))
+						sb.AppendLine($"| Modal Başlık | {EscapeMd(a.modalWindowTitle)} |");
+					if (!string.IsNullOrEmpty(a.modalWindowDescription))
+						sb.AppendLine($"| Modal Açıklama | {EscapeMd(a.modalWindowDescription)} |");
+					if (!string.IsNullOrEmpty(a.modalConfirmButtonText))
+						sb.AppendLine($"| Modal Buton | {EscapeMd(a.modalConfirmButtonText)} |");
+					break;
+
 				case ActionType.CameraMove:
 					if (!string.IsNullOrEmpty(a.virtualCameraID))
 						sb.AppendLine($"| Kamera | `{EscapeMd(a.virtualCameraID)}` |");
@@ -1460,6 +1469,15 @@ namespace SafetyTraining
 							sb.AppendLine($"**Soru Sayısı:** {action.surveyData.questions.Count}  ");
 						sb.AppendLine($"**Fotoğraf Slotu:** {action.surveyData.photoSlotCount}  ");
 					}
+					break;
+
+				case ActionType.ModalWindow:
+					if (!string.IsNullOrEmpty(action.modalWindowTitle))
+						sb.AppendLine($"**Modal Başlığı:** {action.modalWindowTitle}  ");
+					if (!string.IsNullOrEmpty(action.modalWindowDescription))
+						sb.AppendLine($"**Modal Açıklama:** {action.modalWindowDescription}  ");
+					if (!string.IsNullOrEmpty(action.modalConfirmButtonText))
+						sb.AppendLine($"**Buton Metni:** {action.modalConfirmButtonText}  ");
 					break;
 			}
 
@@ -1742,6 +1760,7 @@ namespace SafetyTraining
 			ActionType.DragToWorld => new Color(0.40f, 0.20f, 0.55f),
 			ActionType.Click => new Color(0.20f, 0.45f, 0.20f),
 			ActionType.CameraMove => new Color(0.50f, 0.45f, 0.10f),
+			ActionType.ModalWindow => new Color(0.52f, 0.33f, 0.12f),
 			ActionType.PanelInteraction => new Color(0.20f, 0.35f, 0.55f),
 			ActionType.Quiz => new Color(0.55f, 0.20f, 0.35f),
 			ActionType.Survey => new Color(0.20f, 0.45f, 0.45f),

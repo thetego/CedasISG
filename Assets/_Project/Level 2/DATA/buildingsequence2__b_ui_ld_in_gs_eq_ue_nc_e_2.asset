@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
   m_Name: "B ui ld in gS eq ue nc e 2"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: BuildingSequence2
+  sequenceID: "BuildingSequence2"
   sequenceName: "B ui ld in gS eq ue nc e 2"
   sequenceDescription: 
   actions:

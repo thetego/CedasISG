@@ -43,6 +43,7 @@ namespace SafetyTraining
 			if (action.actionType != ActionType.Quiz &&
 				action.actionType != ActionType.PanelInteraction &&
 				action.actionType != ActionType.Survey &&
+				action.actionType != ActionType.ModalWindow &&
 				action.actionType != ActionType.Fade)
 			{
 				DrawSection("TARGET OBJECT", () =>
@@ -98,6 +99,16 @@ namespace SafetyTraining
 							serializedObject.FindProperty("interactionPanelPrefab"),
 							new GUIContent("Survey Panel Prefab"));
 						EditorGUILayout.PropertyField(serializedObject.FindProperty("surveyData"), true);
+					});
+					break;
+
+				case ActionType.ModalWindow:
+					DrawSection("MODAL WINDOW", () =>
+					{
+						EditorGUILayout.PropertyField(serializedObject.FindProperty("modalWindowPrefab"));
+						EditorGUILayout.PropertyField(serializedObject.FindProperty("modalWindowTitle"));
+						EditorGUILayout.PropertyField(serializedObject.FindProperty("modalWindowDescription"));
+						EditorGUILayout.PropertyField(serializedObject.FindProperty("modalConfirmButtonText"));
 					});
 					break;
 

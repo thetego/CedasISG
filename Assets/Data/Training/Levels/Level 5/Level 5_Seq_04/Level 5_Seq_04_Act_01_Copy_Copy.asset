@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: Level 5_Seq_04_Act_01_Copy_Copy
+  m_Name: seq4_act5
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: Level 5_Seq_04_Act_01_Copy_Copy
-  actionName: Level 5_Seq_04_Act_01_Copy_Copy
+  actionID: seq4_act5
+  actionName: seq4_act5
   instructionText: 
   actionType: 3
   prerequisiteActionIDs: []

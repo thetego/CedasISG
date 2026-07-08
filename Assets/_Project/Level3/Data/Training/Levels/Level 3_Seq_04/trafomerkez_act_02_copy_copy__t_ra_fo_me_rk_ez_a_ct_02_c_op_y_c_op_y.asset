@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "T ra fo Me rk ez A ct 02 C op y C op y"
+  m_Name: "T ra fo me rk ez A ct 02 C op Y C op Y"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: TrafoMerkez_Act_02_Copy_Copy
-  actionName: "T ra fo Me rk ez A ct 02 C op y C op y"
+  actionID: "TrafoMerkez_Act_02_4"
+  actionName: "T ra fo me rk ez A ct 02 C op Y C op Y"
   instructionText: 
   actionType: 4
   prerequisiteActionIDs: []

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: AG Check_Act_18
+  m_Name: "AG Check Act 18"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: AG Check_Act_18
-  actionName: AG Check_Act_18
+  actionID: "AGCheck_Act_18"
+  actionName: "AG Check Act 18"
   instructionText: 
   actionType: 6
   prerequisiteActionIDs: []

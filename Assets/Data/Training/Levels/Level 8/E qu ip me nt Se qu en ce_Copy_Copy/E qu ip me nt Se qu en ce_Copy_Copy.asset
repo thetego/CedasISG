@@ -10,12 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: E qu ip me nt Se qu en ce_Copy_Copy
+  m_Name: E qu ip me nt Se qu en ce
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: E qu ip me nt Se qu en ce_Copy_Copy
-  sequenceName: E qu ip me nt Se qu en ce_Copy_Copy
+  sequenceID: EquipmentSequence_5
+  sequenceName: E qu ip me nt Se qu en ce
   sequenceDescription: "Uygun ekipmanlar\u0131 giy."
+  instructionText: 
   actions:
+  - {fileID: 11400000, guid: 128dc098506ccf44196d093daf4a600d, type: 2}
+  - {fileID: 11400000, guid: bbfc45ef795c2c249ab2d19477f99fa4, type: 2}
   - {fileID: 11400000, guid: 7707c8b32cd741b4c97ac5c6fca5bb74, type: 2}
   - {fileID: 11400000, guid: e6dda523ced0da948930307c7ac9ba7b, type: 2}
   - {fileID: 11400000, guid: 34c4db145ed1f8b4ba28aac9fa43fa41, type: 2}
