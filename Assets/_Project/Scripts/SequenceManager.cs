@@ -35,6 +35,9 @@ namespace SafetyTraining
 		[Min(0.01f)] public float sequenceFadeDuration = 0.35f;
 		[Min(0f)] public float sequenceFadeHoldDuration = 0.1f;
 
+		[Header("━━━ ACTION TRANSITION ━━━")]
+		[Min(0f)] public float nextActionTransitionDelay = 1f;
+
 		[Header("━━━ DEBUG ━━━")]
 		public bool debugMode = true;
 
@@ -437,7 +440,7 @@ namespace SafetyTraining
 					if (debugMode)
 						Debug.Log($"[SequenceManager] CameraMove will auto-complete after {_currentAction.completionDelay}s");
 
-					StartCoroutine(WaitAndContinueSequence(_currentAction.completionDelay));
+					ScheduleAdvanceToNextAction(_currentAction.completionDelay);
 				}
 				else
 				{
@@ -527,11 +530,7 @@ namespace SafetyTraining
 				return;
 			}
 
-			// Delay varsa bekle
-			if (_currentAction.completionDelay > 0)
-				StartCoroutine(WaitAndContinueSequence(_currentAction.completionDelay));
-			else
-				MoveToNextActionInSequence();
+			ScheduleAdvanceToNextAction(_currentAction.completionDelay);
 		}
 
 		/// <summary>
@@ -572,12 +571,13 @@ namespace SafetyTraining
 				// Henüz devam eden action'lar var — akışı devam ettir
 				if (debugMode)
 					Debug.Log("[SequenceManager] Survey tamamlandı, sekans devam ediyor.");
-				StartNextActionInSequence();
+				ScheduleAdvanceToNextAction();
 			}
 		}
 
 		/// <summary>
-		/// Quiz yanlış cevaplandığında çağrılır — analytics kaydeder, UI kapatır, game over gösterir.
+		/// Quiz yanlış cevaplandığında çağrılır.
+		/// Bu akış artık oyun bitirmez; yalnızca hata sayısını artırır.
 		/// </summary>
 		public void OnQuizFailed(string actionID)
 		{
@@ -591,16 +591,17 @@ namespace SafetyTraining
 			PlayAnimations(_currentAction, AnimationTiming.OnFail);
 			_currentAction.onActionFail?.Invoke();
 			TriggerSceneEvents(_currentAction.onFailEventIDs);
-			UISpawnManager.Instance?.DeactivateAction(_currentAction);
-
-			string msg = _currentAction.quizData?.wrongFeedbackText ?? "Yanlış cevap!";
-			ShowGameOver(msg);
 		}
 
 		private System.Collections.IEnumerator WaitAndContinueSequence(float delay)
 		{
 			yield return new WaitForSeconds(delay);
 			MoveToNextActionInSequence();
+		}
+
+		private void ScheduleAdvanceToNextAction(float delay = 0f)
+		{
+			StartCoroutine(WaitAndContinueSequence(delay + nextActionTransitionDelay));
 		}
 
 		private IEnumerator PlayFadeActionAndComplete(string actionID)
@@ -785,7 +786,7 @@ namespace SafetyTraining
 					break;
 
 				case PrerequisiteFailAction.GameOver:
-					ShowGameOver(sequence.prerequisiteFailMessage);
+					ShowWarning(sequence.prerequisiteFailMessage);
 					break;
 			}
 		}

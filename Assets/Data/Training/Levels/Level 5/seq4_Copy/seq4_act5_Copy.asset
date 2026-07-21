@@ -51,11 +51,15 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0
   animationTriggers:
-  - animatorObjectID: an8
+  - animatorObjectID: an9
     triggerName: Seperate2
     parameterType: 0
     parameterValue: 0

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "B ui ld in G C op Y"
+  m_Name: B ui ld in G C op Y
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: "Building"
-  sequenceName: "B ui ld in G C op Y"
+  sequenceID: Building
+  sequenceName: B ui ld in G C op Y
   sequenceDescription: "H\xFCcre kapa\u011F\u0131n\u0131 kapat\u0131n"
   instructionText: "H\xFCcre kapa\u011F\u0131n\u0131 kapat\u0131n"
   actions:
@@ -24,6 +24,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b674d19faae078b4bbbe348bb7992b1c, type: 2}
   - {fileID: 11400000, guid: db07ce7fa04ba2d4c8bcbbcdaf8c651f, type: 2}
   - {fileID: 11400000, guid: c896c9bb9aa5d094d8bbe71554b6da38, type: 2}
+  - {fileID: 11400000, guid: d35510a25da1d7c4fad613d771c3c33e, type: 2}
   - {fileID: 11400000, guid: 58143145de5932742b1a33ec0a56e0ea, type: 2}
   - {fileID: 11400000, guid: 24e93b38b337bda48ad4c23d500afc00, type: 2}
   targetObjectID: kosk1
@@ -39,7 +40,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f03acee37abe2ce40b010f233660c612, type: 2}
   - {fileID: 11400000, guid: 0413432aab8826e439292736b4849377, type: 2}
   - {fileID: 11400000, guid: ca3a750534fa6034e910370f12bbcfaa, type: 2}
-  - {fileID: 11400000, guid: 1060d50668e5b3745bec77dc664d0d86, type: 2}
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."

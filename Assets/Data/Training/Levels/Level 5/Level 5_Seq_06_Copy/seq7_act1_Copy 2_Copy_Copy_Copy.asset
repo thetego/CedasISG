@@ -39,7 +39,7 @@ MonoBehaviour:
   - uniqueID: swp
     toolID: Sweeper
     dropTargetObjectID: D6
-    onDropEventID: 
+    onDropEventID: toz4
   dropZoneSize: {x: 120, y: 120}
   toolDropMode: 0
   interactionPanelPrefab: {fileID: 0}
@@ -60,6 +60,10 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0

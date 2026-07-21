@@ -9,7 +9,7 @@ namespace SafetyTraining
 	/// Quiz action tipi için panel.
 	/// Soru ve 4 seçenek gösterir.
 	/// Doğru → action tamamlanır.
-	/// Yanlış → feedback gösterilir, game over tetiklenir.
+	/// Yanlış → feedback gösterilir, aynı soruyu tekrar denemeye izin verilir.
 	/// </summary>
 	public class UIQuizPanel : MonoBehaviour
 	{
@@ -167,7 +167,7 @@ namespace SafetyTraining
 			else
 			{
 				ShowFeedback(_wrongFeedback, correct: false);
-				StartCoroutine(GameOverAfterDelay());
+				StartCoroutine(RetryAfterDelay());
 			}
 
 			if (debugMode)
@@ -207,17 +207,18 @@ namespace SafetyTraining
 				Debug.LogWarning("[UIQuizPanel] SequenceManager.Instance is null!");
 		}
 
-		private IEnumerator GameOverAfterDelay()
+		private IEnumerator RetryAfterDelay()
 		{
 			yield return new WaitForSeconds(feedbackDuration);
 
-			ClosePanel();
+			if (feedbackPanel != null)
+				feedbackPanel.SetActive(false);
 
-			// SequenceManager'a game over bildir
-			if (SequenceManager.Instance != null)
-				SequenceManager.Instance.OnQuizFailed(_actionID);
-			else
-				Debug.LogWarning("[UIQuizPanel] SequenceManager.Instance is null!");
+			ResetButtonsForRetry();
+			_answered = false;
+
+			if (debugMode)
+				Debug.Log("[UIQuizPanel] Wrong answer -> retry enabled.");
 		}
 
 		// ═══════════════════════════════════════════════════════
@@ -242,6 +243,19 @@ namespace SafetyTraining
 			Image img = btn.GetComponent<Image>();
 			if (img != null)
 				img.color = color;
+		}
+
+		private void ResetButtonsForRetry()
+		{
+			if (optionButtons == null) return;
+
+			for (int i = 0; i < optionButtons.Length; i++)
+			{
+				if (optionButtons[i] == null) continue;
+
+				optionButtons[i].interactable = true;
+				SetButtonColor(optionButtons[i], normalColor);
+			}
 		}
 
 		public void ClosePanel()

@@ -53,7 +53,7 @@ MonoBehaviour:
     photoSlots: []
   modalWindowPrefab: {fileID: 930402915097254361, guid: 25cd68a4db4c24f48b2788d563c43eeb, type: 3}
   modalWindowTitle: Bilgi
-  modalWindowDescription: "Kablolar Demonte Edilir Ve Di\u011Fer Fazlara Ge\xE7ilir."
+  modalWindowDescription: "Di\u011Fer Fazlara Ge\xE7ilir."
   modalConfirmButtonText: Tamam
   activatesTablet: 0
   deactivatesTablet: 0

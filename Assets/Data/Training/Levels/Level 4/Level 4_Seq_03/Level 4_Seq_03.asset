@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "Level 4 Seq 03"
+  m_Name: Level 4 Seq 03
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: "Level4_Seq_03"
-  sequenceName: "Level 4 Seq 03"
+  sequenceID: Level4_Seq_03
+  sequenceName: Level 4 Seq 03
   sequenceDescription: 
+  instructionText: 
   actions:
   - {fileID: 11400000, guid: 3d6beacd43c38a84da0a5282697d2831, type: 2}
   - {fileID: 11400000, guid: e7b263a1f22b40640bca567dfd5e3374, type: 2}

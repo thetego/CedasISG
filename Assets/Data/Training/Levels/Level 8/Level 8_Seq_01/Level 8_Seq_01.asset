@@ -41,6 +41,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f18aca270a91a19408681477e9738ba3, type: 2}
   - {fileID: 11400000, guid: 1f5935d1f31b89b4daa70329c95703da, type: 2}
   - {fileID: 11400000, guid: 554401c11aaecf7459e6dcd7eddd648c, type: 2}
+  - {fileID: 11400000, guid: 369f56e819038454a8924016ef880650, type: 2}
   - {fileID: 11400000, guid: 5d83ef6f46a71034f806223f10f18928, type: 2}
   - {fileID: 11400000, guid: e055a895a11c5c94892488e4f7045ad8, type: 2}
   - {fileID: 11400000, guid: 471da693f32805340b3050502c3659fd, type: 2}
@@ -52,7 +53,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8412bf52ee709ba4b86d096fdb37fb62, type: 2}
   - {fileID: 11400000, guid: cc982934f9bce3641b9a04ede65aa52d, type: 2}
   - {fileID: 11400000, guid: 7b79d37b0690dad44b93685e649c0aa2, type: 2}
+  - {fileID: 11400000, guid: faf63e39b45d7a149bb05d99c3c37c6b, type: 2}
+  - {fileID: 11400000, guid: 587aa93a20b742647b75ae1f1e4c60e5, type: 2}
   - {fileID: 11400000, guid: f9d2532a593f47d438d29da09d7874e3, type: 2}
+  - {fileID: 11400000, guid: 066dd5515339ee948b4cb58e90ce2a64, type: 2}
   targetObjectID: A1
   buttonOffset: {x: 0, y: 1.5, z: 0}
   entryCameraMode: 4

@@ -10,16 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "Orta"
+  m_Name: Orta
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: "Level4_Seq_04_2"
-  sequenceName: "Orta"
+  sequenceID: Level4_Seq_04_2
+  sequenceName: Orta
   sequenceDescription: 
+  instructionText: 
   actions:
   - {fileID: 11400000, guid: 5b97d7c05ae39cc4bab94c7167d20e7d, type: 2}
   - {fileID: 11400000, guid: d3dc51a03e062ad48b9cfcdeea3d89c6, type: 2}
   - {fileID: 11400000, guid: 96bb2d0f5c022a441ba400e9bf84751d, type: 2}
   - {fileID: 11400000, guid: 50dc055c9720e144690be4cd06929a24, type: 2}
+  - {fileID: 11400000, guid: fb8c0b7158fce914bbd4630948b419a1, type: 2}
+  - {fileID: 11400000, guid: aa32ff984b29a5448b1f5a6f779ccbdc, type: 2}
+  - {fileID: 11400000, guid: 61be1ec2c31da7341ba4480f383ab879, type: 2}
+  - {fileID: 11400000, guid: 6757beab8e708bb41aecd9f53ad737b6, type: 2}
+  - {fileID: 11400000, guid: 8944d5f7de7e4df48a6fcd70483ca04b, type: 2}
+  - {fileID: 11400000, guid: 481237775bb4b7c4ba4f725d5e819a3f, type: 2}
+  - {fileID: 11400000, guid: f80818d23dad58842a6f83268717b81c, type: 2}
   - {fileID: 11400000, guid: 5f4c3d0d0d4e1b548a344ffbffed945d, type: 2}
   - {fileID: 11400000, guid: 1f01e4d012bcc674097e84c35df7f146, type: 2}
   - {fileID: 11400000, guid: 37622313690e0ed408d00488ade217bb, type: 2}

@@ -19,6 +19,7 @@ MonoBehaviour:
   actions:
   - {fileID: 11400000, guid: 541e5d4e3b115cd45a2f16a56b521d9d, type: 2}
   - {fileID: 11400000, guid: 5fc4008a263e9f34bb1eccb63356a556, type: 2}
+  - {fileID: 11400000, guid: 3edac17fbca4004429a2561c1360016b, type: 2}
   - {fileID: 11400000, guid: 9ffb112a852a9fe459d46bacd4d056e9, type: 2}
   - {fileID: 11400000, guid: 5b4fe74cf920be8458af0d287bdd5b20, type: 2}
   - {fileID: 11400000, guid: 061b520c2f6b3ed4faa797224d88bb6d, type: 2}
@@ -59,6 +60,7 @@ MonoBehaviour:
   prerequisiteSequences:
   - {fileID: 11400000, guid: 226c870c341ed8042b2dc31a50d3d8ed, type: 2}
   - {fileID: 11400000, guid: 83c16260cfc50b047bc9c795c73672e5, type: 2}
+  - {fileID: 11400000, guid: 57ca07bea7567a34f81adcc0c16f8510, type: 2}
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."

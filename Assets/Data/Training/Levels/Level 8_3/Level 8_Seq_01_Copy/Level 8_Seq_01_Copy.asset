@@ -15,18 +15,21 @@ MonoBehaviour:
   sequenceID: Level 8_Seq_01_Copy
   sequenceName: Level 8_Seq_01_Copy
   sequenceDescription: 
+  instructionText: 
   actions:
   - {fileID: 11400000, guid: 418adce4e4561da4eb943cdc0e6cccdf, type: 2}
   - {fileID: 11400000, guid: a5ad43b2b3753eb4caf8d3ad9107a898, type: 2}
   - {fileID: 11400000, guid: 498eb650016ee594baeb1323b01eb3f0, type: 2}
   - {fileID: 11400000, guid: f8e92554607df2d4e9c4555f6caeb166, type: 2}
   - {fileID: 11400000, guid: 7f09c8f9fec3efd4e85a96fd0e4e1a22, type: 2}
-  - {fileID: 11400000, guid: ad661b7e159ab1043a0c806095392a2d, type: 2}
-  - {fileID: 11400000, guid: 9e7e3d0ecb2799a4e8e9624e98fb334d, type: 2}
+  - {fileID: 11400000, guid: f7d0ac9692f81ac4481359e7ad69d425, type: 2}
+  - {fileID: 11400000, guid: 4a14b33e1b5f5354399c39f3208de747, type: 2}
   - {fileID: 11400000, guid: c8f9473ba3994344bb421a44dcaf5d76, type: 2}
   - {fileID: 11400000, guid: 5ce90ceae7d62484bbec4d349d6e3623, type: 2}
   - {fileID: 11400000, guid: 32dc74670713eaf42a481adacce48d06, type: 2}
   - {fileID: 11400000, guid: 18de86a7a9cc2514bbaca0727123a490, type: 2}
+  - {fileID: 11400000, guid: ad661b7e159ab1043a0c806095392a2d, type: 2}
+  - {fileID: 11400000, guid: 9e7e3d0ecb2799a4e8e9624e98fb334d, type: 2}
   - {fileID: 11400000, guid: e932e91658da93e469febbf6a96a79b5, type: 2}
   - {fileID: 11400000, guid: 7f13b9e123281fd479876ad8efdaa09e, type: 2}
   - {fileID: 11400000, guid: b34a5edcb0c687e479481a0ae0c9efe8, type: 2}
@@ -67,6 +70,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ee488a49ba4163d498913c60652cf623, type: 2}
   - {fileID: 11400000, guid: 51ca027ed6ddd334e9bf38965b55f9f9, type: 2}
   - {fileID: 11400000, guid: 3109efc8fbfab6a418c6a1059a2cf23f, type: 2}
+  - {fileID: 11400000, guid: 84c8356f06abab040826896fd4a4f303, type: 2}
+  - {fileID: 11400000, guid: 9c3e140ddbe53ef40a93fc96e1354f7e, type: 2}
+  - {fileID: 11400000, guid: 6d5bbaa9d31d0984daf6823b2e77a3e6, type: 2}
+  - {fileID: 11400000, guid: 7d63caae218ccdf458fdad37791abfef, type: 2}
+  - {fileID: 11400000, guid: 57f4f08f92553dc4cbac8df7ad9ffbc3, type: 2}
   targetObjectID: A1
   buttonOffset: {x: 0, y: 1.5, z: 0}
   entryCameraMode: 4
@@ -77,7 +85,7 @@ MonoBehaviour:
   allowRestart: 0
   hideButtonAfterComplete: 0
   prerequisiteSequences:
-  - {fileID: 11400000, guid: c077986eb05aec74d9871ce4dae7d1b0, type: 2}
+  - {fileID: 11400000, guid: 2f30b097a725e0c4ea0f027bcd97e1de, type: 2}
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."

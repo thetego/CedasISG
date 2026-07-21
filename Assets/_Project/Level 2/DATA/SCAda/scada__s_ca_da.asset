@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "s ca da"
+  m_Name: s ca da
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: "scada"
-  sequenceName: "s ca da"
+  sequenceID: scada
+  sequenceName: s ca da
   sequenceDescription: 
   instructionText: "SCADA operat\xF6r\xFCne \xE7al\u0131\u015Fma sonucunu bildirin."
   actions:
@@ -32,6 +32,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f03acee37abe2ce40b010f233660c612, type: 2}
   - {fileID: 11400000, guid: 0413432aab8826e439292736b4849377, type: 2}
   - {fileID: 11400000, guid: ca3a750534fa6034e910370f12bbcfaa, type: 2}
+  - {fileID: 11400000, guid: 6a34b67aa9b8dab4e8ba11608169fff4, type: 2}
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."

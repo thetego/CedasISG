@@ -10,18 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "AG Check"
+  m_Name: AG Check
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: "Level3_Seq_03"
-  sequenceName: "AG Check"
+  sequenceID: Level3_Seq_03
+  sequenceName: AG Check
   sequenceDescription: 
   instructionText: "AG odas\u0131na girin"
   actions:
   - {fileID: 11400000, guid: e05e5ab89834cc64096fbfdaa0b03852, type: 2}
   - {fileID: 11400000, guid: 72ba1471dbb2925418c3f5e02e9c5dc9, type: 2}
+  - {fileID: 11400000, guid: f1ad208696b84154e8772a0d1686b7b6, type: 2}
   - {fileID: 11400000, guid: 9a0a6d9a3d9979f4fb54d6716544aaf9, type: 2}
   - {fileID: 11400000, guid: 7b42da042c36da7489927598f3fbc973, type: 2}
   - {fileID: 11400000, guid: 8e257dd70c1affc4ca5f1d96db8e22b5, type: 2}
+  - {fileID: 11400000, guid: 642bfe4d4e74bcc4382dacda492050e0, type: 2}
   - {fileID: 11400000, guid: 6cbe79138fcd17d4b94f70fe66eb3d89, type: 2}
   - {fileID: 11400000, guid: 28d12ab61b33efe45a15f44dfddf3f85, type: 2}
   - {fileID: 11400000, guid: efa846bc578df6b4ebbd5c908964eb45, type: 2}
@@ -44,10 +46,7 @@ MonoBehaviour:
   resumeFromLastAction: 1
   allowRestart: 0
   hideButtonAfterComplete: 1
-  prerequisiteSequences:
-  - {fileID: 11400000, guid: 50c0b1333e1279b42af9af7114f76912, type: 2}
-  - {fileID: 11400000, guid: 67b089813e549074380f691473682511, type: 2}
-  - {fileID: 11400000, guid: 8cbe788c18ed488418b16d2538b70f9b, type: 2}
+  prerequisiteSequences: []
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "B ui ld in gS eq ue nc e"
+  m_Name: B ui ld in gS eq ue nc e
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: "BuildingSequence"
-  sequenceName: "B ui ld in gS eq ue nc e"
+  sequenceID: BuildingSequence
+  sequenceName: B ui ld in gS eq ue nc e
   sequenceDescription: 
   instructionText: Trafo merkezine girin
   actions:
@@ -26,6 +26,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 68b1ea793d35042478af076c1a0023d9, type: 2}
   - {fileID: 11400000, guid: efc1aed2f6ed8bb4694a0baea4531e74, type: 2}
   - {fileID: 11400000, guid: be52e8200916fa7458dc16c617baa438, type: 2}
+  - {fileID: 11400000, guid: c3e4ff6478463354794c5033efbf100b, type: 2}
   - {fileID: 11400000, guid: 62c1ac5c2ea4d5d42b8fd22f8f389085, type: 2}
   - {fileID: 11400000, guid: acd51873b688558448150db0f21300ff, type: 2}
   - {fileID: 11400000, guid: 75e07c6c78166e749a884811f80ac29d, type: 2}

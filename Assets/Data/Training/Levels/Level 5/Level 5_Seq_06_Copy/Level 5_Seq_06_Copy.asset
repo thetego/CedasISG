@@ -27,10 +27,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c539e673d37465c44af6170c5f8b7de6, type: 2}
   - {fileID: 11400000, guid: c4e310587e98ba64a9b200b046ab2581, type: 2}
   - {fileID: 11400000, guid: ba5004a57171db64bae4100a6b20d7f6, type: 2}
-  - {fileID: 11400000, guid: 145b04b35e8775c4286d45e513c4f839, type: 2}
-  - {fileID: 11400000, guid: 54217e16003064a429024cd877562471, type: 2}
-  - {fileID: 11400000, guid: 9a8e41abfe7086a44a46af366369fd1a, type: 2}
-  - {fileID: 11400000, guid: 7bc35b5a96e982e49a74bd9ff46862d3, type: 2}
   - {fileID: 11400000, guid: 44fd1f722a15f7644be9fc03fa3e576a, type: 2}
   - {fileID: 11400000, guid: 67ecddcd1036e734a9b85d664ab23276, type: 2}
   - {fileID: 11400000, guid: 493a0c1dfa5806442aafdea1f1bad834, type: 2}
@@ -49,9 +45,9 @@ MonoBehaviour:
   prerequisiteSequences:
   - {fileID: 11400000, guid: 226c870c341ed8042b2dc31a50d3d8ed, type: 2}
   - {fileID: 11400000, guid: 83c16260cfc50b047bc9c795c73672e5, type: 2}
+  - {fileID: 11400000, guid: 57ca07bea7567a34f81adcc0c16f8510, type: 2}
   - {fileID: 11400000, guid: 621756ebe7a0e4746a24d36b3e50af42, type: 2}
   - {fileID: 11400000, guid: 54937fc837d0098478d27070f5f3c111, type: 2}
-  - {fileID: 11400000, guid: 8c00dddc7d77779429392ffb5375cd83, type: 2}
   - {fileID: 11400000, guid: e4301d292c76f4b4fb31c20734047064, type: 2}
   - {fileID: 11400000, guid: 2be12bc95a7601740b9601b3278be0cd, type: 2}
   onPrerequisiteFail: 1

@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "Cable 1"
+  m_Name: Cable 1
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: "Level7_Seq_02"
-  sequenceName: "Cable 1"
+  sequenceID: Level7_Seq_02
+  sequenceName: Cable 1
   sequenceDescription: 
+  instructionText: 
   actions:
   - {fileID: 11400000, guid: daf126c7dea5fac4998e937b56ebf947, type: 2}
   - {fileID: 11400000, guid: e67a810c68ecb47478d0b645382b54f4, type: 2}
@@ -65,7 +66,8 @@ MonoBehaviour:
   allowRestart: 0
   hideButtonAfterComplete: 0
   prerequisiteSequences:
-  - {fileID: 11400000, guid: 1d410f71e8f829b42909d968f61a0906, type: 2}
+  - {fileID: 11400000, guid: 08c596a9315f81e4db893949137a4845, type: 2}
+  - {fileID: 11400000, guid: d4eb8d4fc6fcdc14c82fefeef680ef37, type: 2}
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."

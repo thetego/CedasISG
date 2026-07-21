@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: seq2_act13
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: seq2_act13
-  actionName: seq2_act13
+  actionName: seq2_act13-------
   instructionText: 
   actionType: 4
   prerequisiteActionIDs: []
@@ -51,6 +51,10 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0

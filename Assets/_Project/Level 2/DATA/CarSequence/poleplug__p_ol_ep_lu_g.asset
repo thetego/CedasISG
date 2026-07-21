@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "p ol eP lu g"
+  m_Name: p ol eP lu g
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: "polePlug"
-  actionName: "p ol eP lu g"
+  actionID: polePlug
+  actionName: p ol eP lu g
   instructionText: 
   actionType: 3
   prerequisiteActionIDs:
@@ -55,6 +55,10 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0
@@ -74,4 +78,5 @@ MonoBehaviour:
   onStartEventIDs: []
   onCompleteEventIDs:
   - T3
+  - st4
   onFailEventIDs: []

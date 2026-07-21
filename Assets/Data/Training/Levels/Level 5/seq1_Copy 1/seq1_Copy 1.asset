@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
+  m_Name: seq1_Copy 1
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
+  sequenceID: safasd
+  sequenceName: safasd
+  sequenceDescription: "Uygun ekipmanlar\u0131 giy."
+  instructionText: 
+  actions:
+  - {fileID: 11400000, guid: cf0ef70b31acd3b4a97c62aa0e6e62e8, type: 2}
+  targetObjectID: character
+  buttonOffset: {x: 0, y: 1, z: 0}
+  entryCameraMode: 4
+  entryCameraID: camCharacter
+  autoReturnOnComplete: 1
+  autoReturnOnExit: 1
+  resumeFromLastAction: 1
+  allowRestart: 0
+  hideButtonAfterComplete: 1
+  prerequisiteSequences:
+  - {fileID: 11400000, guid: 226c870c341ed8042b2dc31a50d3d8ed, type: 2}
+  - {fileID: 11400000, guid: 83c16260cfc50b047bc9c795c73672e5, type: 2}
+  - {fileID: 11400000, guid: 57ca07bea7567a34f81adcc0c16f8510, type: 2}
+  - {fileID: 11400000, guid: 621756ebe7a0e4746a24d36b3e50af42, type: 2}
+  - {fileID: 11400000, guid: 54937fc837d0098478d27070f5f3c111, type: 2}
+  - {fileID: 11400000, guid: e4301d292c76f4b4fb31c20734047064, type: 2}
+  - {fileID: 11400000, guid: 2be12bc95a7601740b9601b3278be0cd, type: 2}
+  - {fileID: 11400000, guid: d927e72d98d85b84f99a19ec87085cc5, type: 2}
+  onPrerequisiteFail: 1
+  prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
+    tamamlay\u0131n."
+  hasSurvey: 0
+  surveyPanelPrefab: {fileID: 0}
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 0
+    photoSlots: []
+  spawnButtonAtStart: 0
+  sequenceIcon: {fileID: 0}
+  buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
+  completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}
+  onSequenceEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceExit:
+    m_PersistentCalls:
+      m_Calls: []

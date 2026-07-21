@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "Equipment"
+  m_Name: Equipment
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: "Level3_Seq_01"
-  sequenceName: "Equipment"
+  sequenceID: Level3_Seq_01
+  sequenceName: Equipment
   sequenceDescription: 
   instructionText: "\u0130SG ekipmanlar\u0131n\u0131z\u0131 giyin"
   actions:
@@ -28,7 +28,8 @@ MonoBehaviour:
   resumeFromLastAction: 1
   allowRestart: 0
   hideButtonAfterComplete: 1
-  prerequisiteSequences: []
+  prerequisiteSequences:
+  - {fileID: 11400000, guid: 8c0a3b21e8fc5da42b3e92fb26f2ff0f, type: 2}
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."

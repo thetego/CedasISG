@@ -48,7 +48,7 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: trafo_texture
-    second: {fileID: 2800000, guid: d2f40d58cf2cfa54d843c436a8a91cd1, type: 3}
+    second: {fileID: 2800000, guid: 7921e4d94e77d304d94131439dd4fcff, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

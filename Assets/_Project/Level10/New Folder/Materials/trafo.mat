@@ -58,7 +58,7 @@ Material:
         m_Scale: {x: 0, y: 0}
         m_Offset: {x: 0, y: 0}
     - baseColorTexture:
-        m_Texture: {fileID: 5286467676010201148, guid: 7a3fcc59fc7c8b9429fcec0516b06967, type: 3}
+        m_Texture: {fileID: 2800000, guid: b4633f489093a48418cc619867c19d06, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - clearcoatRoughnessTexture:
@@ -167,6 +167,7 @@ Material:
     - _VOLUME_ON: 0
     - _VOLUME_TRANSMISSION: 0
     - _WorkflowMode: 1
+    - _XRMotionVectorsPass: 1
     - _ZTest: 4
     - _ZWrite: 1
     - _ZWriteControl: 0

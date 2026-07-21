@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
+  m_Name: Trafo Check_Copy
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
+  sequenceID: tarfoos
+  sequenceName: tarfoos
+  sequenceDescription: 
+  instructionText: "Trafo odas\u0131na gidin"
+  actions:
+  - {fileID: 11400000, guid: 6bc2a9292688d7a47a6ae977867d4151, type: 2}
+  - {fileID: 11400000, guid: bbe4cb459ce67a04ab179bad77df5fdf, type: 2}
+  - {fileID: 11400000, guid: 755956280e62fce49adab8474fecef01, type: 2}
+  - {fileID: 11400000, guid: c2e231e2e65766b48858eda608627848, type: 2}
+  - {fileID: 11400000, guid: 4047c0b203bbc354ba79a07c87ec04d3, type: 2}
+  - {fileID: 11400000, guid: 84dd4a0832590c340bfab9521fcc199d, type: 2}
+  - {fileID: 11400000, guid: 658b4ea42dcec9d41ada06efe2d93088, type: 2}
+  - {fileID: 11400000, guid: 187f079546031aa41bc22928dc1ea4c8, type: 2}
+  - {fileID: 11400000, guid: 55decd3f15dcc3d4a9b0f24b472638d5, type: 2}
+  - {fileID: 11400000, guid: daf34e7a2b1118a47bbfa260b1364056, type: 2}
+  - {fileID: 11400000, guid: 8d411397f76ecd544afabd5396ed22af, type: 2}
+  - {fileID: 11400000, guid: 20612f6c0cbc2934d8683ecab2dafde6, type: 2}
+  - {fileID: 11400000, guid: 7f14ad320c0643c4ca1ba9629293c4d5, type: 2}
+  - {fileID: 11400000, guid: d8f107fdeaeea954b9502e82c98f779a, type: 2}
+  - {fileID: 11400000, guid: e33573d232bfd1d49a3cb018b1435878, type: 2}
+  - {fileID: 11400000, guid: 51c56755b01e9a4488a102e8f010b562, type: 2}
+  - {fileID: 11400000, guid: 4c5ab1a32cae95b4c99571d2b6b177df, type: 2}
+  - {fileID: 11400000, guid: 64fcb1276f82bcf488fc28bacd132098, type: 2}
+  - {fileID: 11400000, guid: 1e5a899cfefdebe44baa64d4693a16d1, type: 2}
+  - {fileID: 11400000, guid: 91f1248381dc8104b91230c351865bff, type: 2}
+  - {fileID: 11400000, guid: f198b753cec7eff49ae58ee423ee49c7, type: 2}
+  - {fileID: 11400000, guid: c2b91eb60353be542ba5f8f832512326, type: 2}
+  - {fileID: 11400000, guid: 6e0a34d45583d8244a72ab3794eb0049, type: 2}
+  - {fileID: 11400000, guid: 749ef56e3d9ab1247bb9b610b097382d, type: 2}
+  - {fileID: 11400000, guid: 026c0e392ee84e44e985d4ddca8d162e, type: 2}
+  - {fileID: 11400000, guid: c55b9a11eca6d37489851cf77655d68a, type: 2}
+  - {fileID: 11400000, guid: e518271c48d5c924cb2777c4e445bf7a, type: 2}
+  - {fileID: 11400000, guid: 0abe4656c5653784d863fb8383ff1282, type: 2}
+  - {fileID: 11400000, guid: c0dd4bec8bd255047a78185691b3e91d, type: 2}
+  - {fileID: 11400000, guid: 5b0eaab2f591bac449b4cf9af7b45455, type: 2}
+  - {fileID: 11400000, guid: 55912ee9fedb68046ac440775959a7b3, type: 2}
+  - {fileID: 11400000, guid: 14884bc896ab1a64093f4849045f1b5c, type: 2}
+  - {fileID: 11400000, guid: 01e4942a9d4efa24b876476a781e7320, type: 2}
+  - {fileID: 11400000, guid: 83bb3391c987d824dbe694ef054047d4, type: 2}
+  - {fileID: 11400000, guid: 2edaaf0efed00074aaecf082143b8ee8, type: 2}
+  - {fileID: 11400000, guid: 86dc4b2b6b3053c4f86acdbed82331e0, type: 2}
+  - {fileID: 11400000, guid: 80121934c77943e43a26617d2573b7cb, type: 2}
+  - {fileID: 11400000, guid: 63aee9e795f95434b801a71d8d836064, type: 2}
+  targetObjectID: "trafoKap\u0131"
+  buttonOffset: {x: 0, y: 1.5, z: 0}
+  entryCameraMode: 4
+  entryCameraID: camTrafo
+  autoReturnOnComplete: 1
+  autoReturnOnExit: 1
+  resumeFromLastAction: 1
+  allowRestart: 0
+  hideButtonAfterComplete: 1
+  prerequisiteSequences:
+  - {fileID: 11400000, guid: 473082ab0b40b2f44b0c4c611318f39c, type: 2}
+  - {fileID: 11400000, guid: 151110eb0067af9499386fb7db4649cb, type: 2}
+  onPrerequisiteFail: 1
+  prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
+    tamamlay\u0131n."
+  hasSurvey: 0
+  surveyPanelPrefab: {fileID: 1286903722057059542, guid: 19fa24d4f5915f640b3fee1d4534a0fb, type: 3}
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 0
+    photoSlots: []
+  spawnButtonAtStart: 1
+  sequenceIcon: {fileID: 0}
+  buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
+  completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}
+  onSequenceEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceExit:
+    m_PersistentCalls:
+      m_Calls: []

@@ -22,9 +22,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 61549cc8c504a2d43a1ea23535fd9410, type: 2}
   - {fileID: 11400000, guid: 71b9afbc84f2b0844afb05ebd438c2d0, type: 2}
   - {fileID: 11400000, guid: 78acfe242e4496f4e9ae17b70cbcaf0d, type: 2}
+  - {fileID: 11400000, guid: 1dc1fee85e5a8f545967715a5ad51fec, type: 2}
+  - {fileID: 11400000, guid: 8bda3f788e8e4044086a2c8826552d30, type: 2}
   - {fileID: 11400000, guid: 7af35d578d7a1aa458759e5dcb67e7c2, type: 2}
   - {fileID: 11400000, guid: 09bccd3b2f196ba47a10a86a5f6c3ace, type: 2}
+  - {fileID: 11400000, guid: 292add4779e27bf4781dcfe513c267bd, type: 2}
   - {fileID: 11400000, guid: aee2e8b764eb4a84b882827bd90b2e35, type: 2}
+  - {fileID: 11400000, guid: 5cdffbd96498b8249abfe498ecc000a6, type: 2}
+  - {fileID: 11400000, guid: a6848eb0640296b438faed1767140261, type: 2}
+  - {fileID: 11400000, guid: 89da8f96377b28f44843f95bb3c50237, type: 2}
+  - {fileID: 11400000, guid: 10584b1bfea4e124987a0530d9fc3eb0, type: 2}
+  - {fileID: 11400000, guid: 3afece07e7f2e374c892e6006796180f, type: 2}
+  - {fileID: 11400000, guid: 1e33e06af8496dc4999e7069247a89ca, type: 2}
   - {fileID: 11400000, guid: 494b332079b37004e8d89d2387d15d94, type: 2}
   targetObjectID: cam11
   buttonOffset: {x: 0, y: 1.5, z: 0}
@@ -38,13 +47,6 @@ MonoBehaviour:
   prerequisiteSequences:
   - {fileID: 11400000, guid: 226c870c341ed8042b2dc31a50d3d8ed, type: 2}
   - {fileID: 11400000, guid: 83c16260cfc50b047bc9c795c73672e5, type: 2}
-  - {fileID: 11400000, guid: 621756ebe7a0e4746a24d36b3e50af42, type: 2}
-  - {fileID: 11400000, guid: 54937fc837d0098478d27070f5f3c111, type: 2}
-  - {fileID: 11400000, guid: 8c00dddc7d77779429392ffb5375cd83, type: 2}
-  - {fileID: 11400000, guid: e4301d292c76f4b4fb31c20734047064, type: 2}
-  - {fileID: 11400000, guid: 2be12bc95a7601740b9601b3278be0cd, type: 2}
-  - {fileID: 11400000, guid: d927e72d98d85b84f99a19ec87085cc5, type: 2}
-  - {fileID: 11400000, guid: dc484335c10b1a540b4ebdc101c3d97d, type: 2}
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."

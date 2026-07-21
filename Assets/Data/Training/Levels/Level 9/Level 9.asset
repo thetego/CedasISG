@@ -15,12 +15,16 @@ MonoBehaviour:
   levelID: Level 2_Copy 1
   levelName: Level 9
   levelDescription: 
+  sequenceSelectionInstructionText: "Bir sekans se\xE7in"
   sequences:
   - {fileID: 11400000, guid: 4f5a6539e7b1da143871cd181439e377, type: 2}
+  - {fileID: 11400000, guid: 4721720c9c8b39e47a1fff538075ffa7, type: 2}
+  - {fileID: 11400000, guid: 28356b8bb8622e542b1e63cc011f94b3, type: 2}
   - {fileID: 11400000, guid: d8faf7913800703478b10aacd0ce4fc7, type: 2}
   - {fileID: 11400000, guid: 268c9acf72d09f8429c16bc2eee50d9e, type: 2}
   - {fileID: 11400000, guid: b1b9b48888393f74dae0849db11b1669, type: 2}
   - {fileID: 11400000, guid: f444aecf0de65b541b003093bef84a3c, type: 2}
+  - {fileID: 11400000, guid: 25d904b56b8ffb544aae0b0fe078c1ed, type: 2}
   - {fileID: 11400000, guid: 1689d0ab36329874e97ad8d29920c871, type: 2}
   - {fileID: 11400000, guid: a9e6001dd8d79644b9e411b355f1c8c9, type: 2}
   timeLimit: 3600

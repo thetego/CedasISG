@@ -60,12 +60,22 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0
   animationTriggers:
   - animatorObjectID: an3
     triggerName: Rot2
+    parameterType: 0
+    parameterValue: 0
+    timing: 1
+    autoResetTrigger: 0
+  - animatorObjectID: cizgi2
+    triggerName: Turn2
     parameterType: 0
     parameterValue: 0
     timing: 1

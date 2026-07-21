@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "Pano 1"
+  m_Name: Pano 1
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: "Level3_Seq_05"
-  sequenceName: "Pano 1"
+  sequenceID: Level3_Seq_05
+  sequenceName: Pano 1
   sequenceDescription: 
   instructionText: "Panolar \xFCst\xFCnde gerekli i\u015Flemleri ger\xE7ekle\u015Ftirin."
   actions:
@@ -40,10 +40,10 @@ MonoBehaviour:
   allowRestart: 0
   hideButtonAfterComplete: 1
   prerequisiteSequences:
+  - {fileID: 11400000, guid: 8c0a3b21e8fc5da42b3e92fb26f2ff0f, type: 2}
   - {fileID: 11400000, guid: 50c0b1333e1279b42af9af7114f76912, type: 2}
   - {fileID: 11400000, guid: 67b089813e549074380f691473682511, type: 2}
   - {fileID: 11400000, guid: 8cbe788c18ed488418b16d2538b70f9b, type: 2}
-  - {fileID: 11400000, guid: 8c0a3b21e8fc5da42b3e92fb26f2ff0f, type: 2}
   - {fileID: 11400000, guid: c7001038dd1d6ab488a746cff7ac47f6, type: 2}
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
@@ -54,28 +54,71 @@ MonoBehaviour:
     panelTitle: Kontrol Formu
     completeButtonText: Tamamla
     questions:
-    - questionText: "H\xFCcre plaka etiketi var m\u0131?"
+    - questionText: "H\xFCcre \xFCst\xFCndeki g\xF6stergelerin kontrol\xFC yap\u0131ld\u0131
+        m\u0131?"
       options:
-      - Evet
-      - "Hay\u0131r"
-      correctOptionIndices: 01000000
-      isRequired: 1
-    - questionText: "SF6 %100 m\xFC?"
-      options:
-      - Evet
-      - "Hay\u0131r"
+      - SORUN YOK
+      - HUCRE USTUNDEKI TUM GOSTERGELER CALISMIYOR
+      - ROLELER PASIF DURUMDA
+      - KAPASITIF GOSTERGE VE ROLELER CALISMIYOR
+      - SF6 GOSTERGESI VE KAPASITIF GOSTERGE CALISMIYOR
+      - 'SF6 GAZ BASICI GOSTERGESI YOK '
+      - SF6 GOSTERGESI VE ROLELER CALISMIYOR
       correctOptionIndices: 00000000
       isRequired: 1
-    - questionText: "\u0130ndikat\xF6rde sorun var m\u0131?"
+    - questionText: "Gaz bas\u0131n\xE7 seviyesi uygun mu?"
       options:
-      - Evet
-      - "Hay\u0131r"
+      - SORUN YOK
+      - SORUN VAR---GAZ BASINC SEVIYESI DUSUK
+      correctOptionIndices: 00000000
+      isRequired: 1
+    - questionText: "H\xFCcre etiketleri kontrol\xFC yap\u0131ld\u0131 m\u0131?"
+      options:
+      - "SORUN VAR---PLAKA ET\u0130KET\u0130 YOK"
+      - SORUN VAR---FIDER ETIKETLERI YOK
+      - SORUN YOK
+      - SORUN VAR---UYARI VE IKAZ LEVHALARI YOK
+      correctOptionIndices: 00000000
+      isRequired: 1
+    - questionText: "H\xFCcre \xFCst\xFCnde K\u0131smi De\u015Farj \xF6l\xE7\xFCm
+        de\u011Feri nedir?"
+      options:
+      - SORUN YOK
+      - 25-30 DB ARASINDA
+      - 30 DB USTUNDE
+      - 20-25 DB ARASINDA
+      - 5-10 DB ARASINDA
+      - 15-20 DB ARASINDA
+      - 0-5 DB ARASINDA
+      - 10-15 DB ARASINDA
+      - "H\xDCCRE ENERJ\u0130S\u0130Z"
+      correctOptionIndices: 00000000
+      isRequired: 1
+    - questionText: "H\xFCcrede K\u0131smi De\u015Farj nerede?"
+      options:
+      - SORUN YOK
+      - GENEL HUCRE KAZANINDA
+      - KABLO BASLIKLARININ GIRIS NOKTASINDA
+      - KESICI TARAFINDA
+      - UST BARA BAGLANTILARINDA
+      - SORUN VAR---DIGER (ACIKLAMAYA GIRINIZ)
+      - "H\xDCCRE ENERJ\u0130S\u0130Z"
+      correctOptionIndices: 00000000
+      isRequired: 1
+    - questionText: "R\xF6leler aktif mi?"
+      options:
+      - SORUN VAR---DC PASIF, ROLE PASIF
+      - SORUN YOK
+      - SORUN VAR---DC AKTIF, ROLE PASIF
       correctOptionIndices: 01000000
       isRequired: 1
-    - questionText: "K\u0131smi de\u015Farj kontrol\xFC yap\u0131ld\u0131 m\u0131?"
+    - questionText: "H\xFCcre i\xE7i ayd\u0131nlatma \xE7al\u0131\u015F\u0131yor
+        mu?"
       options:
-      - Evet
-      - "Hay\u0131r"
+      - SORUN YOK
+      - SORUN VAR---AC AYDINLATMA CALISMIYOR
+      - SORUN VAR---IC AYDINLATMA CALISMIYOR
+      - SORUN VAR---DC AYDINLATMA CALISMIYOR
       correctOptionIndices: 00000000
       isRequired: 1
     photoSlotCount: 2

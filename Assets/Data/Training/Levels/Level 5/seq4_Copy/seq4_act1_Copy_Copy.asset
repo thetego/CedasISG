@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
   m_Name: seq4_act1_Copy_Copy
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: seq4_act1_Copy_Copy
-  actionName: seq4_act1_Copy_Copy
+  actionID: seq4_agndfg
+  actionName: seq4_agndfg
   instructionText: 
   actionType: 3
   prerequisiteActionIDs: []
@@ -51,6 +51,10 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
   m_Name: seq2_act1_Copy_Copy
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: seq2_act1_Copy_Copy
+  actionID: seq2_acsrthrth
   actionName: seq2_act1_Copy_Copy
   instructionText: "K\xF6\u015Fk kap\u0131lar\u0131n\u0131 a\xE7."
   actionType: 1
@@ -52,6 +52,10 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0

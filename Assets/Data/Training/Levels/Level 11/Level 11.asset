@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9161bf1027ff61439a7793cfc71ac08, type: 3}
+  m_Name: Level 11
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.LevelData
+  levelID: Level 11
+  levelName: Level 11
+  levelDescription: 
+  sequenceSelectionInstructionText: "Bir sekans se\xE7in"
+  sequences:
+  - {fileID: 11400000, guid: 473082ab0b40b2f44b0c4c611318f39c, type: 2}
+  - {fileID: 11400000, guid: 151110eb0067af9499386fb7db4649cb, type: 2}
+  - {fileID: 11400000, guid: 23a2917cb55e6df45b8da7a29aa760d4, type: 2}
+  - {fileID: 11400000, guid: d08981c8483365d4caf0b3393137b0d6, type: 2}
+  - {fileID: 11400000, guid: 5c342a04c1596e648ba2e2c6de18060f, type: 2}
+  timeLimit: 0
+  allowSequenceSwitching: 1
+  maxScore: 100
+  penaltyPerMistake: 5
+  bonusForSpeed: 20
+  onLevelStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onLevelComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onLevelFail:
+    m_PersistentCalls:
+      m_Calls: []

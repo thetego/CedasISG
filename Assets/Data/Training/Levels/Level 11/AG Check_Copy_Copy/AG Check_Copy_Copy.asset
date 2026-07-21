@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
+  m_Name: AG Check_Copy_Copy
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
+  sequenceID: AG Check_aerg_aerg
+  sequenceName: AG Check_Copy_Copy
+  sequenceDescription: 
+  instructionText: "AG odas\u0131na girin"
+  actions:
+  - {fileID: 11400000, guid: 011707e367844e74a8471d05afb4c317, type: 2}
+  - {fileID: 11400000, guid: c5186d71a4fe81a4995a987f6afd2ccf, type: 2}
+  - {fileID: 11400000, guid: 15035caa662205a4f84bbe7ff5721cc2, type: 2}
+  - {fileID: 11400000, guid: ed5d97081ff969943843cf2540735ad5, type: 2}
+  - {fileID: 11400000, guid: 0e4edb357d8e25d4788c1d395b36e48b, type: 2}
+  - {fileID: 11400000, guid: 8037baf095fbc0c4a87688d72ed30997, type: 2}
+  - {fileID: 11400000, guid: ca0a5a56ad07b444392949c9fb9bf26a, type: 2}
+  - {fileID: 11400000, guid: 5615d0070c20cb04391f802e953a7681, type: 2}
+  - {fileID: 11400000, guid: 140df25033739e7428b462f30b1802a2, type: 2}
+  - {fileID: 11400000, guid: 7c2e72cae0ec2984e91e9fe9869a6e40, type: 2}
+  - {fileID: 11400000, guid: cfb07b7e09614ef46825a41dd01775e1, type: 2}
+  - {fileID: 11400000, guid: ae59637149da05148b8cb79114879867, type: 2}
+  - {fileID: 11400000, guid: 8288e04d59d771944998a29cb11d8094, type: 2}
+  - {fileID: 11400000, guid: cd979309586207746a284f132c3b87de, type: 2}
+  - {fileID: 11400000, guid: c7c5c4e47bef00446b829217e3d17952, type: 2}
+  - {fileID: 11400000, guid: da7076233024d304483257907d5996b9, type: 2}
+  - {fileID: 11400000, guid: 24e4998e22e1acf41b4d1e48cfcede13, type: 2}
+  targetObjectID: agDoor
+  buttonOffset: {x: 0, y: 1.5, z: 0}
+  entryCameraMode: 4
+  entryCameraID: CamAg
+  autoReturnOnComplete: 1
+  autoReturnOnExit: 1
+  resumeFromLastAction: 1
+  allowRestart: 0
+  hideButtonAfterComplete: 1
+  prerequisiteSequences:
+  - {fileID: 11400000, guid: 473082ab0b40b2f44b0c4c611318f39c, type: 2}
+  - {fileID: 11400000, guid: 151110eb0067af9499386fb7db4649cb, type: 2}
+  - {fileID: 11400000, guid: 23a2917cb55e6df45b8da7a29aa760d4, type: 2}
+  - {fileID: 11400000, guid: d08981c8483365d4caf0b3393137b0d6, type: 2}
+  onPrerequisiteFail: 1
+  prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
+    tamamlay\u0131n."
+  hasSurvey: 0
+  surveyPanelPrefab: {fileID: 1286903722057059542, guid: 19fa24d4f5915f640b3fee1d4534a0fb, type: 3}
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions:
+    - questionText: "Kap\u0131 yap\u0131s\u0131 sa\u011Fl\u0131kl\u0131 m\u0131?"
+      options:
+      - Evet
+      - "Hay\u0131r"
+      correctOptionIndices: 00000000
+      isRequired: 1
+    - questionText: "\u0130zole hal\u0131 var m\u0131?"
+      options:
+      - Evet
+      - "Hay\u0131r"
+      correctOptionIndices: 00000000
+      isRequired: 1
+    photoSlotCount: 0
+    photoSlots: []
+  spawnButtonAtStart: 1
+  sequenceIcon: {fileID: 0}
+  buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
+  completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}
+  onSequenceEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceExit:
+    m_PersistentCalls:
+      m_Calls: []

@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "Cable 1 Act 01 Copy Copy 1 Copy Copy Copy Copy Copy Copy Copy Copy Copy Copy Copy 1"
-    1
-  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: "Cable1_Act_01_Copy_agaer"
-  actionName: "Cable 1 Act 01 Copy Copy 1 Copy Copy Copy Copy Copy Copy Copy Copy Copy Copy Copy 1"
-    1
+  m_Name: Cable 1 Act 01 Copy Copy 1 Copy Copy Copy Copy Copy Copy Copy Copy Copy
+    Copy Copy 1
+  m_EditorClassIdentifier: 
+  actionID: casfg
+  actionName: geraerh
   instructionText: 
   actionType: 3
   prerequisiteActionIDs: []
@@ -30,18 +29,9 @@ MonoBehaviour:
   targetObjectID: A5
   requiredEquipments: []
   distractorEquipments: []
-  requiredTools:
-  - {fileID: 11400000, guid: 4b1c97f75a7561548ac47321dc411264, type: 2}
-  distractorTools:
-  - {fileID: 11400000, guid: afbe12278e54aa24db395e7d77e8af0f, type: 2}
-  - {fileID: 11400000, guid: 557a652588dcd9a4a9ee1f6c30a390df, type: 2}
-  - {fileID: 11400000, guid: 97ff03f8b76a2c24fbb1e511fce11bf5, type: 2}
-  - {fileID: 11400000, guid: 156c004f20bfa7744872e179400d1df4, type: 2}
-  toolDropMappings:
-  - uniqueID: KabloKesici1
-    toolID: KabloKesici
-    dropTargetObjectID: A1
-    onDropEventID: 
+  requiredTools: []
+  distractorTools: []
+  toolDropMappings: []
   dropZoneSize: {x: 120, y: 120}
   toolDropMode: 0
   interactionPanelPrefab: {fileID: 0}
@@ -62,6 +52,10 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0
