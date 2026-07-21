@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "Pano etiketinin fotografini cek"
+  m_Name: Pano etiketinin fotografini cek
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: "pano1_Act_01_6"
-  actionName: "Pano etiketinin fotografini cek"
+  actionID: pano1_Act_01_6
+  actionName: Pano etiketinin fotografini cek
   instructionText: "Pano etiketinin foto\u011Fraf\u0131n\u0131 \xE7ek."
   actionType: 4
   prerequisiteActionIDs: []
@@ -25,11 +25,6 @@ MonoBehaviour:
   cameraMode: 4
   virtualCameraID: camPano2
   autoReturnCameraOnComplete: 0
-  cameraTargetID: 
-  cameraMoveSpeed: 2
-  autoCompleteAfterCamera: 1
-  requiresPreviousAction: 1
-  prerequisiteActions: []
   targetObjectID: 
   requiredEquipments: []
   distractorEquipments: []
@@ -56,7 +51,11 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
-  activatesTablet: 0
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
+  activatesTablet: 1
   deactivatesTablet: 0
   hideButtonAfterComplete: 0
   animationTriggers: []

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "Uyari tabelasini sabitle"
+  m_Name: Uyari tabelasini sabitle
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: "Uyaritabelasinisabitle"
-  actionName: "Uyari tabelasini sabitle"
-  instructionText: "Tabelalar\u0131 dire\u011Fe sabitleyin."
+  actionID: Uyaritabelasinisabitle
+  actionName: Uyari tabelasini sabitle
+  instructionText: "Tabelalar\u0131 dire\u011Fe sabitleyin ve foto\u011Fraflay\u0131n."
   actionType: 3
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
@@ -62,6 +62,10 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 1
   deactivatesTablet: 0
   hideButtonAfterComplete: 0

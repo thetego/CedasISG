@@ -18,14 +18,17 @@ MonoBehaviour:
   instructionText: "Panolar \xFCst\xFCnde gerekli i\u015Flemleri ger\xE7ekle\u015Ftirin."
   actions:
   - {fileID: 11400000, guid: 04fd5f4f4e9c23b4fb617e66c8930f22, type: 2}
+  - {fileID: 11400000, guid: 20c450e61fd076e4c867b4f114b012d2, type: 2}
   - {fileID: 11400000, guid: c4ab1ce2bd8aa6b4da7a393304ecdf6d, type: 2}
   - {fileID: 11400000, guid: 491c78e49fd57e04982a988760b5e5ce, type: 2}
   - {fileID: 11400000, guid: ec9f9acd61902194eb4d695838b2b9b1, type: 2}
   - {fileID: 11400000, guid: fa655cfdfb73a854f86367f8368fcb92, type: 2}
   - {fileID: 11400000, guid: b29a012fd97e8dc4aa8418a43f665ac8, type: 2}
   - {fileID: 11400000, guid: 569d076b6b1723a40a669a62a976d822, type: 2}
+  - {fileID: 11400000, guid: b039339a323ce34409716c8a230c111c, type: 2}
   - {fileID: 11400000, guid: 104c23166866a604a9c57a6e77d971f9, type: 2}
   - {fileID: 11400000, guid: 75a5d1fd4ecc5db468d9ab36df7d6ec3, type: 2}
+  - {fileID: 11400000, guid: 2457ab49d31831a4abfdbb3a5c4aba18, type: 2}
   - {fileID: 11400000, guid: 2875510548529874c875efd4c651b029, type: 2}
   - {fileID: 11400000, guid: 33c2208de4670d3468638ba3636b4d39, type: 2}
   targetObjectID: panoDepar4
@@ -38,10 +41,10 @@ MonoBehaviour:
   allowRestart: 0
   hideButtonAfterComplete: 1
   prerequisiteSequences:
-  - {fileID: 11400000, guid: 8c0a3b21e8fc5da42b3e92fb26f2ff0f, type: 2}
   - {fileID: 11400000, guid: 50c0b1333e1279b42af9af7114f76912, type: 2}
   - {fileID: 11400000, guid: 67b089813e549074380f691473682511, type: 2}
   - {fileID: 11400000, guid: 8cbe788c18ed488418b16d2538b70f9b, type: 2}
+  - {fileID: 11400000, guid: 8c0a3b21e8fc5da42b3e92fb26f2ff0f, type: 2}
   - {fileID: 11400000, guid: c7001038dd1d6ab488a746cff7ac47f6, type: 2}
   - {fileID: 11400000, guid: 19031ee8b8501a048a2e13dbb7449b18, type: 2}
   - {fileID: 11400000, guid: e8da41f43f17e064697f2014ddb3119c, type: 2}

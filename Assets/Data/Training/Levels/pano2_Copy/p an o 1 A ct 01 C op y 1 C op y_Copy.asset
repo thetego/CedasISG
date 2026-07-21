@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "Aydinlatma saatinin fotogradini cek"
+  m_Name: p an o 1 A ct 01 C op y 1 C op y_Copy
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: "AGCheck_Act_02_7"
-  actionName: "Aydinlatma saatinin fotogradini cek"
-  instructionText: "Ayd\u0131nlatma saatinin foto\u011Fraf\u0131n\u0131 \xE7ekin"
+  actionID: p an o 1 A ct 01 C op y 1 C op y_Copy
+  actionName: p an o 1 A ct 01 C op y 1 C op y_Copy
+  instructionText: 
   actionType: 4
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
@@ -23,7 +23,7 @@ MonoBehaviour:
   completionDelay: 0
   autoCompleteAfterDelay: 0
   cameraMode: 4
-  virtualCameraID: camAG2
+  virtualCameraID: camTM4
   autoReturnCameraOnComplete: 0
   targetObjectID: 
   requiredEquipments: []
@@ -51,16 +51,14 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 0
   deactivatesTablet: 1
   hideButtonAfterComplete: 0
-  animationTriggers:
-  - animatorObjectID: AGPanel
-    triggerName: F
-    parameterType: 0
-    parameterValue: 0
-    timing: 0
-    autoResetTrigger: 0
+  animationTriggers: []
   soundClip: {fileID: 0}
   particleEffectID: 
   particleSpawnOffset: {x: 0, y: 0, z: 0}
@@ -74,5 +72,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onStartEventIDs: []
-  onCompleteEventIDs: []
+  onCompleteEventIDs:
+  - D3_OFF
   onFailEventIDs: []

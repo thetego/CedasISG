@@ -40,6 +40,14 @@ namespace SafetyTraining
 		[Header("━━━ DEBUG ━━━")]
 		public bool debugMode = false;
 
+		[Header("━━━ KONUM ━━━")]
+		[Tooltip("Tablet butonunu ekranın sağ orta kısmına sabitler.")]
+		public bool dockToRightMiddle = true;
+		[Tooltip("Sağ kenardan içeri doğru boşluk.")]
+		public float rightMargin = 80f;
+		[Tooltip("Sağ orta hizaya göre dikey kaydırma.")]
+		public float verticalOffset = 0f;
+
 		// ─── Runtime ───
 		private UISurveyPanel _surveyPanel;
 		private bool          _isPanelOpen;
@@ -47,9 +55,12 @@ namespace SafetyTraining
 		private bool          _hovered;
 		private Vector3       _originalScale;
 		private AudioSource   _audio;
+		private RectTransform _rectTransform;
 
 		private void Awake()
 		{
+			_rectTransform = transform as RectTransform;
+			ApplyDockPosition();
 			_originalScale = transform.localScale;
 
 			_audio = GetComponent<AudioSource>();
@@ -191,6 +202,17 @@ namespace SafetyTraining
 		}
 
 		private static readonly Color COL_DISABLED = new Color(0.3f, 0.3f, 0.3f, 0.6f);
+
+		private void ApplyDockPosition()
+		{
+			if (!dockToRightMiddle || _rectTransform == null)
+				return;
+
+			_rectTransform.anchorMin = new Vector2(1f, 0.5f);
+			_rectTransform.anchorMax = new Vector2(1f, 0.5f);
+			_rectTransform.pivot = new Vector2(1f, 0.5f);
+			_rectTransform.anchoredPosition = new Vector2(-rightMargin, verticalOffset);
+		}
 
 		private void UpdateVisuals()
 		{

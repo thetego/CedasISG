@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "AG Kapisini ac"
+  m_Name: AG Kapisini ac
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: "AGCheck_Act_01"
-  actionName: "AG Kapisini ac"
+  actionID: AGCheck_Act_01
+  actionName: AG Kapisini ac
   instructionText: "AG odas\u0131n\u0131n kap\u0131s\u0131n\u0131 a\xE7\u0131n"
   actionType: 3
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
-  completionDelay: 2
-  autoCompleteAfterDelay: 1
+  completionDelay: 0
+  autoCompleteAfterDelay: 0
   cameraMode: 0
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
@@ -51,8 +51,12 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 0
-  deactivatesTablet: 1
+  deactivatesTablet: 0
   hideButtonAfterComplete: 0
   animationTriggers:
   - animatorObjectID: "agKap\u0131"

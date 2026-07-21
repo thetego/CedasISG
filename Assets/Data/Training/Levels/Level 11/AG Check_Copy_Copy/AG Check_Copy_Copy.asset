@@ -28,10 +28,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 140df25033739e7428b462f30b1802a2, type: 2}
   - {fileID: 11400000, guid: 7c2e72cae0ec2984e91e9fe9869a6e40, type: 2}
   - {fileID: 11400000, guid: cfb07b7e09614ef46825a41dd01775e1, type: 2}
+  - {fileID: 11400000, guid: c7c5c4e47bef00446b829217e3d17952, type: 2}
   - {fileID: 11400000, guid: ae59637149da05148b8cb79114879867, type: 2}
   - {fileID: 11400000, guid: 8288e04d59d771944998a29cb11d8094, type: 2}
-  - {fileID: 11400000, guid: cd979309586207746a284f132c3b87de, type: 2}
-  - {fileID: 11400000, guid: c7c5c4e47bef00446b829217e3d17952, type: 2}
   - {fileID: 11400000, guid: da7076233024d304483257907d5996b9, type: 2}
   - {fileID: 11400000, guid: 24e4998e22e1acf41b4d1e48cfcede13, type: 2}
   targetObjectID: agDoor

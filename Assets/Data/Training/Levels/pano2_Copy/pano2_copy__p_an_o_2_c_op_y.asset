@@ -18,14 +18,17 @@ MonoBehaviour:
   instructionText: "Panolar \xFCst\xFCnde gerekli i\u015Flemleri ger\xE7ekle\u015Ftirin."
   actions:
   - {fileID: 11400000, guid: 0d664298506d31a40ad86e62fe93047b, type: 2}
+  - {fileID: 11400000, guid: bae4612e83cc6b0409f18cc74944448c, type: 2}
   - {fileID: 11400000, guid: a742ebd3e5d738a47b98f37199009a2b, type: 2}
   - {fileID: 11400000, guid: cb2ab3567a78af246b760cc3cc1ebb88, type: 2}
   - {fileID: 11400000, guid: 4caa20d0061ebca4a86a850d96f7eb9a, type: 2}
   - {fileID: 11400000, guid: 848d8f7c270ffa6488d8e089d891ed1b, type: 2}
   - {fileID: 11400000, guid: ae067363cc0276b44959e4b72e49f112, type: 2}
   - {fileID: 11400000, guid: dcf3daab09206ec43aa80a2cb4182392, type: 2}
+  - {fileID: 11400000, guid: 8206de2a19ee7dc48983ed7e15e6b650, type: 2}
   - {fileID: 11400000, guid: e68598ed04762c2408b95160991948cd, type: 2}
   - {fileID: 11400000, guid: 14c13a3697f938e409645f9cf00afb3e, type: 2}
+  - {fileID: 11400000, guid: 521a7a828953b504f81b5e93d67b06ce, type: 2}
   targetObjectID: panoDepar3
   buttonOffset: {x: 0, y: 1.5, z: 0}
   entryCameraMode: 4
@@ -36,10 +39,10 @@ MonoBehaviour:
   allowRestart: 0
   hideButtonAfterComplete: 1
   prerequisiteSequences:
-  - {fileID: 11400000, guid: 8c0a3b21e8fc5da42b3e92fb26f2ff0f, type: 2}
   - {fileID: 11400000, guid: 50c0b1333e1279b42af9af7114f76912, type: 2}
   - {fileID: 11400000, guid: 67b089813e549074380f691473682511, type: 2}
   - {fileID: 11400000, guid: 8cbe788c18ed488418b16d2538b70f9b, type: 2}
+  - {fileID: 11400000, guid: 8c0a3b21e8fc5da42b3e92fb26f2ff0f, type: 2}
   - {fileID: 11400000, guid: c7001038dd1d6ab488a746cff7ac47f6, type: 2}
   - {fileID: 11400000, guid: 19031ee8b8501a048a2e13dbb7449b18, type: 2}
   - {fileID: 11400000, guid: e8da41f43f17e064697f2014ddb3119c, type: 2}

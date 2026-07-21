@@ -183,7 +183,23 @@ namespace SafetyTraining
 
 			if (action == null)  yield return null;
 
-			//if (action.actionType == ActionType.CameraMove) return;
+			// Tablet, action başında kilitlenir.
+			// Bu bayrak action tamamlanmasını değil, action'ın aktif olduğu anı temsil eder.
+			if (action.deactivatesTablet && _activeTabletButton != null)
+			{
+				_activeTabletButton.SetInteractable(false);
+				if (debugMode)
+					Debug.Log($"[UISpawnManager] Tablet pasifleşti: {action.actionName} başladı.");
+			}
+
+			// CameraMove action'ları için action UI spawn etmeye gerek yok.
+			// Tablet state burada korunur, tamamlanınca OnActionFinished üzerinden yönetilir.
+			if (action.actionType == ActionType.CameraMove)
+			{
+				if (debugMode)
+					Debug.Log($"[UISpawnManager] CameraMove için UI spawn atlandı: {action.actionName}");
+				yield break;
+			}
 
 			// Eğer UI daha önce spawn edilmemişse, şimdi spawn et
 			if (!_actionUIElements.ContainsKey(action.actionID))
@@ -266,10 +282,6 @@ namespace SafetyTraining
 			// Ekipman panelini kapat (WearEquipment için)
 			if (action.actionType == ActionType.WearEquipment && equipmentPanel != null)
 				equipmentPanel.SetActive(false);
-
-			// Tablet butonu aktivasyon/deaktivasyon (action flag'ına göre)
-			if (action.deactivatesTablet && _activeTabletButton != null)
-				_activeTabletButton.SetInteractable(false);
 
 			if (debugMode)
 				Debug.Log($"<color=yellow>[UISpawnManager] Deactivated UI for action: {action.actionName}</color>");
@@ -820,13 +832,6 @@ namespace SafetyTraining
 				_activeTabletButton.SetInteractable(true);
 				if (debugMode)
 					Debug.Log($"[UISpawnManager] Tablet aktifleşti: {action.actionName} tamamlandı.");
-			}
-
-			if (action.deactivatesTablet && _activeTabletButton != null)
-			{
-				_activeTabletButton.SetInteractable(false);
-				if (debugMode)
-					Debug.Log($"[UISpawnManager] Tablet pasifleşti: {action.actionName} tamamlandı.");
 			}
 		}
 

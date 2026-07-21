@@ -66,8 +66,8 @@ MonoBehaviour:
   allowRestart: 0
   hideButtonAfterComplete: 0
   prerequisiteSequences:
-  - {fileID: 11400000, guid: 08c596a9315f81e4db893949137a4845, type: 2}
   - {fileID: 11400000, guid: d4eb8d4fc6fcdc14c82fefeef680ef37, type: 2}
+  - {fileID: 11400000, guid: 08c596a9315f81e4db893949137a4845, type: 2}
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."

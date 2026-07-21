@@ -29,6 +29,7 @@ MonoBehaviour:
   requiredEquipments:
   - {fileID: 11400000, guid: fcdc16e91b1917b4ea1c295bc7be026f, type: 2}
   - {fileID: 11400000, guid: 4ac847364a3aa4e42bd843765db9f89f, type: 2}
+  - {fileID: 11400000, guid: 87c55dc7c9e221b47af5fec19541219c, type: 2}
   distractorEquipments:
   - {fileID: 11400000, guid: f95b91a99e0584541b92fc5ce77a1f47, type: 2}
   - {fileID: 11400000, guid: 660fad51c4cbad145800d762529151cb, type: 2}

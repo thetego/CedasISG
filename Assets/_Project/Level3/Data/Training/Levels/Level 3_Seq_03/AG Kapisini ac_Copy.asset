@@ -20,8 +20,8 @@ MonoBehaviour:
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
-  completionDelay: 2
-  autoCompleteAfterDelay: 1
+  completionDelay: 0
+  autoCompleteAfterDelay: 0
   cameraMode: 0
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   modalWindowDescription: 
   modalConfirmButtonText: Tamam
   activatesTablet: 0
-  deactivatesTablet: 1
+  deactivatesTablet: 0
   hideButtonAfterComplete: 0
   animationTriggers:
   - animatorObjectID: "agKap\u0131"

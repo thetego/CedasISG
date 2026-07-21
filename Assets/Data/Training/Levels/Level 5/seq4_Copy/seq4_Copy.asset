@@ -47,6 +47,13 @@ MonoBehaviour:
   prerequisiteSequences:
   - {fileID: 11400000, guid: 226c870c341ed8042b2dc31a50d3d8ed, type: 2}
   - {fileID: 11400000, guid: 83c16260cfc50b047bc9c795c73672e5, type: 2}
+  - {fileID: 11400000, guid: 621756ebe7a0e4746a24d36b3e50af42, type: 2}
+  - {fileID: 11400000, guid: 54937fc837d0098478d27070f5f3c111, type: 2}
+  - {fileID: 11400000, guid: e4301d292c76f4b4fb31c20734047064, type: 2}
+  - {fileID: 11400000, guid: 2be12bc95a7601740b9601b3278be0cd, type: 2}
+  - {fileID: 11400000, guid: d927e72d98d85b84f99a19ec87085cc5, type: 2}
+  - {fileID: 11400000, guid: 372f783551d2cbf4aa389e449be0599d, type: 2}
+  - {fileID: 11400000, guid: dc484335c10b1a540b4ebdc101c3d97d, type: 2}
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."

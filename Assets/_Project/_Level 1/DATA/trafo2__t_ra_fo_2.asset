@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "t ra fo 2"
+  m_Name: t ra fo 2
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: "trafo2"
-  sequenceName: "t ra fo 2"
+  sequenceID: trafo2
+  sequenceName: t ra fo 2
   sequenceDescription: 
   instructionText: "Armat\xFCr\xFCn foto\u011Fraf\u0131n\u0131 \xE7ekin"
   actions:
@@ -53,8 +53,8 @@ MonoBehaviour:
     questions:
     - questionText: "Armat\xFCr yan\u0131yor mu?"
       options:
-      - Evet
-      - "Hay\u0131r"
+      - SORUN YOK - ARMATUR KONTROL EDILDI UYGUN
+      - "SORUN VAR - YEN\u0130 ARMAT\xDCR TAKILDI"
       correctOptionIndices: 00000000
       isRequired: 1
     photoSlotCount: 1

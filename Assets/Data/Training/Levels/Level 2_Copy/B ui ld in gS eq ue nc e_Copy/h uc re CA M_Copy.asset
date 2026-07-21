@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "h uc re CA M"
+  m_Name: h uc re CA M
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: "hucreCAM_3"
-  actionName: "h uc re CA M"
+  actionID: hucreCAM_3
+  actionName: h uc re CA M
   instructionText: 
   actionType: 4
   prerequisiteActionIDs:
@@ -30,7 +30,7 @@ MonoBehaviour:
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
   completionDelay: 1
-  autoCompleteAfterDelay: 0
+  autoCompleteAfterDelay: 1
   cameraMode: 4
   virtualCameraID: cam4
   autoReturnCameraOnComplete: 0
@@ -60,6 +60,10 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0

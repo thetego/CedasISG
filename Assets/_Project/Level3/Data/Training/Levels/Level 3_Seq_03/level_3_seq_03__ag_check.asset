@@ -27,15 +27,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6cbe79138fcd17d4b94f70fe66eb3d89, type: 2}
   - {fileID: 11400000, guid: 28d12ab61b33efe45a15f44dfddf3f85, type: 2}
   - {fileID: 11400000, guid: efa846bc578df6b4ebbd5c908964eb45, type: 2}
+  - {fileID: 11400000, guid: 7c88469c8cf3ddc4fa82f7716e31e00b, type: 2}
   - {fileID: 11400000, guid: 1002e93cb3e5c254ebc440a05ee8a238, type: 2}
+  - {fileID: 11400000, guid: 4b7d47933108c65429352cb9c95463cd, type: 2}
   - {fileID: 11400000, guid: 5dd1f209dbaa2eb49bdda88266127b61, type: 2}
   - {fileID: 11400000, guid: e9db53ce31d585e4e999dfec51aa4aa4, type: 2}
   - {fileID: 11400000, guid: 3b4dc811f177c1e4f9627ad027408e80, type: 2}
-  - {fileID: 11400000, guid: 9767cbba640505f4cb9f6071f69b16f3, type: 2}
   - {fileID: 11400000, guid: 12f61bfbfd4c75a40ab0410798c72003, type: 2}
-  - {fileID: 11400000, guid: 42a88f031e23203408d95e5e16f61be1, type: 2}
+  - {fileID: 11400000, guid: d22e194717a3d4f4286a06863dde5295, type: 2}
+  - {fileID: 11400000, guid: 690cee12189969f4eb115c23f88952f3, type: 2}
+  - {fileID: 11400000, guid: af26bc7bc6e72d140b25e04695c25acb, type: 2}
+  - {fileID: 11400000, guid: 773bdee5bfb65504cb08d321f77d2f10, type: 2}
   - {fileID: 11400000, guid: bb840f98907c0004283adb792478bf82, type: 2}
   - {fileID: 11400000, guid: 9994832e65d65c34e8328ab3f8fec888, type: 2}
+  - {fileID: 11400000, guid: 8b84c07a0bc2f7f4583b6a102bebf1ed, type: 2}
   - {fileID: 11400000, guid: 289100c01de556f4fb165fc6011d1b59, type: 2}
   targetObjectID: agDoor
   buttonOffset: {x: 0, y: 1.5, z: 0}
@@ -46,7 +51,10 @@ MonoBehaviour:
   resumeFromLastAction: 1
   allowRestart: 0
   hideButtonAfterComplete: 1
-  prerequisiteSequences: []
+  prerequisiteSequences:
+  - {fileID: 11400000, guid: 50c0b1333e1279b42af9af7114f76912, type: 2}
+  - {fileID: 11400000, guid: 67b089813e549074380f691473682511, type: 2}
+  - {fileID: 11400000, guid: 8cbe788c18ed488418b16d2538b70f9b, type: 2}
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
     tamamlay\u0131n."

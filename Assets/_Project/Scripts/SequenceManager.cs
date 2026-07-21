@@ -56,6 +56,7 @@ namespace SafetyTraining
 		private int  _currentActionIndex = 0;
 		[HideInInspector] public bool _waitingForTablet = false;
 		private ActionData _currentAction;
+		private bool _skipNextCompletionDelay = false;
 
 		// Level state
 		private bool _levelStarted;
@@ -419,7 +420,7 @@ namespace SafetyTraining
 			}
 
 			// UI aktif et
-			StartCoroutine(UISpawnManager.Instance?.ActivateAction(_currentAction,1f));
+			StartCoroutine(UISpawnManager.Instance?.ActivateAction(_currentAction, 0f));
 
 			// OnStart animasyonlar
 			PlayAnimations(_currentAction, AnimationTiming.OnStart);
@@ -440,7 +441,7 @@ namespace SafetyTraining
 					if (debugMode)
 						Debug.Log($"[SequenceManager] CameraMove will auto-complete after {_currentAction.completionDelay}s");
 
-					ScheduleAdvanceToNextAction(_currentAction.completionDelay);
+					StartCoroutine(CompleteCameraMoveAfterDelay(_currentAction.actionID, _currentAction.completionDelay));
 				}
 				else
 				{
@@ -530,7 +531,21 @@ namespace SafetyTraining
 				return;
 			}
 
-			ScheduleAdvanceToNextAction(_currentAction.completionDelay);
+			float completionDelay = _skipNextCompletionDelay ? 0f : _currentAction.completionDelay;
+			ScheduleAdvanceToNextAction(completionDelay);
+		}
+
+		private IEnumerator CompleteCameraMoveAfterDelay(string actionID, float delay)
+		{
+			if (delay > 0f)
+				yield return new WaitForSeconds(delay);
+
+			if (_currentAction == null || _currentAction.actionID != actionID)
+				yield break;
+
+			_skipNextCompletionDelay = true;
+			OnActionCompleted(actionID);
+			_skipNextCompletionDelay = false;
 		}
 
 		/// <summary>

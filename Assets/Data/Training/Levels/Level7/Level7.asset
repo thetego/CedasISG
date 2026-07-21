@@ -17,8 +17,8 @@ MonoBehaviour:
   levelDescription: 
   sequenceSelectionInstructionText: "Bir sekans se\xE7in"
   sequences:
-  - {fileID: 11400000, guid: 08c596a9315f81e4db893949137a4845, type: 2}
   - {fileID: 11400000, guid: d4eb8d4fc6fcdc14c82fefeef680ef37, type: 2}
+  - {fileID: 11400000, guid: 08c596a9315f81e4db893949137a4845, type: 2}
   - {fileID: 11400000, guid: 0e335d26538d33d44830b42da5dee46e, type: 2}
   timeLimit: 0
   allowSequenceSwitching: 1

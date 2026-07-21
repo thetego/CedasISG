@@ -18,6 +18,7 @@ MonoBehaviour:
   instructionText: "Panolar \xFCst\xFCnde gerekli i\u015Flemleri ger\xE7ekle\u015Ftirin."
   actions:
   - {fileID: 11400000, guid: 2bbd5c3640b11a5438c5a2a4d43e4b92, type: 2}
+  - {fileID: 11400000, guid: 8560e1da3bc6b3d468aa6f314b749037, type: 2}
   - {fileID: 11400000, guid: 1e2c193d617683c4187429b9d789bd3c, type: 2}
   - {fileID: 11400000, guid: 1a55767c3fbbea94a8c3ea7615e8da34, type: 2}
   - {fileID: 11400000, guid: 00e941a905233f9428ce872d5a21a895, type: 2}
@@ -28,8 +29,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 83e5b93b7e91a52489a88db79fc7430d, type: 2}
   - {fileID: 11400000, guid: 475819c14cc887844a5b5064f8ba5a8a, type: 2}
   - {fileID: 11400000, guid: 07fc9793c865fc442ae52d959cc7cd50, type: 2}
+  - {fileID: 11400000, guid: 43496288bd2041e49bd689e96db0f7a4, type: 2}
   - {fileID: 11400000, guid: 263fe9ad1188141498637d6d9ab7465e, type: 2}
   - {fileID: 11400000, guid: 4978c9e80dd3565458d9f52b713cec86, type: 2}
+  - {fileID: 11400000, guid: 59a525a0915cd4648a015da54de98672, type: 2}
   targetObjectID: panoDepar
   buttonOffset: {x: 1.02, y: 1.5, z: 0}
   entryCameraMode: 4
@@ -40,10 +43,10 @@ MonoBehaviour:
   allowRestart: 0
   hideButtonAfterComplete: 1
   prerequisiteSequences:
-  - {fileID: 11400000, guid: 8c0a3b21e8fc5da42b3e92fb26f2ff0f, type: 2}
   - {fileID: 11400000, guid: 50c0b1333e1279b42af9af7114f76912, type: 2}
   - {fileID: 11400000, guid: 67b089813e549074380f691473682511, type: 2}
   - {fileID: 11400000, guid: 8cbe788c18ed488418b16d2538b70f9b, type: 2}
+  - {fileID: 11400000, guid: 8c0a3b21e8fc5da42b3e92fb26f2ff0f, type: 2}
   - {fileID: 11400000, guid: c7001038dd1d6ab488a746cff7ac47f6, type: 2}
   onPrerequisiteFail: 1
   prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131

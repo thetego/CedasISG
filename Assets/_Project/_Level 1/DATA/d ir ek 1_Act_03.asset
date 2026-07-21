@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "D ir ek 1 Act 03"
+  m_Name: D ir ek 1 Act 03
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: "direk1_Act_03"
-  actionName: "D ir ek 1 Act 03"
-  instructionText: 
+  actionID: direk1_Act_03
+  actionName: D ir ek 1 Act 03
+  instructionText: "Tablet ile foto\u011Fraf \xE7ek."
   actionType: 4
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
@@ -51,6 +51,10 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 1
   deactivatesTablet: 0
   hideButtonAfterComplete: 0
