@@ -21,9 +21,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d3dc51a03e062ad48b9cfcdeea3d89c6, type: 2}
   - {fileID: 11400000, guid: 96bb2d0f5c022a441ba400e9bf84751d, type: 2}
   - {fileID: 11400000, guid: 50dc055c9720e144690be4cd06929a24, type: 2}
-  - {fileID: 11400000, guid: fb8c0b7158fce914bbd4630948b419a1, type: 2}
-  - {fileID: 11400000, guid: aa32ff984b29a5448b1f5a6f779ccbdc, type: 2}
-  - {fileID: 11400000, guid: 61be1ec2c31da7341ba4480f383ab879, type: 2}
   - {fileID: 11400000, guid: 6757beab8e708bb41aecd9f53ad737b6, type: 2}
   - {fileID: 11400000, guid: 8944d5f7de7e4df48a6fcd70483ca04b, type: 2}
   - {fileID: 11400000, guid: 481237775bb4b7c4ba4f725d5e819a3f, type: 2}
@@ -36,7 +33,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fb3a3aedeb536ef46b02ff8b745197b8, type: 2}
   - {fileID: 11400000, guid: 869c92e6a99db234681adee60b7ff55d, type: 2}
   targetObjectID: P9
-  buttonOffset: {x: 0, y: 1.5, z: 0}
+  buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4
   entryCameraID: "DirekYak\u0131n"
   autoReturnOnComplete: 1

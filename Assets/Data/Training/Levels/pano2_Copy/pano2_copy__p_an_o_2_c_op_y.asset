@@ -30,7 +30,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 14c13a3697f938e409645f9cf00afb3e, type: 2}
   - {fileID: 11400000, guid: 521a7a828953b504f81b5e93d67b06ce, type: 2}
   targetObjectID: panoDepar3
-  buttonOffset: {x: 0, y: 1.5, z: 0}
+  buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4
   entryCameraID: camPano3
   autoReturnOnComplete: 0

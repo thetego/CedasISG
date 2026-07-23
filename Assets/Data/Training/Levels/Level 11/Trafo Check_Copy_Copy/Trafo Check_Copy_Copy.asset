@@ -36,7 +36,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e9aa71e4f011a5549ab5be475fd56377, type: 2}
   - {fileID: 11400000, guid: 9afa4f91c521c87478d9e62a41036e99, type: 2}
   targetObjectID: CamTrafo8
-  buttonOffset: {x: 0, y: 1.5, z: 0}
+  buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4
   entryCameraID: CamTrafo8
   autoReturnOnComplete: 1

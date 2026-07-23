@@ -29,7 +29,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b4903fb2299e9674283a72a64d371e8c, type: 2}
   - {fileID: 11400000, guid: addec7ab3f5336f4ab4fda0ada73172f, type: 2}
   targetObjectID: TMLock
-  buttonOffset: {x: 0, y: 1.5, z: 0}
+  buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4
   entryCameraID: camTM
   autoReturnOnComplete: 0

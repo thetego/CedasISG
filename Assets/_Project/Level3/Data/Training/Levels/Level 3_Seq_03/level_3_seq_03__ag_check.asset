@@ -43,7 +43,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8b84c07a0bc2f7f4583b6a102bebf1ed, type: 2}
   - {fileID: 11400000, guid: 289100c01de556f4fb165fc6011d1b59, type: 2}
   targetObjectID: agDoor
-  buttonOffset: {x: 0, y: 1.5, z: 0}
+  buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4
   entryCameraID: camAG
   autoReturnOnComplete: 1

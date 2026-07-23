@@ -1947,6 +1947,104 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87702977}
   m_CullTransparentMesh: 0
+--- !u!1 &96614189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 96614192}
+  - component: {fileID: 96614191}
+  - component: {fileID: 96614190}
+  m_Layer: 0
+  m_Name: camBox (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &96614190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96614189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 167c8571c5a2e1842b7642ac747824e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SceneObject
+  objectID: swit
+  objectName: 
+  animator: {fileID: 0}
+  onActivated:
+    m_PersistentCalls:
+      m_Calls: []
+  onCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  showGizmo: 1
+--- !u!114 &96614191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96614189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
+  Priority:
+    Enabled: 1
+    m_Value: 0
+  OutputChannel: 1
+  StandbyUpdate: 2
+  m_StreamingVersion: 20241001
+  m_LegacyPriority: 0
+  Target:
+    TrackingTarget: {fileID: 0}
+    LookAtTarget: {fileID: 0}
+    CustomLookAtTarget: 0
+  Lens:
+    FieldOfView: 31.5
+    OrthographicSize: 5
+    NearClipPlane: 0.101
+    FarClipPlane: 1000
+    Dutch: 0
+    ModeOverride: 0
+    PhysicalProperties:
+      GateFit: 2
+      SensorSize: {x: 21.946, y: 16.002}
+      LensShift: {x: 0, y: 0}
+      FocusDistance: 10
+      Iso: 200
+      ShutterSpeed: 0.005
+      Aperture: 16
+      BladeCount: 5
+      Curvature: {x: 2, y: 11}
+      BarrelClipping: 0.25
+      Anamorphism: 0
+  BlendHint: 0
+--- !u!4 &96614192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96614189}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.07654903, y: 0.08128161, z: 0.0062786206, w: 0.99372745}
+  m_LocalPosition: {x: 9.480606, y: 1.934, z: -38.026}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: -8.81, y: 9.352, z: 0.002}
 --- !u!1 &99183736
 GameObject:
   m_ObjectHideFlags: 0
@@ -24091,43 +24189,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 380beba2b6ac2644f94676f10d440152, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1663583382}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 380beba2b6ac2644f94676f10d440152, type: 3}
 --- !u!4 &1663583380 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 380beba2b6ac2644f94676f10d440152, type: 3}
   m_PrefabInstance: {fileID: 1663583379}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1663583381 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 380beba2b6ac2644f94676f10d440152, type: 3}
-  m_PrefabInstance: {fileID: 1663583379}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1663583382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1663583381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 167c8571c5a2e1842b7642ac747824e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SceneObject
-  objectID: helmetOBJ
-  objectName: 
-  animator: {fileID: 0}
-  onActivated:
-    m_PersistentCalls:
-      m_Calls: []
-  onCompleted:
-    m_PersistentCalls:
-      m_Calls: []
-  showGizmo: 1
 --- !u!1 &1673830235
 GameObject:
   m_ObjectHideFlags: 0
@@ -50188,6 +50256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4083501150381346346}
   - component: {fileID: 7696407345529975132}
+  - component: {fileID: 8707273951907026840}
   m_Layer: 0
   m_Name: Cube.001
   m_TagString: Untagged
@@ -50195,6 +50264,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &8707273951907026840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8707273951907026839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 167c8571c5a2e1842b7642ac747824e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SceneObject
+  objectID: helmetOBJ
+  objectName: 
+  animator: {fileID: 0}
+  onActivated:
+    m_PersistentCalls:
+      m_Calls: []
+  onCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  showGizmo: 1
 --- !u!1 &8707273953112380694
 GameObject:
   m_ObjectHideFlags: 0
@@ -51848,6 +51939,7 @@ SceneRoots:
   - {fileID: 1542528733}
   - {fileID: 1237656217}
   - {fileID: 1640408866}
+  - {fileID: 96614192}
   - {fileID: 777699770}
   - {fileID: 875596874}
   - {fileID: 1170860884}

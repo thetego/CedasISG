@@ -22,7 +22,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 868ae03058384c0488ff638a680fe839, type: 2}
   - {fileID: 11400000, guid: 802ab6ca8856e2b4a93de1e4fa95f1dc, type: 2}
   targetObjectID: direk
-  buttonOffset: {x: 0, y: 3, z: 0}
+  buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4
   entryCameraID: "camDirek\xDCst"
   autoReturnOnComplete: 1

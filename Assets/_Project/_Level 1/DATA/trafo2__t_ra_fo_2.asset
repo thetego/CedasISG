@@ -26,7 +26,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a155078fdcd052b469956ef51ccc3e0a, type: 2}
   - {fileID: 11400000, guid: 62082fe7f807c55439f71246b7a1de3b, type: 2}
   targetObjectID: kosk1
-  buttonOffset: {x: 0, y: 1.5, z: 0}
+  buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4
   entryCameraID: cam2
   autoReturnOnComplete: 1

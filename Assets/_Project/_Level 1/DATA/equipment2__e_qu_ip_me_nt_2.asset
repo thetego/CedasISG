@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "E qu ip me nt 2"
+  m_Name: E qu ip me nt 2
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: "equipment2"
-  sequenceName: "E qu ip me nt 2"
+  sequenceID: equipment2
+  sequenceName: E qu ip me nt 2
   sequenceDescription: 
   instructionText: AG eldiveni giyin
   actions:
   - {fileID: 11400000, guid: 470f061b225512f45b0f059ac12b18ca, type: 2}
   - {fileID: 11400000, guid: d0eeadac9a423bf43a37565e85590352, type: 2}
   targetObjectID: character
-  buttonOffset: {x: 0, y: 1.5, z: 0}
+  buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4
   entryCameraID: camCharacter
   autoReturnOnComplete: 1

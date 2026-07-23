@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "Level 8 Seq 01 Copy"
+  m_Name: Level 8 Seq 01 Copy
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: "Level8_Seq_01_4"
-  sequenceName: "Level 8 Seq 01 Copy"
+  sequenceID: Level8_Seq_01_4
+  sequenceName: Level 8 Seq 01 Copy
   sequenceDescription: 
+  instructionText: 
   actions:
   - {fileID: 11400000, guid: 6ab03edc9f4191243b08e2d7799071d1, type: 2}
   - {fileID: 11400000, guid: 835fa59388c0e4047b5dea57636907cd, type: 2}
@@ -76,7 +77,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: db55da2cc68d6fb45b93671065649108, type: 2}
   - {fileID: 11400000, guid: 4d3c1a23c3228d445ab75a8dcaa1eb98, type: 2}
   targetObjectID: A1
-  buttonOffset: {x: 0, y: 1.5, z: 0}
+  buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4
   entryCameraID: camBox
   autoReturnOnComplete: 1

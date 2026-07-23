@@ -10,32 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: Orta_Act_12
+  m_Name: Level 8 Seq 01 Act 05 Copy Copy Copy Copy_Copy_Copy_Copy_Copy
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: Orta_Act_12
-  actionName: Orta_Act_12
+  actionID: Level 8 Seq 01 Act 05 Copy Copy Copy Copy_Copy_Copy_Copy_Copy
+  actionName: Level 8 Seq 01 Act 05 Copy Copy Copy Copy_Copy_Copy_Copy_Copy
   instructionText: 
-  actionType: 2
+  actionType: 4
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
-  completionDelay: 0
-  autoCompleteAfterDelay: 0
-  cameraMode: 0
-  virtualCameraID: 
+  completionDelay: 1
+  autoCompleteAfterDelay: 1
+  cameraMode: 4
+  virtualCameraID: swit
   autoReturnCameraOnComplete: 0
   targetObjectID: 
   requiredEquipments: []
   distractorEquipments: []
-  requiredTools:
-  - {fileID: 11400000, guid: 86d86a9b559bb8e409a17f1fbd72b7a9, type: 2}
+  requiredTools: []
   distractorTools: []
-  toolDropMappings:
-  - uniqueID: kalk1
-    toolID: Pen
-    dropTargetObjectID: P10
-    onDropEventID: 
+  toolDropMappings: []
   dropZoneSize: {x: 120, y: 120}
   toolDropMode: 0
   interactionPanelPrefab: {fileID: 0}

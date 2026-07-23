@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: Orta_Act_12_Copy
+  m_Name: Orta_Act_12_Copy_Copy_Copy_Copy_Copy
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: Orta_Act_12_Copy
-  actionName: Orta_Act_12_Copy
+  actionID: Orta_Act_12_Copy_Copy_Copy_Copy_Copy
+  actionName: Orta_Act_12_Copy_Copy_Copy_Copy_Copy
   instructionText: 
   actionType: 2
   prerequisiteActionIDs: []
@@ -34,7 +34,7 @@ MonoBehaviour:
   toolDropMappings:
   - uniqueID: kalk1
     toolID: Pen
-    dropTargetObjectID: P11
+    dropTargetObjectID: P10
     onDropEventID: 
   dropZoneSize: {x: 120, y: 120}
   toolDropMode: 0

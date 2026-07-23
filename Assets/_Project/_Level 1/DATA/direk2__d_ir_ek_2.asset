@@ -25,6 +25,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f333a577a5f67c44680161a2ab53110d, type: 2}
   - {fileID: 11400000, guid: f83b307bc18efb04e890372f47fb2711, type: 2}
   - {fileID: 11400000, guid: 36f0931ddaf76054e89332a0f96aa572, type: 2}
+  - {fileID: 11400000, guid: 8e1f5806fbd20a848832dea04dc6f8ce, type: 2}
   - {fileID: 11400000, guid: 90119bfb8e9ce404f827a325bba1b259, type: 2}
   targetObjectID: direk
   buttonOffset: {x: 0, y: 0, z: 0}

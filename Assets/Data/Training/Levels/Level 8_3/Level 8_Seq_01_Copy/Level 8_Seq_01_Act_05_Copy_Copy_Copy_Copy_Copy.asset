@@ -23,7 +23,7 @@ MonoBehaviour:
   completionDelay: 1
   autoCompleteAfterDelay: 1
   cameraMode: 4
-  virtualCameraID: camBox
+  virtualCameraID: camBox2
   autoReturnCameraOnComplete: 0
   targetObjectID: 
   requiredEquipments: []
@@ -51,6 +51,10 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0

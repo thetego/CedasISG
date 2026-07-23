@@ -22,7 +22,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2a3d87f5a6008e64ab0e2210f7b465ed, type: 2}
   - {fileID: 11400000, guid: e99a5e40ae6dce949928477001af2ba2, type: 2}
   targetObjectID: P1
-  buttonOffset: {x: 0, y: 1.5, z: 0}
+  buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4
   entryCameraID: camAltPanel
   autoReturnOnComplete: 1

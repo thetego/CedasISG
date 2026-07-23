@@ -40,7 +40,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eaa5127e1ad41074db02f8e24cae153f, type: 2}
   - {fileID: 11400000, guid: d8383e7a85d3d4e49b84bff01833d076, type: 2}
   targetObjectID: polePlug2
-  buttonOffset: {x: 0, y: 1, z: 0}
+  buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4
   entryCameraID: cam12
   autoReturnOnComplete: 1

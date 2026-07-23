@@ -17,6 +17,10 @@ MonoBehaviour:
   sequenceDescription: 
   instructionText: 
   actions:
+  - {fileID: 11400000, guid: 7700350213a363c448d42a6d554c3739, type: 2}
+  - {fileID: 11400000, guid: e4251c3a757dc94438b00d7ec0759988, type: 2}
+  - {fileID: 11400000, guid: 12c94440f021f754aa4e9ec293489ec8, type: 2}
+  - {fileID: 11400000, guid: add4dcad7e23fec499f99c3b7ae8fc83, type: 2}
   - {fileID: 11400000, guid: f1fda854339a3534ba3729c0fc34d9dc, type: 2}
   - {fileID: 11400000, guid: 98d3e996963ccf84dbaf432fd135457a, type: 2}
   - {fileID: 11400000, guid: d32ef3f5beac9574f8b688c232ed9011, type: 2}
@@ -24,7 +28,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f84d169484be273408b9a34789cc91b2, type: 2}
   - {fileID: 11400000, guid: 0b4963cfebaa88a4caf9f3cb0deebed8, type: 2}
   targetObjectID: P9
-  buttonOffset: {x: 0, y: 1.5, z: 0}
+  buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4
   entryCameraID: "DirekYak\u0131n"
   autoReturnOnComplete: 1

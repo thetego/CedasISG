@@ -13570,43 +13570,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 380beba2b6ac2644f94676f10d440152, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 877648578}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 380beba2b6ac2644f94676f10d440152, type: 3}
 --- !u!4 &877648576 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 380beba2b6ac2644f94676f10d440152, type: 3}
   m_PrefabInstance: {fileID: 877648575}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &877648577 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 380beba2b6ac2644f94676f10d440152, type: 3}
-  m_PrefabInstance: {fileID: 877648575}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &877648578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 877648577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 167c8571c5a2e1842b7642ac747824e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SceneObject
-  objectID: helmetOBJ
-  objectName: 
-  animator: {fileID: 0}
-  onActivated:
-    m_PersistentCalls:
-      m_Calls: []
-  onCompleted:
-    m_PersistentCalls:
-      m_Calls: []
-  showGizmo: 1
 --- !u!1 &882617960
 GameObject:
   m_ObjectHideFlags: 0
@@ -50188,6 +50158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4083501150381346346}
   - component: {fileID: 7696407345529975132}
+  - component: {fileID: 8707273951907026840}
   m_Layer: 0
   m_Name: Cube.001
   m_TagString: Untagged
@@ -50195,6 +50166,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &8707273951907026840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8707273951907026839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 167c8571c5a2e1842b7642ac747824e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SceneObject
+  objectID: helmetOBJ
+  objectName: 
+  animator: {fileID: 0}
+  onActivated:
+    m_PersistentCalls:
+      m_Calls: []
+  onCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  showGizmo: 1
 --- !u!1 &8707273953112380694
 GameObject:
   m_ObjectHideFlags: 0

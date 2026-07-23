@@ -24,7 +24,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b3ba8b354f4184c4d98148de1bf21160, type: 2}
   - {fileID: 11400000, guid: 5feacdf22cc9677418ad704c2f517180, type: 2}
   targetObjectID: fdas
-  buttonOffset: {x: 0, y: 1, z: 0}
+  buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4
   entryCameraID: camCharacter2
   autoReturnOnComplete: 1

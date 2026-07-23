@@ -57,7 +57,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d09ba790c57da20459fbf4d9df11004f, type: 2}
   - {fileID: 11400000, guid: bfa6e37c649d9324c8d037b55da3dc8d, type: 2}
   targetObjectID: cable1
-  buttonOffset: {x: 0, y: 1.5, z: 0}
+  buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4
   entryCameraID: camCharacter2
   autoReturnOnComplete: 1

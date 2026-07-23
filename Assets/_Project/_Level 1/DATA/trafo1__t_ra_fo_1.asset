@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
-  m_Name: "t ra fo 1"
+  m_Name: t ra fo 1
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
-  sequenceID: "trafo1"
-  sequenceName: "t ra fo 1"
+  sequenceID: trafo1
+  sequenceName: t ra fo 1
   sequenceDescription: 
   instructionText: Trafo merkezine girin
   actions:
@@ -25,7 +25,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0b132a640f58dd74db3acac5b27e7652, type: 2}
   - {fileID: 11400000, guid: a93b7aeef66e2be408ae3a12c5ca2191, type: 2}
   targetObjectID: kosk1
-  buttonOffset: {x: 0, y: 1.5, z: 0}
+  buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4
   entryCameraID: cam2
   autoReturnOnComplete: 1

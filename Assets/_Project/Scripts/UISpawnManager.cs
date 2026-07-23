@@ -58,6 +58,23 @@ namespace SafetyTraining
 		private Dictionary<string, GameObject> _spawnedItems = new Dictionary<string, GameObject>();
 		private Dictionary<string, List<GameObject>> _actionUIElements = new Dictionary<string, List<GameObject>>();
 
+		private Transform GetUiSpawnParent()
+		{
+			return worldButtonContainer != null ? worldButtonContainer : transform;
+		}
+
+		private Transform GetTabletSpawnParent(Canvas canvas)
+		{
+			if (canvas == null)
+				return GetUiSpawnParent();
+
+			Transform safeArea = canvas.transform.Find("SafeArea");
+			if (safeArea != null)
+				return safeArea;
+
+			return canvas.transform;
+		}
+
 		private void Awake()
 		{
 			if (Instance == null)
@@ -127,7 +144,7 @@ namespace SafetyTraining
 				return;
 			}
 
-			GameObject btnObj = Instantiate(sequenceButtonPrefab, worldButtonContainer);
+			GameObject btnObj = Instantiate(sequenceButtonPrefab, GetUiSpawnParent());
 			UISequenceButton btn = btnObj.GetComponent<UISequenceButton>();
 
 			if (btn != null)
@@ -353,7 +370,7 @@ namespace SafetyTraining
 				return null;
 			}
 
-			GameObject btnObj = Instantiate(clickButtonPrefab, worldButtonContainer);
+			GameObject btnObj = Instantiate(clickButtonPrefab, GetUiSpawnParent());
 			UIClickButton btn = btnObj.GetComponent<UIClickButton>();
 
 			if (btn != null)
@@ -487,7 +504,7 @@ namespace SafetyTraining
 					// Drop zone spawn et (uniqueID ile)
 					if (dropZonePrefab != null && worldButtonContainer != null)
 					{
-						GameObject zoneObj = Instantiate(dropZonePrefab, worldButtonContainer);
+						GameObject zoneObj = Instantiate(dropZonePrefab, GetUiSpawnParent());
 						UIDropZone zone = zoneObj.GetComponent<UIDropZone>();
 
 						if (zone != null)
@@ -589,7 +606,7 @@ namespace SafetyTraining
 				return null;
 			}
 
-			GameObject panelObj = Instantiate(action.interactionPanelPrefab, canvas.transform);
+			GameObject panelObj = Instantiate(action.interactionPanelPrefab, GetUiSpawnParent());
 
 			// UIInteractionPanel component'ini setup et
 			UIInteractionPanel panelComponent = panelObj.GetComponent<UIInteractionPanel>();
@@ -634,7 +651,7 @@ namespace SafetyTraining
 				return null;
 			}
 
-			GameObject panelObj = Instantiate(action.interactionPanelPrefab, canvas.transform);
+			GameObject panelObj = Instantiate(action.interactionPanelPrefab, GetUiSpawnParent());
 
 			UIQuizPanel quizPanel = panelObj.GetComponent<UIQuizPanel>();
 			if (quizPanel != null)
@@ -673,7 +690,7 @@ namespace SafetyTraining
 				return null;
 			}
 
-			GameObject modalObj = Instantiate(prefab, canvas.transform);
+			GameObject modalObj = Instantiate(prefab, GetUiSpawnParent());
 			ModalWindowManager modal = modalObj.GetComponent<ModalWindowManager>();
 			if (modal == null)
 			{
@@ -756,7 +773,7 @@ namespace SafetyTraining
 			if (canvas == null) { Debug.LogError("[UISpawnManager] Canvas bulunamadı!"); return; }
 
 			// Panel spawn et
-			GameObject panelObj = Instantiate(sequence.surveyPanelPrefab, canvas.transform);
+			GameObject panelObj = Instantiate(sequence.surveyPanelPrefab, GetUiSpawnParent(), false);
 			UISurveyPanel surveyPanel = panelObj.GetComponent<UISurveyPanel>();
 			SurveyCameraController camController = FindObjectOfType<SurveyCameraController>();
 
@@ -772,7 +789,9 @@ namespace SafetyTraining
 			// Tablet butonu spawn et — başlangıçta disabled
 			if (tabletButtonPrefab != null)
 			{
-				GameObject btnObj = Instantiate(tabletButtonPrefab, canvas.transform);
+				Transform tabletParent = GetTabletSpawnParent(canvas);
+				GameObject btnObj = Instantiate(tabletButtonPrefab, tabletParent, false);
+				btnObj.transform.SetAsLastSibling();
 				UITabletButton tabletBtn = btnObj.GetComponent<UITabletButton>();
 				if (tabletBtn != null && surveyPanel != null)
 				{

@@ -25,7 +25,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 874cb80a96529c2499fecaf52ad261ed, type: 2}
   - {fileID: 11400000, guid: fab7233a207d2c94da2425a7adc81940, type: 2}
   targetObjectID: character2
-  buttonOffset: {x: 0, y: 1.5, z: 0}
+  buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4
   entryCameraID: SepetUzak
   autoReturnOnComplete: 1

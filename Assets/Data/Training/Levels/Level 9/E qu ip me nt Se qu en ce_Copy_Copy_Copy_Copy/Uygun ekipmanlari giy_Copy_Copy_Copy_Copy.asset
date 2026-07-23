@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "Uygun ekipmanlari giy"
+  m_Name: Uygun ekipmanlari giy
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: "Uygunekipmanlarigiy_8"
-  actionName: "Uygun ekipmanlari giy"
+  actionID: Uygunekipmanlarigiy_8
+  actionName: Uygun ekipmanlari giy
   instructionText: "G\xF6reve ba\u015Flamak i\xE7in uygun \u0130SG ekipmanlar\u0131n\u0131
     se\xE7in"
   actionType: 0
@@ -31,7 +31,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5c90d32e8b04cb148b122b20c73b290e, type: 2}
   - {fileID: 11400000, guid: 99aa5cd74233026469cd9fb8cbab72d6, type: 2}
   - {fileID: 11400000, guid: 87c55dc7c9e221b47af5fec19541219c, type: 2}
-  distractorEquipments: []
+  distractorEquipments:
+  - {fileID: 11400000, guid: 86addf9b03aae22488fba5af40b0b8c5, type: 2}
+  - {fileID: 11400000, guid: 7f63b998400853f4ebf1418bad348778, type: 2}
   requiredTools: []
   distractorTools: []
   toolDropMappings: []
@@ -55,6 +57,10 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0

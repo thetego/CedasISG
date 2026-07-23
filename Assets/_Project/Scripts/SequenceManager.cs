@@ -398,8 +398,7 @@ namespace SafetyTraining
 
 			if (_currentAction == null)
 			{
-				_currentActionIndex++;
-				StartNextActionInSequence();
+				Debug.LogError($"[SequenceManager] Action null at index {_currentActionIndex} in sequence '{_currentSequence.sequenceName}'. Sequence will stop here instead of skipping.");
 				return;
 			}
 

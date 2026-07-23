@@ -30,7 +30,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f95b91a99e0584541b92fc5ce77a1f47, type: 2}
   - {fileID: 11400000, guid: 660fad51c4cbad145800d762529151cb, type: 2}
   - {fileID: 11400000, guid: 87c55dc7c9e221b47af5fec19541219c, type: 2}
-  distractorEquipments: []
+  distractorEquipments:
+  - {fileID: 11400000, guid: 99aa5cd74233026469cd9fb8cbab72d6, type: 2}
+  - {fileID: 11400000, guid: 425aa1fae60a4d542bfb2fc672fbe1f1, type: 2}
   requiredTools: []
   distractorTools: []
   toolDropMappings: []
@@ -54,6 +56,10 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0

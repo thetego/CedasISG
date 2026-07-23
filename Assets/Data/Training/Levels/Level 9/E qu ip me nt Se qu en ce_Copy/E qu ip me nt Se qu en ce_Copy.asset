@@ -20,7 +20,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 58f8420fe6ad39f42b16e397b7a22f4d, type: 2}
   - {fileID: 11400000, guid: 29f53f2f47b398a49bd29caa4f4f198b, type: 2}
   targetObjectID: character
-  buttonOffset: {x: 0, y: 1, z: 0}
+  buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4
   entryCameraID: camCharacter
   autoReturnOnComplete: 1

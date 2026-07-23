@@ -35,6 +35,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b34a5edcb0c687e479481a0ae0c9efe8, type: 2}
   - {fileID: 11400000, guid: fd3f35bbb475a81468ff0b00ce6fedda, type: 2}
   - {fileID: 11400000, guid: 7a016e2032e19b1488169fe10eb6e45d, type: 2}
+  - {fileID: 11400000, guid: d58445f1d52c21c48b383cc971e13608, type: 2}
   - {fileID: 11400000, guid: 263711e44bb319e4f8d2f449768fcc2f, type: 2}
   - {fileID: 11400000, guid: 31ecd93c84a4b444eaf056f15598be3f, type: 2}
   - {fileID: 11400000, guid: 32e6db7b4b2dfc44e84eb3b2493fc3f4, type: 2}
@@ -76,7 +77,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7d63caae218ccdf458fdad37791abfef, type: 2}
   - {fileID: 11400000, guid: 57f4f08f92553dc4cbac8df7ad9ffbc3, type: 2}
   targetObjectID: A1
-  buttonOffset: {x: 0, y: 1.5, z: 0}
+  buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4
   entryCameraID: camBox
   autoReturnOnComplete: 1

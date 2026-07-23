@@ -60,7 +60,6 @@ namespace SafetyTraining
 		private void Awake()
 		{
 			_rectTransform = transform as RectTransform;
-			ApplyDockPosition();
 			_originalScale = transform.localScale;
 
 			_audio = GetComponent<AudioSource>();
@@ -73,6 +72,8 @@ namespace SafetyTraining
 
 		private void Update()
 		{
+			ApplyDockPosition();
+
 			// Scale animasyonu
 			float targetScale = _hovered ? hoverScale : 1f;
 			transform.localScale = Vector3.Lerp(
@@ -95,6 +96,7 @@ namespace SafetyTraining
 			_isPanelOpen    = false;
 			_isInteractable = false; // SetInteractable(true) çağrılana kadar kilitli
 
+			ApplyDockPosition();
 			UpdateVisuals();
 			gameObject.SetActive(true);
 
@@ -208,10 +210,26 @@ namespace SafetyTraining
 			if (!dockToRightMiddle || _rectTransform == null)
 				return;
 
+			// Parent değiştiğinde anchor'ı tekrar güvenceye al.
 			_rectTransform.anchorMin = new Vector2(1f, 0.5f);
 			_rectTransform.anchorMax = new Vector2(1f, 0.5f);
 			_rectTransform.pivot = new Vector2(1f, 0.5f);
 			_rectTransform.anchoredPosition = new Vector2(-rightMargin, verticalOffset);
+		}
+
+		private void OnEnable()
+		{
+			ApplyDockPosition();
+		}
+
+		private void OnTransformParentChanged()
+		{
+			ApplyDockPosition();
+		}
+
+		private void OnRectTransformDimensionsChange()
+		{
+			ApplyDockPosition();
 		}
 
 		private void UpdateVisuals()

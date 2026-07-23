@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "Kapagi kapat"
+  m_Name: Kapagi kapat
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: "closePlate"
-  actionName: "Kapagi kapat"
+  actionID: closePlate
+  actionName: Kapagi kapat
   instructionText: "Dire\u011Fin kapa\u011F\u0131n\u0131 kapat\u0131n\r\n"
   actionType: 2
   prerequisiteActionIDs: []
@@ -61,8 +61,12 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 0
-  deactivatesTablet: 0
+  deactivatesTablet: 1
   hideButtonAfterComplete: 0
   animationTriggers:
   - animatorObjectID: direk
