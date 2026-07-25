@@ -307,8 +307,21 @@ namespace SafetyTraining
 
 			EditorGUI.BeginChangeCheck();
 
-			// İçerik yüksekliğini ölç
-			float beforeY = GUILayoutUtility.GetLastRect().yMax;
+			// Survey photo ayarları action türünden bağımsız olarak görünür kılınır
+			if (target is ActionData action)
+			{
+				EditorGUILayout.Space(4);
+				EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+				EditorGUILayout.LabelField("SURVEY PHOTO SETTINGS", EditorStyles.boldLabel);
+				EditorGUILayout.LabelField("Survey Photo Count", action.surveyPhotoCount.ToString());
+				EditorGUILayout.LabelField("Survey Photo Required", action.surveyPhotoRequired ? "True (legacy)" : "False");
+				EditorGUILayout.LabelField(
+					"Effective Slot Count",
+					(action.surveyPhotoCount > 0 ? action.surveyPhotoCount : (action.surveyPhotoRequired ? 1 : 0)).ToString());
+				EditorGUILayout.EndVertical();
+				EditorGUILayout.Space(6);
+			}
+
 			_embeddedEditor.OnInspectorGUI();
 			Rect lastRect = GUILayoutUtility.GetLastRect();
 			if (Event.current.type == EventType.Repaint && lastRect.yMax > 10f)
@@ -385,7 +398,7 @@ namespace SafetyTraining
 
 			var actions = new List<ActionData>(_selectedSequence.actions ?? new ActionData[0]);
 			_actionList = new ReorderableList(actions, typeof(ActionData), true, false, false, false);
-			_actionList.elementHeight = ITEM_HEIGHT;
+			_actionList.elementHeight = 44f;
 			_actionList.drawElementCallback = DrawActionElement;
 			_actionList.onSelectCallback = (list) =>
 			{
@@ -447,6 +460,21 @@ namespace SafetyTraining
 				() => OnDeleteAction(action),
 				GetActionTypeColor(action.actionType),
 				() => OnDuplicateAction(action));
+
+			string detail = GetActionRowDetail(action);
+			if (!string.IsNullOrEmpty(detail))
+			{
+				GUIStyle detailStyle = new GUIStyle(EditorStyles.miniLabel)
+				{
+					normal = { textColor = new Color(0.72f, 0.88f, 0.95f) },
+					fontSize = 9
+				};
+
+				GUI.Label(
+					new Rect(rect.x + 10, rect.y + 15, rect.width - 120, rect.height - 16),
+					detail,
+					detailStyle);
+			}
 		}
 
 		// ─── Ortak Satır Çizici ──────────────────────────────────
@@ -1295,6 +1323,12 @@ namespace SafetyTraining
 				sb.AppendLine($"| Tablet | ❌ Pasifleştirir |");
 
 			// Type'a özel alanlar
+			if (a.surveyPhotoCount > 0)
+				sb.AppendLine($"| Survey Photo Count | {a.surveyPhotoCount} |");
+
+			if (a.surveyPhotoRequired)
+				sb.AppendLine($"| Survey Photo Required | Yes |");
+
 			switch (a.actionType)
 			{
 				case ActionType.Quiz when a.quizData != null:
@@ -1486,7 +1520,25 @@ namespace SafetyTraining
 			if (action.deactivatesTablet)
 				sb.AppendLine("**Tablet:** Pasifleştirir  ");
 
+			int photoCount = action.surveyPhotoCount > 0 ? action.surveyPhotoCount : (action.surveyPhotoRequired ? 1 : 0);
+			if (photoCount > 0)
+				sb.AppendLine($"**Survey Foto Sayısı:** {photoCount}  ");
+
 			return sb.ToString().Trim();
+		}
+
+		private string GetActionRowDetail(ActionData action)
+		{
+			if (action == null)
+				return string.Empty;
+
+			int count = action.surveyPhotoCount > 0 ? action.surveyPhotoCount : (action.surveyPhotoRequired ? 1 : 0);
+			if (count <= 0)
+				return "Survey photo: 0";
+
+			return action.surveyPhotoRequired && action.surveyPhotoCount == 0
+				? "Survey photo: 1 (legacy)"
+				: $"Survey photo: {count}";
 		}
 
 		private string EscapeMd(string text)

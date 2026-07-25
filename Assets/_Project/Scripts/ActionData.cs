@@ -146,6 +146,13 @@ namespace SafetyTraining
 		[Tooltip("Dropdown anket, fotoğraf çekme ve analytics verisi")]
 		public SurveyActionData surveyData;
 
+		[Tooltip("Bu action için kaç fotoğraf slotu ayrılacağı. 0 ise legacy bool kullanılır.")]
+		[Min(0)]
+		public int surveyPhotoCount = 0;
+
+		[Tooltip("Legacy toggle; surveyPhotoCount 0 ise 1 fotoğraf olarak yorumlanır.")]
+		public bool surveyPhotoRequired = false;
+
 		// ───────────────────────────────────────
 		// Modal Window
 		// ───────────────────────────────────────

@@ -809,6 +809,12 @@ namespace SafetyTraining
 				Debug.Log($"<color=lime>[UISpawnManager] Sequence survey spawned: {sequence.sequenceID}</color>");
 		}
 
+		public void SetSurveyPhotoSlotFocus(int startIndex, int slotCount)
+		{
+			if (_activeSurveyPanel != null)
+				_activeSurveyPanel.SetActivePhotoSlotRange(startIndex, slotCount);
+		}
+
 		/// <summary>
 		/// Sekans bitince veya çıkılınca survey UI'ı temizler.
 		/// </summary>

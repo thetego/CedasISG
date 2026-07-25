@@ -73,6 +73,32 @@ namespace SafetyTraining
 
 		// Aktif kamera slot indeksi
 		private int _activeCameraSlot = -1;
+		private int _activePhotoSlotStartIndex = -1;
+		private int _activePhotoSlotCount = 0;
+
+		public void SetActivePhotoSlotRange(int startIndex, int slotCount)
+		{
+			_activePhotoSlotStartIndex = startIndex;
+			_activePhotoSlotCount = Mathf.Max(0, slotCount);
+			RefreshPhotoSlotAvailability();
+		}
+
+		private void RefreshPhotoSlotAvailability()
+		{
+			for (int i = 0; i < _photoSlotUIs.Count; i++)
+			{
+				SurveyPhotoSlotUI slotUI = _photoSlotUIs[i];
+				if (slotUI == null) continue;
+
+				bool allow =
+					_activePhotoSlotStartIndex >= 0 &&
+					_activePhotoSlotCount > 0 &&
+					slotUI.SlotIndex >= _activePhotoSlotStartIndex &&
+					slotUI.SlotIndex < _activePhotoSlotStartIndex + _activePhotoSlotCount;
+
+				slotUI.SetInteractable(allow);
+			}
+		}
 
 		// ═══════════════════════════════════════════════════════
 		// SETUP
@@ -202,6 +228,7 @@ namespace SafetyTraining
 
 			// Fotoğraf slotu yoksa container'ı gizle
 			photoSlotsContainer.gameObject.SetActive(count > 0);
+			RefreshPhotoSlotAvailability();
 		}
 
 		private void BuildQuestions()
@@ -254,6 +281,19 @@ namespace SafetyTraining
 
 		private void OpenCameraForSlot(int slotIndex)
 		{
+			bool isInRange =
+				_activePhotoSlotStartIndex >= 0 &&
+				_activePhotoSlotCount > 0 &&
+				slotIndex >= _activePhotoSlotStartIndex &&
+				slotIndex < _activePhotoSlotStartIndex + _activePhotoSlotCount;
+
+			if (!isInRange)
+			{
+				if (debugMode)
+					Debug.LogWarning($"[UISurveyPanel] Slot {slotIndex} rejected. Active range={_activePhotoSlotStartIndex}+{_activePhotoSlotCount}");
+				return;
+			}
+
 			_activeCameraSlot = slotIndex;
 
 			// cameraController null ise sahnede ara
@@ -365,6 +405,7 @@ namespace SafetyTraining
 
 			// Bu slotun indicator'ını kalıcı olarak işaretle (tekrar spawn edilmesin)
 			_cameraController?.MarkSlotPhotographed(_activeCameraSlot);
+			RefreshPhotoSlotAvailability();
 
 			// Kamera overlay'i kapat
 			CloseCameraOverlay();

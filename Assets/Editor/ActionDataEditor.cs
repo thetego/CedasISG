@@ -40,6 +40,16 @@ namespace SafetyTraining
 				EditorGUILayout.PropertyField(serializedObject.FindProperty("autoReturnCameraOnComplete"));
 			});
 
+			DrawSection("SURVEY PHOTO REQUIREMENT", () =>
+			{
+				EditorGUILayout.PropertyField(
+					serializedObject.FindProperty("surveyPhotoCount"),
+					new GUIContent("Survey Photo Count", "Bu action için ayrılan fotoğraf slotu sayısı."));
+				EditorGUILayout.PropertyField(
+					serializedObject.FindProperty("surveyPhotoRequired"),
+					new GUIContent("Survey Photo Required", "Legacy toggle; count 0 ise 1 fotoğraf olarak yorumlanır."));
+			});
+
 			if (action.actionType != ActionType.Quiz &&
 				action.actionType != ActionType.PanelInteraction &&
 				action.actionType != ActionType.Survey &&

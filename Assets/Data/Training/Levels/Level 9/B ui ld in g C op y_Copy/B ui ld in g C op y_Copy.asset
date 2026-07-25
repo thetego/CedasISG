@@ -23,6 +23,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1cf20b85cb46ece4a95e7ed3d848e2d3, type: 2}
   - {fileID: 11400000, guid: b51fc303b4739cd44b597b0b609299b9, type: 2}
   - {fileID: 11400000, guid: 419eb0b4355a7b046bbf27f0707e9b8e, type: 2}
+  - {fileID: 11400000, guid: d25f41e417777c84c89e402ae54c5d06, type: 2}
   - {fileID: 11400000, guid: 46af53f737465944c916363be31f5f3a, type: 2}
   - {fileID: 11400000, guid: 35d3560726358284dbcd14636738da91, type: 2}
   targetObjectID: kosk1

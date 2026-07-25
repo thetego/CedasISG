@@ -17,6 +17,8 @@ MonoBehaviour:
   sequenceDescription: 
   instructionText: "Panolar \xFCst\xFCnde gerekli i\u015Flemleri ger\xE7ekle\u015Ftirin."
   actions:
+  - {fileID: 11400000, guid: c61f08b8662dd894d8ea0c0776a2dfc8, type: 2}
+  - {fileID: 11400000, guid: 56db21840ab45344aae2a42cc38ce78d, type: 2}
   - {fileID: 11400000, guid: 6931f9d827b252b45a104fc5b3436b0b, type: 2}
   - {fileID: 11400000, guid: 8eeb68cccc3dafd4dbf041dd57ae0980, type: 2}
   - {fileID: 11400000, guid: 58f99d9153405244788a99da915f058d, type: 2}

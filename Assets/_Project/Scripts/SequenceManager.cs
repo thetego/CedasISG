@@ -358,6 +358,7 @@ namespace SafetyTraining
 			_currentSequenceState = null;
 			_currentAction = null;
 			_inSequence = false;
+			UISpawnManager.Instance?.SetSurveyPhotoSlotFocus(-1, 0);
 
 			// UI güncelle
 			if (currentSequenceText)
@@ -379,6 +380,47 @@ namespace SafetyTraining
 		/// <summary>
 		/// Sekanstaki sıradaki action'ı başlatır
 		/// </summary>
+		private int GetSurveyPhotoCount(ActionData action)
+		{
+			if (action == null)
+				return 0;
+
+			if (action.surveyPhotoCount > 0)
+				return action.surveyPhotoCount;
+
+			return action.surveyPhotoRequired ? 1 : 0;
+		}
+
+		private void GetSurveyPhotoRangeForAction(int actionIndex, out int startIndex, out int slotCount)
+		{
+			startIndex = -1;
+			slotCount = 0;
+
+			if (_currentSequence == null || actionIndex < 0 || actionIndex >= _currentSequence.GetTotalActionCount())
+				return;
+
+			ActionData currentAction = _currentSequence.GetActionAt(actionIndex);
+			int currentCount = GetSurveyPhotoCount(currentAction);
+			if (currentCount <= 0)
+				return;
+
+			int currentStartIndex = 0;
+			for (int i = 0; i < actionIndex; i++)
+			{
+				ActionData previousAction = _currentSequence.GetActionAt(i);
+				currentStartIndex += GetSurveyPhotoCount(previousAction);
+			}
+
+			startIndex = currentStartIndex;
+			slotCount = currentCount;
+		}
+
+		private void UpdateSurveyPhotoSlotFocus()
+		{
+			GetSurveyPhotoRangeForAction(_currentActionIndex, out int startIndex, out int slotCount);
+			UISpawnManager.Instance?.SetSurveyPhotoSlotFocus(startIndex, slotCount);
+		}
+
 		private void StartNextActionInSequence()
 		{
 			if (_currentSequence == null)
@@ -429,6 +471,9 @@ namespace SafetyTraining
 
 			// OnStart scene events (ActionEventHandler)
 			TriggerSceneEvents(_currentAction.onStartEventIDs);
+
+			// Survey foto slot focus
+			UpdateSurveyPhotoSlotFocus();
 
 			// CameraMove için otomatik tamamlama
 			if (_currentAction.actionType == ActionType.CameraMove)
@@ -663,6 +708,7 @@ namespace SafetyTraining
 
 			// Sekans survey'i kapat
 			UISpawnManager.Instance?.OnSequenceEnded(completedSequence);
+			UISpawnManager.Instance?.SetSurveyPhotoSlotFocus(-1, 0);
 			_currentSequenceState.completionTime = Time.time;
 
 			// Events

@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: Trafonun termal gorusunu kontrol et ve fotografini cek
+  m_Name: p an o 2 C op y_Act_14
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: TrafoCheck_Act_03
-  actionName: Trafonun termal gorusunu kontrol et ve fotografini cek
-  instructionText: "Termal kamera ile \xF6l\xE7\xFCm yap\u0131n ve foto\u011Fraf\u0131n\u0131
-    \xE7ekin"
-  actionType: 2
+  actionID: p an o 2 C op y_Act_14
+  actionName: p an o 2 C op y_Act_14
+  instructionText: "SF6 kontrol\xFCn\xFC yap\u0131n"
+  actionType: 3
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
@@ -26,18 +25,12 @@ MonoBehaviour:
   cameraMode: 0
   virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  targetObjectID: 
+  targetObjectID: A6
   requiredEquipments: []
   distractorEquipments: []
-  requiredTools:
-  - {fileID: 11400000, guid: cae7644f9562bff4bb316c13065c8148, type: 2}
-  distractorTools:
-  - {fileID: 11400000, guid: a93354739132d324ca366d6aa3717b89, type: 2}
-  toolDropMappings:
-  - uniqueID: temp
-    toolID: Temp
-    dropTargetObjectID: trafoPic2
-    onDropEventID: 
+  requiredTools: []
+  distractorTools: []
+  toolDropMappings: []
   dropZoneSize: {x: 120, y: 120}
   toolDropMode: 0
   interactionPanelPrefab: {fileID: 0}
@@ -58,13 +51,12 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
-  surveyPhotoCount: 1
-  surveyPhotoRequired: 1
+  surveyPhotoRequired: 0
   modalWindowPrefab: {fileID: 0}
   modalWindowTitle: 
   modalWindowDescription: 
   modalConfirmButtonText: Tamam
-  activatesTablet: 1
+  activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0
   animationTriggers: []
@@ -81,6 +73,5 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onStartEventIDs: []
-  onCompleteEventIDs:
-  - temp1
+  onCompleteEventIDs: []
   onFailEventIDs: []
