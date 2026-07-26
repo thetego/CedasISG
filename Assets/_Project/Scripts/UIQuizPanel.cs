@@ -60,6 +60,7 @@ namespace SafetyTraining
 		private bool   _answered;
 		private string _correctFeedback;
 		private string _wrongFeedback;
+		private string _correctAnswerText;
 		private int    _quizAttempts;
 		private float  _quizStartTime;
 
@@ -95,6 +96,10 @@ namespace SafetyTraining
 			_answered        = false;
 			_quizAttempts    = 0;
 			_quizStartTime   = Time.time;
+
+			_correctAnswerText = (quizData.options != null && _correctIndex < quizData.options.Length && quizData.options[_correctIndex] != null)
+				? _prefixes[_correctIndex] + quizData.options[_correctIndex]
+				: string.Empty;
 
 			// Soru metni
 			if (questionText != null)
@@ -165,7 +170,7 @@ namespace SafetyTraining
 
 			PlayFabDataManager.Instance?.LogQuizAnswered(
 				_actionID, levelId, sequenceId,
-				_actionID, answer, isCorrect, _quizAttempts, timeSpent
+				_actionID, answer, _correctAnswerText, isCorrect, _quizAttempts, timeSpent
 			);
 
 			if (!isCorrect)

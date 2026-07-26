@@ -556,7 +556,8 @@ namespace SafetyTraining
 				_currentAction.actionID,
 				currentLevel?.levelID,
 				_currentSequence?.sequenceID,
-				GetActionTypeString(_currentAction.actionType)
+				GetActionTypeString(_currentAction.actionType),
+				_currentAction.targetObjectID
 			);
 
 			// State'e kaydet

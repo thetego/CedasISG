@@ -51,6 +51,8 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  surveyPhotoCount: 1
+  surveyPhotoRequired: 1
   modalWindowPrefab: {fileID: 0}
   modalWindowTitle: 
   modalWindowDescription: 

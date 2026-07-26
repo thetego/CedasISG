@@ -20,9 +20,17 @@ namespace SafetyTraining
         [Header("━━━ DEBUG ━━━")]
         public bool debugMode = true;
 
-        // ─── Oyuncu verisi ───
+        [Tooltip("Sahne açılınca ayrı, zararsız bir anonim login ile Title ID'nin PlayFab'a bağlanabildiğini test eder")]
+        public bool testConnectionOnStart = true;
+
+        // ─── Oyuncu verisi (doküman §4.1) ───
         public string CurrentPlayerId    { get; private set; }
         public string CurrentDisplayName { get; private set; }
+        public string CurrentPlayerRole  { get; private set; }
+        public int    CurrentPlayerLevel { get; private set; }
+        public long   CurrentPlayerXp    { get; private set; }
+        public string CurrentPlayerCreatedAt { get; private set; }
+        public string CurrentPlayerLastLogin { get; private set; }
 
         private bool   _isLoggedIn;
         private string _playFabId;
@@ -41,6 +49,10 @@ namespace SafetyTraining
         private float _sequenceStartTime;
         private float _actionStartTime;
 
+        // Doküman §4.6 Quiz Summary — aktif level boyunca biriktirilir, LogLevelCompleted'de gönderilir
+        private int _quizTotalQuestions;
+        private int _quizCorrectAnswers;
+
         // ═══════════════════════════════════════════════════════
         // PLAYER ENTRY MODEL
         // ═══════════════════════════════════════════════════════
@@ -51,12 +63,36 @@ namespace SafetyTraining
             public string playerId;
             public string displayName;
             public string role;
+
+            // ── Doküman §4.1 Player modeli — whitelist JSON'da bu alanlar varsa parse edilir ──
+            public int    level;
+            public long   xp;
+            public string createdAt;
+            public string lastLogin;
         }
 
         [Serializable]
         private class WhitelistJson
         {
             public List<PlayerEntry> players;
+        }
+
+        // ═══════════════════════════════════════════════════════
+        // DRAG & DROP PLACEMENT MODEL (doküman §4.4.1)
+        // ═══════════════════════════════════════════════════════
+
+        public struct DragDropPlacement
+        {
+            public string item;
+            public string droppedOn;
+            public bool   correct;
+
+            public DragDropPlacement(string item, string droppedOn, bool correct)
+            {
+                this.item = item;
+                this.droppedOn = droppedOn;
+                this.correct = correct;
+            }
         }
 
         // ═══════════════════════════════════════════════════════
@@ -80,6 +116,28 @@ namespace SafetyTraining
         {
             if (!string.IsNullOrEmpty(titleId))
                 PlayFabSettings.TitleId = titleId;
+
+            if (testConnectionOnStart)
+                TestConnection();
+        }
+
+        /// <summary>
+        /// Gerçek oyuncu login akışına dokunmayan, bağımsız bir anonim login denemesi.
+        /// Sadece Title ID'nin geçerli olup PlayFab'a ulaşılabildiğini doğrulamak içindir.
+        /// </summary>
+        private void TestConnection()
+        {
+            Debug.Log($"[PlayFabDataManager] Bağlantı testi başlatılıyor... (TitleId: {PlayFabSettings.TitleId})");
+
+            PlayFabClientAPI.LoginWithCustomID(
+                new LoginWithCustomIDRequest
+                {
+                    CustomId      = "connectiontest_" + SystemInfo.deviceUniqueIdentifier,
+                    CreateAccount = true
+                },
+                result => Debug.Log($"<color=lime>[PlayFabDataManager] ✓ PlayFab bağlantısı başarılı! PlayFabId: {result.PlayFabId}</color>"),
+                error  => Debug.LogError($"[PlayFabDataManager] ✗ PlayFab bağlantı hatası: {error.GenerateErrorReport()}")
+            );
         }
 
         // ═══════════════════════════════════════════════════════
@@ -161,8 +219,13 @@ namespace SafetyTraining
                 return;
             }
 
-            CurrentPlayerId    = entry.playerId;
-            CurrentDisplayName = entry.displayName;
+            CurrentPlayerId       = entry.playerId;
+            CurrentDisplayName    = entry.displayName;
+            CurrentPlayerRole     = entry.role;
+            CurrentPlayerLevel    = entry.level;
+            CurrentPlayerXp       = entry.xp;
+            CurrentPlayerCreatedAt = entry.createdAt;
+            CurrentPlayerLastLogin = DateTime.UtcNow.ToString("o");
             _onLoginSuccess    = onSuccess;
             _onLoginFailed     = onFailed;
 
@@ -184,6 +247,9 @@ namespace SafetyTraining
         {
             _isLoggedIn = true;
             _playFabId  = result.PlayFabId;
+
+            if (result.NewlyCreated || string.IsNullOrEmpty(CurrentPlayerCreatedAt))
+                CurrentPlayerCreatedAt = CurrentPlayerLastLogin;
 
             if (debugMode)
                 Debug.Log($"<color=lime>[PlayFabDataManager] Giriş başarılı: {CurrentDisplayName} → {_playFabId}</color>");
@@ -217,16 +283,20 @@ namespace SafetyTraining
         {
             _currentLevelId = levelId;
             _levelStartTime = Time.time;
+            _quizTotalQuestions = 0;
+            _quizCorrectAnswers = 0;
 
             SendEvent("LevelStarted", new Dictionary<string, object>
             {
                 { "levelId",     levelId },
-                { "playerId",    CurrentPlayerId },
-                { "displayName", CurrentDisplayName },
-                { "timestamp",   DateTime.UtcNow.ToString("o") }
+                { "displayName", CurrentDisplayName }
             });
         }
 
+        /// <summary>
+        /// Doküman §4.2 Level Progress modeli. Aynı level içinde quiz cevaplanmışsa
+        /// §4.6 Quiz Summary'i de otomatik olarak ayrı bir event ile gönderir.
+        /// </summary>
         public void LogLevelCompleted(string levelId, int score, int mistakes)
         {
             int timeSpent = Mathf.RoundToInt(Time.time - _levelStartTime);
@@ -234,12 +304,15 @@ namespace SafetyTraining
             SendEvent("LevelCompleted", new Dictionary<string, object>
             {
                 { "levelId",        levelId },
-                { "playerId",       CurrentPlayerId },
+                { "completed",      true },
                 { "score",          score },
                 { "timeSpent",      timeSpent },
                 { "mistakes",       mistakes },
                 { "completionRate", Mathf.Clamp01(1f - mistakes * 0.05f) }
             });
+
+            if (_quizTotalQuestions > 0)
+                LogQuizSummary(levelId);
         }
 
         // ═══════════════════════════════════════════════════════
@@ -253,9 +326,7 @@ namespace SafetyTraining
             SendEvent("SequenceStarted", new Dictionary<string, object>
             {
                 { "sequenceId", sequenceId },
-                { "levelId",    levelId },
-                { "playerId",   CurrentPlayerId },
-                { "timestamp",  DateTime.UtcNow.ToString("o") }
+                { "levelId",    levelId }
             });
         }
 
@@ -265,7 +336,6 @@ namespace SafetyTraining
             {
                 { "sequenceId", sequenceId },
                 { "levelId",    levelId },
-                { "playerId",   CurrentPlayerId },
                 { "timeSpent",  Mathf.RoundToInt(Time.time - _sequenceStartTime) },
                 { "mistakes",   mistakes },
                 { "completed",  true }
@@ -281,17 +351,23 @@ namespace SafetyTraining
             _actionStartTime = Time.time;
         }
 
-        public void LogActionCompleted(string actionId, string levelId, string sequenceId, string actionType)
+        /// <summary>
+        /// Doküman §4.4 Action modeli. actionType "click" ise objectId, §4.4.3
+        /// Click/Inspect alt modelinin karşılığıdır (bu tip için ayrı bir event yok,
+        /// doküman §5'teki event kataloğunda da Click/Inspect için ayrı event tanımlı değil).
+        /// </summary>
+        public void LogActionCompleted(string actionId, string levelId, string sequenceId,
+            string actionType, string objectId = null, string result = "success")
         {
             SendEvent("ActionCompleted", new Dictionary<string, object>
             {
                 { "actionId",   actionId },
                 { "levelId",    levelId },
                 { "sequenceId", sequenceId },
-                { "playerId",   CurrentPlayerId },
                 { "type",       actionType },
+                { "objectId",   objectId },
                 { "duration",   Mathf.RoundToInt(Time.time - _actionStartTime) },
-                { "result",     "success" }
+                { "result",     result }
             });
         }
 
@@ -300,19 +376,43 @@ namespace SafetyTraining
         // ═══════════════════════════════════════════════════════
 
         public void LogQuizAnswered(string actionId, string levelId, string sequenceId,
-            string questionId, string selectedAnswer, bool isCorrect, int attempts, int timeSpent)
+            string questionId, string selectedAnswer, string correctAnswer,
+            bool isCorrect, int attempts, int timeSpent)
         {
+            _quizTotalQuestions++;
+            if (isCorrect) _quizCorrectAnswers++;
+
             SendEvent("QuizAnswered", new Dictionary<string, object>
             {
                 { "actionId",       actionId },
                 { "levelId",        levelId },
                 { "sequenceId",     sequenceId },
-                { "playerId",       CurrentPlayerId },
                 { "questionId",     questionId },
                 { "selectedAnswer", selectedAnswer },
+                { "correctAnswer",  correctAnswer },
                 { "isCorrect",      isCorrect },
                 { "attempts",       attempts },
                 { "timeSpent",      timeSpent }
+            });
+        }
+
+        /// <summary>
+        /// Doküman §4.6 Quiz Summary — LogLevelCompleted tarafından otomatik tetiklenir.
+        /// </summary>
+        private void LogQuizSummary(string levelId)
+        {
+            int wrong = _quizTotalQuestions - _quizCorrectAnswers;
+            float accuracy = _quizTotalQuestions > 0
+                ? (float)_quizCorrectAnswers / _quizTotalQuestions
+                : 0f;
+
+            SendEvent("QuizSummary", new Dictionary<string, object>
+            {
+                { "levelId",        levelId },
+                { "totalQuestions", _quizTotalQuestions },
+                { "correctAnswers", _quizCorrectAnswers },
+                { "wrongAnswers",   wrong },
+                { "accuracy",       accuracy }
             });
         }
 
@@ -320,19 +420,36 @@ namespace SafetyTraining
         // DRAG & DROP EVENTLERİ
         // ═══════════════════════════════════════════════════════
 
+        /// <summary>
+        /// Doküman §4.4.1 Drag & Drop modeli — bir action'a ait tüm denemeler
+        /// (yanlış + doğru) tek bir "placements" listesi içinde, action tamamlandığında
+        /// (son doğru drop'ta) tek event olarak gönderilir.
+        /// </summary>
         public void LogDragDropAttempt(string actionId, string levelId, string sequenceId,
-            string item, string droppedOn, bool correct, int attempts)
+            string targetObject, int attempts, List<DragDropPlacement> placements)
         {
+            var placementList = new List<object>();
+            if (placements != null)
+            {
+                foreach (var p in placements)
+                {
+                    placementList.Add(new Dictionary<string, object>
+                    {
+                        { "item",      p.item },
+                        { "droppedOn", p.droppedOn },
+                        { "correct",   p.correct }
+                    });
+                }
+            }
+
             SendEvent("DragDropAttempt", new Dictionary<string, object>
             {
-                { "actionId",   actionId },
-                { "levelId",    levelId },
-                { "sequenceId", sequenceId },
-                { "playerId",   CurrentPlayerId },
-                { "item",       item },
-                { "droppedOn",  droppedOn },
-                { "correct",    correct },
-                { "attempts",   attempts }
+                { "actionId",     actionId },
+                { "levelId",      levelId },
+                { "sequenceId",   sequenceId },
+                { "targetObject", targetObject },
+                { "attempts",     attempts },
+                { "placements",   placementList }
             });
         }
 
@@ -346,9 +463,7 @@ namespace SafetyTraining
             {
                 { "mistakeType", mistakeType },
                 { "actionId",    actionId },
-                { "playerId",    CurrentPlayerId },
-                { "severity",    severity },
-                { "timestamp",   DateTime.UtcNow.ToString("o") }
+                { "severity",    severity }
             });
         }
 
@@ -360,22 +475,38 @@ namespace SafetyTraining
         {
             SendEvent("SessionEnded", new Dictionary<string, object>
             {
-                { "levelId",   levelId },
-                { "playerId",  CurrentPlayerId },
-                { "timestamp", DateTime.UtcNow.ToString("o") }
+                { "levelId", levelId }
             });
         }
 
         // ═══════════════════════════════════════════════════════
-        // CORE
+        // CORE — Doküman §6 Event Payload Formatı:
+        // { eventType, clientTimestamp, employeeId, payload: {...} }
+        //
+        // Not: "timestamp" ve "playerId" adlarını bilerek kullanmıyoruz —
+        // PlayFab, WritePlayerEvent body'sinde bu iki adı kendi rezerve ettiği
+        // event şemasıyla çakıştığı için reddediyor ("Field X is a reserved
+        // PlayFab field and may not be overridden"). PlayFab zaten her event'e
+        // kimin (oturum sahibi) ve ne zaman (sunucu saatiyle) yazdığını otomatik
+        // ekliyor; clientTimestamp/employeeId alanlarımız ise istemci tarafındaki
+        // gerçek değerleri (login olmadan kuyruğa alınan eventlerde bunlar sunucu
+        // değerlerinden farklı olabilir) doküman formatına uygun şekilde taşır.
         // ═══════════════════════════════════════════════════════
 
-        private void SendEvent(string eventName, Dictionary<string, object> body)
+        private void SendEvent(string eventName, Dictionary<string, object> payload)
         {
+            var envelope = new Dictionary<string, object>
+            {
+                { "eventType",       eventName },
+                { "clientTimestamp", DateTime.UtcNow.ToString("o") },
+                { "employeeId",      CurrentPlayerId },
+                { "payload",         payload }
+            };
+
             var request = new WriteClientPlayerEventRequest
             {
                 EventName = eventName,
-                Body      = body
+                Body      = envelope
             };
 
             if (!_isLoggedIn)

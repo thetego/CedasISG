@@ -51,6 +51,11 @@ namespace SafetyTraining
 		private string _onDropEventID; // Drop edildiğinde tetiklenecek event
 		private int _dropAttempts;
 
+		// Doküman §4.4.1 Drag & Drop modeli — bu zone'a yapılan tüm denemeler,
+		// başarılı drop'ta tek bir event olarak gönderilmek üzere biriktirilir
+		private readonly List<PlayFabDataManager.DragDropPlacement> _placements =
+			new List<PlayFabDataManager.DragDropPlacement>();
+
 		private void Awake()
 		{
 			_rectTransform = GetComponent<RectTransform>();
@@ -72,6 +77,7 @@ namespace SafetyTraining
 			_uniqueID = uniqueID ?? acceptedItemID; // uniqueID yoksa itemID kullan
 			_onDropEventID = onDropEventID; // Event ID
 			_dropAttempts = 0;
+			_placements.Clear();
 
 			if (label != null) label.text = labelText;
 			if (background != null) background.color = normalColor;
@@ -102,6 +108,8 @@ namespace SafetyTraining
 			_filled = false;
 			_maxCapacity = maxCapacity;
 			_acceptedEquipmentIDs.Clear();
+			_dropAttempts = 0;
+			_placements.Clear();
 
 			if (label != null) label.text = labelText;
 			if (background != null) background.color = normalColor;
@@ -167,10 +175,7 @@ namespace SafetyTraining
 			if (!accepted)
 		{
 			_dropAttempts++;
-			string lvl = SequenceManager.Instance?.CurrentLevelID    ?? string.Empty;
-			string seq = SequenceManager.Instance?.CurrentSequenceID ?? string.Empty;
-			PlayFabDataManager.Instance?.LogDragDropAttempt(
-				_actionID, lvl, seq, item.ItemID, gameObject.name, false, _dropAttempts);
+			_placements.Add(new PlayFabDataManager.DragDropPlacement(item.ItemID, gameObject.name, false));
 			PlayFabDataManager.Instance?.LogMistakeRecorded(_actionID, "wrong_drop", 1);
 			return false;
 		}
@@ -183,11 +188,13 @@ namespace SafetyTraining
 		{
 			_dropAttempts++;
 			_filled = true;
+			_placements.Add(new PlayFabDataManager.DragDropPlacement(item.ItemID, gameObject.name, true));
 
 			string lvl = SequenceManager.Instance?.CurrentLevelID    ?? string.Empty;
 			string seq = SequenceManager.Instance?.CurrentSequenceID ?? string.Empty;
+			string targetObject = _isEquipmentSlot ? _slotType.ToString() : _acceptedItemID;
 			PlayFabDataManager.Instance?.LogDragDropAttempt(
-				_actionID, lvl, seq, item.ItemID, gameObject.name, true, _dropAttempts);
+				_actionID, lvl, seq, targetObject, _dropAttempts, _placements);
 
 			item.transform.SetParent(transform);
 

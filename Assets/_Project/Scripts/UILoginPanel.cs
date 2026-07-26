@@ -1,32 +1,33 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using System;
 using System.Collections.Generic;
+using Michsky.MUIP;
 
 namespace SafetyTraining
 {
     /// <summary>
-    /// Oyun açılışında PlayFab Title Data'dan whitelist'i çeker,
-    /// dropdown ile oyuncu seçtirip giriş yapar.
+    /// Oyun açılışında PlayFab Title Data'dan çalışan whitelist'ini çeker.
+    /// Çalışan kendi ID'sini bir input field'a yazıp giriş yapar — tüm çalışan
+    /// listesi ekrana hiç basılmaz, sadece girilen ID whitelist'te aranır.
     /// </summary>
     public class UILoginPanel : MonoBehaviour
     {
         [Header("━━━ UI REFERANSLARI ━━━")]
-        public TMP_Dropdown playerDropdown;
-        public Button       loginButton;
+        public TMP_InputField playerIdInput;
+        public ButtonManager   loginButton;
         public TextMeshProUGUI statusText;
-        public GameObject   loadingIndicator;
+        public GameObject      loadingIndicator;
 
         [Header("━━━ DEBUG ━━━")]
         public bool debugMode = true;
 
         private List<PlayFabDataManager.PlayerEntry> _entries;
-        private PlayFabDataManager.PlayerEntry       _selectedEntry;
 
         private void Start()
         {
             SetInteractable(false);
-            SetStatus("Oyuncu listesi yükleniyor...");
+            SetStatus("Çalışan listesi yükleniyor...");
             ShowLoading(true);
 
             PlayFabDataManager.Instance?.FetchWhitelist(OnWhitelistFetched, OnFetchFailed);
@@ -38,17 +39,14 @@ namespace SafetyTraining
         {
             _entries = entries;
             ShowLoading(false);
-            PopulateDropdown();
             SetInteractable(true);
-            SetStatus("Oyuncuyu seçip giriş yapın.");
+            SetStatus("Çalışan ID'nizi girip giriş yapın.");
 
             if (loginButton)
                 loginButton.onClick.AddListener(OnLoginClicked);
 
-            if (playerDropdown)
-                playerDropdown.onValueChanged.AddListener(OnDropdownChanged);
-
-            OnDropdownChanged(0);
+            if (playerIdInput)
+                playerIdInput.onSubmit.AddListener(_ => OnLoginClicked());
         }
 
         private void OnFetchFailed(string error)
@@ -58,46 +56,47 @@ namespace SafetyTraining
             Debug.LogError($"[UILoginPanel] Whitelist hatası: {error}");
         }
 
-        // ─── Dropdown ───
+        // ─── ID arama ───
 
-        private void PopulateDropdown()
+        private PlayFabDataManager.PlayerEntry FindEntry(string enteredId)
         {
-            if (playerDropdown == null || _entries == null) return;
+            if (_entries == null || string.IsNullOrWhiteSpace(enteredId))
+                return null;
 
-            playerDropdown.ClearOptions();
-            var options = new List<TMP_Dropdown.OptionData>();
-            foreach (var e in _entries)
-                options.Add(new TMP_Dropdown.OptionData(e.displayName));
-
-            playerDropdown.AddOptions(options);
-        }
-
-        private void OnDropdownChanged(int index)
-        {
-            if (_entries == null || index >= _entries.Count) return;
-            _selectedEntry = _entries[index];
+            string trimmed = enteredId.Trim();
+            return _entries.Find(e =>
+                string.Equals(e.playerId, trimmed, StringComparison.OrdinalIgnoreCase));
         }
 
         // ─── Login ───
 
         private void OnLoginClicked()
         {
-            if (_selectedEntry == null) return;
+            string enteredId = playerIdInput != null ? playerIdInput.text : string.Empty;
+            PlayFabDataManager.PlayerEntry entry = FindEntry(enteredId);
+
+            if (entry == null)
+            {
+                SetStatus("ID bulunamadı. Lütfen kontrol edip tekrar deneyin.", isError: true);
+                return;
+            }
 
             SetInteractable(false);
             ShowLoading(true);
             SetStatus("Giriş yapılıyor...");
 
-            PlayFabDataManager.Instance?.LoginWithPlayer(_selectedEntry, OnLoginSuccess, OnLoginFailed);
+            PlayFabDataManager.Instance?.LoginWithPlayer(entry,
+                () => OnLoginSuccess(entry),
+                OnLoginFailed);
         }
 
-        private void OnLoginSuccess()
+        private void OnLoginSuccess(PlayFabDataManager.PlayerEntry entry)
         {
             ShowLoading(false);
-            SetStatus($"Hoşgeldin, {_selectedEntry.displayName}!");
+            SetStatus($"Hoşgeldin, {entry.displayName}!");
 
             if (debugMode)
-                Debug.Log($"[UILoginPanel] ✓ {_selectedEntry.displayName} giriş yaptı.");
+                Debug.Log($"[UILoginPanel] ✓ {entry.displayName} ({entry.playerId}) giriş yaptı.");
 
             Invoke(nameof(ClosePanel), 1f);
         }
@@ -116,8 +115,8 @@ namespace SafetyTraining
 
         private void SetInteractable(bool state)
         {
-            if (loginButton)    loginButton.interactable    = state;
-            if (playerDropdown) playerDropdown.interactable = state;
+            if (loginButton)     loginButton.Interactable(state);
+            if (playerIdInput)   playerIdInput.interactable  = state;
         }
 
         private void ShowLoading(bool state)
