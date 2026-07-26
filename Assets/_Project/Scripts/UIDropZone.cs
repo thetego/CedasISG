@@ -49,6 +49,7 @@ namespace SafetyTraining
 		// Multiple drop zones tracking
 		private string _uniqueID; // Her drop zone için benzersiz
 		private string _onDropEventID; // Drop edildiğinde tetiklenecek event
+		private int _dropAttempts;
 
 		private void Awake()
 		{
@@ -70,6 +71,7 @@ namespace SafetyTraining
 			_toolDropMode = dropMode;
 			_uniqueID = uniqueID ?? acceptedItemID; // uniqueID yoksa itemID kullan
 			_onDropEventID = onDropEventID; // Event ID
+			_dropAttempts = 0;
 
 			if (label != null) label.text = labelText;
 			if (background != null) background.color = normalColor;
@@ -162,7 +164,16 @@ namespace SafetyTraining
 				accepted = item.ItemID == _acceptedItemID && !_filled;
 			}
 
-			if (!accepted) return false;
+			if (!accepted)
+		{
+			_dropAttempts++;
+			string lvl = SequenceManager.Instance?.CurrentLevelID    ?? string.Empty;
+			string seq = SequenceManager.Instance?.CurrentSequenceID ?? string.Empty;
+			PlayFabDataManager.Instance?.LogDragDropAttempt(
+				_actionID, lvl, seq, item.ItemID, gameObject.name, false, _dropAttempts);
+			PlayFabDataManager.Instance?.LogMistakeRecorded(_actionID, "wrong_drop", 1);
+			return false;
+		}
 
 			AcceptItem(item);
 			return true;
@@ -170,7 +181,13 @@ namespace SafetyTraining
 
 		private void AcceptItem(UIDraggableItem item)
 		{
+			_dropAttempts++;
 			_filled = true;
+
+			string lvl = SequenceManager.Instance?.CurrentLevelID    ?? string.Empty;
+			string seq = SequenceManager.Instance?.CurrentSequenceID ?? string.Empty;
+			PlayFabDataManager.Instance?.LogDragDropAttempt(
+				_actionID, lvl, seq, item.ItemID, gameObject.name, true, _dropAttempts);
 
 			item.transform.SetParent(transform);
 

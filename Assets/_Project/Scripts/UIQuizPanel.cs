@@ -60,6 +60,8 @@ namespace SafetyTraining
 		private bool   _answered;
 		private string _correctFeedback;
 		private string _wrongFeedback;
+		private int    _quizAttempts;
+		private float  _quizStartTime;
 
 		// ─── Prefab Letter Prefixes ───
 		private static readonly string[] _prefixes = { "A) ", "B) ", "C) ", "D) " , "E) "};
@@ -86,11 +88,13 @@ namespace SafetyTraining
 				return;
 			}
 
-			_actionID       = actionID;
-			_correctIndex   = quizData.correctOptionIndex;
+			_actionID        = actionID;
+			_correctIndex    = quizData.correctOptionIndex;
 			_correctFeedback = quizData.correctFeedbackText;
 			_wrongFeedback   = quizData.wrongFeedbackText;
-			_answered       = false;
+			_answered        = false;
+			_quizAttempts    = 0;
+			_quizStartTime   = Time.time;
 
 			// Soru metni
 			if (questionText != null)
@@ -145,11 +149,27 @@ namespace SafetyTraining
 			// Zaten cevaplandıysa tekrar tıklamayı engelle
 			if (_answered) return;
 			_answered = true;
+			_quizAttempts++;
 
 			// Tüm butonları kilitle
 			LockAllButtons();
 
 			bool isCorrect = (index == _correctIndex);
+
+			string levelId    = SequenceManager.Instance?.CurrentLevelID    ?? string.Empty;
+			string sequenceId = SequenceManager.Instance?.CurrentSequenceID ?? string.Empty;
+			string answer     = (optionLabels != null && index < optionLabels.Length && optionLabels[index] != null)
+				? optionLabels[index].text
+				: index.ToString();
+			int timeSpent = Mathf.RoundToInt(Time.time - _quizStartTime);
+
+			PlayFabDataManager.Instance?.LogQuizAnswered(
+				_actionID, levelId, sequenceId,
+				_actionID, answer, isCorrect, _quizAttempts, timeSpent
+			);
+
+			if (!isCorrect)
+				SequenceManager.Instance?.OnQuizFailed(_actionID);
 
 			// Seçilen butonun rengini güncelle
 			if (index < optionButtons.Length && optionButtons[index] != null)
@@ -216,6 +236,7 @@ namespace SafetyTraining
 
 			ResetButtonsForRetry();
 			_answered = false;
+			_quizStartTime = Time.time;
 
 			if (debugMode)
 				Debug.Log("[UIQuizPanel] Wrong answer -> retry enabled.");

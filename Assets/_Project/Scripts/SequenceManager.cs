@@ -45,6 +45,11 @@ namespace SafetyTraining
 		// RUNTIME STATE
 		// ═══════════════════════════════════════════════════════
 
+		// Analytics
+		public string CurrentLevelID    => currentLevel?.levelID    ?? string.Empty;
+		public string CurrentSequenceID => _currentSequence?.sequenceID ?? string.Empty;
+		private int _sequenceMistakes;
+
 		// Tüm sekanslar ve durumları
 		private Dictionary<string, SequenceData> _allSequences = new Dictionary<string, SequenceData>();
 		private Dictionary<string, SequenceState> _sequenceStates = new Dictionary<string, SequenceState>();
@@ -113,6 +118,7 @@ namespace SafetyTraining
 			_levelStartTime = Time.time;
 			_score = currentLevel.maxScore;
 			_mistakes = 0;
+			_sequenceMistakes = 0;
 			_inSequence = false;
 
 			// Sekansları kaydet ve state oluştur
@@ -135,6 +141,8 @@ namespace SafetyTraining
 
 			// Sekans butonlarını spawn et
 			UISpawnManager.Instance?.SpawnSequenceButtons(currentLevel);
+
+			PlayFabDataManager.Instance?.LogLevelStarted(currentLevel.levelID);
 
 			// Level start event
 			currentLevel.onLevelStart?.Invoke();
@@ -222,6 +230,9 @@ namespace SafetyTraining
 			_currentSequence = sequence;
 			_currentSequenceState = _sequenceStates[sequence.sequenceID];
 			_inSequence = true;
+			_sequenceMistakes = 0;
+
+			PlayFabDataManager.Instance?.LogSequenceStarted(sequence.sequenceID, currentLevel?.levelID);
 
 			if (debugMode)
 				Debug.Log($"<color=cyan>[SequenceManager] → Sekansa girildi: {sequence.sequenceName}</color>");
@@ -447,6 +458,8 @@ namespace SafetyTraining
 			if (debugMode)
 				Debug.Log($"<color=yellow>[SequenceManager] Action başladı [{_currentActionIndex + 1}/{_currentSequence.GetTotalActionCount()}]: {_currentAction.actionName}</color>");
 
+			PlayFabDataManager.Instance?.LogActionStarted(_currentAction.actionID);
+
 			// Talimat
 			if (instructionText)
 				instructionText.text = _currentAction.instructionText;
@@ -538,6 +551,13 @@ namespace SafetyTraining
 
 			if (debugMode)
 				Debug.Log($"<color=lime>[SequenceManager] ✓ Action tamamlandı: {_currentAction.actionName}</color>");
+
+			PlayFabDataManager.Instance?.LogActionCompleted(
+				_currentAction.actionID,
+				currentLevel?.levelID,
+				_currentSequence?.sequenceID,
+				GetActionTypeString(_currentAction.actionType)
+			);
 
 			// State'e kaydet
 			_currentSequenceState.completedActionIDs.Add(_currentAction.actionID);
@@ -646,6 +666,8 @@ namespace SafetyTraining
 				Debug.LogWarning($"[SequenceManager] Quiz başarısız: {_currentAction.actionName}");
 
 			_mistakes++;
+			_sequenceMistakes++;
+			PlayFabDataManager.Instance?.LogMistakeRecorded(actionID, "wrong_answer", 1);
 
 			PlayAnimations(_currentAction, AnimationTiming.OnFail);
 			_currentAction.onActionFail?.Invoke();
@@ -705,6 +727,12 @@ namespace SafetyTraining
 				Debug.Log($"<color=lime>[SequenceManager] ★ Sekans tamamlandı: {completedSequence.sequenceName} ★</color>");
 
 			_currentSequenceState.isCompleted = true;
+
+			PlayFabDataManager.Instance?.LogSequenceCompleted(
+				completedSequence.sequenceID,
+				currentLevel?.levelID,
+				_sequenceMistakes
+			);
 
 			// Sekans survey'i kapat
 			UISpawnManager.Instance?.OnSequenceEnded(completedSequence);
@@ -799,6 +827,8 @@ namespace SafetyTraining
 
 			if (debugMode)
 				Debug.Log($"<color=lime>[SequenceManager] ★★★ LEVEL TAMAMLANDI ★★★ | Süre: {elapsed:F1}s | Hatalar: {_mistakes}</color>");
+
+			PlayFabDataManager.Instance?.LogLevelCompleted(currentLevel.levelID, _score, _mistakes);
 
 			currentLevel.onLevelComplete?.Invoke();
 
@@ -1324,6 +1354,25 @@ namespace SafetyTraining
 	
 
 	// ═══════════════════════════════════════════════════════
+		// ═══════════════════════════════════════════════════════
+		// ANALYTICS HELPERS
+		// ═══════════════════════════════════════════════════════
+
+		private static string GetActionTypeString(ActionType type)
+		{
+			switch (type)
+			{
+				case ActionType.Quiz:            return "quiz";
+				case ActionType.DragToWorld:
+				case ActionType.WearEquipment:   return "drag_drop";
+				case ActionType.Click:
+				case ActionType.OpenClose:
+				case ActionType.PanelInteraction:return "click";
+				case ActionType.Survey:          return "survey";
+				default:                         return "interaction";
+			}
+		}
+
 		// ═══════════════════════════════════════════════════════
 		// SCENE EVENT HELPERS
 		// ═══════════════════════════════════════════════════════
