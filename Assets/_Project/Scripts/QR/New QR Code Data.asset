@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: New QR Code Data
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.QRCodeData
   qrCodeID: siksensikiz
-  title: ZORT31
+  title: Test Title
   icon: {fileID: 21300000, guid: 9d779479cd9df47489c8de5a17be2ebe, type: 3}
-  message: "CEDAS O\xC7 ZELAL KA\u015EAR"
+  message: TEST MESSAGE

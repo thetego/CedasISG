@@ -20,9 +20,6 @@ namespace SafetyTraining
         [Header("━━━ DEBUG ━━━")]
         public bool debugMode = true;
 
-        [Tooltip("Sahne açılınca ayrı, zararsız bir anonim login ile Title ID'nin PlayFab'a bağlanabildiğini test eder")]
-        public bool testConnectionOnStart = true;
-
         // ─── Oyuncu verisi (doküman §4.1) ───
         public string CurrentPlayerId    { get; private set; }
         public string CurrentDisplayName { get; private set; }
@@ -116,37 +113,21 @@ namespace SafetyTraining
         {
             if (!string.IsNullOrEmpty(titleId))
                 PlayFabSettings.TitleId = titleId;
-
-            if (testConnectionOnStart)
-                TestConnection();
-        }
-
-        /// <summary>
-        /// Gerçek oyuncu login akışına dokunmayan, bağımsız bir anonim login denemesi.
-        /// Sadece Title ID'nin geçerli olup PlayFab'a ulaşılabildiğini doğrulamak içindir.
-        /// </summary>
-        private void TestConnection()
-        {
-            Debug.Log($"[PlayFabDataManager] Bağlantı testi başlatılıyor... (TitleId: {PlayFabSettings.TitleId})");
-
-            PlayFabClientAPI.LoginWithCustomID(
-                new LoginWithCustomIDRequest
-                {
-                    CustomId      = "connectiontest_" + SystemInfo.deviceUniqueIdentifier,
-                    CreateAccount = true
-                },
-                result => Debug.Log($"<color=lime>[PlayFabDataManager] ✓ PlayFab bağlantısı başarılı! PlayFabId: {result.PlayFabId}</color>"),
-                error  => Debug.LogError($"[PlayFabDataManager] ✗ PlayFab bağlantı hatası: {error.GenerateErrorReport()}")
-            );
         }
 
         // ═══════════════════════════════════════════════════════
         // WHİTELİST ÇEKME
         // ═══════════════════════════════════════════════════════
 
+        // Title Data'yı okuyabilmek için PlayFab bir oturum ister; cihaza özel bir ID
+        // yerine SABİT/paylaşılan bu ID kullanılıyor. Böylece kaç cihaz/kullanıcı olursa
+        // olsun bu amaçla yalnızca TEK bir PlayFab hesabı oluşur (Development Mode'daki
+        // 1.000 hesap kotasını cihaz başına ayrı ayrı tüketmemek için).
+        private const string WhitelistReaderCustomId = "whitelist_reader";
+
         /// <summary>
         /// PlayFab Title Data'dan whitelist'i çeker.
-        /// Önce anonim login yapar, ardından GetTitleData çağırır.
+        /// Önce paylaşılan (cihaza özel olmayan) bir login yapar, ardından GetTitleData çağırır.
         /// </summary>
         public void FetchWhitelist(
             Action<List<PlayerEntry>> onSuccess,
@@ -155,11 +136,11 @@ namespace SafetyTraining
             if (debugMode)
                 Debug.Log("[PlayFabDataManager] Whitelist çekiliyor...");
 
-            // Title Data okuyabilmek için anonim giriş
+            // Title Data okuyabilmek için paylaşılan hesapla giriş
             PlayFabClientAPI.LoginWithCustomID(
                 new LoginWithCustomIDRequest
                 {
-                    CustomId      = "anon_" + SystemInfo.deviceUniqueIdentifier,
+                    CustomId      = WhitelistReaderCustomId,
                     CreateAccount = true
                 },
                 _ => FetchTitleData(onSuccess, onFailed),
