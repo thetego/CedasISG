@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thundershock KPI Portalı</title>
+  <meta name="description" content="Thundershock iş güvenliği eğitim simülasyonu için çalışan ve yönetici KPI portalı — HTML wireframe prototipi. Tüm veriler temsilidir.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Tüm kaynaklar yereldir; harici CDN veya internet bağımlılığı yoktur. -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%231B2B3A'/%3E%3Cpath d='M22.5 7 L13 21.5 h6.2 L17.5 33 L27 18.5 h-6.2 z' fill='%233399FF'/%3E%3C/svg%3E">
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <!-- Uygulama buraya render edilir (assets/js/app.js) -->
+  <div id="app">
+    <!-- JavaScript yüklenmeden önce görünen ilk durum -->
+    <noscript>
+      <div style="padding:32px;max-width:44rem;margin:0 auto;color:#F2F5F8">
+        <h1>Thundershock KPI Portalı</h1>
+        <p>Bu prototip çalışmak için JavaScript gerektirir. Tarayıcınızda JavaScript
+           devre dışı görünüyor.</p>
+        <p><strong>Ne yapabilirsiniz:</strong> JavaScript'i etkinleştirip sayfayı yenileyin,
+           veya kaynak kodu ve dokümantasyonu <code>README.md</code> üzerinden inceleyin.</p>
+      </div>
+    </noscript>
+    <div id="boot" style="padding:32px">
+      <div class="skeleton skeleton--row" style="width:14rem;height:2rem"></div>
+      <div class="grid grid--kpi" style="margin-top:24px">
+        <div class="skeleton skeleton--kpi"></div>
+        <div class="skeleton skeleton--kpi"></div>
+        <div class="skeleton skeleton--kpi"></div>
+        <div class="skeleton skeleton--kpi"></div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+    Yükleme sırası önemlidir:
+      mock-data       → window.TS_DATA   (içerik kataloğu + temsili event akışı)
+      kpi-calculations→ window.TS_KPI    (tüm metrik hesapları, oran güvenliği)
+      ui              → window.TS_UI     (ortak bileşenler, SVG grafikler)
+      views-employee  → window.TS_EMPLOYEE
+      views-manager   → window.TS_MANAGER
+      app             → router + kabuk (en son)
+  -->
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/kpi-calculations.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/views-employee.js"></script>
+  <script src="assets/js/views-manager.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
