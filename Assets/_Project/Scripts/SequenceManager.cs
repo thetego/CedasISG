@@ -90,7 +90,6 @@ namespace SafetyTraining
 			}
 
 			EnsureFadeOverlay();
-			ResolveProgressTextsFromCanvas();
 		}
 
 		private void Start()
@@ -106,6 +105,18 @@ namespace SafetyTraining
 				backButton.onClick.AddListener(ExitCurrentSequence);
 				backButton.gameObject.SetActive(false);
 			}
+		}
+
+		private void Update()
+		{
+			if (!_levelStarted || tmptext == null)
+				return;
+
+			// Level başladığından beri geçen süreyi dakika:saniye olarak göster.
+			int totalSeconds = Mathf.FloorToInt(Time.time - _levelStartTime);
+			int minutes = totalSeconds / 60;
+			int seconds = totalSeconds % 60;
+			tmptext.text = $"{minutes:00}:{seconds:00}";
 		}
 
 		// ═══════════════════════════════════════════════════════
@@ -156,7 +167,11 @@ namespace SafetyTraining
 			// Talimat
 			SetSequenceSelectionInstruction();
 
-			ClearProgressTexts();
+			if (levelText)
+				levelText.text = $"Level {GetLevelNumber()}/{Mathf.Max(1, totalLevelCount)}";
+
+			if (tmptext)
+				tmptext.text = "00:00";
 		}
 
 		public void RestartLevel()
@@ -371,9 +386,6 @@ namespace SafetyTraining
 			_currentAction = null;
 			_inSequence = false;
 			UISpawnManager.Instance?.SetSurveyPhotoSlotFocus(-1, 0);
-
-			// UI güncelle
-			ClearProgressTexts();
 
 			SetSequenceSelectionInstruction();
 
@@ -787,9 +799,6 @@ namespace SafetyTraining
 			_currentSequenceState = null;
 			_currentAction = null;
 
-			// UI güncelle
-			ClearProgressTexts();
-
 			SetSequenceSelectionInstruction();
 
 			if (backButton != null)
@@ -827,6 +836,7 @@ namespace SafetyTraining
 		private void CompleteLevel()
 		{
 			float elapsed = Time.time - _levelStartTime;
+			_levelStarted = false;
 
 			if (debugMode)
 				Debug.Log($"<color=lime>[SequenceManager] ★★★ LEVEL TAMAMLANDI ★★★ | Süre: {elapsed:F1}s | Hatalar: {_mistakes}</color>");
@@ -1003,40 +1013,8 @@ namespace SafetyTraining
 			if (_currentSequence == null)
 				return;
 
-			int totalActions = Mathf.Max(1, _currentSequence.GetTotalActionCount());
-			int currentAction = Mathf.Clamp(_currentActionIndex + 1, 1, totalActions);
-
 			if (levelText)
 				levelText.text = $"Level {GetLevelNumber()}/{Mathf.Max(1, totalLevelCount)}";
-
-			if (tmptext)
-				tmptext.text = $"{currentAction}/{totalActions}";
-		}
-
-		private void ClearProgressTexts()
-		{
-			if (levelText)
-				levelText.text = string.Empty;
-
-			if (tmptext)
-				tmptext.text = string.Empty;
-		}
-
-		private void ResolveProgressTextsFromCanvas()
-		{
-			GameObject canvasObject = GameObject.Find("Canvas");
-			if (canvasObject == null)
-			{
-				Debug.LogWarning("[SequenceManager] Canvas bulunamadı; levelText/tmptext referansları boş kaldı.");
-				return;
-			}
-
-			Transform canvasTransform = canvasObject.transform;
-			if (canvasTransform.childCount > 10)
-				levelText = canvasTransform.GetChild(10).GetComponentInChildren<TMPro.TextMeshProUGUI>(true);
-
-			if (canvasTransform.childCount > 11)
-				tmptext = canvasTransform.GetChild(11).GetComponentInChildren<TMPro.TextMeshProUGUI>(true);
 		}
 
 		private int GetLevelNumber()

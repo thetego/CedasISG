@@ -6934,6 +6934,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2032223923251475606, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
   m_PrefabInstance: {fileID: 372617911}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &372617915 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8777025127446873363, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
+  m_PrefabInstance: {fileID: 372617911}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &372617916 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6223966722688955469, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
+  m_PrefabInstance: {fileID: 372617911}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!4 &374906217 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5920678348222048375, guid: b5325ad8ab884c44cb82a76c02ba27b5, type: 3}
@@ -31122,8 +31144,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceManager
   currentLevel: {fileID: 11400000, guid: 61c9c4f09904f2b4dbf222afb6884d40, type: 2}
-  instructionText: {fileID: 0}
-  currentSequenceText: {fileID: 1799925305}
+  instructionText: {fileID: 1799925305}
+  levelText: {fileID: 372617916}
+  tmptext: {fileID: 372617915}
+  totalLevelCount: 15
   gameOverPanel: {fileID: 1795533605}
   gameOverMessageText: {fileID: 1058487892}
   warningPanel: {fileID: 667625579}
