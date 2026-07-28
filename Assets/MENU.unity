@@ -3462,7 +3462,6 @@ GameObject:
   - component: {fileID: 468282888}
   - component: {fileID: 468282887}
   - component: {fileID: 468282886}
-  - component: {fileID: 468282885}
   m_Layer: 5
   m_Name: "Sigorta Atmas\u0131"
   m_TagString: Untagged
@@ -3492,21 +3491,6 @@ RectTransform:
   m_AnchoredPosition: {x: 237, y: -1330}
   m_SizeDelta: {x: 444, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &468282885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468282883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.39215687}
-  m_EffectDistance: {x: 1, y: 1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &468282886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4322,7 +4306,6 @@ GameObject:
   - component: {fileID: 546533347}
   - component: {fileID: 546533346}
   - component: {fileID: 546533345}
-  - component: {fileID: 546533344}
   m_Layer: 5
   m_Name: "OG ve AG Kabloda Buat Yap\u0131m\u0131"
   m_TagString: Untagged
@@ -4352,21 +4335,6 @@ RectTransform:
   m_AnchoredPosition: {x: 237, y: -640}
   m_SizeDelta: {x: 444, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &546533344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 546533342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.39215687}
-  m_EffectDistance: {x: 1, y: 1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &546533345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4810,7 +4778,6 @@ GameObject:
   - component: {fileID: 568218491}
   - component: {fileID: 568218490}
   - component: {fileID: 568218489}
-  - component: {fileID: 568218488}
   m_Layer: 5
   m_Name: "Scada Merkezli Kablo Ar\u0131zas\u0131"
   m_TagString: Untagged
@@ -4840,21 +4807,6 @@ RectTransform:
   m_AnchoredPosition: {x: 237, y: -180}
   m_SizeDelta: {x: 444, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &568218488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 568218486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.39215687}
-  m_EffectDistance: {x: 1, y: 1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &568218489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5745,7 +5697,6 @@ GameObject:
   - component: {fileID: 637385262}
   - component: {fileID: 637385261}
   - component: {fileID: 637385260}
-  - component: {fileID: 637385259}
   m_Layer: 5
   m_Name: "Havai Hat Bak\u0131m\u0131"
   m_TagString: Untagged
@@ -5775,21 +5726,6 @@ RectTransform:
   m_AnchoredPosition: {x: 237, y: -410}
   m_SizeDelta: {x: 444, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &637385259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 637385257}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.39215687}
-  m_EffectDistance: {x: 1, y: 1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &637385260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8256,7 +8192,6 @@ GameObject:
   - component: {fileID: 794047184}
   - component: {fileID: 794047183}
   - component: {fileID: 794047182}
-  - component: {fileID: 794047181}
   m_Layer: 5
   m_Name: VLF Tan Delta
   m_TagString: Untagged
@@ -8286,21 +8221,6 @@ RectTransform:
   m_AnchoredPosition: {x: 237, y: -870}
   m_SizeDelta: {x: 444, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &794047181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 794047179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.39215687}
-  m_EffectDistance: {x: 1, y: 1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &794047182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8628,7 +8548,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -968, y: 462}
+  m_AnchoredPosition: {x: -765.91693, y: 462}
   m_SizeDelta: {x: 341.8339, y: 99.3335}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &800212719
@@ -10150,7 +10070,6 @@ GameObject:
   - component: {fileID: 947678641}
   - component: {fileID: 947678640}
   - component: {fileID: 947678639}
-  - component: {fileID: 947678638}
   m_Layer: 5
   m_Name: "Trafo Bak\u0131m Seviye 2"
   m_TagString: Untagged
@@ -10180,21 +10099,6 @@ RectTransform:
   m_AnchoredPosition: {x: 237, y: -1445}
   m_SizeDelta: {x: 444, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &947678638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 947678636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.39215687}
-  m_EffectDistance: {x: 1, y: 1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &947678639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11713,7 +11617,6 @@ GameObject:
   - component: {fileID: 1117891224}
   - component: {fileID: 1117891223}
   - component: {fileID: 1117891222}
-  - component: {fileID: 1117891221}
   m_Layer: 5
   m_Name: "TM ve YG h\xFCcrelerinide seviye 1 bak\u0131m"
   m_TagString: Untagged
@@ -11743,21 +11646,6 @@ RectTransform:
   m_AnchoredPosition: {x: 237, y: -295}
   m_SizeDelta: {x: 444, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1117891221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1117891219}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.39215687}
-  m_EffectDistance: {x: 1, y: 1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &1117891222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11929,7 +11817,6 @@ GameObject:
   - component: {fileID: 1129219186}
   - component: {fileID: 1129219185}
   - component: {fileID: 1129219184}
-  - component: {fileID: 1129219183}
   m_Layer: 5
   m_Name: "Enerji Kesme ve Enerji Verme Manevras\u0131"
   m_TagString: Untagged
@@ -11959,21 +11846,6 @@ RectTransform:
   m_AnchoredPosition: {x: 237, y: -755}
   m_SizeDelta: {x: 444, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1129219183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1129219181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.39215687}
-  m_EffectDistance: {x: 1, y: 1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &1129219184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12444,7 +12316,6 @@ GameObject:
   - component: {fileID: 1152591998}
   - component: {fileID: 1152591997}
   - component: {fileID: 1152591996}
-  - component: {fileID: 1152591995}
   m_Layer: 5
   m_Name: "VLF Dayan\u0131m Testi"
   m_TagString: Untagged
@@ -12474,21 +12345,6 @@ RectTransform:
   m_AnchoredPosition: {x: 237, y: -985}
   m_SizeDelta: {x: 444, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1152591995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1152591993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.39215687}
-  m_EffectDistance: {x: 1, y: 1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &1152591996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13612,7 +13468,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -882.78, y: 143}
+  m_AnchoredPosition: {x: -680.69696, y: 143}
   m_SizeDelta: {x: 0, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1363347862
@@ -15656,7 +15512,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -947.08307, y: -463.33325}
+  m_AnchoredPosition: {x: -745, y: -463.33325}
   m_SizeDelta: {x: 341.8339, y: 99.3335}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1634346846
@@ -16525,7 +16381,6 @@ GameObject:
   - component: {fileID: 1726886893}
   - component: {fileID: 1726886892}
   - component: {fileID: 1726886891}
-  - component: {fileID: 1726886890}
   m_Layer: 5
   m_Name: "Ayd\u0131nlatma Bak\u0131m"
   m_TagString: Untagged
@@ -16555,21 +16410,6 @@ RectTransform:
   m_AnchoredPosition: {x: 237, y: -65}
   m_SizeDelta: {x: 444, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1726886890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1726886888}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.39215687}
-  m_EffectDistance: {x: 1, y: 1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &1726886891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17190,7 +17030,6 @@ GameObject:
   - component: {fileID: 1744202080}
   - component: {fileID: 1744202079}
   - component: {fileID: 1744202078}
-  - component: {fileID: 1744202077}
   m_Layer: 5
   m_Name: "TM ve YG H\xFCcrelerinde Seviye 2 Bak\u0131m"
   m_TagString: Untagged
@@ -17220,21 +17059,6 @@ RectTransform:
   m_AnchoredPosition: {x: 237, y: -525}
   m_SizeDelta: {x: 444, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1744202077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744202075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.39215687}
-  m_EffectDistance: {x: 1, y: 1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &1744202078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17903,7 +17727,6 @@ GameObject:
   - component: {fileID: 1809452978}
   - component: {fileID: 1809452977}
   - component: {fileID: 1809452976}
-  - component: {fileID: 1809452975}
   m_Layer: 5
   m_Name: VLF PD
   m_TagString: Untagged
@@ -17933,21 +17756,6 @@ RectTransform:
   m_AnchoredPosition: {x: 237, y: -1100}
   m_SizeDelta: {x: 444, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1809452975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1809452973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.39215687}
-  m_EffectDistance: {x: 1, y: 1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &1809452976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18802,7 +18610,6 @@ GameObject:
   - component: {fileID: 1869254582}
   - component: {fileID: 1869254581}
   - component: {fileID: 1869254580}
-  - component: {fileID: 1869254579}
   m_Layer: 5
   m_Name: "\xD6l\xE7\xFC Test"
   m_TagString: Untagged
@@ -18832,21 +18639,6 @@ RectTransform:
   m_AnchoredPosition: {x: 237, y: -1215}
   m_SizeDelta: {x: 444, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1869254579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1869254577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.39215687}
-  m_EffectDistance: {x: 1, y: 1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &1869254580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19192,7 +18984,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -882, y: -157}
+  m_AnchoredPosition: {x: -679.91693, y: -157}
   m_SizeDelta: {x: 0, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1905456515

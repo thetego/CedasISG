@@ -22,7 +22,8 @@ namespace SafetyTraining
 
 		[Header("━━━ UI ━━━")]
 		public TMPro.TextMeshProUGUI instructionText;
-		public TMPro.TextMeshProUGUI currentSequenceText;
+		public TMPro.TextMeshProUGUI levelText;
+		public TMPro.TextMeshProUGUI tmptext;
 		[Min(1)] public int totalLevelCount = 15;
 		public GameObject gameOverPanel;
 		public TMPro.TextMeshProUGUI gameOverMessageText;
@@ -89,7 +90,7 @@ namespace SafetyTraining
 			}
 
 			EnsureFadeOverlay();
-			ResolveProgressText();
+			ResolveProgressTextsFromCanvas();
 		}
 
 		private void Start()
@@ -155,8 +156,7 @@ namespace SafetyTraining
 			// Talimat
 			SetSequenceSelectionInstruction();
 
-			if (currentSequenceText)
-				currentSequenceText.text = "";
+			ClearProgressTexts();
 		}
 
 		public void RestartLevel()
@@ -309,8 +309,7 @@ namespace SafetyTraining
 			sequence.onSequenceEnter?.Invoke();
 
 			// UI güncelle
-			if (currentSequenceText)
-				currentSequenceText.text = BuildSequenceProgressText(sequence, _currentActionIndex);
+			UpdateSequenceProgressText();
 
 			if (backButton != null)
 				backButton.gameObject.SetActive(true);
@@ -374,8 +373,7 @@ namespace SafetyTraining
 			UISpawnManager.Instance?.SetSurveyPhotoSlotFocus(-1, 0);
 
 			// UI güncelle
-			if (currentSequenceText)
-				currentSequenceText.text = "";
+			ClearProgressTexts();
 
 			SetSequenceSelectionInstruction();
 
@@ -790,8 +788,7 @@ namespace SafetyTraining
 			_currentAction = null;
 
 			// UI güncelle
-			if (currentSequenceText)
-				currentSequenceText.text = "";
+			ClearProgressTexts();
 
 			SetSequenceSelectionInstruction();
 
@@ -1003,33 +1000,43 @@ namespace SafetyTraining
 
 		private void UpdateSequenceProgressText()
 		{
-			if (currentSequenceText == null || _currentSequence == null)
+			if (_currentSequence == null)
 				return;
 
-			currentSequenceText.text = BuildSequenceProgressText(_currentSequence, _currentActionIndex);
+			int totalActions = Mathf.Max(1, _currentSequence.GetTotalActionCount());
+			int currentAction = Mathf.Clamp(_currentActionIndex + 1, 1, totalActions);
+
+			if (levelText)
+				levelText.text = $"Level {GetLevelNumber()}/{Mathf.Max(1, totalLevelCount)}";
+
+			if (tmptext)
+				tmptext.text = $"{currentAction}/{totalActions}";
 		}
 
-		private void ResolveProgressText()
+		private void ClearProgressTexts()
 		{
-			if (currentSequenceText != null)
+			if (levelText)
+				levelText.text = string.Empty;
+
+			if (tmptext)
+				tmptext.text = string.Empty;
+		}
+
+		private void ResolveProgressTextsFromCanvas()
+		{
+			GameObject canvasObject = GameObject.Find("Canvas");
+			if (canvasObject == null)
+			{
+				Debug.LogWarning("[SequenceManager] Canvas bulunamadı; levelText/tmptext referansları boş kaldı.");
 				return;
+			}
 
-			// Inspector referansı olmayan sahnelerde de adı tmptext olan TMP alanını kullan.
-			GameObject progressObject = GameObject.Find("tmptext");
-			if (progressObject != null)
-				currentSequenceText = progressObject.GetComponent<TMPro.TextMeshProUGUI>();
-		}
+			Transform canvasTransform = canvasObject.transform;
+			if (canvasTransform.childCount > 10)
+				levelText = canvasTransform.GetChild(10).GetComponentInChildren<TMPro.TextMeshProUGUI>(true);
 
-		private string BuildSequenceProgressText(SequenceData sequence, int actionIndex)
-		{
-			if (sequence == null)
-				return string.Empty;
-
-			int totalActions = sequence.GetTotalActionCount();
-			int currentAction = Mathf.Clamp(actionIndex + 1, 1, Mathf.Max(1, totalActions));
-			int levelNumber = GetLevelNumber();
-
-			return $"Level {levelNumber}/{Mathf.Max(1, totalLevelCount)}\n{currentAction}/{Mathf.Max(1, totalActions)}";
+			if (canvasTransform.childCount > 11)
+				tmptext = canvasTransform.GetChild(11).GetComponentInChildren<TMPro.TextMeshProUGUI>(true);
 		}
 
 		private int GetLevelNumber()
