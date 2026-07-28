@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7262e9d93707a4e9f3d972ad34ef36, type: 3}
+  m_Name: New QR Code Data 11
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.QRCodeData
+  qrCodeID: "Ana Topraklama G\xF6stergesi"
+  title: "Ana Topraklama G\xF6stergesi"
+  icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
+  message: "Ana Topraklama G\xF6stergesi, test arac\u0131n\u0131n ana topraklama
+    ba\u011Flant\u0131s\u0131n\u0131n do\u011Fru \u015Fekilde yap\u0131ld\u0131\u011F\u0131n\u0131
+    g\xF6sterir. Sistem, arac\u0131n ana toprak hatt\u0131n\u0131 s\xFCrekli kontrol
+    ederek ba\u011Flant\u0131n\u0131n g\xFCvenli ve kesintisiz oldu\u011Funu do\u011Frular.
+    Ana topraklama ba\u011Flant\u0131s\u0131 uygun de\u011Filse g\xFCvenlik nedeniyle
+    test sisteminin enerjilendirilmesine izin verilmez. Bu g\xF6sterge, y\xFCksek
+    gerilim testlerine ba\u015Flamadan \xF6nce kontrol edilmesi gereken temel g\xFCvenlik
+    g\xF6stergelerinden biridir."

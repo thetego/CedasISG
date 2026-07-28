@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7262e9d93707a4e9f3d972ad34ef36, type: 3}
+  m_Name: New QR Code Data 4
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.QRCodeData
+  qrCodeID: "Yard\u0131mc\u0131 Topraklama Kablosu"
+  title: "Yard\u0131mc\u0131 Topraklama Kablosu"
+  icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
+  message: "Yard\u0131mc\u0131 topraklama kablosu, y\xFCksek gerilim testleri s\u0131ras\u0131nda
+    g\xFCvenli referans topraklamas\u0131 olu\u015Fturmak amac\u0131yla kullan\u0131l\u0131r.
+    Ara\xE7 ile ana topraklama sistemi aras\u0131nda ba\u011Flant\u0131 kurarak t\xFCm
+    topraklama noktalar\u0131n\u0131n ayn\u0131 elektriksel potansiyelde kalmas\u0131n\u0131
+    sa\u011Flar. Bu sayede gerilim farklar\u0131ndan kaynaklanabilecek riskler azalt\u0131l\u0131r
+    ve test \xF6ncesinde g\xFCvenli enerji kontrol\xFC yap\u0131lmas\u0131na yard\u0131mc\u0131
+    olur. Sistemin do\u011Fru ve g\xFCvenli \u015Fekilde \xE7al\u0131\u015Fabilmesi
+    i\xE7in \xF6nemli bir g\xFCvenlik bile\u015Fenidir."

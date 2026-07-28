@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7262e9d93707a4e9f3d972ad34ef36, type: 3}
+  m_Name: New QR Code Data 16
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.QRCodeData
+  qrCodeID: "Test Modu Se\xE7im Paneli"
+  title: "Test Modu Se\xE7im Paneli"
+  icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
+  message: "Test Modu Se\xE7im Paneli, cihaz \xFCzerinde uygulanacak **y\xFCksek
+    gerilim test y\xF6nteminin se\xE7ilmesini** sa\u011Flar. Panel \xFCzerinden farkl\u0131
+    test modlar\u0131 se\xE7ilerek \xF6l\xE7\xFCm sistemi ilgili teste g\xF6re yap\u0131land\u0131r\u0131l\u0131r.\r\n\r\n-
+    **VLF:** Kablo yal\u0131t\u0131m\u0131n\u0131n dayan\u0131m\u0131n\u0131 test
+    etmek ve K\u0131smi De\u015Farj (PD) \xF6l\xE7\xFCmleri ger\xE7ekle\u015Ftirmek
+    i\xE7in kullan\u0131l\u0131r.\r\n- **Tan Delta:** Kablo yal\u0131t\u0131m\u0131n\u0131n
+    dielektrik kay\u0131plar\u0131n\u0131 \xF6l\xE7erek yal\u0131t\u0131m\u0131n
+    genel durumunu de\u011Ferlendirmek i\xE7in kullan\u0131l\u0131r.\r\n- **SPG:**
+    Kablo ar\u0131zalar\u0131n\u0131n yerini tespit etmeye y\xF6nelik ar\u0131za
+    te\u015Fhis testlerinde kullan\u0131l\u0131r.\r\n- **T22:** Kablo ar\u0131zalar\u0131n\u0131n
+    yak\u0131lmas\u0131 (fault burning) i\u015Flemlerinde kullan\u0131lan \xF6zel
+    test modudur.\r\n\r\nDo\u011Fru test modunun se\xE7ilmesi, yap\u0131lacak \xF6l\xE7\xFCm\xFCn
+    g\xFCvenilirli\u011Fi ve test s\xFCrecinin do\u011Fru \u015Fekilde y\xFCr\xFCt\xFClmesi
+    a\xE7\u0131s\u0131ndan \xF6nemlidir."

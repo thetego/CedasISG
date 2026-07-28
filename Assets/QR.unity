@@ -591,6 +591,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.QRCodeRegistry
   qrCodeDataList:
   - {fileID: 11400000, guid: 6d2c930df9e99bc468e8d1f2cac44897, type: 2}
+  - {fileID: 11400000, guid: 18876d2413b69a147baa392a76340698, type: 2}
+  - {fileID: 11400000, guid: 39b21700d5aa76f4ca150becf7d93368, type: 2}
+  - {fileID: 11400000, guid: 580b623b4a5016b4da4dc6fa8d475faa, type: 2}
+  - {fileID: 11400000, guid: 635a0745710dfb44080687315b2bba5e, type: 2}
+  - {fileID: 11400000, guid: 69296b51ec639fa45a62b7f2df352b85, type: 2}
+  - {fileID: 11400000, guid: 9eeac4c324e88ca4baa5cd7ebfe8d645, type: 2}
+  - {fileID: 11400000, guid: 6d7e8901d1fbe834a8b62177d186f20c, type: 2}
+  - {fileID: 11400000, guid: faa3f9604abf9be418e5f4f199d25a24, type: 2}
+  - {fileID: 11400000, guid: 5050b5c4972ab3a41a8442ee4cfd369a, type: 2}
+  - {fileID: 11400000, guid: 0033b1e2eb3772640ae0537778442482, type: 2}
+  - {fileID: 11400000, guid: a24c6d81defc0fa4b94ff5a2f11fbdbd, type: 2}
+  - {fileID: 11400000, guid: ebaadd80f18e3c147b65975a193f51e7, type: 2}
+  - {fileID: 11400000, guid: 48482282c3fe9f6408c249b614f416da, type: 2}
+  - {fileID: 11400000, guid: fdf8bbb94fa913e4dbcc78a2157a188a, type: 2}
+  - {fileID: 11400000, guid: c4d930e340b88454491778c6ddb4cb4d, type: 2}
+  - {fileID: 11400000, guid: 15288bbe359dd0d4eb25e9877a8591e2, type: 2}
+  - {fileID: 11400000, guid: b652ffa3388144345a9dd54d44ef642f, type: 2}
+  - {fileID: 11400000, guid: ec07836c1b51b0b44ae4917e6f8c97d4, type: 2}
+  - {fileID: 11400000, guid: 8b095a5575169fb42b0976223b6e2b70, type: 2}
+  - {fileID: 11400000, guid: 542379dd18c12754f890cd3c62527a7a, type: 2}
+  - {fileID: 11400000, guid: 2a93099715b5bf64cb870b69432e136b, type: 2}
+  - {fileID: 11400000, guid: 569a178a91fc2784ea5301bb5846506b, type: 2}
   debugMode: 1
 --- !u!114 &961739756
 MonoBehaviour:

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7262e9d93707a4e9f3d972ad34ef36, type: 3}
+  m_Name: New QR Code Data 7
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.QRCodeData
+  qrCodeID: "\u015Eebeke / \u0130nvert\xF6r Enerji Se\xE7im Anahtar\u0131"
+  title: "\u015Eebeke / \u0130nvert\xF6r Enerji Se\xE7im Anahtar\u0131"
+  icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
+  message: "Bu anahtar, test arac\u0131n\u0131n enerji kayna\u011F\u0131n\u0131 se\xE7mek
+    i\xE7in kullan\u0131l\u0131r. Sistemin enerjisinin \u015Febekeden mi yoksa ara\xE7
+    \xFCzerindeki invert\xF6rden mi al\u0131naca\u011F\u0131n\u0131 belirler. Ara\xE7
+    ak\xFClerinin yeterli seviyede \u015Farjl\u0131 oldu\u011Fu durumlarda enerji
+    invert\xF6rden sa\u011Flanabilir. Ak\xFC seviyesi yetersiz oldu\u011Funda ise
+    ara\xE7 harici \u015Febeke beslemesine ba\u011Flanarak anahtar \u015Febeke konumuna
+    al\u0131n\u0131r. Bu sayede test ekipmanlar\u0131n\u0131n kesintisiz ve g\xFCvenli
+    \u015Fekilde \xE7al\u0131\u015Fmas\u0131 sa\u011Flan\u0131r."

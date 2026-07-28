@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7262e9d93707a4e9f3d972ad34ef36, type: 3}
+  m_Name: New QR Code Data 18
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.QRCodeData
+  qrCodeID: "Kalibrasyon Cihaz\u0131"
+  title: "Kalibrasyon Cihaz\u0131"
+  icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
+  message: "Kalibrasyon cihaz\u0131, VLF ve Tan Delta testleri \xF6ncesinde \xF6l\xE7\xFCm
+    sisteminin do\u011Fru \xE7al\u0131\u015Ft\u0131\u011F\u0131n\u0131 do\u011Frulamak
+    ve kabloya ait parametreleri belirlemek amac\u0131yla kullan\u0131l\u0131r. \xD6zellikle
+    kablonun uzunlu\u011Funun (metraj\u0131n\u0131n) \xF6l\xE7\xFClmesini sa\u011Flayarak
+    test cihaz\u0131n\u0131n \xF6l\xE7\xFCm ayarlar\u0131n\u0131n do\u011Fru \u015Fekilde
+    yap\u0131land\u0131r\u0131lmas\u0131na yard\u0131mc\u0131 olur. Ayr\u0131ca \xF6l\xE7\xFCm
+    s\u0131ras\u0131nda olu\u015Fabilecek sinyal zay\u0131flamalar\u0131 veya dalgalanmalar\u0131n
+    de\u011Ferlendirilmesine katk\u0131 sa\u011Flayarak test sonu\xE7lar\u0131n\u0131n
+    g\xFCvenilirli\u011Fini art\u0131r\u0131r. Do\u011Fru kalibrasyon, VLF ve Tan
+    Delta testlerinin hassas ve do\u011Fru \u015Fekilde ger\xE7ekle\u015Ftirilebilmesi
+    i\xE7in \xF6nemli bir ad\u0131md\u0131r."

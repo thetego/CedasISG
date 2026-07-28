@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a7262e9d93707a4e9f3d972ad34ef36, type: 3}
   m_Name: New QR Code Data
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.QRCodeData
-  qrCodeID: siksensikiz
-  title: Test Title
-  icon: {fileID: 21300000, guid: 9d779479cd9df47489c8de5a17be2ebe, type: 3}
-  message: TEST MESSAGE
+  qrCodeID: "Haberle\u015Fme Kablosu"
+  title: "Haberle\u015Fme Kablosu"
+  icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
+  message: "Bu haberle\u015Fme kablosu, PD (K\u0131smi De\u015Farj) \xF6l\xE7\xFCm
+    sisteminde bilgisayar ile saha ekipmanlar\u0131 aras\u0131ndaki veri ileti\u015Fimini
+    sa\u011Flamak amac\u0131yla kullan\u0131l\u0131r. \xD6l\xE7\xFCm s\u0131ras\u0131nda
+    bilgisayardan al\u0131nan komutlar\u0131n PD kapasit\xF6r\xFCne iletilmesini
+    ve elde edilen \xF6l\xE7\xFCm verilerinin g\xFCvenilir \u015Fekilde aktar\u0131lmas\u0131n\u0131
+    sa\u011Flar. B\xF6ylece farkl\u0131 PD \xF6l\xE7\xFCm noktalar\u0131yla kesintisiz
+    haberle\u015Fme kurularak sistemin do\u011Fru ve verimli \xE7al\u0131\u015Fmas\u0131na
+    katk\u0131da bulunur."

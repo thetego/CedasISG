@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7262e9d93707a4e9f3d972ad34ef36, type: 3}
+  m_Name: New QR Code Data 17
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.QRCodeData
+  qrCodeID: "Yakma Mod\xFCl\xFC (Burn Unit)"
+  title: "Yakma Mod\xFCl\xFC (Burn Unit)"
+  icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
+  message: "Yakma Mod\xFCl\xFC, **kablo ar\u0131zalar\u0131n\u0131n belirgin h\xE2le
+    getirilmesi** amac\u0131yla kullan\u0131lan \xF6zel bir y\xFCksek gerilim ekipman\u0131d\u0131r.
+    Ar\u0131za noktas\u0131na kontroll\xFC enerji uygulanarak y\xFCksek diren\xE7li
+    ar\u0131zalar\u0131n daha iletken h\xE2le gelmesi sa\u011Flan\u0131r. Bu i\u015Flem
+    sayesinde ar\u0131za tespit cihazlar\u0131 ar\u0131zan\u0131n yerini daha kolay
+    ve do\u011Fru \u015Fekilde belirleyebilir.\r\n\r\nYakma i\u015Flemi, yaln\u0131zca
+    gerekli durumlarda ve yetkili personel taraf\u0131ndan uygulan\u0131r. Ar\u0131za
+    tespit s\xFCrecini destekleyen bu mod\xFCl, kablo ar\u0131zalar\u0131n\u0131n
+    yerinin daha h\u0131zl\u0131 ve g\xFCvenilir \u015Fekilde belirlenmesine yard\u0131mc\u0131
+    olur."

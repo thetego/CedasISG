@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7262e9d93707a4e9f3d972ad34ef36, type: 3}
+  m_Name: New QR Code Data 6
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.QRCodeData
+  qrCodeID: "De\u015Farj \xC7ubu\u011Fu (Topraklama Ma\u015Fas\u0131)"
+  title: "De\u015Farj \xC7ubu\u011Fu (Topraklama Ma\u015Fas\u0131)"
+  icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
+  message: "De\u015Farj \xE7ubu\u011Fu, a\xE7\u0131k sistemlerde y\xFCksek gerilim
+    testleri tamamland\u0131ktan sonra kabloda veya ekipman \xFCzerinde kalabilecek
+    kapasitif elektrik y\xFCk\xFCn\xFC g\xFCvenli \u015Fekilde topra\u011Fa bo\u015Faltmak
+    i\xE7in kullan\u0131l\u0131r. Test sonras\u0131nda olu\u015Fabilecek art\u0131k
+    gerilimin kontroll\xFC olarak de\u015Farj edilmesini sa\u011Flayarak personelin
+    ve ekipmanlar\u0131n elektriksel risklere kar\u015F\u0131 korunmas\u0131na yard\u0131mc\u0131
+    olur. Y\xFCksek gerilimle \xE7al\u0131\u015F\u0131lan t\xFCm a\xE7\u0131k sistem
+    uygulamalar\u0131nda \xF6nemli bir g\xFCvenlik ekipman\u0131d\u0131r."

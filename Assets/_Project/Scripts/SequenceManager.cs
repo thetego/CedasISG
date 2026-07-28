@@ -23,6 +23,7 @@ namespace SafetyTraining
 		[Header("━━━ UI ━━━")]
 		public TMPro.TextMeshProUGUI instructionText;
 		public TMPro.TextMeshProUGUI currentSequenceText;
+		[Min(1)] public int totalLevelCount = 15;
 		public GameObject gameOverPanel;
 		public TMPro.TextMeshProUGUI gameOverMessageText;
 		public GameObject warningPanel;
@@ -88,6 +89,7 @@ namespace SafetyTraining
 			}
 
 			EnsureFadeOverlay();
+			ResolveProgressText();
 		}
 
 		private void Start()
@@ -308,7 +310,7 @@ namespace SafetyTraining
 
 			// UI güncelle
 			if (currentSequenceText)
-				currentSequenceText.text = BuildSequenceHeaderText(sequence);
+				currentSequenceText.text = BuildSequenceProgressText(sequence, _currentActionIndex);
 
 			if (backButton != null)
 				backButton.gameObject.SetActive(true);
@@ -457,6 +459,9 @@ namespace SafetyTraining
 
 			if (debugMode)
 				Debug.Log($"<color=yellow>[SequenceManager] Action başladı [{_currentActionIndex + 1}/{_currentSequence.GetTotalActionCount()}]: {_currentAction.actionName}</color>");
+
+			// Sayaç başlangıçtan bitişe doğru ilerler: 1/15, 2/15, ...
+			UpdateSequenceProgressText();
 
 			PlayFabDataManager.Instance?.LogActionStarted(_currentAction.actionID);
 
@@ -996,15 +1001,58 @@ namespace SafetyTraining
 			instructionText.text = message;
 		}
 
-		private string BuildSequenceHeaderText(SequenceData sequence)
+		private void UpdateSequenceProgressText()
+		{
+			if (currentSequenceText == null || _currentSequence == null)
+				return;
+
+			currentSequenceText.text = BuildSequenceProgressText(_currentSequence, _currentActionIndex);
+		}
+
+		private void ResolveProgressText()
+		{
+			if (currentSequenceText != null)
+				return;
+
+			// Inspector referansı olmayan sahnelerde de adı tmptext olan TMP alanını kullan.
+			GameObject progressObject = GameObject.Find("tmptext");
+			if (progressObject != null)
+				currentSequenceText = progressObject.GetComponent<TMPro.TextMeshProUGUI>();
+		}
+
+		private string BuildSequenceProgressText(SequenceData sequence, int actionIndex)
 		{
 			if (sequence == null)
 				return string.Empty;
 
-			if (string.IsNullOrWhiteSpace(sequence.instructionText))
-				return $"Sekans: {sequence.sequenceName}";
+			int totalActions = sequence.GetTotalActionCount();
+			int currentAction = Mathf.Clamp(actionIndex + 1, 1, Mathf.Max(1, totalActions));
+			int levelNumber = GetLevelNumber();
 
-			return $"Sekans: {sequence.sequenceName}\n{sequence.instructionText}";
+			return $"Level {levelNumber}/{Mathf.Max(1, totalLevelCount)}\n{currentAction}/{Mathf.Max(1, totalActions)}";
+		}
+
+		private int GetLevelNumber()
+		{
+			string levelText = currentLevel != null
+				? $"{currentLevel.levelName} {currentLevel.levelID}"
+				: string.Empty;
+
+			int number = 0;
+			for (int i = 0; i < levelText.Length; i++)
+			{
+				if (!char.IsDigit(levelText[i]))
+					continue;
+
+				while (i < levelText.Length && char.IsDigit(levelText[i]))
+				{
+					number = number * 10 + (levelText[i] - '0');
+					i++;
+				}
+				break;
+			}
+
+			return Mathf.Max(1, number);
 		}
 
 		private void EnsureFadeOverlay()

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7262e9d93707a4e9f3d972ad34ef36, type: 3}
+  m_Name: New QR Code Data 14
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.QRCodeData
+  qrCodeID: "Arka Kap\u0131 G\xFCvenlik G\xF6stergesi"
+  title: "Arka Kap\u0131 G\xFCvenlik G\xF6stergesi"
+  icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
+  message: "Arka Kap\u0131 G\xFCvenlik G\xF6stergesi, test arac\u0131n\u0131n arka
+    kap\u0131s\u0131n\u0131n g\xFCvenli \u015Fekilde kapal\u0131 olup olmad\u0131\u011F\u0131n\u0131
+    g\xF6sterir. Arka kap\u0131 a\xE7\u0131k oldu\u011Funda g\xFCvenlik kilidi devreye
+    girer ve y\xFCksek gerilim sisteminin enerjilendirilmesine izin verilmez. Kap\u0131n\u0131n
+    tamamen kapal\u0131 ve kilitli oldu\u011Fu do\u011Fruland\u0131ktan sonra test
+    sistemi \xE7al\u0131\u015Fmaya haz\u0131r hale gelir. Bu g\xF6sterge, personel
+    g\xFCvenli\u011Fini sa\u011Flamak ve y\xFCksek gerilim alt\u0131nda yanl\u0131\u015Fl\u0131kla
+    eri\u015Fimi \xF6nlemek amac\u0131yla kullan\u0131lan \xF6nemli g\xFCvenlik kontrollerinden
+    biridir."

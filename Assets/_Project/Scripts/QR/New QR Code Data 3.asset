@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7262e9d93707a4e9f3d972ad34ef36, type: 3}
+  m_Name: New QR Code Data 3
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.QRCodeData
+  qrCodeID: 220 V Besleme Kablosu
+  title: 220 V Besleme Kablosu
+  icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
+  message: "Bu 220 V besleme kablosu, test arac\u0131n\u0131n \u015Febeke elektri\u011Fine
+    ba\u011Flanmas\u0131n\u0131 sa\u011Flayarak sistemin enerji ihtiyac\u0131n\u0131
+    kar\u015F\u0131lamak i\xE7in kullan\u0131l\u0131r. \xD6zellikle ara\xE7 \xFCzerindeki
+    ak\xFClerin \u015Farj edilmesi ve test ekipmanlar\u0131n\u0131n harici enerji
+    kayna\u011F\u0131yla \xE7al\u0131\u015Ft\u0131r\u0131lmas\u0131 amac\u0131yla
+    kullan\u0131l\u0131r. Ara\xE7 ak\xFCs\xFCn\xFCn yetersiz kald\u0131\u011F\u0131
+    durumlarda, sistemin kesintisiz \xE7al\u0131\u015Fmas\u0131n\u0131 sa\u011Flayarak
+    test i\u015Flemlerinin g\xFCvenli ve verimli \u015Fekilde devam etmesine olanak
+    tan\u0131r."
