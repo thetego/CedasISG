@@ -861,7 +861,7 @@ MonoBehaviour:
   selectedItemIndex: 0
   animationType: 0
   panelDirection: 0
-  panelSize: 200
+  panelSize: 500
   curveSpeed: 3
   animationCurve:
     serializedVersion: 2
