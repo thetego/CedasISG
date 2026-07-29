@@ -176,7 +176,12 @@ namespace SafetyTraining
 		{
 			_dropAttempts++;
 			_placements.Add(new PlayFabDataManager.DragDropPlacement(item.ItemID, gameObject.name, false));
-			PlayFabDataManager.Instance?.LogMistakeRecorded(_actionID, "wrong_drop", 1);
+			PlayFabDataManager.Instance?.LogMistakeRecorded(
+				_actionID,
+				SequenceManager.Instance?.CurrentLevelID ?? string.Empty,
+				SequenceManager.Instance?.CurrentSequenceID ?? string.Empty,
+				"wrong_drop",
+				1);
 			return false;
 		}
 

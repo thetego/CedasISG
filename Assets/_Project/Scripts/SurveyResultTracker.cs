@@ -21,6 +21,7 @@ namespace SafetyTraining
 
 		// ─── Aktif oturum ───
 		private SurveySessionResult _activeSession;
+		private float _activeSessionStartTime;
 
 		private void Awake()
 		{
@@ -51,6 +52,7 @@ namespace SafetyTraining
 				sequenceID = sequenceID,
 				isCompleted = false
 			};
+			_activeSessionStartTime = Time.time;
 
 			// Soru sonuçları için yer aç
 			if (data.questions != null)
@@ -169,7 +171,7 @@ namespace SafetyTraining
 			}
 
 			_activeSession.isCompleted   = true;
-			_activeSession.completionTime = Time.time;
+			_activeSession.completionTime = Time.time - _activeSessionStartTime;
 
 			_allResults.Add(_activeSession);
 
@@ -182,6 +184,7 @@ namespace SafetyTraining
 
 			SurveySessionResult completed = _activeSession;
 			_activeSession = null;
+			PlayFabDataManager.Instance?.LogSurveyCompleted(completed);
 			return completed;
 		}
 

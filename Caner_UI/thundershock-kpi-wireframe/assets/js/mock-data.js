@@ -371,8 +371,7 @@
   // NOT: Bu dizin telemetriden GELMEZ. Gerçek üründe PlayFab Title Data
   // whitelist'inden (PlayFabDataManager.PlayerEntry) gelir: playerId,
   // displayName, role, level, xp, createdAt, lastLogin.
-  // `role` alanı whitelist'te var ama HİÇBİR event'e yazılmıyor —
-  // bu yüzden role bazlı telemetri filtresi şu an üretilemez (bkz. DATA_MAPPING.md).
+  // `role` event payload'ındaki doküman context'i ile de taşınır.
 
   const EMPLOYEES = [
     { id: 'TEST001',  name: 'Demo Çalışan',       role: 'trainee',   profile: 'rich' },
@@ -401,6 +400,7 @@
 
   const events = [];
   let clock = 0; // monoton artan saniye sayacı, run içi sıralama için
+  const runSessions = {};
 
   function push(eventType, employeeId, dayOffset, payload) {
     clock += 1;
@@ -408,11 +408,23 @@
     const minute = clock % 60;
     const second = (clock * 7) % 60;
     const t = iso(dayOffset, hour, minute, second);
+    const levelId = payload.levelId || 'unknown';
+    const sessionKey = employeeId + '::' + levelId + '::' + dayOffset;
+    if (eventType === 'LevelStarted' || !runSessions[sessionKey]) {
+      runSessions[sessionKey] = employeeId + '-' + dayOffset + '-' + levelId;
+    }
+    const employee = EMPLOYEES.find(function (item) { return item.id === employeeId; });
+    const documentPayload = Object.assign({}, payload, {
+      sessionId: runSessions[sessionKey],
+      playerId: employeeId,
+      role: employee ? employee.role : '',
+      timestamp: t
+    });
     events.push({
       eventType: eventType,
       clientTimestamp: t,
       employeeId: employeeId,
-      payload: payload,
+      payload: documentPayload,
       // PlayFab tarafından eklenen sunucu zamanı (istemci şemasının parçası değil).
       _serverTimestamp: new Date(new Date(t).getTime() + 380).toISOString()
     });
@@ -437,10 +449,8 @@
   /**
    * Tek bir "deneme"yi (LevelStarted → LevelCompleted) üretir.
    *
-   * DİKKAT: Gerçek şemada sessionId / attemptId ALANI YOK. Denemeler burada
-   * yalnızca LevelStarted ve LevelCompleted event çiftleri ile ayrılır — portal
-   * da aynı türetmeyi yapar (kpi-calculations.js → deriveRuns). Bu türetmenin
-   * kırılganlığı DATA_MAPPING.md'de "Ek iş kuralı gerekir" olarak işaretlidir.
+   * sessionId gerçek event payload'ındaki doküman context'i ile aynı biçimde
+   * üretilir; attemptIndex ise QuizAnswered retry'larını ayrıştırır.
    */
   function emitRun(emp, level, dayOffset, opts) {
     opts = opts || {};
@@ -522,23 +532,27 @@
               // yani questionId her zaman actionId ile AYNI. Ayrı soru kimliği yok.
               questionId: act.id,
               selectedAnswer: selText,
-              correctAnswer: correctText,
-              isCorrect: isCorrect,
-              attempts: attempts,
-              timeSpent: tsOut
+               correctAnswer: correctText,
+               isCorrect: isCorrect,
+               attempts: attempts,
+               attemptIndex: attempts,
+               timeSpent: tsOut
             });
 
-            quizTotal += 1;
-            if (isCorrect) { quizCorrect += 1; solved = true; }
+             if (isCorrect) { solved = true; }
             else {
               mistakes += 1; seqMistakes += 1;
               // SequenceManager.cs:671 — severity SABİT 1 gönderiliyor.
               push('MistakeRecorded', emp.id, dayOffset, {
                 mistakeType: 'wrong_answer',
                 actionId: act.id,
+                levelId: level.emittedLevelId,
+                sequenceId: seq.id,
                 severity: 1
               });
-            }
+           }
+           quizTotal += 1;
+           if (solved) quizCorrect += 1;
             seqSeconds += ts;
           }
 
@@ -568,10 +582,12 @@
             else {
               mistakes += 1; seqMistakes += 1;
               // UIDropZone.cs:179 — severity SABİT 1.
-              push('MistakeRecorded', emp.id, dayOffset, {
-                mistakeType: 'wrong_drop',
-                actionId: act.id,
-                severity: 1
+            push('MistakeRecorded', emp.id, dayOffset, {
+              mistakeType: 'wrong_drop',
+              actionId: act.id,
+              levelId: level.emittedLevelId,
+              sequenceId: seq.id,
+              severity: 1
               });
             }
           }

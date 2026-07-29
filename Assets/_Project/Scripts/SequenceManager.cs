@@ -683,7 +683,8 @@ namespace SafetyTraining
 
 			_mistakes++;
 			_sequenceMistakes++;
-			PlayFabDataManager.Instance?.LogMistakeRecorded(actionID, "wrong_answer", 1);
+			PlayFabDataManager.Instance?.LogMistakeRecorded(
+				actionID, currentLevel?.levelID, _currentSequence?.sequenceID, "wrong_answer", 1);
 
 			PlayAnimations(_currentAction, AnimationTiming.OnFail);
 			_currentAction.onActionFail?.Invoke();

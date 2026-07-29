@@ -41,26 +41,27 @@ Her event `SendEvent()` (satır 496-521) üzerinden şu zarfla gönderilir:
 |---|---|---|---|
 | 1 | `LevelStarted` | `SequenceManager.cs:145` | `levelId`, `displayName` |
 | 2 | `LevelCompleted` | `SequenceManager.cs:832` | `levelId`, `completed`, `score`, `timeSpent`, `mistakes`, `completionRate` |
-| 3 | `SequenceStarted` | `SequenceManager.cs:235` | `sequenceId`, `levelId` |
-| 4 | `SequenceCompleted` | `SequenceManager.cs:732` | `sequenceId`, `levelId`, `timeSpent`, `mistakes`, `completed` |
-| 5 | `ActionCompleted` | `SequenceManager.cs:555` | `actionId`, `levelId`, `sequenceId`, `type`, `objectId`, `duration`, `result` |
-| 6 | `QuizAnswered` | `UIQuizPanel.cs:171` | `actionId`, `levelId`, `sequenceId`, `questionId`, `selectedAnswer`, `correctAnswer`, `isCorrect`, `attempts`, `timeSpent` |
+| 3 | `SequenceStarted` | `SequenceManager.cs:235` | `sequenceId`, `levelId`, `startTime` |
+| 4 | `SequenceCompleted` | `SequenceManager.cs:732` | `sequenceId`, `levelId`, `startTime`, `endTime`, `timeSpent`, `mistakes`, `completed` |
+| 5 | `ActionCompleted` | `SequenceManager.cs:555` | `actionId`, `levelId`, `sequenceId`, `type`, `objectId`, `startTime`, `endTime`, `duration`, `result` |
+| 6 | `QuizAnswered` | `UIQuizPanel.cs:171` | `actionId`, `levelId`, `sequenceId`, `questionId`, `selectedAnswer`, `correctAnswer`, `isCorrect`, `attempts`, `attemptIndex`, `timeSpent` |
 | 7 | `QuizSummary` | `PlayFabDataManager.cs:409` (otomatik) | `levelId`, `totalQuestions`, `correctAnswers`, `wrongAnswers`, `accuracy` |
 | 8 | `DragDropAttempt` | `UIDropZone.cs:196` | `actionId`, `levelId`, `sequenceId`, `targetObject`, `attempts`, `placements[{item,droppedOn,correct}]` |
-| 9 | `MistakeRecorded` | `SequenceManager.cs:671`, `UIDropZone.cs:179` | `mistakeType`, `actionId`, `severity` |
+| 9 | `MistakeRecorded` | `SequenceManager.cs:671`, `UIDropZone.cs:179` | `mistakeType`, `actionId`, `levelId`, `sequenceId`, `severity`, `timestamp` |
 | 10 | `SessionEnded` | `PlayFabDataManager.cs:476` | `levelId` |
+| 11 | `SurveyCompleted` | `SurveyResultTracker.cs:187` | `actionId`, `levelId`, `sequenceId`, `questionResults`, `photoResults`, `completionTime` |
 
 ### 1.2 Şemanın kritik boşlukları
 
 | Boşluk | Kanıt | Etkisi |
 |---|---|---|
-| **`sessionId` / `attemptId` yok** | Hiçbir payload'da yok | Denemeler `LevelStarted`→`LevelCompleted` çiftinden **türetilmek zorunda**; çökme veya çok cihaz durumunda bozulur |
-| **`MistakeRecorded` levelId/sequenceId taşımıyor** | `PlayFabDataManager.cs:460-468` | Bir hata ancak `actionId` → içerik kataloğu araması ile senaryoya bağlanabilir |
+| **`sessionId` / `attemptId`** | `sessionId` tüm payload'lara ekleniyor; `attemptId` hâlâ yok | Denemeler güvenilir biçimde gruplanır; retry ayrımı için `attemptIndex` kullanılır |
+| **`MistakeRecorded` bağlamı** | `levelId` ve `sequenceId` payload'a eklendi | Hata doğrudan senaryo adımına bağlanabilir |
 | **`severity` sabit `1`** | Her iki çağrı yerinde de literal `1` | Kritik hata sınıflandırması **imkânsız** |
 | **`mistakeType` yalnızca 2 değer** | `"wrong_answer"`, `"wrong_drop"` | Hata taksonomisi çok dar |
 | **`questionId` = `actionId`** | `UIQuizPanel.cs:173` — `_actionID` iki kez geçiliyor | Bir action'da birden fazla soru olsaydı ayrıştırılamazdı |
-| **`role` hiçbir event'te yok** | `SendEvent()` zarfı yalnızca `employeeId` taşır | Rol bazlı filtre üretilemez |
-| **Survey sonuçları hiç gönderilmiyor** | `SurveyResultTracker.cs` — PlayFab çağrısı yok | Anket cevapları, fotoğraf hizalama skorları kayıp |
+| **`role` event payload'ında** | `SendEvent()` doküman context'i olarak `role` taşır | Rol bazlı filtre üretilebilir |
+| **Survey sonuçları** | `SurveyCompleted` event'i ile gönderiliyor | Anket cevapları ve fotoğraf hizalama skorları taşınıyor |
 | **`ActionCompleted.type` 10 tipi 5'e indirir** | `SequenceManager.cs:1362-1375` | `CameraMove`/`ModalWindow`/`Fade` ayırt edilemez |
 | **`actionId` benzersizliği garanti değil** | Üretim level'larında 1 çakışma tespit edildi: `Anahtari cevir_Copy` (×2) | `actionId` → senaryo eşlemesi kırılgan |
 
@@ -178,9 +179,9 @@ entegrasyonu") — sahte seçenek üretmiyor ve tabloya boş sütun eklemiyor.
 ### 3.4 Anket başarı oranı — 🟠
 
 `SurveyResultTracker.cs` anket cevaplarını, doğruluk skorlarını ve fotoğraf hizalama
-puanlarını hesaplıyor ama **hiçbirini event olarak göndermiyor** — veriler yalnızca
-bellekte. Telemetride Survey adımları için sadece
-`ActionCompleted { type: "survey" }` görünüyor.
+puanlarını hesaplıyor; `EndSession()` artık bunları `SurveyCompleted` event'iyle
+PlayFab'e gönderiyor. Telemetride Survey adımları için `ActionCompleted { type: "survey" }`
+event'i korunmaya devam ediyor.
 
 **Açılması için gereken:** `SurveyCompleted` event'i:
 ```jsonc
@@ -272,16 +273,13 @@ seviyeye taşır ve karşılaştırma/trend ekranlarını güvenilir hale getiri
 
 Portalın tüm ekranlarının çalışabilmesi için backend'in sağlaması gerekenler:
 
-### 6.1 Event akışı (mevcut şemaya eklenecekler)
+### 6.1 Event akışı (mevcut şemada kalan işler)
 
 | Alan | Nereye | Öncelik | Açar |
 |---|---|---|---|
-| `sessionId` | **Tüm** event payload'ları | ⭐ Yüksek | Güvenilir deneme ayrımı, karşılaştırma, trend |
-| `levelId`, `sequenceId` | `MistakeRecorded` | ⭐ Yüksek | Hatanın senaryoya doğrudan bağlanması |
 | Gerçek `severity` | `MistakeRecorded` | ⭐ Yüksek | Kritik hata oranı, risk sıralaması |
-| `role` | Event zarfı | Orta | Rol bazlı filtre ve karşılaştırma |
-| `SurveyCompleted` event'i | Yeni | Orta | Anket ve fotoğraf analizi |
-| `attemptIndex` | `QuizAnswered` | Düşük | `attempts` kümülatifliğinin netleşmesi |
+| `attemptId` | **Tüm** event payload'ları | Orta | Aynı level'ın ayrı oynanışlarını kesin ayırma |
+| Gerçek `questionId` | `QuizAnswered` | Düşük | Aynı action'daki birden fazla soruyu ayırma |
 
 ### 6.2 Yardımcı tablolar (event dışı)
 
@@ -323,7 +321,7 @@ zorunludur: `role=employee` isteği yalnızca kendi `employeeId`'sini döndürme
 - `questionId` her zaman `actionId` ile aynı
 - `levelId` gerçek asset değerleriyle: `"level 1"`, `"lvl1"`, `"NewLevel"`
 - `completionRate` gerçek formülle: `Clamp01(1 - mistakes * 0.05)`
-- Survey adımları **yalnızca** `ActionCompleted` üretir — anket sonucu event'i yok
+- Survey adımları `ActionCompleted` yanında `SurveyCompleted` de üretir
 - `_serverTimestamp` `_` önekiyle işaretli, istemci şemasının parçası olmadığı belli
 
 **Kapsanan uç durumlar:** başarılı çalışan · birkaç yanlış · çok tekrar deneme ·

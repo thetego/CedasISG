@@ -32,6 +32,7 @@ namespace SafetyTraining
         private bool   _isLoggedIn;
         private string _playFabId;
         private string _currentLevelId;
+        private string _sessionId;
 
         // Giriş tamamlanmadan gelen eventler için kuyruk
         private readonly Queue<WriteClientPlayerEventRequest> _pendingEvents =
@@ -45,10 +46,13 @@ namespace SafetyTraining
         private float _levelStartTime;
         private float _sequenceStartTime;
         private float _actionStartTime;
+        private string _sequenceStartUtc;
 
         // Doküman §4.6 Quiz Summary — aktif level boyunca biriktirilir, LogLevelCompleted'de gönderilir
         private int _quizTotalQuestions;
         private int _quizCorrectAnswers;
+        private readonly Dictionary<string, bool> _quizResults =
+            new Dictionary<string, bool>();
 
         // ═══════════════════════════════════════════════════════
         // PLAYER ENTRY MODEL
@@ -263,9 +267,11 @@ namespace SafetyTraining
         public void LogLevelStarted(string levelId)
         {
             _currentLevelId = levelId;
+            _sessionId = Guid.NewGuid().ToString("N");
             _levelStartTime = Time.time;
             _quizTotalQuestions = 0;
             _quizCorrectAnswers = 0;
+            _quizResults.Clear();
 
             SendEvent("LevelStarted", new Dictionary<string, object>
             {
@@ -303,11 +309,13 @@ namespace SafetyTraining
         public void LogSequenceStarted(string sequenceId, string levelId)
         {
             _sequenceStartTime = Time.time;
+            _sequenceStartUtc = DateTime.UtcNow.ToString("o");
 
             SendEvent("SequenceStarted", new Dictionary<string, object>
             {
                 { "sequenceId", sequenceId },
-                { "levelId",    levelId }
+                { "levelId",    levelId },
+                { "startTime",  _sequenceStartUtc }
             });
         }
 
@@ -319,7 +327,9 @@ namespace SafetyTraining
                 { "levelId",    levelId },
                 { "timeSpent",  Mathf.RoundToInt(Time.time - _sequenceStartTime) },
                 { "mistakes",   mistakes },
-                { "completed",  true }
+                { "completed",  true },
+                { "startTime",  _sequenceStartUtc ?? string.Empty },
+                { "endTime",    DateTime.UtcNow.ToString("o") }
             });
         }
 
@@ -347,6 +357,8 @@ namespace SafetyTraining
                 { "sequenceId", sequenceId },
                 { "type",       actionType },
                 { "objectId",   objectId },
+                { "startTime",  Mathf.Max(0, Mathf.RoundToInt(_actionStartTime - _levelStartTime)) },
+                { "endTime",    Mathf.Max(0, Mathf.RoundToInt(Time.time - _levelStartTime)) },
                 { "duration",   Mathf.RoundToInt(Time.time - _actionStartTime) },
                 { "result",     result }
             });
@@ -360,8 +372,13 @@ namespace SafetyTraining
             string questionId, string selectedAnswer, string correctAnswer,
             bool isCorrect, int attempts, int timeSpent)
         {
-            _quizTotalQuestions++;
-            if (isCorrect) _quizCorrectAnswers++;
+            // attempts are logged individually, but QuizSummary must count each
+            // question only once and reflect its latest answer.
+            _quizResults[questionId] = isCorrect;
+            _quizTotalQuestions = _quizResults.Count;
+            _quizCorrectAnswers = 0;
+            foreach (bool result in _quizResults.Values)
+                if (result) _quizCorrectAnswers++;
 
             SendEvent("QuizAnswered", new Dictionary<string, object>
             {
@@ -373,6 +390,7 @@ namespace SafetyTraining
                 { "correctAnswer",  correctAnswer },
                 { "isCorrect",      isCorrect },
                 { "attempts",       attempts },
+                { "attemptIndex",   attempts },
                 { "timeSpent",      timeSpent }
             });
         }
@@ -440,11 +458,60 @@ namespace SafetyTraining
 
         public void LogMistakeRecorded(string actionId, string mistakeType, int severity)
         {
+            string levelId = SequenceManager.Instance?.CurrentLevelID ?? _currentLevelId ?? string.Empty;
+            string sequenceId = SequenceManager.Instance?.CurrentSequenceID ?? string.Empty;
+            LogMistakeRecorded(actionId, levelId, sequenceId, mistakeType, severity);
+        }
+
+        public void LogMistakeRecorded(string actionId, string levelId, string sequenceId,
+            string mistakeType, int severity)
+        {
             SendEvent("MistakeRecorded", new Dictionary<string, object>
             {
                 { "mistakeType", mistakeType },
                 { "actionId",    actionId },
-                { "severity",    severity }
+                { "levelId",     levelId },
+                { "sequenceId",  sequenceId },
+                { "severity",    severity },
+                { "timestamp",   DateTime.UtcNow.ToString("o") }
+            });
+        }
+
+        public void LogSurveyCompleted(SurveySessionResult result)
+        {
+            if (result == null) return;
+
+            var questionResults = new List<object>();
+            foreach (var question in result.questionResults)
+            {
+                questionResults.Add(new Dictionary<string, object>
+                {
+                    { "questionText",         question.questionText },
+                    { "selectedOptionIndex",  question.selectedOptionIndex },
+                    { "isCorrect",            question.isCorrect }
+                });
+            }
+
+            var photoResults = new List<object>();
+            foreach (var photo in result.photoResults)
+            {
+                photoResults.Add(new Dictionary<string, object>
+                {
+                    { "slotLabel",      photo.slotLabel },
+                    { "wasCaptured",    photo.wasCaptured },
+                    { "isAligned",      photo.isAligned },
+                    { "alignmentScore", photo.alignmentScore }
+                });
+            }
+
+            SendEvent("SurveyCompleted", new Dictionary<string, object>
+            {
+                { "actionId",        result.actionID },
+                { "levelId",         result.levelID },
+                { "sequenceId",      result.sequenceID },
+                { "questionResults", questionResults },
+                { "photoResults",    photoResults },
+                { "completionTime",  result.completionTime }
             });
         }
 
@@ -476,12 +543,21 @@ namespace SafetyTraining
 
         private void SendEvent(string eventName, Dictionary<string, object> payload)
         {
+            // PlayFab reserves top-level playerId/timestamp. Keep its transport
+            // envelope intact and add the document contract context to payload.
+            var documentPayload = new Dictionary<string, object>(payload);
+            documentPayload["sessionId"] = _sessionId ?? string.Empty;
+            documentPayload["playerId"] = CurrentPlayerId ?? string.Empty;
+            documentPayload["role"] = CurrentPlayerRole ?? string.Empty;
+            if (!documentPayload.ContainsKey("timestamp"))
+                documentPayload["timestamp"] = DateTime.UtcNow.ToString("o");
+
             var envelope = new Dictionary<string, object>
             {
                 { "eventType",       eventName },
                 { "clientTimestamp", DateTime.UtcNow.ToString("o") },
                 { "employeeId",      CurrentPlayerId },
-                { "payload",         payload }
+                { "payload",         documentPayload }
             };
 
             var request = new WriteClientPlayerEventRequest
