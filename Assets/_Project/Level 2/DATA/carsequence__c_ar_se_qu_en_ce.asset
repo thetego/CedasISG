@@ -34,10 +34,28 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b83e60da922f1b946ab72d8158b02739, type: 2}
   - {fileID: 11400000, guid: b0fa1466b0976224c9d6b644ad2c4df1, type: 2}
   - {fileID: 11400000, guid: ef9a0831a5616104281a031acf5d76e0, type: 2}
-  - {fileID: 11400000, guid: 7fa9a124feda74c4f92dda22a42cc16c, type: 2}
   - {fileID: 11400000, guid: 1e736c678e404cc43ba8777a44bc2e81, type: 2}
-  - {fileID: 11400000, guid: fe5ba1517e67f4847a5b0a6338321eb6, type: 2}
+  - {fileID: 11400000, guid: 7fa9a124feda74c4f92dda22a42cc16c, type: 2}
+  - {fileID: 11400000, guid: 5e82af4b6c5eebb438f630899df2eb7e, type: 2}
+  - {fileID: 11400000, guid: f63262877735290499f499c47f90659e, type: 2}
+  - {fileID: 11400000, guid: ed514295e17b4144095bcb5fd22ef6ff, type: 2}
+  - {fileID: 11400000, guid: aa3367f23fbd61345bddbe494c3f7b1c, type: 2}
+  - {fileID: 11400000, guid: 115778d917decc442a2bfedebb93b46c, type: 2}
+  - {fileID: 11400000, guid: faf22e9d1de036542bd35f0ba8a3b0a1, type: 2}
+  - {fileID: 11400000, guid: e448d9b1545eb9648b1d2d7eec4bda8e, type: 2}
   - {fileID: 11400000, guid: eaa5127e1ad41074db02f8e24cae153f, type: 2}
+  - {fileID: 11400000, guid: 3f8386827436ae24488cd797ae2d5c2c, type: 2}
+  - {fileID: 11400000, guid: 15bedefa5576a9e4b95dadd64d3caca1, type: 2}
+  - {fileID: 11400000, guid: 68eee979e17c15f4fae2767c5497eb3b, type: 2}
+  - {fileID: 11400000, guid: 6fd1af35e05d99845b72cc50e523addc, type: 2}
+  - {fileID: 11400000, guid: 9fe27ea009e52f84599a6f97654794ad, type: 2}
+  - {fileID: 11400000, guid: 4073b6ca9162df046b1fc4dbb4ad7c00, type: 2}
+  - {fileID: 11400000, guid: 2b217cbae012bf34daf2c59815eb251b, type: 2}
+  - {fileID: 11400000, guid: 66e13a65c9c3b734baeec8ef4e3486d0, type: 2}
+  - {fileID: 11400000, guid: 92cb2d0eeeebda0479c49895d0eaa4a2, type: 2}
+  - {fileID: 11400000, guid: 483820a31c4059a4585bfedd287cf1ee, type: 2}
+  - {fileID: 11400000, guid: 2c180326f9f1cd949b90468e95e3843d, type: 2}
+  - {fileID: 11400000, guid: fe5ba1517e67f4847a5b0a6338321eb6, type: 2}
   - {fileID: 11400000, guid: d8383e7a85d3d4e49b84bff01833d076, type: 2}
   targetObjectID: polePlug2
   buttonOffset: {x: 0, y: 0, z: 0}

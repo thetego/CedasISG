@@ -18,6 +18,16 @@ MonoBehaviour:
   instructionText: 
   actions:
   - {fileID: 11400000, guid: e5ef82597a4aa4a4685d24257e0aa204, type: 2}
+  - {fileID: 11400000, guid: cf46de12f63005d439d88dc40cdb5a77, type: 2}
+  - {fileID: 11400000, guid: b200f745a7f0912498a3b064a376dbe3, type: 2}
+  - {fileID: 11400000, guid: d708d0a5f2f5ef14883fba0db6a011f1, type: 2}
+  - {fileID: 11400000, guid: f387f97f605476543a250751b7bb18e3, type: 2}
+  - {fileID: 11400000, guid: fcffdb84b0b28ed499393e5ac2dd0036, type: 2}
+  - {fileID: 11400000, guid: a97ade8df068a2640a4f54661cf52ac6, type: 2}
+  - {fileID: 11400000, guid: 07b5c39333bfbf749bf8b86bcb55c2a7, type: 2}
+  - {fileID: 11400000, guid: d49593efc4c6cdf4a8501b21eee5d0d4, type: 2}
+  - {fileID: 11400000, guid: da10586931c4470428722711815a0f5d, type: 2}
+  - {fileID: 11400000, guid: c153932431fce6741a396b60c963f448, type: 2}
   - {fileID: 11400000, guid: f0ed3bf845561024799750aa623268f5, type: 2}
   - {fileID: 11400000, guid: 7b1d8112fab80bf41a6160a88db1eb4a, type: 2}
   - {fileID: 11400000, guid: fa842d2611485424db18a3f0b5505cf7, type: 2}

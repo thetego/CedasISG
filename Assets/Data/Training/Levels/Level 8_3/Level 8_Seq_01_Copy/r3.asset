@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
   m_Name: r3
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: Level 8_Seq_01_Act_01_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy
-  actionName: <sdfg
+  actionID: faw
+  actionName: faw
   instructionText: 
   actionType: 3
   prerequisiteActionIDs: []
@@ -51,6 +51,12 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  surveyPhotoCount: 0
+  surveyPhotoRequired: 0
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0
@@ -68,5 +74,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onStartEventIDs: []
-  onCompleteEventIDs: []
+  onCompleteEventIDs:
+  - faw
   onFailEventIDs: []

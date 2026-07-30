@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
   m_Name: Orta_Act_12_Copy_Copy_Copy_Copy_Copy_Copy
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: Orta_Act_12_Copy_Copy_Copy_Copy_Copy_Copy
+  actionID: zxcv
   actionName: Orta_Act_12_Copy_Copy_Copy_Copy_Copy_Copy
   instructionText: 
   actionType: 2
@@ -56,6 +56,8 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  surveyPhotoCount: 0
+  surveyPhotoRequired: 0
   modalWindowPrefab: {fileID: 0}
   modalWindowTitle: 
   modalWindowDescription: 
