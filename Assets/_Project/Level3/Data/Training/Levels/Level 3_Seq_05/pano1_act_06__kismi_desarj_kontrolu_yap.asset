@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: "Kismi desarj kontrolu yap"
+  m_Name: Kismi desarj kontrolu yap
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: "pano1_Act_06"
-  actionName: "Kismi desarj kontrolu yap"
+  actionID: pano1_Act_06
+  actionName: Kismi desarj kontrolu yap
   instructionText: "K\u0131smi de\u015Farj \xF6l\xE7\xFCm\xFC yap\u0131n ve kontrol
     formunu doldurun"
   actionType: 2
@@ -60,6 +60,12 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  surveyPhotoCount: 0
+  surveyPhotoRequired: 0
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 1
   deactivatesTablet: 0
   hideButtonAfterComplete: 0

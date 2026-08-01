@@ -1,0 +1,153 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
+  m_Name: Pano 1_Copy_Copy_Copy
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
+  sequenceID: Pano 1_Copy_Copy_Copy
+  sequenceName: Pano 1_Copy_Copy_Copy
+  sequenceDescription: 
+  instructionText: "Panolar \xFCst\xFCnde gerekli i\u015Flemleri ger\xE7ekle\u015Ftirin."
+  actions:
+  - {fileID: 11400000, guid: aca8e33394f923b4a961e4cea7a649cf, type: 2}
+  - {fileID: 11400000, guid: f791cc62d97e0434c81359f36ba76ba3, type: 2}
+  - {fileID: 11400000, guid: 147cb767afb35bd4fa9754966da5967f, type: 2}
+  - {fileID: 11400000, guid: 3332ed2a9d1bfc548957b1ea500faee4, type: 2}
+  - {fileID: 11400000, guid: ed3d79e1cd003064bb991bc452a283c4, type: 2}
+  - {fileID: 11400000, guid: 7dc8bea58339a304094dad75e6134444, type: 2}
+  - {fileID: 11400000, guid: c9b982a8e5be067408eb934d2bb8fcd2, type: 2}
+  - {fileID: 11400000, guid: c38ac76ec1c4b3f4b86c0db4e7766a73, type: 2}
+  - {fileID: 11400000, guid: a839ba25668b8ff47a2252bbcfdf3b15, type: 2}
+  - {fileID: 11400000, guid: 0960315d70e21954dae88de1355b3e9f, type: 2}
+  - {fileID: 11400000, guid: 8dc2bd13e4435584081b4fba7d5104a8, type: 2}
+  - {fileID: 11400000, guid: 441e8f2bf025af54b978a12c6ef5a034, type: 2}
+  - {fileID: 11400000, guid: 9c00d2f5b7c590648959c726fcb7685c, type: 2}
+  - {fileID: 11400000, guid: ecb2ea89d6ca9bd46a70cc383f09f7ce, type: 2}
+  - {fileID: 11400000, guid: 23381c75b9ae50740b2c597a40cadfc3, type: 2}
+  targetObjectID: panoDepar4
+  buttonOffset: {x: 1.02, y: 0, z: 0}
+  entryCameraMode: 4
+  entryCameraID: camPano4
+  autoReturnOnComplete: 0
+  autoReturnOnExit: 1
+  resumeFromLastAction: 1
+  allowRestart: 0
+  hideButtonAfterComplete: 1
+  prerequisiteSequences:
+  - {fileID: 11400000, guid: 50c0b1333e1279b42af9af7114f76912, type: 2}
+  - {fileID: 11400000, guid: 67b089813e549074380f691473682511, type: 2}
+  - {fileID: 11400000, guid: 8cbe788c18ed488418b16d2538b70f9b, type: 2}
+  - {fileID: 11400000, guid: 8c0a3b21e8fc5da42b3e92fb26f2ff0f, type: 2}
+  - {fileID: 11400000, guid: c7001038dd1d6ab488a746cff7ac47f6, type: 2}
+  - {fileID: 11400000, guid: 19031ee8b8501a048a2e13dbb7449b18, type: 2}
+  - {fileID: 11400000, guid: fb1186e8efe77a942921dbcd58908252, type: 2}
+  - {fileID: 11400000, guid: 984c6ebd497d33b4e8df99ed40c43704, type: 2}
+  onPrerequisiteFail: 1
+  prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
+    tamamlay\u0131n."
+  hasSurvey: 1
+  surveyPanelPrefab: {fileID: 1286903722057059542, guid: 19fa24d4f5915f640b3fee1d4534a0fb, type: 3}
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions:
+    - questionText: "H\xFCcre \xFCst\xFCndeki g\xF6stergelerin kontrol\xFC yap\u0131ld\u0131
+        m\u0131?"
+      options:
+      - SORUN YOK
+      - HUCRE USTUNDEKI TUM GOSTERGELER CALISMIYOR
+      - ROLELER PASIF DURUMDA
+      - KAPASITIF GOSTERGE VE ROLELER CALISMIYOR
+      - SF6 GOSTERGESI VE KAPASITIF GOSTERGE CALISMIYOR
+      - 'SF6 GAZ BASICI GOSTERGESI YOK '
+      - SF6 GOSTERGESI VE ROLELER CALISMIYOR
+      correctOptionIndices: 00000000
+      isRequired: 1
+    - questionText: "Gaz bas\u0131n\xE7 seviyesi uygun mu?"
+      options:
+      - SORUN YOK
+      - SORUN VAR---GAZ BASINC SEVIYESI DUSUK
+      correctOptionIndices: 00000000
+      isRequired: 1
+    - questionText: "H\xFCcre etiketleri kontrol\xFC yap\u0131ld\u0131 m\u0131?"
+      options:
+      - "SORUN VAR---PLAKA ET\u0130KET\u0130 YOK"
+      - SORUN VAR---FIDER ETIKETLERI YOK
+      - SORUN YOK
+      - SORUN VAR---UYARI VE IKAZ LEVHALARI YOK
+      correctOptionIndices: 00000000
+      isRequired: 1
+    - questionText: "H\xFCcre \xFCst\xFCnde K\u0131smi De\u015Farj \xF6l\xE7\xFCm
+        de\u011Feri nedir?"
+      options:
+      - SORUN YOK
+      - 25-30 DB ARASINDA
+      - 30 DB USTUNDE
+      - 20-25 DB ARASINDA
+      - 5-10 DB ARASINDA
+      - 15-20 DB ARASINDA
+      - 0-5 DB ARASINDA
+      - 10-15 DB ARASINDA
+      - "H\xDCCRE ENERJ\u0130S\u0130Z"
+      correctOptionIndices: 00000000
+      isRequired: 1
+    - questionText: "H\xFCcrede K\u0131smi De\u015Farj nerede?"
+      options:
+      - SORUN YOK
+      - GENEL HUCRE KAZANINDA
+      - KABLO BASLIKLARININ GIRIS NOKTASINDA
+      - KESICI TARAFINDA
+      - UST BARA BAGLANTILARINDA
+      - SORUN VAR---DIGER (ACIKLAMAYA GIRINIZ)
+      - "H\xDCCRE ENERJ\u0130S\u0130Z"
+      correctOptionIndices: 00000000
+      isRequired: 1
+    - questionText: "R\xF6leler aktif mi?"
+      options:
+      - SORUN VAR---DC PASIF, ROLE PASIF
+      - SORUN YOK
+      - SORUN VAR---DC AKTIF, ROLE PASIF
+      correctOptionIndices: 01000000
+      isRequired: 1
+    - questionText: "H\xFCcre i\xE7i ayd\u0131nlatma \xE7al\u0131\u015F\u0131yor
+        mu?"
+      options:
+      - SORUN YOK
+      - SORUN VAR---AC AYDINLATMA CALISMIYOR
+      - SORUN VAR---IC AYDINLATMA CALISMIYOR
+      - SORUN VAR---DC AYDINLATMA CALISMIYOR
+      correctOptionIndices: 00000000
+      isRequired: 1
+    photoSlotCount: 2
+    photoSlots:
+    - slotLabel: panoEtiket4
+      targetObjectID: panoEtiket4
+      alignmentThreshold: 0.5
+      indicatorAlignedColor: {r: 0.13948512, g: 1, b: 0, a: 0}
+      indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
+    - slotLabel: panoDepar4
+      targetObjectID: panoDepar4
+      alignmentThreshold: 0.5
+      indicatorAlignedColor: {r: 0.13948512, g: 1, b: 0, a: 0}
+      indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
+  spawnButtonAtStart: 1
+  sequenceIcon: {fileID: 0}
+  buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
+  completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}
+  onSequenceEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceExit:
+    m_PersistentCalls:
+      m_Calls: []

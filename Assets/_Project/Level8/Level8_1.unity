@@ -2797,13 +2797,13 @@ MonoBehaviour:
     onEventTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1907012472747514219}
-          m_TargetAssemblyTypeName: UnityEngine.MeshRenderer, UnityEngine
-          m_MethodName: set_material
+        - m_Target: {fileID: 2100000, guid: 42cd0ca1059cd0443a33a8ac992a44af, type: 2}
+          m_TargetAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_MethodName: set_mainTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2100000, guid: 43e796c6bf018f64db45f9cd198e787e, type: 2}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+            m_ObjectArgument: {fileID: 2800000, guid: 42028c1e2ca10924bb6e8692ab403882, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2813,13 +2813,13 @@ MonoBehaviour:
     onEventTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1907012472747514219}
-          m_TargetAssemblyTypeName: UnityEngine.MeshRenderer, UnityEngine
-          m_MethodName: set_material
+        - m_Target: {fileID: 2100000, guid: 42cd0ca1059cd0443a33a8ac992a44af, type: 2}
+          m_TargetAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_MethodName: set_mainTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2100000, guid: 068b012633addac4bab0f4b5a3c99879, type: 2}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+            m_ObjectArgument: {fileID: 2800000, guid: d0dfa5a71443a7146b55647e3d7db339, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2829,13 +2829,13 @@ MonoBehaviour:
     onEventTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1907012472747514219}
-          m_TargetAssemblyTypeName: UnityEngine.MeshRenderer, UnityEngine
-          m_MethodName: set_material
+        - m_Target: {fileID: 2100000, guid: 42cd0ca1059cd0443a33a8ac992a44af, type: 2}
+          m_TargetAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_MethodName: set_mainTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2100000, guid: a15c040413dc4ce4ca76d0bd7bb33c69, type: 2}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+            m_ObjectArgument: {fileID: 2800000, guid: fbaa5ee02fce2a6408584cf89442c639, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2845,13 +2845,13 @@ MonoBehaviour:
     onEventTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1907012472747514219}
-          m_TargetAssemblyTypeName: UnityEngine.MeshRenderer, UnityEngine
-          m_MethodName: set_material
+        - m_Target: {fileID: 2100000, guid: 42cd0ca1059cd0443a33a8ac992a44af, type: 2}
+          m_TargetAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_MethodName: set_mainTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2100000, guid: e040d54f6a582dc44b39fb0537483ea6, type: 2}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+            m_ObjectArgument: {fileID: 2800000, guid: 4288cddfe4eebb146b52c32065904b62, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2861,13 +2861,13 @@ MonoBehaviour:
     onEventTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1907012472747514219}
-          m_TargetAssemblyTypeName: UnityEngine.MeshRenderer, UnityEngine
-          m_MethodName: set_material
+        - m_Target: {fileID: 2100000, guid: 42cd0ca1059cd0443a33a8ac992a44af, type: 2}
+          m_TargetAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_MethodName: set_mainTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2100000, guid: 6b18c678a98719b4487aca5ea354716e, type: 2}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+            m_ObjectArgument: {fileID: 2800000, guid: b0f3a08b28f99024384c0f489053dc32, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2877,13 +2877,13 @@ MonoBehaviour:
     onEventTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1907012472747514219}
-          m_TargetAssemblyTypeName: UnityEngine.MeshRenderer, UnityEngine
-          m_MethodName: set_material
+        - m_Target: {fileID: 2100000, guid: 42cd0ca1059cd0443a33a8ac992a44af, type: 2}
+          m_TargetAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_MethodName: set_mainTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2100000, guid: 26f170f0ca9692843b75d72685de9dc0, type: 2}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+            m_ObjectArgument: {fileID: 2800000, guid: 6a5133ff04f9a9a4e9011b1c8bee4cfb, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2893,13 +2893,13 @@ MonoBehaviour:
     onEventTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1907012472747514219}
-          m_TargetAssemblyTypeName: UnityEngine.MeshRenderer, UnityEngine
-          m_MethodName: set_material
+        - m_Target: {fileID: 2100000, guid: 42cd0ca1059cd0443a33a8ac992a44af, type: 2}
+          m_TargetAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_MethodName: set_mainTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2100000, guid: 8d55183a4a7b641419a9dba7751d9888, type: 2}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+            m_ObjectArgument: {fileID: 2800000, guid: 50ae1db0055e6d94ba171aecf914fb26, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2909,13 +2909,13 @@ MonoBehaviour:
     onEventTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1907012472747514219}
-          m_TargetAssemblyTypeName: UnityEngine.MeshRenderer, UnityEngine
-          m_MethodName: set_material
+        - m_Target: {fileID: 2100000, guid: 42cd0ca1059cd0443a33a8ac992a44af, type: 2}
+          m_TargetAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_MethodName: set_mainTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2100000, guid: d5c977f937023324295bc1f42188c555, type: 2}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+            m_ObjectArgument: {fileID: 2800000, guid: e186120a6ec0ba5499e84bffb5dcd146, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2925,13 +2925,13 @@ MonoBehaviour:
     onEventTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1907012472747514219}
-          m_TargetAssemblyTypeName: UnityEngine.MeshRenderer, UnityEngine
-          m_MethodName: set_material
+        - m_Target: {fileID: 2100000, guid: 42cd0ca1059cd0443a33a8ac992a44af, type: 2}
+          m_TargetAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_MethodName: set_mainTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2100000, guid: 81c8bcfeae5a45a4e98c5ed2f12ee539, type: 2}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+            m_ObjectArgument: {fileID: 2800000, guid: 43434862a318b6f419a72f582c64abf3, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2941,13 +2941,13 @@ MonoBehaviour:
     onEventTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1907012472747514219}
-          m_TargetAssemblyTypeName: UnityEngine.MeshRenderer, UnityEngine
-          m_MethodName: set_material
+        - m_Target: {fileID: 2100000, guid: 42cd0ca1059cd0443a33a8ac992a44af, type: 2}
+          m_TargetAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_MethodName: set_mainTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2100000, guid: 62ae0df6e5fedbc499ce471c7573635f, type: 2}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+            m_ObjectArgument: {fileID: 2800000, guid: e55485110c5942b4bab4b06a220c97d7, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2957,13 +2957,13 @@ MonoBehaviour:
     onEventTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1907012472747514219}
-          m_TargetAssemblyTypeName: UnityEngine.MeshRenderer, UnityEngine
-          m_MethodName: set_material
+        - m_Target: {fileID: 2100000, guid: 42cd0ca1059cd0443a33a8ac992a44af, type: 2}
+          m_TargetAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_MethodName: set_mainTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2100000, guid: b88da8a4721870f40935e674f74d5217, type: 2}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+            m_ObjectArgument: {fileID: 2800000, guid: 2c1a1c66ad171c44787134f459208c4d, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2973,13 +2973,13 @@ MonoBehaviour:
     onEventTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1907012472747514219}
-          m_TargetAssemblyTypeName: UnityEngine.MeshRenderer, UnityEngine
-          m_MethodName: set_material
+        - m_Target: {fileID: 2100000, guid: 42cd0ca1059cd0443a33a8ac992a44af, type: 2}
+          m_TargetAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_MethodName: set_mainTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2100000, guid: 343b5c7041bed87449f16c390188ea58, type: 2}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+            m_ObjectArgument: {fileID: 2800000, guid: da42807ab7a7abd4fa9e25f3d1c47e17, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2989,13 +2989,13 @@ MonoBehaviour:
     onEventTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1907012472747514219}
-          m_TargetAssemblyTypeName: UnityEngine.MeshRenderer, UnityEngine
-          m_MethodName: set_material
+        - m_Target: {fileID: 2100000, guid: 42cd0ca1059cd0443a33a8ac992a44af, type: 2}
+          m_TargetAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_MethodName: set_mainTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2100000, guid: 3f354799b0f8b0440bfc4bfee912a1a3, type: 2}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+            m_ObjectArgument: {fileID: 2800000, guid: 988a8a45138cb004c9d86126c7cd9279, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -3005,13 +3005,13 @@ MonoBehaviour:
     onEventTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1907012472747514219}
-          m_TargetAssemblyTypeName: UnityEngine.MeshRenderer, UnityEngine
-          m_MethodName: set_material
+        - m_Target: {fileID: 2100000, guid: 42cd0ca1059cd0443a33a8ac992a44af, type: 2}
+          m_TargetAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_MethodName: set_mainTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2100000, guid: 3b3e92017eba66e4bba46d4d09eac3df, type: 2}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+            m_ObjectArgument: {fileID: 2800000, guid: 2f8f27709bba0444f838d831efd5fed5, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 

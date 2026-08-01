@@ -20,16 +20,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fb22054cbac327047aa4aaab25fab1b1, type: 2}
   - {fileID: 11400000, guid: b35c9ff95793c0643983b416dac76fbf, type: 2}
   - {fileID: 11400000, guid: 2bbd5c3640b11a5438c5a2a4d43e4b92, type: 2}
-  - {fileID: 11400000, guid: 8560e1da3bc6b3d468aa6f314b749037, type: 2}
   - {fileID: 11400000, guid: 1e2c193d617683c4187429b9d789bd3c, type: 2}
   - {fileID: 11400000, guid: 1a55767c3fbbea94a8c3ea7615e8da34, type: 2}
   - {fileID: 11400000, guid: 00e941a905233f9428ce872d5a21a895, type: 2}
   - {fileID: 11400000, guid: 01b74eb845d65a5499d916722debfce2, type: 2}
   - {fileID: 11400000, guid: f8022d935fb7238439cce33da4390f81, type: 2}
-  - {fileID: 11400000, guid: 3e831b7869e5d0841b3c169399d7398d, type: 2}
   - {fileID: 11400000, guid: 0cbc3aeaeadaa744db54d8a6cfea330b, type: 2}
   - {fileID: 11400000, guid: 83e5b93b7e91a52489a88db79fc7430d, type: 2}
-  - {fileID: 11400000, guid: 475819c14cc887844a5b5064f8ba5a8a, type: 2}
   - {fileID: 11400000, guid: 07fc9793c865fc442ae52d959cc7cd50, type: 2}
   - {fileID: 11400000, guid: 43496288bd2041e49bd689e96db0f7a4, type: 2}
   - {fileID: 11400000, guid: 263fe9ad1188141498637d6d9ab7465e, type: 2}
@@ -138,7 +135,7 @@ MonoBehaviour:
       alignmentThreshold: 0.5
       indicatorAlignedColor: {r: 0.13948512, g: 1, b: 0, a: 0}
       indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
-  spawnButtonAtStart: 0
+  spawnButtonAtStart: 1
   sequenceIcon: {fileID: 0}
   buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
   completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}

@@ -52,6 +52,10 @@ namespace SafetyTraining
 		public string CurrentSequenceID => _currentSequence?.sequenceID ?? string.Empty;
 		private int _sequenceMistakes;
 
+		// Action başına, o action tamamlanana kadar biriken yanlış deneme sayısı
+		// (quiz yanlış cevap, yanlış drag-drop, yanlış ekipman vb.) — ActionCompleted.attempts alanına gider
+		private readonly Dictionary<string, int> _actionMistakeCounts = new Dictionary<string, int>();
+
 		// Tüm sekanslar ve durumları
 		private Dictionary<string, SequenceData> _allSequences = new Dictionary<string, SequenceData>();
 		private Dictionary<string, SequenceState> _sequenceStates = new Dictionary<string, SequenceState>();
@@ -134,6 +138,7 @@ namespace SafetyTraining
 			_mistakes = 0;
 			_sequenceMistakes = 0;
 			_inSequence = false;
+			_actionMistakeCounts.Clear();
 
 			// Sekansları kaydet ve state oluştur
 			foreach (var sequence in currentLevel.sequences)
@@ -571,8 +576,10 @@ namespace SafetyTraining
 				_currentAction.actionID,
 				currentLevel?.levelID,
 				_currentSequence?.sequenceID,
+				_currentAction.actionType.ToString(),
 				GetActionTypeString(_currentAction.actionType),
-				_currentAction.targetObjectID
+				_currentAction.targetObjectID,
+				GetActionMistakeCount(_currentAction.actionID)
 			);
 
 			// State'e kaydet
@@ -683,8 +690,9 @@ namespace SafetyTraining
 
 			_mistakes++;
 			_sequenceMistakes++;
+			RecordActionMistake(actionID);
 			PlayFabDataManager.Instance?.LogMistakeRecorded(
-				actionID, currentLevel?.levelID, _currentSequence?.sequenceID, "wrong_answer", 1);
+				actionID, currentLevel?.levelID, _currentSequence?.sequenceID, "wrong_answer");
 
 			PlayAnimations(_currentAction, AnimationTiming.OnFail);
 			_currentAction.onActionFail?.Invoke();
@@ -875,6 +883,21 @@ namespace SafetyTraining
 		private void HandleSequencePrerequisiteFail(SequenceData sequence)
 		{
 			_mistakes++;
+
+			List<string> missingPrereqs = new List<string>();
+			if (sequence.prerequisiteSequences != null)
+			{
+				foreach (var prereqSeq in sequence.prerequisiteSequences)
+				{
+					if (prereqSeq == null) continue;
+
+					if (!_sequenceStates.TryGetValue(prereqSeq.sequenceID, out SequenceState state) || !state.isCompleted)
+						missingPrereqs.Add(prereqSeq.sequenceID);
+				}
+			}
+
+			PlayFabDataManager.Instance?.LogSequenceEntryDenied(
+				sequence.sequenceID, currentLevel?.levelID, missingPrereqs.ToArray(), sequence.onPrerequisiteFail.ToString());
 
 			if (debugMode)
 				Debug.LogWarning($"<color=red>[SequenceManager] ✗ Sekans önkoşul hatası: {sequence.sequenceName}</color>");
@@ -1318,6 +1341,9 @@ namespace SafetyTraining
 			if (!isRequired)
 			{
 				Debug.LogWarning($"[SequenceManager] Yanlış ekipman: {eq.equipmentName}");
+				RecordActionMistake(_currentAction.actionID);
+				PlayFabDataManager.Instance?.LogMistakeRecorded(
+					_currentAction.actionID, currentLevel?.levelID, _currentSequence?.sequenceID, "wrong_equipment");
 				return;
 			}
 
@@ -1392,6 +1418,22 @@ namespace SafetyTraining
 		// ═══════════════════════════════════════════════════════
 		// ANALYTICS HELPERS
 		// ═══════════════════════════════════════════════════════
+
+		/// <summary>
+		/// Bir action üzerinde yanlış deneme yapıldığında çağrılır (quiz, drag-drop,
+		/// ekipman vb.). UIDropZone gibi dış sınıflardan da erişilebilmesi için public.
+		/// </summary>
+		public void RecordActionMistake(string actionId)
+		{
+			if (string.IsNullOrEmpty(actionId)) return;
+			_actionMistakeCounts.TryGetValue(actionId, out int count);
+			_actionMistakeCounts[actionId] = count + 1;
+		}
+
+		private int GetActionMistakeCount(string actionId)
+		{
+			return !string.IsNullOrEmpty(actionId) && _actionMistakeCounts.TryGetValue(actionId, out int count) ? count : 0;
+		}
 
 		private static string GetActionTypeString(ActionType type)
 		{

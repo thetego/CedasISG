@@ -1,7 +1,10 @@
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
+using PlayFab.Json;
 using System;
+using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace SafetyTraining
@@ -34,9 +37,23 @@ namespace SafetyTraining
         private string _currentLevelId;
         private string _sessionId;
 
-        // Giriş tamamlanmadan gelen eventler için kuyruk
-        private readonly Queue<WriteClientPlayerEventRequest> _pendingEvents =
-            new Queue<WriteClientPlayerEventRequest>();
+        // ─── Kalıcı offline kuyruk (§9) — giriş öncesi VE gönderim hatası durumunda
+        // eventler burada birikir; disk üzerinde saklandığı için crash/force-close
+        // sonrası da kaybolmaz. ───
+        private class QueuedEvent
+        {
+            public string EventName;
+            public object Body;
+        }
+
+        private readonly List<QueuedEvent> _offlineQueue = new List<QueuedEvent>();
+        private bool     _isFlushingQueue;
+        private Coroutine _retryCoroutine;
+        private float    _currentRetryDelay = InitialRetryDelaySeconds;
+        private const float InitialRetryDelaySeconds = 3f;
+        private const float MaxRetryDelaySeconds = 60f;
+        private const string QueueFileName = "pf_event_queue.json";
+        private string QueueFilePath => Path.Combine(Application.persistentDataPath, QueueFileName);
 
         // Callback'ler
         private Action          _onLoginSuccess;
@@ -53,6 +70,12 @@ namespace SafetyTraining
         private int _quizCorrectAnswers;
         private readonly Dictionary<string, bool> _quizResults =
             new Dictionary<string, bool>();
+
+        // Aynı action+mistakeType kaç kez tekrarlandı — MistakeRecorded.severity/occurrence için (§7)
+        private readonly Dictionary<string, int> _mistakeRepeatCounts =
+            new Dictionary<string, int>();
+
+        public enum MistakeSeverity { Minor = 1, Moderate = 2, Critical = 3 }
 
         // ═══════════════════════════════════════════════════════
         // PLAYER ENTRY MODEL
@@ -106,6 +129,7 @@ namespace SafetyTraining
             {
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
+                LoadQueueFromDisk();
             }
             else
             {
@@ -117,6 +141,64 @@ namespace SafetyTraining
         {
             if (!string.IsNullOrEmpty(titleId))
                 PlayFabSettings.TitleId = titleId;
+        }
+
+        // ═══════════════════════════════════════════════════════
+        // KALICI KUYRUK — DİSK OKUMA/YAZMA
+        // ═══════════════════════════════════════════════════════
+
+        private void LoadQueueFromDisk()
+        {
+            try
+            {
+                if (!File.Exists(QueueFilePath))
+                    return;
+
+                string json = File.ReadAllText(QueueFilePath);
+                if (string.IsNullOrWhiteSpace(json))
+                    return;
+
+                if (PlayFabSimpleJson.DeserializeObject(json) is IList<object> items)
+                {
+                    foreach (var item in items)
+                    {
+                        if (item is IDictionary<string, object> dict &&
+                            dict.TryGetValue("eventName", out object nameObj) &&
+                            dict.TryGetValue("body", out object bodyObj))
+                        {
+                            _offlineQueue.Add(new QueuedEvent { EventName = nameObj as string, Body = bodyObj });
+                        }
+                    }
+                }
+
+                if (debugMode && _offlineQueue.Count > 0)
+                    Debug.Log($"<color=yellow>[PlayFabDataManager] Önceki oturumdan {_offlineQueue.Count} bekleyen event diskten yüklendi.</color>");
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[PlayFabDataManager] Kuyruk diskten okunamadı: {e.Message}");
+            }
+        }
+
+        private void PersistQueueToDisk()
+        {
+            try
+            {
+                var items = new List<object>();
+                foreach (var q in _offlineQueue)
+                {
+                    items.Add(new Dictionary<string, object>
+                    {
+                        { "eventName", q.EventName },
+                        { "body",      q.Body }
+                    });
+                }
+                File.WriteAllText(QueueFilePath, PlayFabSimpleJson.SerializeObject(items));
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[PlayFabDataManager] Kuyruk diske yazılamadı: {e.Message}");
+            }
         }
 
         // ═══════════════════════════════════════════════════════
@@ -239,7 +321,7 @@ namespace SafetyTraining
             if (debugMode)
                 Debug.Log($"<color=lime>[PlayFabDataManager] Giriş başarılı: {CurrentDisplayName} → {_playFabId}</color>");
 
-            FlushPendingEvents();
+            TryFlushQueue();
             _onLoginSuccess?.Invoke();
             _onLoginSuccess = null;
             _onLoginFailed  = null;
@@ -254,12 +336,6 @@ namespace SafetyTraining
             _onLoginFailed  = null;
         }
 
-        private void FlushPendingEvents()
-        {
-            while (_pendingEvents.Count > 0)
-                SendEventRequest(_pendingEvents.Dequeue());
-        }
-
         // ═══════════════════════════════════════════════════════
         // LEVEL EVENTLERİ
         // ═══════════════════════════════════════════════════════
@@ -272,6 +348,7 @@ namespace SafetyTraining
             _quizTotalQuestions = 0;
             _quizCorrectAnswers = 0;
             _quizResults.Clear();
+            _mistakeRepeatCounts.Clear();
 
             SendEvent("LevelStarted", new Dictionary<string, object>
             {
@@ -343,12 +420,14 @@ namespace SafetyTraining
         }
 
         /// <summary>
-        /// Doküman §4.4 Action modeli. actionType "click" ise objectId, §4.4.3
-        /// Click/Inspect alt modelinin karşılığıdır (bu tip için ayrı bir event yok,
-        /// doküman §5'teki event kataloğunda da Click/Inspect için ayrı event tanımlı değil).
+        /// Doküman §4.4 Action modeli. "type" artık ActionData.actionType enum değerinin
+        /// tam adını taşır (ör. "CameraMove", "ModalWindow", "Fade") — eski 5-bucket
+        /// sınıflandırma geriye dönük uyumluluk için "category" alanında ayrıca gönderilir.
+        /// "attempts" o action üzerinde başarıya ulaşılana kadar kaydedilen yanlış deneme sayısıdır.
         /// </summary>
         public void LogActionCompleted(string actionId, string levelId, string sequenceId,
-            string actionType, string objectId = null, string result = "success")
+            string actionType, string actionCategory, string objectId = null,
+            int attempts = 0, string result = "success")
         {
             SendEvent("ActionCompleted", new Dictionary<string, object>
             {
@@ -356,10 +435,12 @@ namespace SafetyTraining
                 { "levelId",    levelId },
                 { "sequenceId", sequenceId },
                 { "type",       actionType },
+                { "category",   actionCategory },
                 { "objectId",   objectId },
                 { "startTime",  Mathf.Max(0, Mathf.RoundToInt(_actionStartTime - _levelStartTime)) },
                 { "endTime",    Mathf.Max(0, Mathf.RoundToInt(Time.time - _levelStartTime)) },
                 { "duration",   Mathf.RoundToInt(Time.time - _actionStartTime) },
+                { "attempts",   attempts },
                 { "result",     result }
             });
         }
@@ -456,16 +537,21 @@ namespace SafetyTraining
         // HATA EVENTLERİ
         // ═══════════════════════════════════════════════════════
 
-        public void LogMistakeRecorded(string actionId, string mistakeType, int severity)
+        public void LogMistakeRecorded(string actionId, string mistakeType)
         {
             string levelId = SequenceManager.Instance?.CurrentLevelID ?? _currentLevelId ?? string.Empty;
             string sequenceId = SequenceManager.Instance?.CurrentSequenceID ?? string.Empty;
-            LogMistakeRecorded(actionId, levelId, sequenceId, mistakeType, severity);
+            LogMistakeRecorded(actionId, levelId, sequenceId, mistakeType);
         }
 
-        public void LogMistakeRecorded(string actionId, string levelId, string sequenceId,
-            string mistakeType, int severity)
+        /// <summary>
+        /// Doküman §7 Mistake modeli. severity artık sabit değil — mistakeType ve aynı
+        /// action üzerindeki tekrar sayısına göre otomatik hesaplanır (bkz. ComputeMistakeSeverity).
+        /// </summary>
+        public void LogMistakeRecorded(string actionId, string levelId, string sequenceId, string mistakeType)
         {
+            int severity = ComputeMistakeSeverity(actionId, mistakeType, out int occurrence);
+
             SendEvent("MistakeRecorded", new Dictionary<string, object>
             {
                 { "mistakeType", mistakeType },
@@ -473,7 +559,26 @@ namespace SafetyTraining
                 { "levelId",     levelId },
                 { "sequenceId",  sequenceId },
                 { "severity",    severity },
+                { "occurrence",  occurrence },
                 { "timestamp",   DateTime.UtcNow.ToString("o") }
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════
+        // SEKANS GİRİŞ REDDİ (kilitli/önkoşulu sağlanmamış sekansa girme denemesi)
+        // ═══════════════════════════════════════════════════════
+
+        public void LogSequenceEntryDenied(string sequenceId, string levelId,
+            string[] missingPrerequisiteIds, string failAction)
+        {
+            SendEvent("SequenceEntryDenied", new Dictionary<string, object>
+            {
+                { "sequenceId",            sequenceId },
+                { "levelId",               levelId },
+                { "missingPrerequisites",  missingPrerequisiteIds != null
+                                                ? new List<object>(missingPrerequisiteIds)
+                                                : new List<object>() },
+                { "failAction",            failAction }
             });
         }
 
@@ -556,39 +661,108 @@ namespace SafetyTraining
             {
                 { "eventType",       eventName },
                 { "clientTimestamp", DateTime.UtcNow.ToString("o") },
-                { "employeeId",      CurrentPlayerId },
+                { "employeeId",      CurrentPlayerId ?? string.Empty },
                 { "payload",         documentPayload }
             };
 
-            var request = new WriteClientPlayerEventRequest
-            {
-                EventName = eventName,
-                Body      = envelope
-            };
+            // Her event önce kalıcı kuyruğa yazılır (disk), sonra gönderim denenir.
+            // Böylece giriş yapılmamışsa, ağ koparsa veya uygulama aniden kapanırsa
+            // hiçbir event kaybolmaz — bir sonraki açılışta kaldığı yerden devam eder.
+            _offlineQueue.Add(new QueuedEvent { EventName = eventName, Body = envelope });
+            PersistQueueToDisk();
 
-            if (!_isLoggedIn)
+            if (debugMode)
+                Debug.Log($"[PlayFabDataManager] Event kuyruğa alındı ({_offlineQueue.Count} bekliyor): {eventName}");
+
+            TryFlushQueue();
+        }
+
+        private void TryFlushQueue()
+        {
+            if (!_isLoggedIn || _isFlushingQueue || _offlineQueue.Count == 0)
+                return;
+
+            _isFlushingQueue = true;
+            SendNextQueuedEvent();
+        }
+
+        private void SendNextQueuedEvent()
+        {
+            if (_offlineQueue.Count == 0)
             {
-                _pendingEvents.Enqueue(request);
-                if (debugMode)
-                    Debug.Log($"[PlayFabDataManager] Event kuyruğa alındı: {eventName}");
+                _isFlushingQueue = false;
+                _currentRetryDelay = InitialRetryDelaySeconds;
                 return;
             }
 
-            SendEventRequest(request);
-        }
+            QueuedEvent next = _offlineQueue[0];
+            var request = new WriteClientPlayerEventRequest
+            {
+                EventName = next.EventName,
+                Body      = next.Body as Dictionary<string, object>
+                            ?? new Dictionary<string, object>((IDictionary<string, object>)next.Body)
+            };
 
-        private void SendEventRequest(WriteClientPlayerEventRequest request)
-        {
             PlayFabClientAPI.WritePlayerEvent(
                 request,
                 _ =>
                 {
                     if (debugMode)
-                        Debug.Log($"<color=cyan>[PlayFabDataManager] ✓ {request.EventName}</color>");
+                        Debug.Log($"<color=cyan>[PlayFabDataManager] ✓ {next.EventName}</color>");
+
+                    _offlineQueue.RemoveAt(0);
+                    PersistQueueToDisk();
+                    SendNextQueuedEvent();
                 },
-                error => Debug.LogError(
-                    $"[PlayFabDataManager] Event hatası ({request.EventName}): {error.GenerateErrorReport()}")
+                error =>
+                {
+                    Debug.LogError(
+                        $"[PlayFabDataManager] Event hatası ({next.EventName}), {_currentRetryDelay:F0}s sonra tekrar denenecek: {error.GenerateErrorReport()}");
+                    _isFlushingQueue = false;
+                    ScheduleRetry();
+                }
             );
+        }
+
+        private void ScheduleRetry()
+        {
+            if (_retryCoroutine != null)
+                return;
+
+            _retryCoroutine = StartCoroutine(RetryAfterDelay());
+        }
+
+        private IEnumerator RetryAfterDelay()
+        {
+            yield return new WaitForSeconds(_currentRetryDelay);
+            _currentRetryDelay = Mathf.Min(_currentRetryDelay * 2f, MaxRetryDelaySeconds);
+            _retryCoroutine = null;
+            TryFlushQueue();
+        }
+
+        // ═══════════════════════════════════════════════════════
+        // HATA CİDDİYETİ (SEVERITY) HESAPLAMA
+        // Sabit "1" yerine mistakeType'a göre bir taban ciddiyet atanır;
+        // aynı action üzerinde aynı hata 3+ kez tekrarlanırsa Critical'a yükselir.
+        // ═══════════════════════════════════════════════════════
+
+        public int ComputeMistakeSeverity(string actionId, string mistakeType, out int occurrence)
+        {
+            string key = (actionId ?? string.Empty) + "|" + mistakeType;
+            _mistakeRepeatCounts.TryGetValue(key, out int count);
+            count++;
+            _mistakeRepeatCounts[key] = count;
+            occurrence = count;
+
+            int baseSeverity = mistakeType switch
+            {
+                "wrong_answer"    => (int)MistakeSeverity.Moderate,
+                "wrong_equipment" => (int)MistakeSeverity.Moderate,
+                "wrong_drop"      => (int)MistakeSeverity.Minor,
+                _                 => (int)MistakeSeverity.Minor
+            };
+
+            return count >= 3 ? (int)MistakeSeverity.Critical : baseSeverity;
         }
 
         private void OnApplicationQuit()

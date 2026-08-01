@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: pano1_Act_01
   actionName: Pano etiketinin fotografini cek
-  instructionText: "Plaka etiketinin foto\u011Fraf\u0131n\u0131 \xE7ekin ve kontrol
-    formunu doldurun"
+  instructionText: Kontrol formunu doldurun
   actionType: 4
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0

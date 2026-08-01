@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
+  m_Name: Pano 1_Copy
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
+  sequenceID: Pano 1_Copy
+  sequenceName: Pano 1_Copy
+  sequenceDescription: 
+  instructionText: "Panolar \xFCst\xFCnde gerekli i\u015Flemleri ger\xE7ekle\u015Ftirin."
+  actions:
+  - {fileID: 11400000, guid: f2ae3206b00a73a4fa70c3daa160da3e, type: 2}
+  - {fileID: 11400000, guid: 77a2a723a3e258b48b499d1ba81d63e2, type: 2}
+  - {fileID: 11400000, guid: 5b77fe05e21293844a13581da066e6c2, type: 2}
+  - {fileID: 11400000, guid: 85849e22e4ed1d04ba47304128327054, type: 2}
+  - {fileID: 11400000, guid: 622ceb56af092d14192a3684c9e37dcf, type: 2}
+  - {fileID: 11400000, guid: 64f8733ada371a84792863121fa04c4c, type: 2}
+  - {fileID: 11400000, guid: a5e27c6fe3f716e4ea4919428dcfb64f, type: 2}
+  - {fileID: 11400000, guid: 4b45408d91656a6478d1c0e7288a8f7e, type: 2}
+  - {fileID: 11400000, guid: a905092fb7c89a740b7dcecc67cb06da, type: 2}
+  - {fileID: 11400000, guid: 94eb5514208db0642bf9f15c80778e95, type: 2}
+  - {fileID: 11400000, guid: f36033bc1749be64faf26271996c989e, type: 2}
+  - {fileID: 11400000, guid: 17de6159cfdf03142b6feca1ff525e43, type: 2}
+  - {fileID: 11400000, guid: 821d17f904c98094fb40e2e23d46f519, type: 2}
+  - {fileID: 11400000, guid: 3fcf32283fbd10549a085776d43ebe0c, type: 2}
+  - {fileID: 11400000, guid: 128a14b20677c1b46bbbf099547f1bad, type: 2}
+  targetObjectID: panoDepar2
+  buttonOffset: {x: 1.02, y: 0, z: 0}
+  entryCameraMode: 4
+  entryCameraID: camPano2
+  autoReturnOnComplete: 0
+  autoReturnOnExit: 1
+  resumeFromLastAction: 1
+  allowRestart: 0
+  hideButtonAfterComplete: 1
+  prerequisiteSequences:
+  - {fileID: 11400000, guid: 50c0b1333e1279b42af9af7114f76912, type: 2}
+  - {fileID: 11400000, guid: 67b089813e549074380f691473682511, type: 2}
+  - {fileID: 11400000, guid: 8cbe788c18ed488418b16d2538b70f9b, type: 2}
+  - {fileID: 11400000, guid: 8c0a3b21e8fc5da42b3e92fb26f2ff0f, type: 2}
+  - {fileID: 11400000, guid: c7001038dd1d6ab488a746cff7ac47f6, type: 2}
+  - {fileID: 11400000, guid: 19031ee8b8501a048a2e13dbb7449b18, type: 2}
+  onPrerequisiteFail: 1
+  prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
+    tamamlay\u0131n."
+  hasSurvey: 1
+  surveyPanelPrefab: {fileID: 1286903722057059542, guid: 19fa24d4f5915f640b3fee1d4534a0fb, type: 3}
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions:
+    - questionText: "H\xFCcre \xFCst\xFCndeki g\xF6stergelerin kontrol\xFC yap\u0131ld\u0131
+        m\u0131?"
+      options:
+      - SORUN YOK
+      - HUCRE USTUNDEKI TUM GOSTERGELER CALISMIYOR
+      - ROLELER PASIF DURUMDA
+      - KAPASITIF GOSTERGE VE ROLELER CALISMIYOR
+      - SF6 GOSTERGESI VE KAPASITIF GOSTERGE CALISMIYOR
+      - 'SF6 GAZ BASICI GOSTERGESI YOK '
+      - SF6 GOSTERGESI VE ROLELER CALISMIYOR
+      correctOptionIndices: 00000000
+      isRequired: 1
+    - questionText: "Gaz bas\u0131n\xE7 seviyesi uygun mu?"
+      options:
+      - SORUN YOK
+      - SORUN VAR---GAZ BASINC SEVIYESI DUSUK
+      correctOptionIndices: 00000000
+      isRequired: 1
+    - questionText: "H\xFCcre etiketleri kontrol\xFC yap\u0131ld\u0131 m\u0131?"
+      options:
+      - "SORUN VAR---PLAKA ET\u0130KET\u0130 YOK"
+      - SORUN VAR---FIDER ETIKETLERI YOK
+      - SORUN YOK
+      - SORUN VAR---UYARI VE IKAZ LEVHALARI YOK
+      correctOptionIndices: 00000000
+      isRequired: 1
+    - questionText: "H\xFCcre \xFCst\xFCnde K\u0131smi De\u015Farj \xF6l\xE7\xFCm
+        de\u011Feri nedir?"
+      options:
+      - SORUN YOK
+      - 25-30 DB ARASINDA
+      - 30 DB USTUNDE
+      - 20-25 DB ARASINDA
+      - 5-10 DB ARASINDA
+      - 15-20 DB ARASINDA
+      - 0-5 DB ARASINDA
+      - 10-15 DB ARASINDA
+      - "H\xDCCRE ENERJ\u0130S\u0130Z"
+      correctOptionIndices: 00000000
+      isRequired: 1
+    - questionText: "H\xFCcrede K\u0131smi De\u015Farj nerede?"
+      options:
+      - SORUN YOK
+      - GENEL HUCRE KAZANINDA
+      - KABLO BASLIKLARININ GIRIS NOKTASINDA
+      - KESICI TARAFINDA
+      - UST BARA BAGLANTILARINDA
+      - SORUN VAR---DIGER (ACIKLAMAYA GIRINIZ)
+      - "H\xDCCRE ENERJ\u0130S\u0130Z"
+      correctOptionIndices: 00000000
+      isRequired: 1
+    - questionText: "R\xF6leler aktif mi?"
+      options:
+      - SORUN VAR---DC PASIF, ROLE PASIF
+      - SORUN YOK
+      - SORUN VAR---DC AKTIF, ROLE PASIF
+      correctOptionIndices: 01000000
+      isRequired: 1
+    - questionText: "H\xFCcre i\xE7i ayd\u0131nlatma \xE7al\u0131\u015F\u0131yor
+        mu?"
+      options:
+      - SORUN YOK
+      - SORUN VAR---AC AYDINLATMA CALISMIYOR
+      - SORUN VAR---IC AYDINLATMA CALISMIYOR
+      - SORUN VAR---DC AYDINLATMA CALISMIYOR
+      correctOptionIndices: 00000000
+      isRequired: 1
+    photoSlotCount: 2
+    photoSlots:
+    - slotLabel: panoEtiket2
+      targetObjectID: panoEtiket2
+      alignmentThreshold: 0.5
+      indicatorAlignedColor: {r: 0.13948512, g: 1, b: 0, a: 0}
+      indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
+    - slotLabel: panoDepar2
+      targetObjectID: panoDepar2
+      alignmentThreshold: 0.5
+      indicatorAlignedColor: {r: 0.13948512, g: 1, b: 0, a: 0}
+      indicatorOffColor: {r: 1, g: 0, b: 0, a: 0}
+  spawnButtonAtStart: 1
+  sequenceIcon: {fileID: 0}
+  buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
+  completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}
+  onSequenceEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceExit:
+    m_PersistentCalls:
+      m_Calls: []
