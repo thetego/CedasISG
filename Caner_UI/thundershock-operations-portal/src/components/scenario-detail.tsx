@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { DialogTitle } from "@/components/ui/dialog";
-import { buildScenarioDetail, eventTitle } from "@/lib/telemetry-detail";
+import { buildScenarioDetail, eventTitle, humanizeTelemetryValue } from "@/lib/telemetry-detail";
 import type { Bootstrap, Level } from "@/types";
 
 type ScenarioTab = "employees" | "sequences" | "mistakes" | "events";
@@ -105,7 +105,7 @@ export function ScenarioDetailPanel({
         ) : tab === "sequences" ? (
           <div className="overflow-x-auto rounded-xl border">
             <table className="data-table min-w-[720px]">
-              <thead><tr>{["Sekans", "Çalışan", "Toplam event", "Aksiyon", "Quiz", "Hata", "Risk"].map((label) => <th key={label}>{label}</th>)}</tr></thead>
+              <thead><tr>{["Sekans", "Çalışan", "Toplam olay", "Aksiyon", "Soru", "Hata", "Risk"].map((label) => <th key={label}>{label}</th>)}</tr></thead>
               <tbody>{detail.sequences.map((sequence) => <tr key={sequence.sequenceId}>
                 <td><b className="font-mono text-xs">{sequence.sequenceId}</b></td><td>{sequence.employees}</td><td>{sequence.events}</td><td>{sequence.actions}</td><td>{sequence.quizAnswers}</td><td>{sequence.mistakes}</td>
                 <td><Badge tone={sequence.mistakes >= 3 ? "red" : sequence.mistakes ? "amber" : "green"}>{sequence.mistakes ? "İncele" : "Temiz"}</Badge></td>
@@ -119,7 +119,7 @@ export function ScenarioDetailPanel({
               return <Card key={mistake.event.eventId}><CardContent className="p-4">
                 <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
                   <div className="flex gap-3"><div className="grid size-9 shrink-0 place-items-center rounded-lg bg-red-50 text-red-600"><ShieldAlert size={17} /></div><div>
-                    <div className="flex flex-wrap items-center gap-2"><b className="text-sm">{mistake.mistakeType}</b><Badge tone={mistake.severity === 3 ? "red" : mistake.severity === 2 ? "amber" : "slate"}>Önem {mistake.severity}</Badge></div>
+                    <div className="flex flex-wrap items-center gap-2"><b className="text-sm">{humanizeTelemetryValue(mistake.mistakeType)}</b><Badge tone={mistake.severity === 3 ? "red" : mistake.severity === 2 ? "amber" : "slate"}>Önem {mistake.severity}</Badge></div>
                     <p className="mt-1 text-xs text-slate-500">{employee?.name || mistake.event.employeeId} · {mistake.sequenceId} · {mistake.actionId}</p>
                     <p className="mt-1 font-mono text-[10px] text-slate-400">{mistake.actionKey} · {mistake.sessionId}</p>
                   </div></div><span className="text-xs text-slate-500">{dateTime(mistake.event.clientTimestamp)}</span>

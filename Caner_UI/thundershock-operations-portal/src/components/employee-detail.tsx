@@ -14,9 +14,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { DialogTitle } from "@/components/ui/dialog";
-import { buildEmployeeDetail, eventTitle, type SessionStatus } from "@/lib/telemetry-detail";
+import { buildEmployeeDetail, eventTitle, eventTypeTitle, humanizeTelemetryValue, type SessionStatus } from "@/lib/telemetry-detail";
 import { cn } from "@/lib/utils";
-import type { Bootstrap, Employee, EventRecord } from "@/types";
+import type { Bootstrap, Employee, EventRecord, EventType } from "@/types";
 
 type DetailTab = "sessions" | "timeline" | "scenarios" | "mistakes" | "coverage";
 type StatItem = [label: string, value: string | number, icon: LucideIcon, color: string];
@@ -53,8 +53,8 @@ function payloadHighlights(event: EventRecord) {
   return [
     payload.sequenceId && `Sekans: ${payload.sequenceId}`,
     payload.actionId && `Aksiyon: ${payload.actionId}`,
-    payload.type && `Tür: ${payload.type}`,
-    payload.result && `Sonuç: ${payload.result}`,
+    payload.type && `Tür: ${humanizeTelemetryValue(payload.type)}`,
+    payload.result && `Sonuç: ${humanizeTelemetryValue(payload.result)}`,
     payload.questionId && `Soru: ${payload.questionId}`,
     payload.isCorrect !== undefined && `Doğru: ${payload.isCorrect ? "Evet" : "Hayır"}`,
     payload.attempts !== undefined && `Deneme: ${payload.attempts}`,
@@ -138,7 +138,7 @@ export function EmployeeDetailPanel({
           <div className="rounded-2xl border border-dashed p-12 text-center">
             <ListTree className="mx-auto text-slate-300" size={34} />
             <h3 className="mt-4 font-bold">Henüz telemetri oluşmadı</h3>
-            <p className="mx-auto mt-2 max-w-lg text-sm leading-6 text-slate-500">Bu çalışan için veri geldiğinde oturum, senaryo, aksiyon, quiz, sürükle-bırak, anket ve hata ayrıntıları burada otomatik görünecek.</p>
+            <p className="mx-auto mt-2 max-w-lg text-sm leading-6 text-slate-500">Bu çalışan için veri geldiğinde oturum, senaryo, aksiyon, soru, sürükle-bırak, anket ve hata ayrıntıları burada otomatik görünecek.</p>
           </div>
         ) : tab === "sessions" ? (
           <div>
@@ -155,7 +155,7 @@ export function EmployeeDetailPanel({
             </div>
             <div className="overflow-x-auto rounded-xl border">
               <table className="data-table min-w-[1050px]">
-                <thead><tr>{["Başlangıç", "Senaryo", "Durum", "Süre", "Sekans", "Aksiyon", "Quiz", "Puan", "Hata", "Kalite", ""].map((label) => <th key={label}>{label}</th>)}</tr></thead>
+                <thead><tr>{["Başlangıç", "Senaryo", "Durum", "Süre", "Sekans", "Aksiyon", "Soru", "Puan", "Hata", "Kalite", ""].map((label) => <th key={label}>{label}</th>)}</tr></thead>
                 <tbody>{filteredSessions.map((session) => (
                   <tr key={session.id} className="hover:bg-slate-50">
                     <td><b className="text-xs">{dateTime(session.startedAt)}</b><div className="mt-1 max-w-36 truncate font-mono text-[10px] text-slate-400" title={session.id}>{session.id}</div></td>
@@ -181,7 +181,7 @@ export function EmployeeDetailPanel({
               </select>
               <select value={eventTypeFilter} onChange={(event) => setEventTypeFilter(event.target.value)} className="compact-control">
                 <option value="">Tüm olay türleri</option>
-                {(selectedSession?.eventTypes || []).map((type) => <option key={type}>{type}</option>)}
+                {(selectedSession?.eventTypes || []).map((type) => <option key={type} value={type}>{eventTypeTitle(type as EventType)}</option>)}
               </select>
             </div>
             {selectedSession && (
@@ -203,7 +203,7 @@ export function EmployeeDetailPanel({
                       <span className="whitespace-nowrap text-xs text-slate-500">{dateTime(event.clientTimestamp)}</span>
                     </div>
                     {payloadHighlights(event).length > 0 && <div className="mt-3 flex flex-wrap gap-1.5">{payloadHighlights(event).map((item) => <Badge key={item} tone="slate">{item}</Badge>)}</div>}
-                    <details className="mt-3"><summary className="cursor-pointer text-xs font-semibold text-blue-600">Tüm event alanlarını göster</summary><pre className="mt-2 max-h-64 overflow-auto rounded-lg bg-slate-950 p-3 text-[10px] leading-5 text-slate-200">{JSON.stringify(event, null, 2)}</pre></details>
+                    <details className="mt-3"><summary className="cursor-pointer text-xs font-semibold text-blue-600">Tüm olay alanlarını göster</summary><pre className="mt-2 max-h-64 overflow-auto rounded-lg bg-slate-950 p-3 text-[10px] leading-5 text-slate-200">{JSON.stringify(event, null, 2)}</pre></details>
                   </div>
                 </div>
               ))}
@@ -221,7 +221,7 @@ export function EmployeeDetailPanel({
             {detail.mistakes.length === 0 ? <div className="rounded-xl border border-dashed p-10 text-center text-sm text-slate-500">Bu çalışan için hata kaydı bulunmuyor.</div> : detail.mistakes.map((mistake) => (
               <Card key={mistake.event.eventId}><CardContent className="p-4">
                 <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-                  <div className="flex gap-3"><div className="grid size-9 shrink-0 place-items-center rounded-lg bg-red-50 text-red-600"><AlertTriangle size={17} /></div><div><div className="flex flex-wrap items-center gap-2"><b className="text-sm">{mistake.mistakeType}</b><Badge tone={severityTone(mistake.severity)}>Önem {mistake.severity}</Badge></div><p className="mt-1 text-xs text-slate-500">{mistake.levelName} · {mistake.sequenceId} · {mistake.actionId}</p><p className="mt-1 font-mono text-[10px] text-slate-400">{mistake.actionKey}</p></div></div>
+                  <div className="flex gap-3"><div className="grid size-9 shrink-0 place-items-center rounded-lg bg-red-50 text-red-600"><AlertTriangle size={17} /></div><div><div className="flex flex-wrap items-center gap-2"><b className="text-sm">{humanizeTelemetryValue(mistake.mistakeType)}</b><Badge tone={severityTone(mistake.severity)}>Önem {mistake.severity}</Badge></div><p className="mt-1 text-xs text-slate-500">{mistake.levelName} · {mistake.sequenceId} · {mistake.actionId}</p><p className="mt-1 font-mono text-[10px] text-slate-400">{mistake.actionKey}</p></div></div>
                   <span className="text-xs text-slate-500">{dateTime(mistake.event.clientTimestamp)}</span>
                 </div>
                 {(mistake.selectedAnswer || mistake.correctAnswer) && <div className="mt-4 grid gap-3 rounded-xl bg-slate-50 p-4 sm:grid-cols-2"><div><span className="detail-label">Verilen cevap</span><b className="detail-value text-red-700">{mistake.selectedAnswer || "Kaydedilmedi"}</b></div><div><span className="detail-label">Doğru cevap</span><b className="detail-value text-emerald-700">{mistake.correctAnswer || "Kaydedilmedi"}</b></div></div>}
@@ -231,9 +231,9 @@ export function EmployeeDetailPanel({
         ) : (
           <div>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
-              {Object.entries(detail.eventTypeCounts).sort(([left], [right]) => left.localeCompare(right)).map(([type, count]) => <div key={type} className="rounded-xl border p-4"><span className="block truncate text-[11px] font-semibold text-slate-500" title={type}>{type}</span><b className="mt-1 block text-xl">{count}</b></div>)}
+              {Object.entries(detail.eventTypeCounts).sort(([left], [right]) => left.localeCompare(right)).map(([type, count]) => <div key={type} className="rounded-xl border p-4"><span className="block truncate text-[11px] font-semibold text-slate-600" title={type}>{eventTypeTitle(type as EventType)}</span><span className="block truncate font-mono text-[9px] text-slate-400">{type}</span><b className="mt-1 block text-xl">{count}</b></div>)}
             </div>
-            <div className="mt-5 rounded-xl border bg-slate-50 p-4 text-sm text-slate-600"><b>Toplam izlenebilir süre:</b> {duration(detail.totals.durationSeconds)} · <b>Toplam event:</b> {detail.events.length} · <b>Şema kapsamı:</b> {Object.keys(detail.eventTypeCounts).length}/11 olay türü</div>
+            <div className="mt-5 rounded-xl border bg-slate-50 p-4 text-sm text-slate-600"><b>Toplam izlenebilir süre:</b> {duration(detail.totals.durationSeconds)} · <b>Toplam olay:</b> {detail.events.length} · <b>Şema kapsamı:</b> {Object.keys(detail.eventTypeCounts).length}/11 olay türü</div>
           </div>
         )}
       </div>

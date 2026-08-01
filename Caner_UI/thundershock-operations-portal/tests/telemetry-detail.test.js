@@ -6,6 +6,8 @@ import {
   buildEmployeeDetail,
   buildScenarioDetail,
   buildTrainingSessions,
+  eventTypeTitle,
+  humanizeTelemetryValue,
 } from "../src/lib/telemetry-detail.ts";
 
 function demoBootstrap() {
@@ -118,4 +120,12 @@ test("mistake detail links the preceding quiz answer by stable action key", () =
   assert.equal(detail.mistakes[0].selectedAnswer, "Enerji var");
   assert.equal(detail.mistakes[0].correctAnswer, "Enerji yok");
   assert.equal(detail.mistakes[0].severity, 3);
+});
+
+test("user-facing telemetry labels are Turkish", () => {
+  assert.equal(eventTypeTitle("LevelStarted"), "Senaryo başladı");
+  assert.equal(eventTypeTitle("QuizAnswered"), "Soru yanıtlandı");
+  assert.equal(humanizeTelemetryValue("wrong_answer"), "Yanlış cevap");
+  assert.equal(humanizeTelemetryValue("success"), "Başarılı");
+  assert.equal(humanizeTelemetryValue("camera_move"), "Kamera hareketi");
 });

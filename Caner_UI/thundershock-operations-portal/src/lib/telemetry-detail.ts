@@ -305,19 +305,46 @@ export function buildScenarioDetail(data: Bootstrap, levelId: string) {
   return { summary, sessions, events, employees, sequences, mistakes: mistakeDetails(data, events) };
 }
 
-export function eventTitle(event: EventRecord) {
+export function eventTypeTitle(type: EventType) {
   const labels: Record<EventType, string> = {
     LevelStarted: "Senaryo başladı",
     LevelCompleted: "Senaryo tamamlandı",
     SequenceStarted: "Sekans başladı",
     SequenceCompleted: "Sekans tamamlandı",
     ActionCompleted: "Aksiyon tamamlandı",
-    QuizAnswered: event.payload.isCorrect ? "Quiz doğru yanıtlandı" : "Quiz yanlış yanıtlandı",
-    QuizSummary: "Quiz özeti",
+    QuizAnswered: "Soru yanıtlandı",
+    QuizSummary: "Soru özeti",
     DragDropAttempt: "Sürükle-bırak denemesi",
     MistakeRecorded: "Hata kaydedildi",
     SurveyCompleted: "Saha anketi tamamlandı",
     SessionEnded: "Oturum sonlandı",
   };
-  return labels[event.eventType];
+  return labels[type];
+}
+
+export function eventTitle(event: EventRecord) {
+  if (event.eventType === "QuizAnswered")
+    return event.payload.isCorrect ? "Soru doğru yanıtlandı" : "Soru yanlış yanıtlandı";
+  return eventTypeTitle(event.eventType);
+}
+
+export function humanizeTelemetryValue(value: string | undefined) {
+  if (!value) return "—";
+  const labels: Record<string, string> = {
+    wrong_answer: "Yanlış cevap",
+    wrong_drop: "Yanlış yerleştirme",
+    application_quit: "Uygulama kapatıldı",
+    success: "Başarılı",
+    failed: "Başarısız",
+    failure: "Başarısız",
+    completed: "Tamamlandı",
+    incomplete: "Tamamlanmadı",
+    unknown: "Bilinmeyen",
+    quiz: "Soru",
+    click: "Tıklama",
+    interaction: "Etkileşim",
+    camera_move: "Kamera hareketi",
+    drag_drop: "Sürükle-bırak",
+  };
+  return labels[value.toLocaleLowerCase("tr-TR")] || value;
 }

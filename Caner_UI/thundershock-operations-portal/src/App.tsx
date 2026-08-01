@@ -34,6 +34,7 @@ import {
   LayoutDashboard,
   KeyRound,
   LogOut,
+  ListTree,
   Menu,
   MoreHorizontal,
   Search,
@@ -59,14 +60,16 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { EmployeeDetailPanel } from "@/components/employee-detail";
+import { DetailedMonitoring } from "@/components/detailed-monitoring";
 import { ScenarioDetailPanel } from "@/components/scenario-detail";
-import { buildScenarioDetail } from "@/lib/telemetry-detail";
+import { buildScenarioDetail, eventTypeTitle, humanizeTelemetryValue } from "@/lib/telemetry-detail";
 import { cn } from "@/lib/utils";
 import type { Bootstrap, Employee, SessionUser } from "@/types";
 
 type Page =
   | "dashboard"
   | "employees"
+  | "monitoring"
   | "scenarios"
   | "risks"
   | "reports"
@@ -78,11 +81,12 @@ type Page =
 const nav = [
   ["dashboard", "Genel Bakış", LayoutDashboard, "analytics:read"],
   ["employees", "Çalışanlar", Users, "employees:read"],
+  ["monitoring", "Detaylı İzleme", ListTree, "analytics:read"],
   ["scenarios", "Senaryolar", BookOpen, "analytics:read"],
   ["risks", "Risk Analizi", ShieldCheck, "analytics:read"],
   ["reports", "Rapor Merkezi", FileBarChart, "reports:export"],
   ["access", "Erişim Yönetimi", KeyRound, "users:manage"],
-  ["audit", "Audit Log", ScrollText, "audit:read"],
+  ["audit", "Denetim Kayıtları", ScrollText, "audit:read"],
   ["privacy", "Veri Hakları", ClipboardCheck, "privacy:request"],
   ["integrations", "Entegrasyonlar", Plug, "integrations:manage"],
   ["settings", "Ayarlar", Settings, "settings:write"],
@@ -93,6 +97,15 @@ function hasPermission(user: SessionUser, required: string) {
     (permission) =>
       permission === required || permission.startsWith(required + ":"),
   );
+}
+function roleTitle(role: string) {
+  return {
+    super_admin: "Süper Yönetici",
+    admin: "Kurum Yöneticisi",
+    manager: "Yönetici",
+    inspector: "Denetçi",
+    trainee: "Çalışan",
+  }[role] || "Kullanıcı";
 }
 function notify(
   message: string,
@@ -135,6 +148,58 @@ function downloadCsv(name: string, rows: (string | number)[][]) {
   anchor.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
   notify(`${name} indirildi`);
+}
+function downloadTelemetryCsv(name: string, events: Bootstrap["events"]) {
+  downloadCsv(name, [
+    [
+      "Zaman",
+      "Çalışan",
+      "Olay türü",
+      "Oturum",
+      "Senaryo",
+      "Sekans",
+      "Aksiyon",
+      "Aksiyon anahtarı",
+      "Soru",
+      "Verilen cevap",
+      "Doğru cevap",
+      "Doğru mu",
+      "Deneme",
+      "Hata türü",
+      "Önem",
+      "Sonuç",
+      "Puan",
+      "Süre",
+      "Olay kimliği",
+      "Veri JSON",
+    ],
+    ...events.map((event) => [
+      event.clientTimestamp,
+      event.employeeId,
+      event.eventType,
+      event.payload.sessionId,
+      event.payload.levelId || "",
+      event.payload.sequenceId || "",
+      event.payload.actionId || "",
+      event.payload.actionKey || "",
+      event.payload.questionId || "",
+      event.payload.selectedAnswer || "",
+      event.payload.correctAnswer || "",
+      event.payload.isCorrect === undefined
+        ? ""
+        : event.payload.isCorrect
+          ? "Evet"
+          : "Hayır",
+      event.payload.attempts || "",
+      event.payload.mistakeType || "",
+      event.payload.severity || "",
+      event.payload.result || "",
+      event.payload.score || "",
+      event.payload.timeSpent || event.payload.duration || "",
+      event.eventId,
+      JSON.stringify(event.payload),
+    ]),
+  ]);
 }
 function ToastHost() {
   const [toasts, setToasts] = useState<
@@ -229,8 +294,8 @@ function Login({
             </p>
             <div className="mt-10 grid grid-cols-3 gap-3">
               {(isDemo
-                ? [["11/11", "Olay kapsamı"], ["13", "Demo çalışan"], ["RBAC", "Yetki modeli"]]
-                : [["11", "Olay türü"], ["RBAC", "Yetki modeli"], ["KVKK", "Veri hakları"]]
+                ? [["11/11", "Olay kapsamı"], ["13", "Demo çalışan"], ["Rol", "Yetki modeli"]]
+                : [["11", "Olay türü"], ["Rol", "Yetki modeli"], ["KVKK", "Veri hakları"]]
               ).map(([v, l]) => (
                 <div
                   key={l}
@@ -337,7 +402,7 @@ function Login({
               <div className="mt-6 flex items-start gap-3 rounded-xl border border-blue-100 bg-blue-50/70 p-4">
                 <Sparkles className="mt-0.5 shrink-0 text-blue-600" size={17} />
                 <p className="text-xs leading-5 text-blue-800">
-                  <b>Demo ortamı:</b> Kurum admini için ADMIN_DEMO, platform
+                  <b>Demo ortamı:</b> Kurum yöneticisi için ADMIN_DEMO, platform
                   yönetimi için SUPER_ADMIN kullanabilirsiniz. Şifre: demo123.
                 </p>
               </div>
@@ -486,7 +551,7 @@ function AdvancedAnalytics({ data }: { data: Bootstrap }) {
           <div>
             <CardTitle>Senaryo karşılaştırması</CardTitle>
             <p className="mt-1 text-xs text-slate-500">
-              Doğruluk ve tamamlanma; tüm değerler eventlerden hesaplanır.
+              Doğruluk ve tamamlanma; tüm değerler olay kayıtlarından hesaplanır.
             </p>
           </div>
           <Badge tone="blue">
@@ -604,7 +669,7 @@ function AdvancedAnalytics({ data }: { data: Bootstrap }) {
       <Card className="xl:col-span-7">
         <CardHeader>
           <div>
-            <CardTitle>Normalize risk oranı</CardTitle>
+            <CardTitle>Dengelenmiş risk oranı</CardTitle>
             <p className="mt-1 text-xs text-slate-500">
               100 tamamlanan aksiyon başına hata; ham hacim yanlılığını azaltır.
             </p>
@@ -676,8 +741,9 @@ function TelemetryCoverage({ data }: { data: Bootstrap }) {
         {telemetryEventTypes.map((type) => {
           const count = counts.get(type) || 0;
           return (
-            <div key={type} className={cn("rounded-xl border px-3 py-3", count ? "border-emerald-100 bg-emerald-50/50" : "border-slate-200 bg-slate-50")}>
-              <div className="truncate text-[11px] font-semibold text-slate-600" title={type}>{type}</div>
+              <div key={type} className={cn("rounded-xl border px-3 py-3", count ? "border-emerald-100 bg-emerald-50/50" : "border-slate-200 bg-slate-50")}>
+              <div className="truncate text-[11px] font-semibold text-slate-600" title={type}>{eventTypeTitle(type)}</div>
+              <div className="truncate font-mono text-[9px] text-slate-400">{type}</div>
               <div className={cn("mt-1 text-lg font-bold", count ? "text-emerald-700" : "text-slate-400")}>
                 {fmt.format(count)}
               </div>
@@ -834,7 +900,7 @@ function Dashboard({ data }: { data: Bootstrap }) {
         <StatCard
           label="Genel doğruluk"
           value={`${m.accuracy.toFixed(1)}%`}
-          detail={`${fmt.format(m.questions)} quiz yanıtı`}
+          detail={`${fmt.format(m.questions)} soru yanıtı`}
           icon={Target}
           tone="green"
         />
@@ -860,7 +926,7 @@ function Dashboard({ data }: { data: Bootstrap }) {
             <div>
               <CardTitle>Performans eğilimi</CardTitle>
               <p className="mt-1 text-xs text-slate-400">
-                Günlük quiz doğruluğu ve hata hareketi
+                Günlük soru doğruluğu ve hata hareketi
               </p>
             </div>
             <Badge tone={data.IS_MOCK ? "amber" : "green"}>
@@ -1001,7 +1067,7 @@ function Dashboard({ data }: { data: Bootstrap }) {
             <p className="mt-2 text-sm leading-6 text-blue-100">
               {data.IS_MOCK
                 ? "Bu değerlendirme deterministik demo verisiyle hazırlanmıştır; üretim kararı için kullanılmamalıdır."
-                : `${m.active} çalışanın ${m.questions} quiz yanıtında genel doğruluk %${m.accuracy.toFixed(1)}. ${m.mistakes} hata kaydı takip bekliyor.`}
+                : `${m.active} çalışanın ${m.questions} soru yanıtında genel doğruluk %${m.accuracy.toFixed(1)}. ${m.mistakes} hata kaydı takip bekliyor.`}
             </p>
             <div className="mt-6 space-y-3">
               {[
@@ -1009,7 +1075,7 @@ function Dashboard({ data }: { data: Bootstrap }) {
                   "En yüksek doğruluk",
                   strongestScenario
                     ? `${strongestScenario.name} · %${strongestScenario.accuracy}`
-                    : "Henüz quiz verisi yok",
+                    : "Henüz soru verisi yok",
                 ],
                 [
                   "Öncelikli senaryo",
@@ -1041,6 +1107,7 @@ function Dashboard({ data }: { data: Bootstrap }) {
 
 function Employees({ data, csrf }: { data: Bootstrap; csrf: string }) {
   const [query, setQuery] = useState("");
+  const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [department, setDepartment] = useState("");
   const [location, setLocation] = useState("");
@@ -1075,6 +1142,10 @@ function Employees({ data, csrf }: { data: Bootstrap; csrf: string }) {
         p.mistakes,
       ]),
     ]);
+  function openEmployee(employee: Employee) {
+    setSelectedEmployee(employee);
+    auditDetailView(csrf, "employee", employee.id);
+  }
   return (
     <div className="fade-up">
       <PageHead
@@ -1242,7 +1313,20 @@ function Employees({ data, csrf }: { data: Bootstrap; csrf: string }) {
             </thead>
             <tbody>
               {rows.map((p) => (
-                <tr key={p.id} className="group hover:bg-slate-50/70">
+                <tr
+                  key={p.id}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`${p.name} ayrıntılarını aç`}
+                  onClick={() => openEmployee(p)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      openEmployee(p);
+                    }
+                  }}
+                  className="group cursor-pointer hover:bg-blue-50/60 focus-visible:bg-blue-50 focus-visible:outline-none"
+                >
                   <td>
                     <div className="flex items-center gap-2.5">
                       <div className="grid size-8 place-items-center rounded-full bg-blue-50 text-[11px] font-bold text-blue-700">
@@ -1293,80 +1377,17 @@ function Employees({ data, csrf }: { data: Bootstrap; csrf: string }) {
                       : "—"}
                   </td>
                   <td>
-                    <Dialog
-                      onOpenChange={(open) => {
-                        if (open) auditDetailView(csrf, "employee", p.id);
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      aria-label={`${p.name} ayrıntılarını aç`}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        openEmployee(p);
                       }}
                     >
-                      <DialogTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          aria-label={`${p.name} detayını aç`}
-                        >
-                          <MoreHorizontal size={17} />
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="max-w-[calc(100vw-2rem)] p-0 xl:max-w-7xl">
-                        <EmployeeDetailPanel
-                          data={data}
-                          employee={p}
-                          onExport={() => {
-                            const events = data.events.filter(
-                              (event) => event.employeeId === p.id,
-                            );
-                            downloadCsv(`${p.id}-tum-telemetri.csv`, [
-                              [
-                                "Zaman",
-                                "Event",
-                                "Oturum",
-                                "Senaryo",
-                                "Sekans",
-                                "Aksiyon",
-                                "Aksiyon anahtarı",
-                                "Soru",
-                                "Verilen cevap",
-                                "Doğru cevap",
-                                "Doğru mu",
-                                "Deneme",
-                                "Hata türü",
-                                "Önem",
-                                "Aksiyon türü",
-                                "Sonuç",
-                                "Puan",
-                                "Süre",
-                                "Event ID",
-                              ],
-                              ...events.map((event) => [
-                                event.clientTimestamp,
-                                event.eventType,
-                                event.payload.sessionId,
-                                event.payload.levelId || "",
-                                event.payload.sequenceId || "",
-                                event.payload.actionId || "",
-                                event.payload.actionKey || "",
-                                event.payload.questionId || "",
-                                event.payload.selectedAnswer || "",
-                                event.payload.correctAnswer || "",
-                                event.payload.isCorrect === undefined
-                                  ? ""
-                                  : event.payload.isCorrect
-                                    ? "Evet"
-                                    : "Hayır",
-                                event.payload.attempts || "",
-                                event.payload.mistakeType || "",
-                                event.payload.severity || "",
-                                event.payload.type || "",
-                                event.payload.result || "",
-                                event.payload.score || "",
-                                event.payload.timeSpent || event.payload.duration || "",
-                                event.eventId,
-                              ]),
-                            ]);
-                          }}
-                        />
-                      </DialogContent>
-                    </Dialog>
+                      <MoreHorizontal size={17} />
+                    </Button>
                   </td>
                 </tr>
               ))}
@@ -1374,6 +1395,29 @@ function Employees({ data, csrf }: { data: Bootstrap; csrf: string }) {
           </table>
         </CardContent>
       </Card>
+      <Dialog
+        open={Boolean(selectedEmployee)}
+        onOpenChange={(open) => {
+          if (!open) setSelectedEmployee(null);
+        }}
+      >
+        {selectedEmployee && (
+          <DialogContent className="max-w-[calc(100vw-2rem)] p-0 xl:max-w-7xl">
+            <EmployeeDetailPanel
+              data={data}
+              employee={selectedEmployee}
+              onExport={() =>
+                downloadTelemetryCsv(
+                  `${selectedEmployee.id}-tum-telemetri.csv`,
+                  data.events.filter(
+                    (event) => event.employeeId === selectedEmployee.id,
+                  ),
+                )
+              }
+            />
+          </DialogContent>
+        )}
+      </Dialog>
     </div>
   );
 }
@@ -1515,7 +1559,7 @@ function Scenarios({ data, csrf }: { data: Bootstrap; csrf: string }) {
                           [
                             "Zaman",
                             "Çalışan",
-                            "Event",
+                            "Olay türü",
                             "Oturum",
                             "Sekans",
                             "Aksiyon",
@@ -1525,7 +1569,7 @@ function Scenarios({ data, csrf }: { data: Bootstrap; csrf: string }) {
                             "Hata türü",
                             "Önem",
                             "Sonuç",
-                            "Event ID",
+                            "Olay kimliği",
                           ],
                           ...detail.events.map((event) => [
                             event.clientTimestamp,
@@ -1723,7 +1767,7 @@ function Risks({ data }: { data: Bootstrap }) {
           <CardContent className="space-y-3">
             {mistakeClusters.length === 0 ? (
               <div className="rounded-xl border border-dashed p-8 text-center text-sm text-slate-500">
-                Hata kümesi oluşmadı. Yeni MistakeRecorded olayları geldikçe
+                Hata kümesi oluşmadı. Yeni hata olayları geldikçe
                 burada otomatik önceliklendirilecek.
               </div>
             ) : mistakeClusters.slice(0, 6).map((cluster) => {
@@ -1778,7 +1822,7 @@ function Risks({ data }: { data: Bootstrap }) {
                         </div>
                         <div className="mt-5 overflow-x-auto rounded-xl border">
                           <table className="data-table min-w-[720px]"><thead><tr>{["Zaman", "Oturum", "Sekans", "Aksiyon", "Hata türü", "Önem"].map((label) => <th key={label}>{label}</th>)}</tr></thead>
-                            <tbody>{[...cluster.events].sort((left, right) => right.clientTimestamp.localeCompare(left.clientTimestamp)).map((event) => <tr key={event.eventId}><td>{new Date(event.clientTimestamp).toLocaleString("tr-TR")}</td><td className="font-mono text-[10px]">{event.payload.sessionId}</td><td>{event.payload.sequenceId || "—"}</td><td>{event.payload.actionId || "—"}</td><td>{event.payload.mistakeType || "—"}</td><td>{event.payload.severity || 1}</td></tr>)}</tbody>
+                            <tbody>{[...cluster.events].sort((left, right) => right.clientTimestamp.localeCompare(left.clientTimestamp)).map((event) => <tr key={event.eventId}><td>{new Date(event.clientTimestamp).toLocaleString("tr-TR")}</td><td className="font-mono text-[10px]">{event.payload.sessionId}</td><td>{event.payload.sequenceId || "—"}</td><td>{event.payload.actionId || "—"}</td><td>{humanizeTelemetryValue(event.payload.mistakeType)}</td><td>{event.payload.severity || 1}</td></tr>)}</tbody>
                           </table>
                         </div>
                         <Button
@@ -1841,7 +1885,7 @@ function Reports({ data }: { data: Bootstrap }) {
       [
         "Zaman",
         "Çalışan",
-        "Event",
+        "Olay türü",
         "Oturum",
         "Senaryo",
         "Sekans",
@@ -1851,7 +1895,7 @@ function Reports({ data }: { data: Bootstrap }) {
         "Hata türü",
         "Önem",
         "Şema",
-        "Event ID",
+        "Olay kimliği",
         "Payload JSON",
       ],
       ...data.events.map((event) => [
@@ -2012,7 +2056,7 @@ function Reports({ data }: { data: Bootstrap }) {
               <CardTitle>Olay türü kapsamı</CardTitle>
               <p className="mt-1 text-xs text-slate-500">Her telemetri türünün aktif veri kümesindeki gerçek kayıt adedi.</p>
             </div>
-            <Badge tone="blue">{data.events.length} event</Badge>
+            <Badge tone="blue">{data.events.length} olay</Badge>
           </CardHeader>
           <CardContent className="grid gap-2 sm:grid-cols-2">
             {telemetryEventTypes.map((type) => {
@@ -2025,7 +2069,7 @@ function Reports({ data }: { data: Bootstrap }) {
           <CardHeader>
             <div>
               <CardTitle>Alım ve veri kalitesi</CardTitle>
-              <p className="mt-1 text-xs text-slate-500">Gateway doğrulama sonucu ve reddedilen örneklerin görünümü.</p>
+              <p className="mt-1 text-xs text-slate-500">Veri alım doğrulaması ve reddedilen örneklerin görünümü.</p>
             </div>
             <Badge tone={(data.quality?.rejected || 0) > 0 ? "amber" : "green"}>Canlı hesap</Badge>
           </CardHeader>
@@ -2036,7 +2080,7 @@ function Reports({ data }: { data: Bootstrap }) {
               ["Reddedilen", data.quality?.rejected ?? 0],
               ["Tekrarlı", data.quality?.duplicate ?? 0],
             ].map(([label, value]) => <div key={label} className="flex items-center justify-between rounded-xl border p-3"><span className="text-sm font-semibold text-slate-600">{label}</span><b>{value}</b></div>)}
-            {(data.quality?.invalidSamples || []).map((sample, index) => <details key={`${sample.eventType}-${index}`} className="rounded-xl border border-amber-200 bg-amber-50 p-3"><summary className="cursor-pointer text-xs font-semibold text-amber-800">{sample.eventType} doğrulama hatası</summary><p className="mt-2 text-xs leading-5 text-amber-700">{sample.errors.join(" · ")}</p></details>)}
+            {(data.quality?.invalidSamples || []).map((sample, index) => <details key={`${sample.eventType}-${index}`} className="rounded-xl border border-amber-200 bg-amber-50 p-3"><summary className="cursor-pointer text-xs font-semibold text-amber-800">{eventTypeTitle(sample.eventType as Bootstrap["events"][number]["eventType"])} doğrulama hatası</summary><p className="mt-2 text-xs leading-5 text-amber-700">{sample.errors.join(" · ")}</p></details>)}
             {(data.quality?.invalidSamples || []).length === 0 && <p className="rounded-xl bg-emerald-50 p-3 text-xs text-emerald-700">Örneklenmiş şema doğrulama hatası bulunmuyor.</p>}
           </CardContent>
         </Card>
@@ -2054,16 +2098,16 @@ function AccessManagement({
 }) {
   const roles = [
     {
-      role: "Süper Admin",
+      role: "Süper Yönetici",
       key: "super_admin",
       scope: "Tüm kurumlar ve platform",
-      permissions: "Entegrasyon, kullanıcı, global audit, tüm analitik",
+      permissions: "Entegrasyon, kullanıcı, genel denetim kayıtları, tüm analitik",
     },
     {
-      role: "Admin",
+      role: "Kurum Yöneticisi",
       key: "admin",
       scope: "Yalnız kendi kurumu",
-      permissions: "Kurum analitiği, kullanıcılar, entegrasyon, tenant audit",
+      permissions: "Kurum analitiği, kullanıcılar, entegrasyon ve kurum denetim kayıtları",
     },
     {
       role: "Denetçi",
@@ -2101,7 +2145,7 @@ function AccessManagement({
                 <div className="grid size-10 place-items-center rounded-xl bg-blue-50 text-blue-600">
                   <KeyRound size={18} />
                 </div>
-                <Badge tone={index < 2 ? "blue" : "slate"}>{item.key}</Badge>
+                <Badge tone={index < 2 ? "blue" : "slate"}>Yetki</Badge>
               </div>
               <h3 className="mt-5 font-bold">{item.role}</h3>
               <p className="mt-1 text-xs font-semibold text-slate-500">
@@ -2119,7 +2163,7 @@ function AccessManagement({
           <div>
             <CardTitle>Kullanıcı ve rol atamaları</CardTitle>
             <p className="mt-1 text-xs text-slate-500">
-              Aktif tenant içindeki hesaplar. Süper Admin rolünü yalnız platform
+              Etkin kurum alanındaki hesaplar. Süper Yönetici rolünü yalnız platform
               yöneticisi atayabilir.
             </p>
           </div>
@@ -2146,7 +2190,7 @@ function AccessManagement({
                       <Badge
                         tone={person.role.includes("admin") ? "blue" : "slate"}
                       >
-                        {person.role}
+                        {roleTitle(person.role)}
                       </Badge>
                     </td>
                     <td className="text-slate-500">
@@ -2177,6 +2221,21 @@ type AuditItem = {
   role?: string;
   ip?: string;
 };
+function auditActionTitle(action: string) {
+  const labels: Record<string, string> = {
+    "auth.login.success": "Başarılı giriş",
+    "auth.login.failed": "Başarısız giriş",
+    "auth.logout": "Oturum kapatıldı",
+    "integration.playfab.updated": "PlayFab bağlantısı güncellendi",
+    "privacy.request.created": "Veri hakkı talebi oluşturuldu",
+    "privacy.request.completed": "Veri hakkı talebi tamamlandı",
+    "privacy.request.failed": "Veri hakkı talebi başarısız",
+    "analytics.employee.viewed": "Çalışan ayrıntısı görüntülendi",
+    "analytics.scenario.viewed": "Senaryo ayrıntısı görüntülendi",
+    "analytics.session.viewed": "Oturum ayrıntısı görüntülendi",
+  };
+  return labels[action] || "Sistem işlemi";
+}
 function AuditLogs() {
   const [items, setItems] = useState<AuditItem[]>([]),
     [loading, setLoading] = useState(true);
@@ -2189,7 +2248,7 @@ function AuditLogs() {
   return (
     <div className="fade-up">
       <PageHead
-        title="Audit Log"
+        title="Denetim Kayıtları"
         description="Kim, ne zaman, hangi kapsamda hangi işlemi gerçekleştirdi."
       >
         <Badge tone="green">Değiştirilemez kayıt</Badge>
@@ -2228,7 +2287,7 @@ function AuditLogs() {
         <CardContent className="overflow-x-auto p-0">
           {loading ? (
             <div className="p-8 text-sm text-slate-500">
-              Audit kayıtları yükleniyor…
+              Denetim kayıtları yükleniyor…
             </div>
           ) : (
             <table className="data-table min-w-[850px]">
@@ -2238,7 +2297,7 @@ function AuditLogs() {
                     "Zaman",
                     "Olay",
                     "Aktör / Hedef",
-                    "Tenant",
+                    "Kurum alanı",
                     "IP",
                     "Sonuç",
                   ].map((x) => (
@@ -2253,9 +2312,8 @@ function AuditLogs() {
                       {new Date(item.at).toLocaleString("tr-TR")}
                     </td>
                     <td>
-                      <code className="rounded bg-slate-100 px-2 py-1 text-xs">
-                        {item.action}
-                      </code>
+                      <b className="block text-xs">{auditActionTitle(item.action)}</b>
+                      <code className="mt-1 inline-block rounded bg-slate-100 px-2 py-1 text-[10px] text-slate-400">{item.action}</code>
                     </td>
                     <td className="font-semibold">
                       {item.actor || item.subject}
@@ -2289,6 +2347,14 @@ type PrivacyRequest = {
   receiptId?: string | null;
   failure?: string;
 };
+function privacyStatusTitle(status: PrivacyRequest["status"]) {
+  return {
+    pending: "Bekliyor",
+    processing: "İşleniyor",
+    completed: "Tamamlandı",
+    failed: "Başarısız",
+  }[status];
+}
 
 function PrivacyCenter({ user, csrf }: { user: SessionUser; csrf: string }) {
   const [items, setItems] = useState<PrivacyRequest[]>([]);
@@ -2348,7 +2414,7 @@ function PrivacyCenter({ user, csrf }: { user: SessionUser; csrf: string }) {
       <div className="grid gap-4 md:grid-cols-3">
         <StatCard label="Bekleyen" value={String(items.filter((item) => item.status === "pending").length)} detail="Yönetici değerlendirmesi" icon={Clock3} tone="amber" />
         <StatCard label="Tamamlanan" value={String(items.filter((item) => item.status === "completed").length)} detail="Makbuzlu sağlayıcı işlemi" icon={CheckCircle2} tone="green" />
-        <StatCard label="Toplam talep" value={String(items.length)} detail={canManage ? "Tenant kapsamı" : "Kişisel kapsam"} icon={ClipboardCheck} />
+        <StatCard label="Toplam talep" value={String(items.length)} detail={canManage ? "Kurum kapsamı" : "Kişisel kapsam"} icon={ClipboardCheck} />
       </div>
       <Card className="mt-5">
         <CardHeader>
@@ -2366,7 +2432,7 @@ function PrivacyCenter({ user, csrf }: { user: SessionUser; csrf: string }) {
                   <td className="text-xs text-slate-500">{new Date(request.requestedAt).toLocaleString("tr-TR")}</td>
                   <td className="font-semibold">{request.employeeId}</td>
                   <td>{request.type === "export" ? "Dışa aktarım" : "Kalıcı silme"}</td>
-                  <td><Badge tone={request.status === "completed" ? "green" : request.status === "failed" ? "red" : "amber"}>{request.status}</Badge></td>
+                  <td><Badge tone={request.status === "completed" ? "green" : request.status === "failed" ? "red" : "amber"}>{privacyStatusTitle(request.status)}</Badge></td>
                   <td className="font-mono text-xs">{request.receiptId || "—"}</td>
                   {canManage && <td>{request.status === "pending" ? <Button size="sm" disabled={busy} onClick={() => executeRequest(request)}>İşle</Button> : "—"}</td>}
                 </tr>
@@ -2459,13 +2525,13 @@ function IntegrationSettings({
                 className="compact-control"
               >
                 <option value="demo">Demo veri</option>
-                <option value="playfab">PlayFab / Analytics Gateway</option>
+                <option value="playfab">PlayFab / Analiz Geçidi</option>
               </select>
             </label>
             <div className="grid gap-4 md:grid-cols-2">
               <label>
                 <span className="mb-2 block text-sm font-semibold">
-                  PlayFab Title ID
+                  PlayFab başlık kimliği
                 </span>
                 <input
                   value={form.titleId}
@@ -2477,7 +2543,7 @@ function IntegrationSettings({
                 />
               </label>
               <label>
-                <span className="mb-2 block text-sm font-semibold">Tenant</span>
+                <span className="mb-2 block text-sm font-semibold">Kurum alanı</span>
                 <input
                   disabled={user.role !== "super_admin"}
                   value={form.tenantId}
@@ -2490,7 +2556,7 @@ function IntegrationSettings({
             </div>
             <label className="block">
               <span className="mb-2 block text-sm font-semibold">
-                Analytics Gateway URL
+                Analiz geçidi adresi
               </span>
               <input
                 value={form.dataUrl}
@@ -2501,7 +2567,7 @@ function IntegrationSettings({
             </label>
             <label className="block">
               <span className="mb-2 flex justify-between text-sm font-semibold">
-                Servis Tokenı{" "}
+                Servis anahtarı{" "}
                 {form.hasServiceToken && (
                   <span className="font-normal text-emerald-600">
                     Kayıtlı: {form.serviceTokenMasked}
@@ -2516,8 +2582,8 @@ function IntegrationSettings({
                 }
                 placeholder={
                   form.hasServiceToken
-                    ? "Değiştirmek için yeni token girin"
-                    : "Güvenli servis tokenı"
+                    ? "Değiştirmek için yeni anahtarı girin"
+                    : "Güvenli servis anahtarı"
                 }
                 autoComplete="new-password"
                 className="compact-control"
@@ -2550,12 +2616,12 @@ function IntegrationSettings({
               </div>
               <h3 className="mt-4 font-bold">Güvenlik garantileri</h3>
               <ul className="mt-3 space-y-2 text-xs leading-5 text-slate-500">
-                <li>• Token hiçbir API yanıtında düz metin dönmez.</li>
+                <li>• Servis anahtarı hiçbir uygulama yanıtında düz metin dönmez.</li>
                 <li>• Bağlantı testi başarısızsa sağlayıcı değişmez.</li>
                 <li>
-                  • Her değişiklik aktör ve tenant ile audit log’a yazılır.
+                  • Her değişiklik işlemi yapan kişi ve kurum bilgisiyle denetim kaydına yazılır.
                 </li>
-                <li>• Admin yalnız kendi tenant ayarını değiştirebilir.</li>
+                <li>• Yönetici yalnız kendi kurum ayarını değiştirebilir.</li>
               </ul>
             </CardContent>
           </Card>
@@ -2589,7 +2655,7 @@ function SettingsPage() {
           [
             "Veri bağlantısı",
             "Demo sağlayıcısı aktif",
-            "PlayFab bağlantısı deployment secret’ları üzerinden değiştirilebilir.",
+            "PlayFab bağlantısı sunucudaki gizli yapılandırma değişkenleri üzerinden değiştirilebilir.",
           ],
           [
             "Bildirimler",
@@ -2726,6 +2792,13 @@ function Shell({
       <Dashboard data={data} />
     ) : page === "employees" ? (
       <Employees data={data} csrf={csrf} />
+    ) : page === "monitoring" ? (
+      <DetailedMonitoring
+        data={data}
+        onExport={(events) =>
+          downloadTelemetryCsv("cedas-filtrelenmis-telemetri.csv", events)
+        }
+      />
     ) : page === "scenarios" ? (
       <Scenarios data={data} csrf={csrf} />
     ) : page === "risks" ? (
@@ -2793,7 +2866,7 @@ function Shell({
           <p className={cn("mt-2 text-[11px] leading-5", data.IS_MOCK ? "text-amber-700" : "text-emerald-700")}>
             {data.IS_MOCK
               ? "Bu kayıtlar yapaydır ve operasyonel karar için kullanılamaz."
-              : "Olaylar doğrulanmış telemetri API sözleşmesinden alınır."}
+              : "Olaylar doğrulanmış telemetri veri sözleşmesinden alınır."}
           </p>
         </div>
         <button
@@ -2927,7 +3000,7 @@ function Shell({
                 <div className="hidden text-left sm:block">
                   <b className="block text-xs">{user.name}</b>
                   <span className="text-[10px] text-slate-400">
-                    {user.role}
+                    {roleTitle(user.role)}
                   </span>
                 </div>
                 <ChevronDown size={15} className="text-slate-400" />
