@@ -248,3 +248,7 @@ portalın yönetici rolü bu prototiple birlikte önerilen yeni bir roldür.
 | 6 | Bazı `sequenceName` değerlerinde harf araları bozuk | `"d ir ek 1"`, `"E qu ip me nt"`, `"t ra fo 1"` | Portal okunabilir ad gösterir, ham asset adını da yanında belirtir |
 | 7 | `LevelCompleted.completionRate` "tamamlanma yüzdesi" gibi görünüyor | `PlayFabDataManager.cs:311`: `Clamp01(1 - mistakes * 0.05)` — aslında bir **hata cezası** | Portal bu alanı tamamlanma oranı olarak **kullanmıyor** |
 | 8 | `questionId` ayrı bir soru kimliği değil | `UIQuizPanel.cs:173` — `actionID` iki kez geçiliyor | Soru kimliği olarak `actionId` kullanılıyor |
+# Güncellik notu (1 Ağustos 2026)
+
+Bu dosya tarihsel ürün/wireframe bağlamıdır. Güncel uygulama mimarisi için repo
+kökündeki `TELEMETRY_ARCHITECTURE.md` dosyasını esas alın.

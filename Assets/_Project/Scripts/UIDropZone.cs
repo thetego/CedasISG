@@ -181,7 +181,7 @@ namespace SafetyTraining
 				SequenceManager.Instance?.CurrentLevelID ?? string.Empty,
 				SequenceManager.Instance?.CurrentSequenceID ?? string.Empty,
 				"wrong_drop",
-				1);
+				(int)TelemetrySeverity.Warning);
 			return false;
 		}
 

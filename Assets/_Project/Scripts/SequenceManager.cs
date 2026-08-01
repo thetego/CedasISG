@@ -50,6 +50,7 @@ namespace SafetyTraining
 		// Analytics
 		public string CurrentLevelID    => currentLevel?.levelID    ?? string.Empty;
 		public string CurrentSequenceID => _currentSequence?.sequenceID ?? string.Empty;
+		public int CurrentActionIndex   => _currentActionIndex;
 		private int _sequenceMistakes;
 
 		// Tüm sekanslar ve durumları
@@ -684,7 +685,8 @@ namespace SafetyTraining
 			_mistakes++;
 			_sequenceMistakes++;
 			PlayFabDataManager.Instance?.LogMistakeRecorded(
-				actionID, currentLevel?.levelID, _currentSequence?.sequenceID, "wrong_answer", 1);
+				actionID, currentLevel?.levelID, _currentSequence?.sequenceID, "wrong_answer",
+				(int)TelemetrySeverity.Warning);
 
 			PlayAnimations(_currentAction, AnimationTiming.OnFail);
 			_currentAction.onActionFail?.Invoke();
@@ -875,6 +877,17 @@ namespace SafetyTraining
 		private void HandleSequencePrerequisiteFail(SequenceData sequence)
 		{
 			_mistakes++;
+			int severity = sequence.onPrerequisiteFail == PrerequisiteFailAction.GameOver
+				? (int)TelemetrySeverity.Critical
+				: sequence.onPrerequisiteFail == PrerequisiteFailAction.Warning
+					? (int)TelemetrySeverity.Warning
+					: (int)TelemetrySeverity.Info;
+			PlayFabDataManager.Instance?.LogMistakeRecorded(
+				"sequence-prerequisite",
+				currentLevel?.levelID,
+				sequence.sequenceID,
+				"sequence_prerequisite_failed",
+				severity);
 
 			if (debugMode)
 				Debug.LogWarning($"<color=red>[SequenceManager] ✗ Sekans önkoşul hatası: {sequence.sequenceName}</color>");
@@ -890,7 +903,7 @@ namespace SafetyTraining
 					break;
 
 				case PrerequisiteFailAction.GameOver:
-					ShowWarning(sequence.prerequisiteFailMessage);
+					ShowGameOver(sequence.prerequisiteFailMessage);
 					break;
 			}
 		}
@@ -1397,14 +1410,17 @@ namespace SafetyTraining
 		{
 			switch (type)
 			{
-				case ActionType.Quiz:            return "quiz";
-				case ActionType.DragToWorld:
-				case ActionType.WearEquipment:   return "drag_drop";
-				case ActionType.Click:
-				case ActionType.OpenClose:
-				case ActionType.PanelInteraction:return "click";
-				case ActionType.Survey:          return "survey";
-				default:                         return "interaction";
+				case ActionType.WearEquipment:    return "wear_equipment";
+				case ActionType.OpenClose:        return "open_close";
+				case ActionType.DragToWorld:      return "drag_to_world";
+				case ActionType.Click:            return "click";
+				case ActionType.CameraMove:       return "camera_move";
+				case ActionType.PanelInteraction: return "panel_interaction";
+				case ActionType.Quiz:             return "quiz";
+				case ActionType.Survey:           return "survey";
+				case ActionType.ModalWindow:      return "modal_window";
+				case ActionType.Fade:             return "fade";
+				default:                          return "unknown";
 			}
 		}
 

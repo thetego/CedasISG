@@ -1,0 +1,149 @@
+@import "tailwindcss";
+@theme {
+  --font-sans:
+    Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+body {
+  background: #f8fafc;
+  color: #0f172a;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+button,
+a {
+  cursor: pointer;
+}
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+.dot-grid {
+  background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.chart-tooltip {
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1) !important;
+}
+.fade-up {
+  animation: fade-up 0.35s ease both;
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media print {
+  aside,
+  header,
+  .no-print {
+    display: none !important;
+  }
+  main {
+    padding: 0 !important;
+  }
+  .print-card {
+    box-shadow: none !important;
+  }
+}
+
+/* Compact, shared density for every administrative data control. */
+.compact-control {
+  height: 2.25rem;
+  width: 100%;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  background: #fff;
+  padding: 0 0.625rem;
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  color: #334155;
+  outline: none;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+.compact-control:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px #eff6ff;
+}
+.compact-control:disabled {
+  background: #f8fafc;
+  color: #64748b;
+  opacity: 0.7;
+}
+select.compact-control {
+  padding-right: 1.875rem;
+}
+select.compact-control option {
+  padding: 0.375rem 0.625rem;
+}
+.data-table {
+  width: 100%;
+  text-align: left;
+  font-size: 0.8125rem;
+}
+.data-table thead {
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  background: rgba(248, 250, 252, 0.8);
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+}
+.data-table th {
+  padding: 0.625rem 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.data-table td {
+  padding: 0.5rem 0.75rem;
+  vertical-align: middle;
+}
+.data-table tbody {
+  border-color: #e2e8f0;
+}
+.data-table tbody tr {
+  border-bottom: 1px solid #e2e8f0;
+  transition: background-color 0.15s;
+}
+.data-table tbody tr:last-child {
+  border-bottom: 0;
+}
+.data-table tbody tr:hover {
+  background: rgba(248, 250, 252, 0.75);
+}
+.detail-label {
+  display: block;
+  font-size: 0.625rem;
+  line-height: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+}
+.detail-value {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+}
