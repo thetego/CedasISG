@@ -130,3 +130,20 @@ select.compact-control option {
 .data-table tbody tr:hover {
   background: rgba(248, 250, 252, 0.75);
 }
+.detail-label {
+  display: block;
+  font-size: 0.625rem;
+  line-height: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+}
+.detail-value {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+}

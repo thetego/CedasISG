@@ -39,6 +39,7 @@ import {
   Search,
   ScrollText,
   Plug,
+  RefreshCw,
   Save,
   Settings,
   ShieldCheck,
@@ -57,6 +58,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { EmployeeDetailPanel } from "@/components/employee-detail";
+import { ScenarioDetailPanel } from "@/components/scenario-detail";
+import { buildScenarioDetail } from "@/lib/telemetry-detail";
 import { cn } from "@/lib/utils";
 import type { Bootstrap, Employee, SessionUser } from "@/types";
 
@@ -100,6 +104,18 @@ function notify(
 }
 function navigateTo(page: Page) {
   window.dispatchEvent(new CustomEvent("cedas:navigate", { detail: page }));
+}
+function auditDetailView(
+  csrf: string,
+  kind: "employee" | "scenario" | "session",
+  subject: string,
+) {
+  void fetch("/api/v1/audit/view", {
+    method: "POST",
+    credentials: "same-origin",
+    headers: { "Content-Type": "application/json", "X-CSRF-Token": csrf },
+    body: JSON.stringify({ kind, subject }),
+  }).catch(() => undefined);
 }
 function downloadCsv(name: string, rows: (string | number)[][]) {
   const safe = (value: string | number) => {
@@ -747,10 +763,18 @@ function PageHead({
 function Dashboard({ data }: { data: Bootstrap }) {
   const m = metrics(data),
     chart = series(data),
+    scenarioItems = scenarioAnalytics(data),
     people = data.employees
       .map((e) => employeeStats(data, e))
       .sort((a, b) => b.mistakes - a.mistakes)
       .slice(0, 5);
+  const strongestScenario = [...scenarioItems].sort(
+    (left, right) => right.accuracy - left.accuracy,
+  )[0];
+  const weakestScenario = [...scenarioItems].sort(
+    (left, right) => left.accuracy - right.accuracy,
+  )[0];
+  const topRiskEmployee = people[0];
   return (
     <div className="fade-up">
       <PageHead
@@ -981,9 +1005,24 @@ function Dashboard({ data }: { data: Bootstrap }) {
             </p>
             <div className="mt-6 space-y-3">
               {[
-                ["Güçlü alan", "KKD hazırlığı"],
-                ["İyileştirme", "Pano enerjilendirme"],
-                ["Öneri", "EMP-1045 tekrar eğitimi"],
+                [
+                  "En yüksek doğruluk",
+                  strongestScenario
+                    ? `${strongestScenario.name} · %${strongestScenario.accuracy}`
+                    : "Henüz quiz verisi yok",
+                ],
+                [
+                  "Öncelikli senaryo",
+                  weakestScenario
+                    ? `${weakestScenario.name} · %${weakestScenario.accuracy} doğruluk · ${weakestScenario.risk} risk`
+                    : "Henüz senaryo verisi yok",
+                ],
+                [
+                  "Öncelikli çalışan",
+                  topRiskEmployee
+                    ? `${topRiskEmployee.name} · ${topRiskEmployee.mistakes} hata`
+                    : "Henüz çalışan telemetrisi yok",
+                ],
               ].map(([a, b]) => (
                 <div key={a} className="border-t border-white/15 pt-3">
                   <span className="text-[10px] uppercase tracking-wider text-blue-200">
@@ -1000,7 +1039,7 @@ function Dashboard({ data }: { data: Bootstrap }) {
   );
 }
 
-function Employees({ data }: { data: Bootstrap }) {
+function Employees({ data, csrf }: { data: Bootstrap; csrf: string }) {
   const [query, setQuery] = useState("");
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [department, setDepartment] = useState("");
@@ -1254,7 +1293,11 @@ function Employees({ data }: { data: Bootstrap }) {
                       : "—"}
                   </td>
                   <td>
-                    <Dialog>
+                    <Dialog
+                      onOpenChange={(open) => {
+                        if (open) auditDetailView(csrf, "employee", p.id);
+                      }}
+                    >
                       <DialogTrigger asChild>
                         <Button
                           variant="ghost"
@@ -1264,48 +1307,64 @@ function Employees({ data }: { data: Bootstrap }) {
                           <MoreHorizontal size={17} />
                         </Button>
                       </DialogTrigger>
-                      <DialogContent>
-                        <DialogTitle>{p.name}</DialogTitle>
-                        <div className="mt-5 grid grid-cols-3 gap-3">
-                          {[
-                            ["Deneme", p.runs],
-                            ["Doğruluk", `%${p.accuracy}`],
-                            ["Hata", p.mistakes],
-                          ].map(([label, value]) => (
-                            <div
-                              key={label}
-                              className="rounded-xl bg-slate-50 p-4"
-                            >
-                              <span className="text-xs text-slate-500">
-                                {label}
-                              </span>
-                              <b className="mt-1 block text-xl">{value}</b>
-                            </div>
-                          ))}
-                        </div>
-                        <div className="mt-5 rounded-xl border p-4 text-sm text-slate-600">
-                          <b>Çalışan kapsamı</b>
-                          <p className="mt-2">
-                            {p.department} · {p.location} · Son aktivite{" "}
-                            {p.last
-                              ? new Date(p.last).toLocaleString("tr-TR")
-                              : "yok"}
-                          </p>
-                        </div>
-                        <Button
-                          className="mt-5"
-                          onClick={() =>
-                            downloadCsv(`${p.id}-performans.csv`, [
-                              ["Metrik", "Değer"],
-                              ["Deneme", p.runs],
-                              ["Doğruluk", p.accuracy],
-                              ["Hata", p.mistakes],
-                            ])
-                          }
-                        >
-                          <Download size={16} />
-                          Çalışan raporunu indir
-                        </Button>
+                      <DialogContent className="max-w-[calc(100vw-2rem)] p-0 xl:max-w-7xl">
+                        <EmployeeDetailPanel
+                          data={data}
+                          employee={p}
+                          onExport={() => {
+                            const events = data.events.filter(
+                              (event) => event.employeeId === p.id,
+                            );
+                            downloadCsv(`${p.id}-tum-telemetri.csv`, [
+                              [
+                                "Zaman",
+                                "Event",
+                                "Oturum",
+                                "Senaryo",
+                                "Sekans",
+                                "Aksiyon",
+                                "Aksiyon anahtarı",
+                                "Soru",
+                                "Verilen cevap",
+                                "Doğru cevap",
+                                "Doğru mu",
+                                "Deneme",
+                                "Hata türü",
+                                "Önem",
+                                "Aksiyon türü",
+                                "Sonuç",
+                                "Puan",
+                                "Süre",
+                                "Event ID",
+                              ],
+                              ...events.map((event) => [
+                                event.clientTimestamp,
+                                event.eventType,
+                                event.payload.sessionId,
+                                event.payload.levelId || "",
+                                event.payload.sequenceId || "",
+                                event.payload.actionId || "",
+                                event.payload.actionKey || "",
+                                event.payload.questionId || "",
+                                event.payload.selectedAnswer || "",
+                                event.payload.correctAnswer || "",
+                                event.payload.isCorrect === undefined
+                                  ? ""
+                                  : event.payload.isCorrect
+                                    ? "Evet"
+                                    : "Hayır",
+                                event.payload.attempts || "",
+                                event.payload.mistakeType || "",
+                                event.payload.severity || "",
+                                event.payload.type || "",
+                                event.payload.result || "",
+                                event.payload.score || "",
+                                event.payload.timeSpent || event.payload.duration || "",
+                                event.eventId,
+                              ]),
+                            ]);
+                          }}
+                        />
                       </DialogContent>
                     </Dialog>
                   </td>
@@ -1319,7 +1378,7 @@ function Employees({ data }: { data: Bootstrap }) {
   );
 }
 
-function Scenarios({ data }: { data: Bootstrap }) {
+function Scenarios({ data, csrf }: { data: Bootstrap; csrf: string }) {
   const analytics = scenarioAnalytics(data);
   return (
     <div className="fade-up">
@@ -1432,59 +1491,64 @@ function Scenarios({ data }: { data: Bootstrap }) {
                     <span className="text-[10px] text-slate-400">Hata</span>
                   </div>
                 </div>
-                <Dialog>
+                <Dialog
+                  onOpenChange={(open) => {
+                    if (open)
+                      auditDetailView(csrf, "scenario", l.emittedLevelId);
+                  }}
+                >
                   <DialogTrigger asChild>
                     <Button variant="outline" className="mt-5 w-full">
                       Senaryoyu incele <ArrowUpRight size={15} />
                     </Button>
                   </DialogTrigger>
-                  <DialogContent>
-                    <DialogTitle>{l.name}</DialogTitle>
-                    <div className="mt-5 grid grid-cols-3 gap-3">
-                      {[
-                        ["Aktif çalışan", activeEmployees],
-                        ["Doğruluk", `%${stats.accuracy}`],
-                        ["Tamamlama", `%${stats.completion}`],
-                      ].map(([label, value]) => (
-                        <div key={label} className="rounded-xl bg-slate-50 p-4">
-                          <span className="text-xs text-slate-500">
-                            {label}
-                          </span>
-                          <b className="mt-1 block text-xl">{value}</b>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="mt-5 rounded-xl border p-4">
-                      <b className="text-sm">Normalize risk</b>
-                      <p className="mt-2 text-sm text-slate-500">
-                        100 aksiyon başına {stats.risk} hata · {stats.sample}{" "}
-                        quiz örneği.
-                      </p>
-                    </div>
-                    <Button
-                      className="mt-5"
-                      onClick={() =>
-                        downloadCsv(`${l.emittedLevelId}-rapor.csv`, [
+                  <DialogContent className="max-w-[calc(100vw-2rem)] p-0 xl:max-w-7xl">
+                    <ScenarioDetailPanel
+                      data={data}
+                      level={l}
+                      onExport={() => {
+                        const detail = buildScenarioDetail(
+                          data,
+                          l.emittedLevelId,
+                        );
+                        downloadCsv(`${l.emittedLevelId}-tum-telemetri.csv`, [
                           [
-                            "Senaryo",
-                            "Doğruluk",
-                            "Tamamlama",
-                            "Risk",
-                            "Örneklem",
+                            "Zaman",
+                            "Çalışan",
+                            "Event",
+                            "Oturum",
+                            "Sekans",
+                            "Aksiyon",
+                            "Aksiyon anahtarı",
+                            "Soru",
+                            "Doğru mu",
+                            "Hata türü",
+                            "Önem",
+                            "Sonuç",
+                            "Event ID",
                           ],
-                          [
-                            l.name,
-                            stats.accuracy,
-                            stats.completion,
-                            stats.risk,
-                            stats.sample,
-                          ],
-                        ])
-                      }
-                    >
-                      <Download size={16} />
-                      Senaryo raporunu indir
-                    </Button>
+                          ...detail.events.map((event) => [
+                            event.clientTimestamp,
+                            event.employeeId,
+                            event.eventType,
+                            event.payload.sessionId,
+                            event.payload.sequenceId || "",
+                            event.payload.actionId || "",
+                            event.payload.actionKey || "",
+                            event.payload.questionId || "",
+                            event.payload.isCorrect === undefined
+                              ? ""
+                              : event.payload.isCorrect
+                                ? "Evet"
+                                : "Hayır",
+                            event.payload.mistakeType || "",
+                            event.payload.severity || "",
+                            event.payload.result || "",
+                            event.eventId,
+                          ]),
+                        ]);
+                      }}
+                    />
                   </DialogContent>
                 </Dialog>
               </CardContent>
@@ -1499,6 +1563,66 @@ function Scenarios({ data }: { data: Bootstrap }) {
 function Risks({ data }: { data: Bootstrap }) {
   const [threshold, setThreshold] = useState(8),
     [filtersOpen, setFiltersOpen] = useState(false);
+  const mistakeClusters = (() => {
+    const grouped = new Map<
+      string,
+      {
+        employeeId: string;
+        levelId: string;
+        sequenceId: string;
+        actionKey: string;
+        mistakeType: string;
+        count: number;
+        maxSeverity: number;
+        latest: string;
+        events: Bootstrap["events"];
+      }
+    >();
+    data.events
+      .filter((event) => event.eventType === "MistakeRecorded")
+      .forEach((event) => {
+        const levelId = event.payload.levelId || "levelId-yok";
+        const sequenceId = event.payload.sequenceId || "sequenceId-yok";
+        const actionKey =
+          event.payload.actionKey || event.payload.actionId || "actionId-yok";
+        const mistakeType = event.payload.mistakeType || "unknown";
+        const key = [
+          event.employeeId,
+          levelId,
+          sequenceId,
+          actionKey,
+          mistakeType,
+        ].join("|");
+        const current = grouped.get(key) || {
+          employeeId: event.employeeId,
+          levelId,
+          sequenceId,
+          actionKey,
+          mistakeType,
+          count: 0,
+          maxSeverity: 0,
+          latest: event.clientTimestamp,
+          events: [],
+        };
+        current.count += 1;
+        current.maxSeverity = Math.max(
+          current.maxSeverity,
+          Number(event.payload.severity || 1),
+        );
+        current.latest =
+          event.clientTimestamp > current.latest
+            ? event.clientTimestamp
+            : current.latest;
+        current.events.push(event);
+        grouped.set(key, current);
+      });
+    return [...grouped.values()].sort(
+      (left, right) =>
+        right.maxSeverity - left.maxSeverity ||
+        right.count - left.count ||
+        right.latest.localeCompare(left.latest),
+    );
+  })();
   const people = data.employees
       .map((e) => employeeStats(data, e))
       .sort((a, b) => b.mistakes - a.mistakes),
@@ -1597,55 +1721,71 @@ function Risks({ data }: { data: Bootstrap }) {
             <CardTitle>Risk aksiyonları</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            {[
-              [
-                "EMP-1045 tekrar eğitimi",
-                "Pano enerjilendirme adımlarında 12 hata",
-                "red",
-              ],
-              [
-                "Seviye 2 içerik kontrolü",
-                "Doğruluk kurum ortalamasının 9 puan altında",
-                "amber",
-              ],
-              ["KKD adımı başarılı", "Son 30 günde %18 iyileşme", "green"],
-            ].map(([a, b, t]) => (
-              <div key={a} className="rounded-xl border p-4">
+            {mistakeClusters.length === 0 ? (
+              <div className="rounded-xl border border-dashed p-8 text-center text-sm text-slate-500">
+                Hata kümesi oluşmadı. Yeni MistakeRecorded olayları geldikçe
+                burada otomatik önceliklendirilecek.
+              </div>
+            ) : mistakeClusters.slice(0, 6).map((cluster) => {
+              const employee = data.employees.find(
+                (item) => item.id === cluster.employeeId,
+              );
+              const level = data.content.levels.find(
+                (item) => item.emittedLevelId === cluster.levelId,
+              );
+              return (
+              <div
+                key={`${cluster.employeeId}-${cluster.levelId}-${cluster.sequenceId}-${cluster.actionKey}-${cluster.mistakeType}`}
+                className="rounded-xl border p-4"
+              >
                 <div className="flex items-start gap-3">
                   <div
                     className={cn(
                       "mt-1 size-2 rounded-full",
-                      t === "red"
+                      cluster.maxSeverity === 3
                         ? "bg-red-500"
-                        : t === "amber"
+                        : cluster.maxSeverity === 2
                           ? "bg-amber-500"
-                          : "bg-emerald-500",
+                          : "bg-blue-500",
                     )}
                   />
-                  <div>
-                    <b className="text-sm">{a}</b>
-                    <p className="mt-1 text-xs leading-5 text-slate-500">{b}</p>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <b className="text-sm">{employee?.name || cluster.employeeId}</b>
+                      <Badge tone={cluster.maxSeverity === 3 ? "red" : cluster.maxSeverity === 2 ? "amber" : "slate"}>
+                        {cluster.count} tekrar · önem {cluster.maxSeverity}
+                      </Badge>
+                    </div>
+                    <p className="mt-1 text-xs leading-5 text-slate-500">
+                      {level?.name || cluster.levelId} · {cluster.sequenceId} · {cluster.mistakeType}
+                    </p>
+                    <p className="mt-1 truncate font-mono text-[10px] text-slate-400" title={cluster.actionKey}>{cluster.actionKey}</p>
                     <Dialog>
                       <DialogTrigger asChild>
                         <button className="mt-3 text-xs font-semibold text-blue-600">
                           Detayı incele →
                         </button>
                       </DialogTrigger>
-                      <DialogContent>
-                        <DialogTitle>{a}</DialogTitle>
-                        <p className="mt-3 text-sm leading-6 text-slate-600">
-                          {b}
-                        </p>
-                        <div className="mt-5 rounded-xl bg-amber-50 p-4 text-sm text-amber-800">
-                          Önerilen aksiyon: ilgili çalışan ve senaryo
-                          kayıtlarını inceleyin, tekrar eğitimi planlayın ve
-                          sonucu bir sonraki rapor döneminde karşılaştırın.
+                      <DialogContent className="max-w-4xl">
+                        <DialogTitle>{employee?.name || cluster.employeeId} · hata kümesi</DialogTitle>
+                        <div className="mt-4 grid gap-3 sm:grid-cols-4">
+                          {[
+                            ["Tekrar", cluster.count],
+                            ["En yüksek önem", cluster.maxSeverity],
+                            ["Senaryo", level?.name || cluster.levelId],
+                            ["Son kayıt", new Date(cluster.latest).toLocaleString("tr-TR")],
+                          ].map(([label, value]) => <div key={label} className="rounded-xl bg-slate-50 p-3"><span className="text-[10px] text-slate-500">{label}</span><b className="mt-1 block text-sm">{value}</b></div>)}
+                        </div>
+                        <div className="mt-5 overflow-x-auto rounded-xl border">
+                          <table className="data-table min-w-[720px]"><thead><tr>{["Zaman", "Oturum", "Sekans", "Aksiyon", "Hata türü", "Önem"].map((label) => <th key={label}>{label}</th>)}</tr></thead>
+                            <tbody>{[...cluster.events].sort((left, right) => right.clientTimestamp.localeCompare(left.clientTimestamp)).map((event) => <tr key={event.eventId}><td>{new Date(event.clientTimestamp).toLocaleString("tr-TR")}</td><td className="font-mono text-[10px]">{event.payload.sessionId}</td><td>{event.payload.sequenceId || "—"}</td><td>{event.payload.actionId || "—"}</td><td>{event.payload.mistakeType || "—"}</td><td>{event.payload.severity || 1}</td></tr>)}</tbody>
+                          </table>
                         </div>
                         <Button
                           className="mt-5"
                           onClick={() => {
                             navigateTo("employees");
-                            notify("İlgili çalışan listesi açıldı", "info");
+                            notify(`${employee?.name || cluster.employeeId} için çalışan listesi açıldı`, "info");
                           }}
                         >
                           Çalışanları incele
@@ -1655,7 +1795,7 @@ function Risks({ data }: { data: Bootstrap }) {
                   </div>
                 </div>
               </div>
-            ))}
+            );})}
           </CardContent>
         </Card>
       </div>
@@ -1696,6 +1836,42 @@ function Reports({ data }: { data: Bootstrap }) {
     ];
     downloadCsv("cedas-egitim-raporu.csv", rows);
   }
+  function downloadRawEvents() {
+    downloadCsv("cedas-tum-telemetri.csv", [
+      [
+        "Zaman",
+        "Çalışan",
+        "Event",
+        "Oturum",
+        "Senaryo",
+        "Sekans",
+        "Aksiyon",
+        "Aksiyon anahtarı",
+        "Soru",
+        "Hata türü",
+        "Önem",
+        "Şema",
+        "Event ID",
+        "Payload JSON",
+      ],
+      ...data.events.map((event) => [
+        event.clientTimestamp,
+        event.employeeId,
+        event.eventType,
+        event.payload.sessionId,
+        event.payload.levelId || "",
+        event.payload.sequenceId || "",
+        event.payload.actionId || "",
+        event.payload.actionKey || "",
+        event.payload.questionId || "",
+        event.payload.mistakeType || "",
+        event.payload.severity || "",
+        event.schemaVersion,
+        event.eventId,
+        JSON.stringify(event.payload),
+      ]),
+    ]);
+  }
   const templates = [
     [
       "Yönetim Özeti",
@@ -1731,6 +1907,10 @@ function Reports({ data }: { data: Bootstrap }) {
         <Button variant="outline" onClick={() => window.print()}>
           <FileBarChart size={16} />
           Yazdır
+        </Button>
+        <Button variant="outline" onClick={downloadRawEvents}>
+          <Download size={16} />
+          Ham telemetri
         </Button>
         <Button onClick={download}>
           <Download size={16} />
@@ -1810,9 +1990,9 @@ function Reports({ data }: { data: Bootstrap }) {
                       ))}
                     </div>
                     <p className="mt-6 text-sm leading-6 text-slate-600">
-                      Seçili rapor, demo veri sağlayıcısındaki güncel eğitim
-                      kayıtları üzerinden oluşturulmuştur. Canlı bağlantıda aynı
-                      şablon gerçek PlayFab verileriyle çalışır.
+                      Seçili rapor, aktif {data.PROVIDER || "telemetri"} veri
+                      sağlayıcısındaki güncel ve yetki kapsamındaki eğitim
+                      kayıtlarından hesaplanmıştır.
                     </p>
                   </div>
                   <Button className="mt-5" onClick={download}>
@@ -1828,65 +2008,36 @@ function Reports({ data }: { data: Bootstrap }) {
       <div className="mt-5 grid gap-4 lg:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>Son oluşturulan raporlar</CardTitle>
-            <Badge tone="green">3 hazır</Badge>
+            <div>
+              <CardTitle>Olay türü kapsamı</CardTitle>
+              <p className="mt-1 text-xs text-slate-500">Her telemetri türünün aktif veri kümesindeki gerçek kayıt adedi.</p>
+            </div>
+            <Badge tone="blue">{data.events.length} event</Badge>
           </CardHeader>
-          <CardContent className="space-y-2">
-            {[
-              "Haftalık İSG Yönetim Özeti",
-              "Çalışan Performans Paketi",
-              "Senaryo Risk Analizi",
-            ].map((x, i) => (
-              <div
-                className="flex items-center gap-3 rounded-xl border p-3"
-                key={x}
-              >
-                <div className="grid size-9 place-items-center rounded-lg bg-blue-50 text-blue-600">
-                  <FileBarChart size={17} />
-                </div>
-                <div className="flex-1">
-                  <b className="text-sm">{x}</b>
-                  <div className="text-xs text-slate-400">
-                    {28 - i * 7} Tem 2026 · PDF
-                  </div>
-                </div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  aria-label={`${x} raporunu indir`}
-                  onClick={download}
-                >
-                  <Download size={16} />
-                </Button>
-              </div>
-            ))}
+          <CardContent className="grid gap-2 sm:grid-cols-2">
+            {telemetryEventTypes.map((type) => {
+              const count = data.events.filter((event) => event.eventType === type).length;
+              return <div className="flex items-center justify-between rounded-xl border px-3 py-2.5" key={type}><span className="truncate text-xs font-semibold text-slate-600">{type}</span><Badge tone={count ? "green" : "slate"}>{count}</Badge></div>;
+            })}
           </CardContent>
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Planlı gönderimler</CardTitle>
-            <Badge tone="blue">Otomatik</Badge>
+            <div>
+              <CardTitle>Alım ve veri kalitesi</CardTitle>
+              <p className="mt-1 text-xs text-slate-500">Gateway doğrulama sonucu ve reddedilen örneklerin görünümü.</p>
+            </div>
+            <Badge tone={(data.quality?.rejected || 0) > 0 ? "amber" : "green"}>Canlı hesap</Badge>
           </CardHeader>
           <CardContent className="space-y-2">
             {[
-              ["Pazartesi · 09:00", "İSG yönetim ekibi"],
-              ["Ayın 1’i · 08:30", "Eğitim koordinatörleri"],
-              ["Cuma · 17:00", "Saha yöneticileri"],
-            ].map(([a, b]) => (
-              <div
-                className="flex items-center gap-3 rounded-xl border p-3"
-                key={a}
-              >
-                <div className="grid size-9 place-items-center rounded-lg bg-violet-50 text-violet-600">
-                  <Clock3 size={17} />
-                </div>
-                <div className="flex-1">
-                  <b className="text-sm">{a}</b>
-                  <div className="text-xs text-slate-400">{b}</div>
-                </div>
-                <span className="size-2 rounded-full bg-emerald-500" />
-              </div>
-            ))}
+              ["Alınan", data.quality?.received ?? data.events.length],
+              ["Kabul edilen", data.quality?.accepted ?? data.events.length],
+              ["Reddedilen", data.quality?.rejected ?? 0],
+              ["Tekrarlı", data.quality?.duplicate ?? 0],
+            ].map(([label, value]) => <div key={label} className="flex items-center justify-between rounded-xl border p-3"><span className="text-sm font-semibold text-slate-600">{label}</span><b>{value}</b></div>)}
+            {(data.quality?.invalidSamples || []).map((sample, index) => <details key={`${sample.eventType}-${index}`} className="rounded-xl border border-amber-200 bg-amber-50 p-3"><summary className="cursor-pointer text-xs font-semibold text-amber-800">{sample.eventType} doğrulama hatası</summary><p className="mt-2 text-xs leading-5 text-amber-700">{sample.errors.join(" · ")}</p></details>)}
+            {(data.quality?.invalidSamples || []).length === 0 && <p className="rounded-xl bg-emerald-50 p-3 text-xs text-emerald-700">Örneklenmiş şema doğrulama hatası bulunmuyor.</p>}
           </CardContent>
         </Card>
       </div>
@@ -2487,11 +2638,17 @@ function Shell({
   user,
   csrf,
   onLogout,
+  onRefresh,
+  refreshing,
+  refreshedAt,
 }: {
   data: Bootstrap;
   user: SessionUser;
   csrf: string;
   onLogout: () => void;
+  onRefresh: () => void;
+  refreshing: boolean;
+  refreshedAt: Date | null;
 }) {
   const [page, setPage] = useState<Page>("dashboard"),
     [mobile, setMobile] = useState(false),
@@ -2539,13 +2696,38 @@ function Shell({
             })),
         ]
       : [];
+  const totalMistakes = data.events.filter(
+    (event) => event.eventType === "MistakeRecorded",
+  ).length;
+  const topRiskEmployee = data.employees
+    .map((employee) => employeeStats(data, employee))
+    .sort((left, right) => right.mistakes - left.mistakes)[0];
+  const latestMistake = [...data.events]
+    .filter((event) => event.eventType === "MistakeRecorded")
+    .sort((left, right) =>
+      right.clientTimestamp.localeCompare(left.clientTimestamp),
+    )[0];
+  const liveNotifications = [
+    topRiskEmployee?.mistakes
+      ? [
+          "En yüksek çalışan riski",
+          `${topRiskEmployee.name}: ${topRiskEmployee.mistakes} hata kaydı`,
+        ]
+      : null,
+    latestMistake
+      ? [
+          "Son hata olayı",
+          `${latestMistake.employeeId} · ${latestMistake.payload.levelId || "Senaryo bilinmiyor"} · ${new Date(latestMistake.clientTimestamp).toLocaleString("tr-TR")}`,
+        ]
+      : null,
+  ].filter(Boolean) as string[][];
   const content =
     page === "dashboard" ? (
       <Dashboard data={data} />
     ) : page === "employees" ? (
-      <Employees data={data} />
+      <Employees data={data} csrf={csrf} />
     ) : page === "scenarios" ? (
-      <Scenarios data={data} />
+      <Scenarios data={data} csrf={csrf} />
     ) : page === "risks" ? (
       <Risks data={data} />
     ) : page === "reports" ? (
@@ -2597,7 +2779,7 @@ function Shell({
                 {label}
                 {id === "risks" && (
                   <Badge tone="red" className="ml-auto">
-                    4
+                    {totalMistakes}
                   </Badge>
                 )}
               </button>
@@ -2672,9 +2854,19 @@ function Shell({
             )}
           </div>
           <div className="ml-auto flex items-center gap-2">
-            <Badge tone="green">
+            <button
+              type="button"
+              onClick={onRefresh}
+              disabled={refreshing}
+              title={refreshedAt ? `Son veri: ${refreshedAt.toLocaleString("tr-TR")}` : "Verileri yenile"}
+              className="grid size-10 place-items-center rounded-xl text-slate-500 transition hover:bg-slate-100 disabled:opacity-50"
+              aria-label="Telemetri verilerini yenile"
+            >
+              <RefreshCw size={17} className={refreshing ? "animate-spin" : ""} />
+            </button>
+            <Badge tone={data.IS_MOCK ? "amber" : "green"}>
               <span className="mr-1.5 size-1.5 rounded-full bg-emerald-500" />
-              Sistem aktif
+              {data.IS_MOCK ? "Demo veri" : "Canlı veri"}
             </Badge>
             <div className="relative">
               <button
@@ -2702,10 +2894,12 @@ function Shell({
                       Tümünü okundu say
                     </button>
                   </div>
-                  {[
-                    ["Risk eşiği aşıldı", "EMP-1045 takip gerektiriyor"],
-                    ["Haftalık rapor hazır", "Yönetim özeti oluşturuldu"],
-                  ].map(([a, b]) => (
+                  {liveNotifications.length === 0 && (
+                    <p className="border-t py-4 text-center text-xs text-slate-500">
+                      Güncel telemetride risk bildirimi yok.
+                    </p>
+                  )}
+                  {liveNotifications.map(([a, b]) => (
                     <div key={a} className="border-t py-3">
                       <b className="text-xs">{a}</b>
                       <p className="mt-1 text-xs text-slate-500">{b}</p>
@@ -2775,14 +2969,22 @@ export default function App() {
     [csrf, setCsrf] = useState(""),
     [checking, setChecking] = useState(true),
     [runtime, setRuntime] = useState({ provider: "unknown", demo: false }),
-    [error, setError] = useState("");
-  const loadData = () =>
-    fetch("/api/v1/bootstrap", { credentials: "same-origin" })
-      .then((r) => {
-        if (!r.ok) throw new Error("Veri kapsamına erişilemedi");
-        return r.json();
-      })
-      .then(setData);
+    [error, setError] = useState(""),
+    [refreshing, setRefreshing] = useState(false),
+    [refreshedAt, setRefreshedAt] = useState<Date | null>(null);
+  async function loadData(showProgress = false) {
+    if (showProgress) setRefreshing(true);
+    try {
+      const response = await fetch("/api/v1/bootstrap", {
+        credentials: "same-origin",
+      });
+      if (!response.ok) throw new Error("Veri kapsamına erişilemedi");
+      setData(await response.json());
+      setRefreshedAt(new Date());
+    } finally {
+      if (showProgress) setRefreshing(false);
+    }
+  }
   useEffect(() => {
     Promise.all([
       fetch("/api/v1/runtime", { credentials: "same-origin" })
@@ -2801,6 +3003,21 @@ export default function App() {
       .catch(() => {})
       .finally(() => setChecking(false));
   }, []);
+  useEffect(() => {
+    if (!user) return;
+    const timer = window.setInterval(() => {
+      void loadData().catch(() => undefined);
+    }, 60_000);
+    return () => window.clearInterval(timer);
+  }, [user?.id]);
+  async function refresh() {
+    try {
+      await loadData(true);
+      notify("Telemetri verileri güncellendi");
+    } catch {
+      notify("Telemetri yenilenemedi; mevcut veriler korunuyor", "error");
+    }
+  }
   async function login(id: string, password: string, remember: boolean) {
     setError("");
     const r = await fetch("/api/v1/auth/login", {
@@ -2864,5 +3081,15 @@ export default function App() {
         </div>
       </div>
     );
-  return <Shell data={data} user={user} csrf={csrf} onLogout={logout} />;
+  return (
+    <Shell
+      data={data}
+      user={user}
+      csrf={csrf}
+      onLogout={logout}
+      onRefresh={refresh}
+      refreshing={refreshing}
+      refreshedAt={refreshedAt}
+    />
+  );
 }

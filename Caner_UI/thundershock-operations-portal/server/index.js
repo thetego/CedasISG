@@ -300,6 +300,32 @@ const server = createServer(async (req, res) => {
         });
       return json(res, 403, { error: "forbidden" });
     }
+    if (req.method === "POST" && url.pathname === "/api/v1/audit/view") {
+      if (!validOrigin(req)) return json(res, 403, { error: "origin_rejected" });
+      const session = readSession(req, config.sessionSecret);
+      if (!session) return json(res, 401, { error: "authentication_required" });
+      if (!verifyCsrf(req, session)) return json(res, 403, { error: "csrf_failed" });
+      const body = await readJson(req);
+      const kind = String(body.kind || "");
+      const subject = String(body.subject || "").trim();
+      if (!["employee", "scenario", "session"].includes(kind))
+        return json(res, 400, { error: "invalid_view_kind" });
+      if (!subject || subject.length > 128 || /[\r\n\0]/.test(subject))
+        return json(res, 400, { error: "invalid_subject" });
+      const canReadAnalytics = session.permissions.some((permission) =>
+        permission.startsWith("analytics:read"),
+      );
+      const canReadEmployees = session.permissions.some((permission) =>
+        permission.startsWith("employees:read"),
+      );
+      if (!canReadAnalytics || (kind === "employee" && !canReadEmployees))
+        return json(res, 403, { error: "forbidden" });
+      audit(`analytics.${kind}.viewed`, subject, req, {
+        tenantId: session.tenantId,
+        actor: session.sub,
+      });
+      return json(res, 201, { ok: true });
+    }
     if (req.method === "GET" && url.pathname === "/api/v1/audit") {
       const session = readSession(req, config.sessionSecret);
       if (!session) return json(res, 401, { error: "authentication_required" });
