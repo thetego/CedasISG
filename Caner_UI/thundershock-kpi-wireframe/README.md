@@ -316,3 +316,8 @@ Headless Chrome (Puppeteer) ile otomatik test edildi:
   form alanı 0, başlık sırası `H1→H2→H3` (atlama yok)
 
 Ekran görüntüleri: `screenshots/` (24 dosya).
+# Güncellik notu (1 Ağustos 2026)
+
+Bu klasör statik tarihsel wireframe'i korur. Üretim portalı
+`Caner_UI/thundershock-operations-portal`, güncel telemetri mimarisi ise repo
+kökündeki `TELEMETRY_ARCHITECTURE.md` altındadır.

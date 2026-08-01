@@ -327,3 +327,8 @@ zorunludur: `role=employee` isteği yalnızca kendi `employeeId`'sini döndürme
 **Kapsanan uç durumlar:** başarılı çalışan · birkaç yanlış · çok tekrar deneme ·
 çok hata · çok senaryo · tek deneme · hiç veri yok · gelişen · kötüleşen ·
 eksik `timeSpent` · yetim `MistakeRecorded` · yarım kalan oturum.
+# Güncellik notu (1 Ağustos 2026)
+
+Bu dosya tarihsel wireframe analizidir. Güncel şema v2, kalıcı outbox, 11 olay
+doğrulaması ve portal entegrasyonu için repo kökündeki
+`TELEMETRY_ARCHITECTURE.md` dosyasını esas alın.

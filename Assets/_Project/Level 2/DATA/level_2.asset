@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9161bf1027ff61439a7793cfc71ac08, type: 3}
   m_Name: Level 2
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.LevelData
-  levelID: lvl1
+  levelID: level-2
   levelName: Level 2
   levelDescription: 
   sequenceSelectionInstructionText: "Bir sekans se\xE7in"

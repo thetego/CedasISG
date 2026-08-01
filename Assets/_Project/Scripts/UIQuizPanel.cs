@@ -56,6 +56,7 @@ namespace SafetyTraining
 
 		// ─── Runtime ───
 		private string _actionID;
+		private string _questionID;
 		private int    _correctIndex;
 		private bool   _answered;
 		private string _correctFeedback;
@@ -90,6 +91,9 @@ namespace SafetyTraining
 			}
 
 			_actionID        = actionID;
+			_questionID      = string.IsNullOrWhiteSpace(quizData.questionID)
+				? $"{actionID}:q1"
+				: quizData.questionID.Trim();
 			_correctIndex    = quizData.correctOptionIndex;
 			_correctFeedback = quizData.correctFeedbackText;
 			_wrongFeedback   = quizData.wrongFeedbackText;
@@ -170,7 +174,7 @@ namespace SafetyTraining
 
 			PlayFabDataManager.Instance?.LogQuizAnswered(
 				_actionID, levelId, sequenceId,
-				_actionID, answer, _correctAnswerText, isCorrect, _quizAttempts, timeSpent
+				_questionID, answer, _correctAnswerText, isCorrect, _quizAttempts, timeSpent
 			);
 
 			if (!isCorrect)

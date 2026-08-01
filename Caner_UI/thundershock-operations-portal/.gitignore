@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+node_modules/
+dist/
+.data/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.enc
+*.ndjson
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+.session-secret
+coverage/
+*.log

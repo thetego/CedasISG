@@ -25,6 +25,13 @@ namespace SafetyTraining
 		GameOver    // Kritik hata, oyun biter
 	}
 
+	public enum TelemetrySeverity
+	{
+		Info = 1,
+		Warning = 2,
+		Critical = 3
+	}
+
 	public enum CameraMode
 	{
 		Keep,           // Mevcut kamerayı koru
@@ -246,6 +253,9 @@ namespace SafetyTraining
 	[System.Serializable]
 	public class QuizActionData
 	{
+		[Tooltip("Analitikte soruyu benzersiz tanımlar. Boşsa <actionID>:q1 üretilir.")]
+		public string questionID;
+
 		[Tooltip("Soru metni")]
 		[TextArea(2, 5)]
 		public string questionText;
