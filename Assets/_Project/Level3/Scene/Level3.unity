@@ -6895,6 +6895,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 9065403780427669356, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9102722382218507347, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -22970,7 +22974,7 @@ Transform:
   m_GameObject: {fileID: 1366508579}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.9547867, z: 0, w: 0.2972916}
-  m_LocalPosition: {x: 19.764, y: 1.46, z: -51.699}
+  m_LocalPosition: {x: 19.781, y: 1.46, z: -51.723}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29075,7 +29079,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -505}
+  m_AnchoredPosition: {x: 1059.8114, y: -454.1437}
   m_SizeDelta: {x: 826, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1707001579
