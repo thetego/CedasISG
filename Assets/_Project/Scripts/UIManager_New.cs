@@ -81,7 +81,7 @@ namespace SafetyTraining
 		/// <summary>
 		/// Level tamamlandı ekranını gösterir
 		/// </summary>
-		public void ShowLevelComplete(int score, float time, int mistakes)
+		public void ShowLevelComplete(string levelName, int score, float time, int mistakes)
 		{
 			if (levelCompletePanel == null)
 			{
@@ -89,18 +89,31 @@ namespace SafetyTraining
 				return;
 			}
 
-			levelCompletePanel.GetComponent<ModalWindowManager>().Open();
+			int minutes = Mathf.FloorToInt(time / 60f);
+			int seconds = Mathf.FloorToInt(time % 60f);
 
-			// Skorları göster
+			// Modal window'un kendi description alanına level istatistiklerini yaz.
+			// useCustomContent=true ise (ör. özel bir prefab kullanılıyorsa) dokunma —
+			// o durumda tasarımcı description alanını elle kontrol ediyor demektir.
+			ModalWindowManager modal = levelCompletePanel.GetComponent<ModalWindowManager>();
+			if (modal != null && !modal.useCustomContent)
+			{
+				modal.descriptionText =
+					$"{levelName} tamamlandı!\n" +
+					$"Süre: {minutes:00}:{seconds:00}\n" +
+					$"Hata sayısı: {mistakes}\n" +
+					$"Skor: {score}";
+				modal.UpdateUI();
+			}
+
+			modal?.Open();
+
+			// Skorları göster (ayrı text alanları varsa)
 			if (scoreText != null)
 				scoreText.text = $"Score: {score}";
 
 			if (timeText != null)
-			{
-				int minutes = Mathf.FloorToInt(time / 60f);
-				int seconds = Mathf.FloorToInt(time % 60f);
 				timeText.text = $"Time: {minutes:00}:{seconds:00}";
-			}
 
 			if (mistakesText != null)
 				mistakesText.text = $"Mistakes: {mistakes}";

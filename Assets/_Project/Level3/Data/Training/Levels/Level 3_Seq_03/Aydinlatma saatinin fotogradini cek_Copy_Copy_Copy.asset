@@ -52,6 +52,8 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  surveyPhotoCount: 0
+  surveyPhotoRequired: 0
   modalWindowPrefab: {fileID: 0}
   modalWindowTitle: 
   modalWindowDescription: 
@@ -59,7 +61,13 @@ MonoBehaviour:
   activatesTablet: 0
   deactivatesTablet: 1
   hideButtonAfterComplete: 0
-  animationTriggers: []
+  animationTriggers:
+  - animatorObjectID: AGPanel
+    triggerName: F
+    parameterType: 0
+    parameterValue: 0
+    timing: 1
+    autoResetTrigger: 0
   soundClip: {fileID: 0}
   particleEffectID: 
   particleSpawnOffset: {x: 0, y: 0, z: 0}

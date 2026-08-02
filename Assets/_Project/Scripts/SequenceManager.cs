@@ -855,7 +855,7 @@ namespace SafetyTraining
 			currentLevel.onLevelComplete?.Invoke();
 
 			// UI göster
-			UIManager.Instance?.ShowLevelComplete(_score, elapsed, _mistakes);
+			UIManager.Instance?.ShowLevelComplete(currentLevel.levelName, _score, elapsed, _mistakes);
 		}
 
 		// ═══════════════════════════════════════════════════════

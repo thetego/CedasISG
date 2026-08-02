@@ -72,6 +72,17 @@ namespace SafetyTraining
 		private float _currentPitch;
 		private float _currentYaw;
 
+		// Dokunuş takibi: pan/pinch modu arasında sıçramasız geçiş için
+		// her aktif dokunuşun bir önceki karedeki ekran konumu id bazlı tutulur.
+		private enum GestureMode { None, Pan, Pinch }
+		private GestureMode _gestureMode = GestureMode.None;
+		private float _prevPinchDistance = -1f;
+		private readonly Dictionary<int, Vector2> _touchPrevPositions = new Dictionary<int, Vector2>();
+		private readonly List<Touch> _validTouchesBuffer = new List<Touch>(4);
+
+		private Vector2 _lastMousePos;
+		private bool    _mouseDown;
+
 		// Aktif Cinemachine kamera ve kaydedilen durum
 		private CinemachineCamera          _activeVcam;
 		private Quaternion                 _savedRotation;
@@ -251,6 +262,13 @@ namespace SafetyTraining
 			_currentYaw   = 0f;
 			ApplyRotation();
 
+			// Dokunuş/mouse takibini de sıfırla — aksi halde slotlar arası geçişte
+			// önceki karenin konumu kullanılıp ilk hareket sıçrama yapabiliyordu.
+			_gestureMode = GestureMode.None;
+			_prevPinchDistance = -1f;
+			_touchPrevPositions.Clear();
+			_mouseDown = false;
+
 			if (_activeVcam != null)
 			{
 				var lens = _activeVcam.Lens;
@@ -266,59 +284,88 @@ namespace SafetyTraining
 		private void Update()
 		{
 			if (_activeSlotIndex < 0) return;
-			HandleTouchInput();
+
+			// Dokunmatik ve mouse girdisini aynı karede karıştırmamak için:
+			// aktif dokunuş varsa touch, yoksa mouse kontrolünü işle.
+			if (Touch.activeTouches.Count > 0)
+				HandleTouchInput();
+			else
+				HandleMouseInput();
+
 			UpdateAlignmentScore();
 		}
 
 		private void HandleTouchInput()
 		{
-			var activeTouches = Touch.activeTouches;
-			int touchCount    = activeTouches.Count;
+			List<Touch> validTouches = GetValidCameraTouches();
 
-			// Tek parmak → Pan
-			if (touchCount == 1)
+			if (validTouches.Count == 1)
 			{
-				Touch touch = activeTouches[0];
-				if (touch.phase == UnityEngine.InputSystem.TouchPhase.Moved)
-				{
-					if (!IsTouchOnCameraView(touch.screenPosition)) return;
+				// Tek parmak → Pan. Delta, id bazlı önceki konumdan hesaplanır —
+				// Touch.delta bazı cihazlarda karesel olarak güvenilmediği için kullanılmıyor.
+				Touch touch = validTouches[0];
+				if (_touchPrevPositions.TryGetValue(touch.touchId, out Vector2 prevPos))
+					ApplyPan(touch.screenPosition - prevPos);
 
-					Vector2 delta = touch.delta;
-					_currentPitch = Mathf.Clamp(_currentPitch + (-delta.y * panSensitivity * 100f), minPitch, maxPitch);
-					_currentYaw   = Mathf.Clamp(_currentYaw   + ( delta.x * panSensitivity * 100f), minYaw,   maxYaw);
-					ApplyRotation();
-				}
+				_touchPrevPositions[touch.touchId] = touch.screenPosition;
+				_gestureMode = GestureMode.Pan;
+				_prevPinchDistance = -1f;
 			}
-			// İki parmak → Pinch zoom
-			else if (touchCount == 2)
+			else if (validTouches.Count >= 2)
 			{
-				Touch t0 = activeTouches[0];
-				Touch t1 = activeTouches[1];
+				// İki parmak → Pinch zoom
+				Touch t0 = validTouches[0];
+				Touch t1 = validTouches[1];
+				float currMag = Vector2.Distance(t0.screenPosition, t1.screenPosition);
 
-				Vector2 prevT0 = t0.screenPosition - t0.delta;
-				Vector2 prevT1 = t1.screenPosition - t1.delta;
+				// Pinch'e yeni giriliyorsa (ya da referans yoksa) bu karede sadece
+				// referans mesafeyi kaydet — aksi halde ilk karede FOV sıçrama yapar.
+				if (_gestureMode != GestureMode.Pinch || _prevPinchDistance < 0f)
+					_prevPinchDistance = currMag;
 
-				float prevMag = (prevT0 - prevT1).magnitude;
-				float currMag = (t0.screenPosition - t1.screenPosition).magnitude;
-				float delta   = currMag - prevMag;
+				ApplyZoom(currMag - _prevPinchDistance);
+				_prevPinchDistance = currMag;
+				_gestureMode = GestureMode.Pinch;
 
-				if (_activeVcam != null)
-				{
-					var lens = _activeVcam.Lens;
-					lens.FieldOfView = Mathf.Clamp(lens.FieldOfView - delta * zoomSensitivity, minFOV, maxFOV);
-					_activeVcam.Lens = lens;
-				}
+				_touchPrevPositions[t0.touchId] = t0.screenPosition;
+				_touchPrevPositions[t1.touchId] = t1.screenPosition;
 			}
-
-			#if UNITY_EDITOR
-			HandleMouseInput();
-			#endif
+			else
+			{
+				_gestureMode = GestureMode.None;
+				_prevPinchDistance = -1f;
+				_touchPrevPositions.Clear();
+			}
 		}
 
-		#if UNITY_EDITOR
-		private Vector2 _lastMousePos;
-		private bool    _mouseDown;
+		/// <summary>
+		/// Kamera alanı (cameraViewRect) içindeki, hâlâ devam eden dokunuşları döndürür.
+		/// Bezelsiz ekranlarda kenara değen "hayalet" dokunuşlar ya da UI üzerindeki parmaklar
+		/// burada elenir — aksi halde pan denerken rastgele pinch moduna geçilip kaydırma
+		/// hiç çalışmıyormuş gibi görünüyordu.
+		/// </summary>
+		private List<Touch> GetValidCameraTouches()
+		{
+			_validTouchesBuffer.Clear();
+			foreach (var t in Touch.activeTouches)
+			{
+				if (t.phase == UnityEngine.InputSystem.TouchPhase.Ended ||
+				    t.phase == UnityEngine.InputSystem.TouchPhase.Canceled)
+					continue;
 
+				if (!IsTouchOnCameraView(t.screenPosition))
+					continue;
+
+				_validTouchesBuffer.Add(t);
+			}
+			return _validTouchesBuffer;
+		}
+
+		/// <summary>
+		/// Editör ve masaüstü derlemelerinde mouse ile pan/zoom.
+		/// Aktif dokunuş varken Update() bu metodu çağırmaz, bu yüzden dokunmatik
+		/// cihazlarda devreye girmez ve mobil pinch-zoom ile çakışmaz.
+		/// </summary>
 		private void HandleMouseInput()
 		{
 			var mouse = Mouse.current;
@@ -338,25 +385,33 @@ namespace SafetyTraining
 
 			if (_mouseDown && mouse.leftButton.isPressed)
 			{
-				Vector2 delta = mousePos - _lastMousePos;
-				_currentPitch = Mathf.Clamp(_currentPitch - delta.y * panSensitivity * 100f, minPitch, maxPitch);
-				_currentYaw   = Mathf.Clamp(_currentYaw   + delta.x * panSensitivity * 100f, minYaw,   maxYaw);
-				ApplyRotation();
+				ApplyPan(mousePos - _lastMousePos);
 				_lastMousePos = mousePos;
 			}
 
-			if (overView && _activeVcam != null)
+			if (overView)
 			{
 				float scroll = mouse.scroll.ReadValue().y;
 				if (scroll != 0f)
-				{
-					var lens = _activeVcam.Lens;
-					lens.FieldOfView = Mathf.Clamp(lens.FieldOfView - scroll * 0.05f * zoomSensitivity * 100f, minFOV, maxFOV);
-					_activeVcam.Lens = lens;
-				}
+					ApplyZoom(scroll * 5f);
 			}
 		}
-		#endif
+
+		private void ApplyPan(Vector2 screenDelta)
+		{
+			_currentPitch = Mathf.Clamp(_currentPitch - screenDelta.y * panSensitivity * 100f, minPitch, maxPitch);
+			_currentYaw   = Mathf.Clamp(_currentYaw   + screenDelta.x * panSensitivity * 100f, minYaw,   maxYaw);
+			ApplyRotation();
+		}
+
+		private void ApplyZoom(float pinchDeltaPixels)
+		{
+			if (_activeVcam == null) return;
+
+			var lens = _activeVcam.Lens;
+			lens.FieldOfView = Mathf.Clamp(lens.FieldOfView - pinchDeltaPixels * zoomSensitivity, minFOV, maxFOV);
+			_activeVcam.Lens = lens;
+		}
 
 		private void ApplyRotation()
 		{
