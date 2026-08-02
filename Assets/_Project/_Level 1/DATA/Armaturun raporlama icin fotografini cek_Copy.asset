@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: t ra fo 2_Act_09
+  m_Name: Armaturun raporlama icin fotografini cek_Copy
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: t ra fo 2_Act_09
-  actionName: t ra fo 2_Act_09
-  instructionText: 
-  actionType: 9
+  actionID: djsytrj
+  actionName: bfg
+  instructionText: "Armat\xFCr\xFCn foto\u011Fraf\u0131n\u0131 \xE7ekin."
+  actionType: 4
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
-  completionDelay: 1
-  autoCompleteAfterDelay: 1
-  cameraMode: 0
-  virtualCameraID: 
+  completionDelay: 0
+  autoCompleteAfterDelay: 0
+  cameraMode: 4
+  virtualCameraID: camMain
   autoReturnCameraOnComplete: 0
   targetObjectID: 
   requiredEquipments: []
@@ -58,7 +58,7 @@ MonoBehaviour:
   modalWindowDescription: 
   modalConfirmButtonText: Tamam
   activatesTablet: 0
-  deactivatesTablet: 0
+  deactivatesTablet: 1
   hideButtonAfterComplete: 0
   animationTriggers: []
   soundClip: {fileID: 0}
