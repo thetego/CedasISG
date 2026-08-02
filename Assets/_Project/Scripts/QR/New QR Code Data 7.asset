@@ -15,11 +15,6 @@ MonoBehaviour:
   qrCodeID: "\u015Eebeke / \u0130nvert\xF6r Enerji Se\xE7im Anahtar\u0131"
   title: "\u015Eebeke / \u0130nvert\xF6r Enerji Se\xE7im Anahtar\u0131"
   icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
-  message: "Bu anahtar, test arac\u0131n\u0131n enerji kayna\u011F\u0131n\u0131 se\xE7mek
-    i\xE7in kullan\u0131l\u0131r. Sistemin enerjisinin \u015Febekeden mi yoksa ara\xE7
-    \xFCzerindeki invert\xF6rden mi al\u0131naca\u011F\u0131n\u0131 belirler. Ara\xE7
-    ak\xFClerinin yeterli seviyede \u015Farjl\u0131 oldu\u011Fu durumlarda enerji
-    invert\xF6rden sa\u011Flanabilir. Ak\xFC seviyesi yetersiz oldu\u011Funda ise
-    ara\xE7 harici \u015Febeke beslemesine ba\u011Flanarak anahtar \u015Febeke konumuna
-    al\u0131n\u0131r. Bu sayede test ekipmanlar\u0131n\u0131n kesintisiz ve g\xFCvenli
-    \u015Fekilde \xE7al\u0131\u015Fmas\u0131 sa\u011Flan\u0131r."
+  message: "Bu anahtar, test sisteminin enerji kayna\u011F\u0131n\u0131 \u015Febeke
+    veya invert\xF6r aras\u0131nda se\xE7erek ekipmanlar\u0131n kesintisiz \xE7al\u0131\u015Fmas\u0131n\u0131
+    sa\u011Flar."

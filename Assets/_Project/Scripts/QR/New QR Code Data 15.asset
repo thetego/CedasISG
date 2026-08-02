@@ -15,11 +15,6 @@ MonoBehaviour:
   qrCodeID: "Acil Durdurma Butonu G\xF6stergesi"
   title: "Acil Durdurma Butonu G\xF6stergesi"
   icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
-  message: "Acil Durdurma Butonu G\xF6stergesi, test arac\u0131 \xFCzerindeki acil
-    durdurma butonunun durumunu izler. Acil durdurma butonu etkinle\u015Ftirildi\u011Finde
-    sistem g\xFCvenlik amac\u0131yla y\xFCksek gerilim \xFCretimini durdurur ve test
-    i\u015Flemlerinin ba\u015Flat\u0131lmas\u0131na veya devam etmesine izin vermez.
-    G\xF6sterge sayesinde operat\xF6r, acil durdurma devresinin aktif olup olmad\u0131\u011F\u0131n\u0131
-    kolayca kontrol edebilir. Teste ba\u015Flamadan \xF6nce acil durdurma butonunun
-    serbest b\u0131rak\u0131lm\u0131\u015F ve sistemin normal \xE7al\u0131\u015Fma
-    durumunda oldu\u011Funun do\u011Frulanmas\u0131 gerekir."
+  message: "Acil Durdurma Butonu G\xF6stergesi, acil durdurma butonunun durumunu
+    g\xF6sterir ve aktif oldu\u011Funda test sisteminin \xE7al\u0131\u015Fmas\u0131n\u0131
+    engeller."

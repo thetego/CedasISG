@@ -15,12 +15,6 @@ MonoBehaviour:
   qrCodeID: Topraklama Kablosu
   title: Topraklama Kablosu
   icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
-  message: "Bu topraklama kablosu, y\xFCksek gerilim testleri s\u0131ras\u0131nda
-    g\xFCvenli\u011Fi sa\u011Flamak amac\u0131yla kullan\u0131l\u0131r. Test sonras\u0131nda
-    kabloda kalabilecek art\u0131k elektrik y\xFCk\xFCn\xFC g\xFCvenli \u015Fekilde
-    topra\u011Fa aktararak kapasitif enerjinin bo\u015Falt\u0131lmas\u0131n\u0131
-    sa\u011Flar. B\xF6ylece hem test arac\u0131n\u0131n hem de saha personelinin
-    olas\u0131 elektriksel risklere kar\u015F\u0131 korunmas\u0131na yard\u0131mc\u0131
-    olur. \xD6zellikle VLF, PD ve benzeri y\xFCksek gerilim testlerinin ard\u0131ndan
-    g\xFCvenli \xE7al\u0131\u015Fma ko\u015Fullar\u0131n\u0131n olu\u015Fturulmas\u0131
-    i\xE7in kritik \xF6neme sahiptir."
+  message: "Y\xFCksek gerilim testleri sonras\u0131nda olu\u015Fabilecek art\u0131k
+    elektrik y\xFCk\xFCn\xFC g\xFCvenli \u015Fekilde topra\u011Fa aktararak ekipman
+    ve personel g\xFCvenli\u011Fini sa\u011Flar."

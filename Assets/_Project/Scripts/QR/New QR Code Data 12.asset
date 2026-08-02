@@ -15,10 +15,5 @@ MonoBehaviour:
   qrCodeID: "Acil Durdurma (Emergency Stop) G\xF6stergesi"
   title: "Acil Durdurma (Emergency Stop) G\xF6stergesi"
   icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
-  message: "Acil Durdurma G\xF6stergesi, acil durdurma (Emergency Stop) devresinin
-    durumunu g\xF6sterir. Acil durdurma butonunun etkin oldu\u011Fu durumlarda sistem
-    g\xFCvenlik amac\u0131yla y\xFCksek gerilim \xFCretimini durdurur ve test ekipman\u0131n\u0131n
-    \xE7al\u0131\u015Fmas\u0131na izin vermez. G\xF6sterge sayesinde operat\xF6r,
-    acil durdurma devresinin aktif veya pasif durumda oldu\u011Funu kolayca kontrol
-    edebilir. Teste ba\u015Flamadan \xF6nce bu g\xF6stergenin normal \xE7al\u0131\u015Fma
-    durumunda olmas\u0131 g\xFCvenli i\u015Fletim i\xE7in \xF6nemlidir."
+  message: "Acil Durdurma G\xF6stergesi, acil durdurma devresinin durumunu g\xF6sterir
+    ve aktif oldu\u011Funda sistemin \xE7al\u0131\u015Fmas\u0131n\u0131 engeller."

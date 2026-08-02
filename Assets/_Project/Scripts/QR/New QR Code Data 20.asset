@@ -15,11 +15,5 @@ MonoBehaviour:
   qrCodeID: Joystick Kontrol Kolu
   title: Joystick Kontrol Kolu
   icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
-  message: "Joystick Kontrol Kolu, ar\u0131za tespit mod\xFCl\xFCn\xFCn men\xFClerinde
-    gezinmek ve cihaz ayarlar\u0131n\u0131 kontrol etmek i\xE7in kullan\u0131lan
-    \xE7ok y\xF6nl\xFC bir kontrol eleman\u0131d\u0131r. Operat\xF6r, joysticki farkl\u0131
-    y\xF6nlere hareket ettirerek men\xFCler aras\u0131nda ge\xE7i\u015F yapabilir,
-    se\xE7enekleri de\u011Fi\u015Ftirebilir ve gerekli fonksiyonlar\u0131 se\xE7ebilir.
-    Cihaz\u0131n kullan\u0131c\u0131 aray\xFCz\xFC \xFCzerinde h\u0131zl\u0131 ve
-    pratik kontrol sa\u011Flayarak ar\u0131za tespit i\u015Flemlerinin daha verimli
-    \u015Fekilde y\xFCr\xFCt\xFClmesine yard\u0131mc\u0131 olur."
+  message: "Joystick Kontrol Kolu, cihaz men\xFClerinde gezinmeyi ve ayarlar\u0131n
+    h\u0131zl\u0131 \u015Fekilde kontrol edilmesini sa\u011Flar."

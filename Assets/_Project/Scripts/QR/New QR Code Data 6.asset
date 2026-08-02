@@ -15,11 +15,6 @@ MonoBehaviour:
   qrCodeID: "De\u015Farj \xC7ubu\u011Fu (Topraklama Ma\u015Fas\u0131)"
   title: "De\u015Farj \xC7ubu\u011Fu (Topraklama Ma\u015Fas\u0131)"
   icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
-  message: "De\u015Farj \xE7ubu\u011Fu, a\xE7\u0131k sistemlerde y\xFCksek gerilim
-    testleri tamamland\u0131ktan sonra kabloda veya ekipman \xFCzerinde kalabilecek
-    kapasitif elektrik y\xFCk\xFCn\xFC g\xFCvenli \u015Fekilde topra\u011Fa bo\u015Faltmak
-    i\xE7in kullan\u0131l\u0131r. Test sonras\u0131nda olu\u015Fabilecek art\u0131k
-    gerilimin kontroll\xFC olarak de\u015Farj edilmesini sa\u011Flayarak personelin
-    ve ekipmanlar\u0131n elektriksel risklere kar\u015F\u0131 korunmas\u0131na yard\u0131mc\u0131
-    olur. Y\xFCksek gerilimle \xE7al\u0131\u015F\u0131lan t\xFCm a\xE7\u0131k sistem
-    uygulamalar\u0131nda \xF6nemli bir g\xFCvenlik ekipman\u0131d\u0131r."
+  message: "De\u015Farj \xE7ubu\u011Fu, y\xFCksek gerilim testleri sonras\u0131nda
+    olu\u015Fan art\u0131k elektrik y\xFCk\xFCn\xFC g\xFCvenli \u015Fekilde topra\u011Fa
+    bo\u015Faltarak personel ve ekipman g\xFCvenli\u011Fini sa\u011Flar."

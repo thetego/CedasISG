@@ -16,9 +16,4 @@ MonoBehaviour:
   title: "\u0130kaz Lambas\u0131 (Durum G\xF6stergesi)"
   icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
   message: "\u0130kaz lambas\u0131, test arac\u0131n\u0131n \xE7al\u0131\u015Fma
-    ve g\xFCvenlik durumunu g\xF6rsel olarak g\xF6stermek amac\u0131yla kullan\u0131l\u0131r.
-    Farkl\u0131 renklerde yanan \u0131\u015F\u0131klar, sistemin enerjili olup olmad\u0131\u011F\u0131,
-    testin aktif durumda bulunup bulunmad\u0131\u011F\u0131 veya koruma devrelerinin
-    devrede olup olmad\u0131\u011F\u0131 hakk\u0131nda operat\xF6re anl\u0131k bilgi
-    verir. B\xF6ylece saha personeli, cihaz\u0131n \xE7al\u0131\u015Fma durumunu
-    uzaktan ve h\u0131zl\u0131 bir \u015Fekilde kontrol edebilir."
+    ve g\xFCvenlik durumunu renkli \u0131\u015F\u0131klarla g\xF6rsel olarak g\xF6sterir."

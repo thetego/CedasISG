@@ -15,11 +15,6 @@ MonoBehaviour:
   qrCodeID: "Yard\u0131mc\u0131 Topraklama Kablosu"
   title: "Yard\u0131mc\u0131 Topraklama Kablosu"
   icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
-  message: "Yard\u0131mc\u0131 topraklama kablosu, y\xFCksek gerilim testleri s\u0131ras\u0131nda
-    g\xFCvenli referans topraklamas\u0131 olu\u015Fturmak amac\u0131yla kullan\u0131l\u0131r.
-    Ara\xE7 ile ana topraklama sistemi aras\u0131nda ba\u011Flant\u0131 kurarak t\xFCm
-    topraklama noktalar\u0131n\u0131n ayn\u0131 elektriksel potansiyelde kalmas\u0131n\u0131
-    sa\u011Flar. Bu sayede gerilim farklar\u0131ndan kaynaklanabilecek riskler azalt\u0131l\u0131r
-    ve test \xF6ncesinde g\xFCvenli enerji kontrol\xFC yap\u0131lmas\u0131na yard\u0131mc\u0131
-    olur. Sistemin do\u011Fru ve g\xFCvenli \u015Fekilde \xE7al\u0131\u015Fabilmesi
-    i\xE7in \xF6nemli bir g\xFCvenlik bile\u015Fenidir."
+  message: "Y\xFCksek gerilim testlerinde ara\xE7 ile topraklama sistemi aras\u0131nda
+    g\xFCvenli ba\u011Flant\u0131 kurarak referans topraklamas\u0131 ve g\xFCvenli
+    \xE7al\u0131\u015Fma ko\u015Fullar\u0131 sa\u011Flar."

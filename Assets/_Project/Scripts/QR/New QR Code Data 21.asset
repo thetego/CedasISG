@@ -16,11 +16,5 @@ MonoBehaviour:
   title: "Haberle\u015Fme Aray\xFCz Mod\xFCl\xFC"
   icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
   message: "Haberle\u015Fme Aray\xFCz Mod\xFCl\xFC, test sistemi ile kontrol bilgisayar\u0131
-    aras\u0131nda veri ileti\u015Fimini sa\u011Flayan ara birimdir. Bilgisayardan
-    g\xF6nderilen komutlar bu mod\xFCl \xFCzerinden test ekipman\u0131na iletilirken,
-    cihazlardan al\u0131nan durum bilgileri ve \xF6l\xE7\xFCm verileri de ayn\u0131
-    hat \xFCzerinden bilgisayara aktar\u0131l\u0131r. Mod\xFCl \xFCzerindeki durum
-    g\xF6stergeleri ve ba\u011Flant\u0131lar, haberle\u015Fme durumunun izlenmesine
-    yard\u0131mc\u0131 olur. G\xFCvenilir veri ileti\u015Fimi sayesinde testler bilgisayar
-    \xFCzerinden kontrol edilebilir ve g\xFCvenlik durumlar\u0131 anl\u0131k olarak
-    takip edilebilir."
+    aras\u0131nda g\xFCvenilir veri ileti\u015Fimini sa\u011Flayarak komut ve \xF6l\xE7\xFCm
+    verilerinin aktar\u0131lmas\u0131n\u0131 sa\u011Flar."

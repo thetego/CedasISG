@@ -15,13 +15,6 @@ MonoBehaviour:
   qrCodeID: Kontrol ve Koruma Paneli
   title: Kontrol ve Koruma Paneli
   icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
-  message: "Kontrol ve Koruma Paneli, test arac\u0131n\u0131n \xE7al\u0131\u015Fma
-    durumu ve g\xFCvenlik ko\u015Fullar\u0131n\u0131 izlemek i\xE7in kullan\u0131l\u0131r.
-    Panel \xFCzerindeki g\xF6sterge lambalar\u0131; topraklama d\xF6ng\xFCs\xFC,
-    arka kap\u0131n\u0131n a\xE7\u0131k veya kapal\u0131 olmas\u0131, acil durdurma
-    (Emergency Stop) durumu ve di\u011Fer koruma fonksiyonlar\u0131n\u0131n anl\u0131k
-    durumunu g\xF6sterir. Sistem, g\xFCvenlik \u015Fartlar\u0131ndan herhangi biri
-    sa\u011Flanmad\u0131\u011F\u0131nda test ekipman\u0131n\u0131n enerjilendirilmesini
-    engelleyerek g\xFCvenli \xE7al\u0131\u015Fma ortam\u0131n\u0131n korunmas\u0131na
-    yard\u0131mc\u0131 olur. B\xF6ylece operat\xF6r, test \xF6ncesinde t\xFCm g\xFCvenlik
-    kontrollerini tek panel \xFCzerinden kolayca takip edebilir."
+  message: "Kontrol ve Koruma Paneli, g\xFCvenlik ko\u015Fullar\u0131n\u0131 izleyerek
+    test sisteminin yaln\u0131zca uygun \u015Fartlar sa\u011Fland\u0131\u011F\u0131nda
+    \xE7al\u0131\u015Fmas\u0131n\u0131 sa\u011Flar."

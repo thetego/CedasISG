@@ -15,11 +15,6 @@ MonoBehaviour:
   qrCodeID: "Toprak D\xF6ng\xFCs\xFC G\xF6stergesi"
   title: "Toprak D\xF6ng\xFCs\xFC G\xF6stergesi"
   icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
-  message: "Toprak D\xF6ng\xFCs\xFC G\xF6stergesi, test sistemi ile topraklama ba\u011Flant\u0131s\u0131n\u0131n
-    do\u011Fru ve kesintisiz oldu\u011Funu g\xF6steren g\xFCvenlik g\xF6stergesidir.
-    Sistem, topraklama d\xF6ng\xFCs\xFCn\xFC s\xFCrekli kontrol ederek g\xFCvenli
-    \xE7al\u0131\u015Fma ko\u015Fullar\u0131n\u0131n sa\u011Fland\u0131\u011F\u0131n\u0131
-    do\u011Frular. Topraklama ba\u011Flant\u0131s\u0131nda bir hata veya s\xFCreksizlik
-    tespit edilmesi durumunda test ekipman\u0131n\u0131n enerjilendirilmesine izin
-    verilmez. Bu g\xF6sterge, y\xFCksek gerilim testlerine ba\u015Flamadan \xF6nce
-    kontrol edilmesi gereken temel g\xFCvenlik g\xF6stergelerinden biridir."
+  message: "Toprak D\xF6ng\xFCs\xFC G\xF6stergesi, topraklama ba\u011Flant\u0131s\u0131n\u0131n
+    do\u011Fru oldu\u011Funu g\xF6sterir ve g\xFCvenli topraklama sa\u011Flanmad\u0131\u011F\u0131nda
+    sistemin enerjilenmesini engeller."

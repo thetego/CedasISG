@@ -23,6 +23,9 @@ namespace SafetyTraining
         public TextMeshProUGUI statusText;
         public GameObject      loadingIndicator;
 
+        [Tooltip("Giriş başarılı olduğunda çalışanın adının yazılacağı text (ör. ana menüdeki kullanıcı alanı)")]
+        public TextMeshProUGUI displayNameText;
+
         [Header("━━━ AYARLAR ━━━")]
         [Tooltip("PlayFab'ın izin verdiği minimum şifre uzunluğu")]
         public int minPasswordLength = 6;
@@ -117,6 +120,9 @@ namespace SafetyTraining
         {
             ShowLoading(false);
             SetStatus($"Hoşgeldin, {entry.displayName}!");
+
+            if (displayNameText != null)
+                displayNameText.text = entry.displayName;
 
             if (debugMode)
                 Debug.Log($"[UILoginPanel] ✓ {entry.displayName} ({entry.playerId}) giriş yaptı.");

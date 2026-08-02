@@ -15,11 +15,6 @@ MonoBehaviour:
   qrCodeID: "Haberle\u015Fme Kablosu"
   title: "Haberle\u015Fme Kablosu"
   icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
-  message: "Bu haberle\u015Fme kablosu, PD (K\u0131smi De\u015Farj) \xF6l\xE7\xFCm
-    sisteminde bilgisayar ile saha ekipmanlar\u0131 aras\u0131ndaki veri ileti\u015Fimini
-    sa\u011Flamak amac\u0131yla kullan\u0131l\u0131r. \xD6l\xE7\xFCm s\u0131ras\u0131nda
-    bilgisayardan al\u0131nan komutlar\u0131n PD kapasit\xF6r\xFCne iletilmesini
-    ve elde edilen \xF6l\xE7\xFCm verilerinin g\xFCvenilir \u015Fekilde aktar\u0131lmas\u0131n\u0131
-    sa\u011Flar. B\xF6ylece farkl\u0131 PD \xF6l\xE7\xFCm noktalar\u0131yla kesintisiz
-    haberle\u015Fme kurularak sistemin do\u011Fru ve verimli \xE7al\u0131\u015Fmas\u0131na
-    katk\u0131da bulunur."
+  message: "Bilgisayar ile PD \xF6l\xE7\xFCm ekipmanlar\u0131 aras\u0131nda g\xFCvenilir
+    veri ileti\u015Fimi sa\u011Flayarak komut ve \xF6l\xE7\xFCm verilerinin kesintisiz
+    aktar\u0131lmas\u0131n\u0131 sa\u011Flar."

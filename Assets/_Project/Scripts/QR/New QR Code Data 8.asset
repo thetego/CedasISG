@@ -15,10 +15,5 @@ MonoBehaviour:
   qrCodeID: "Ara\xE7 Enerji Anahtar\u0131"
   title: "Ara\xE7 Enerji Anahtar\u0131"
   icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
-  message: "Bu anahtar, test arac\u0131n\u0131n enerji sistemini devreye almak veya
-    devreden \xE7\u0131karmak i\xE7in kullan\u0131l\u0131r. Anahtar 0 konumundayken
-    sistem kapal\u0131d\u0131r, 1 konumuna getirildi\u011Finde ise arac\u0131n elektrik
-    sistemi aktif hale gelir ve test ekipmanlar\u0131 \xE7al\u0131\u015Fmaya haz\u0131r
-    duruma gelir. Test i\u015Flemlerine ba\u015Flamadan \xF6nce arac\u0131n g\xFCvenli
-    \u015Fekilde enerjilendirilmesi i\xE7in kullan\u0131lan temel kontrol anahtarlar\u0131ndan
-    biridir."
+  message: "Bu anahtar, test arac\u0131n\u0131n elektrik sistemini a\xE7\u0131p kapatarak
+    ekipmanlar\u0131n \xE7al\u0131\u015Fmaya haz\u0131r hale gelmesini sa\u011Flar."

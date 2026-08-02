@@ -16,13 +16,5 @@ MonoBehaviour:
   title: "Kalibrasyon Cihaz\u0131"
   icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
   message: "Kalibrasyon cihaz\u0131, VLF ve Tan Delta testleri \xF6ncesinde \xF6l\xE7\xFCm
-    sisteminin do\u011Fru \xE7al\u0131\u015Ft\u0131\u011F\u0131n\u0131 do\u011Frulamak
-    ve kabloya ait parametreleri belirlemek amac\u0131yla kullan\u0131l\u0131r. \xD6zellikle
-    kablonun uzunlu\u011Funun (metraj\u0131n\u0131n) \xF6l\xE7\xFClmesini sa\u011Flayarak
-    test cihaz\u0131n\u0131n \xF6l\xE7\xFCm ayarlar\u0131n\u0131n do\u011Fru \u015Fekilde
-    yap\u0131land\u0131r\u0131lmas\u0131na yard\u0131mc\u0131 olur. Ayr\u0131ca \xF6l\xE7\xFCm
-    s\u0131ras\u0131nda olu\u015Fabilecek sinyal zay\u0131flamalar\u0131 veya dalgalanmalar\u0131n
-    de\u011Ferlendirilmesine katk\u0131 sa\u011Flayarak test sonu\xE7lar\u0131n\u0131n
-    g\xFCvenilirli\u011Fini art\u0131r\u0131r. Do\u011Fru kalibrasyon, VLF ve Tan
-    Delta testlerinin hassas ve do\u011Fru \u015Fekilde ger\xE7ekle\u015Ftirilebilmesi
-    i\xE7in \xF6nemli bir ad\u0131md\u0131r."
+    sistemini do\u011Frulayarak kablo parametrelerinin do\u011Fru belirlenmesini
+    sa\u011Flar."

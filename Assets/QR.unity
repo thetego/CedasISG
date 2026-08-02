@@ -688,6 +688,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 542379dd18c12754f890cd3c62527a7a, type: 2}
   - {fileID: 11400000, guid: 2a93099715b5bf64cb870b69432e136b, type: 2}
   - {fileID: 11400000, guid: 569a178a91fc2784ea5301bb5846506b, type: 2}
+  - {fileID: 11400000, guid: 44193d6a104f2504db716ad450d266c7, type: 2}
+  - {fileID: 11400000, guid: 88e0fd49fbb96054c9d8a30b4abcfe63, type: 2}
   debugMode: 1
 --- !u!114 &961739756
 MonoBehaviour:

@@ -15,12 +15,6 @@ MonoBehaviour:
   qrCodeID: "Arka Kap\u0131 G\xFCvenlik G\xF6stergesi"
   title: "Arka Kap\u0131 G\xFCvenlik G\xF6stergesi"
   icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
-  message: "Arka Kap\u0131 G\xFCvenlik G\xF6stergesi, test arac\u0131n\u0131n arka
-    kap\u0131s\u0131n\u0131n g\xFCvenli \u015Fekilde kapal\u0131 olup olmad\u0131\u011F\u0131n\u0131
-    g\xF6sterir. Arka kap\u0131 a\xE7\u0131k oldu\u011Funda g\xFCvenlik kilidi devreye
-    girer ve y\xFCksek gerilim sisteminin enerjilendirilmesine izin verilmez. Kap\u0131n\u0131n
-    tamamen kapal\u0131 ve kilitli oldu\u011Fu do\u011Fruland\u0131ktan sonra test
-    sistemi \xE7al\u0131\u015Fmaya haz\u0131r hale gelir. Bu g\xF6sterge, personel
-    g\xFCvenli\u011Fini sa\u011Flamak ve y\xFCksek gerilim alt\u0131nda yanl\u0131\u015Fl\u0131kla
-    eri\u015Fimi \xF6nlemek amac\u0131yla kullan\u0131lan \xF6nemli g\xFCvenlik kontrollerinden
-    biridir."
+  message: "Arka Kap\u0131 G\xFCvenlik G\xF6stergesi, arka kap\u0131n\u0131n g\xFCvenli
+    \u015Fekilde kapal\u0131 oldu\u011Funu do\u011Frular ve a\xE7\u0131k oldu\u011Funda
+    sistemin enerjilenmesini engeller."

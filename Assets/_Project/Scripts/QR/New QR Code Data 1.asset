@@ -15,13 +15,6 @@ MonoBehaviour:
   qrCodeID: Faz (Enerji) Kablosu
   title: Faz (Enerji) Kablosu
   icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
-  message: "Bu faz kablosu, VLF (Very Low Frequency) ve PD (K\u0131smi De\u015Farj)
-    testleri s\u0131ras\u0131nda test geriliminin \xF6l\xE7\xFCm yap\u0131lacak kabloya
-    g\xFCvenli \u015Fekilde uygulanmas\u0131n\u0131 sa\u011Flar. Sistemin enerji
-    \xE7\u0131k\u0131\u015F\u0131 bu kablo \xFCzerinden iletilerek test ekipman\u0131
-    ile saha aras\u0131ndaki ana ba\u011Flant\u0131 olu\u015Fturulur. Ayn\u0131 ba\u011Flant\u0131
-    noktas\u0131 \xFCzerinden kapya kapasit\xF6r\xFC de sisteme entegre edilebilir.
-    Tan Delta testlerinde ise n\xF6tr\xFCn delta ba\u011Flant\u0131s\u0131na al\u0131nmas\u0131
-    gibi farkl\u0131 ba\u011Flant\u0131 senaryolar\u0131nda da kullan\u0131larak
-    \xE7e\u015Fitli y\xFCksek gerilim testlerinin g\xFCvenli ve do\u011Fru \u015Fekilde
-    ger\xE7ekle\u015Ftirilmesine olanak tan\u0131r."
+  message: "VLF, PD ve Tan Delta testlerinde test gerilimini \xF6l\xE7\xFCm yap\u0131lacak
+    kabloya g\xFCvenli \u015Fekilde ileterek test ekipman\u0131 ile saha aras\u0131ndaki
+    ana ba\u011Flant\u0131y\u0131 sa\u011Flar."

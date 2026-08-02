@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7262e9d93707a4e9f3d972ad34ef36, type: 3}
+  m_Name: New QR Code Data 24
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.QRCodeData
+  qrCodeID: "Kontrol Anahtar\u0131 (Anahtarl\u0131 G\xFCvenlik \u015Ealteri)"
+  title: "Kontrol Anahtar\u0131"
+  icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
+  message: "Kontrol Anahtar\u0131, test sistemini yetkili kullan\u0131c\u0131 taraf\u0131ndan
+    devreye al\u0131p devreden \xE7\u0131kararak g\xFCvenli kullan\u0131m sa\u011Flar."

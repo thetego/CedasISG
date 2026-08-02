@@ -15,11 +15,6 @@ MonoBehaviour:
   qrCodeID: "Kaplin Kapasit\xF6r\xFC (PD Kapasit\xF6r\xFC)"
   title: "Kaplin Kapasit\xF6r\xFC (PD Kapasit\xF6r\xFC)"
   icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
-  message: "PD kapasit\xF6r\xFC, K\u0131smi De\u015Farj (PD) testlerinde kullan\u0131lan
-    temel \xF6l\xE7\xFCm bile\u015Fenlerinden biridir. Test edilen kablodan gelen
-    k\u0131smi de\u015Farj sinyallerini g\xFCvenli \u015Fekilde \xF6l\xE7\xFCm sistemine
-    aktararak analiz edilmesini sa\u011Flar. Haberle\u015Fme kablosu ve \xF6l\xE7\xFCm
-    cihaz\u0131yla birlikte \xE7al\u0131\u015Farak PD verilerinin do\u011Fru \u015Fekilde
-    toplanmas\u0131na katk\u0131da bulunur. Kablo yal\u0131t\u0131m\u0131nda olu\u015Fabilecek
-    kusurlar\u0131n ve olas\u0131 ar\u0131zalar\u0131n erken tespit edilmesinde \xF6nemli
-    bir rol oynar."
+  message: "PD kapasit\xF6r\xFC, k\u0131smi de\u015Farj sinyallerini g\xFCvenli \u015Fekilde
+    \xF6l\xE7\xFCm sistemine aktararak kablo yal\u0131t\u0131m\u0131ndaki olas\u0131
+    kusurlar\u0131n tespit edilmesini sa\u011Flar."

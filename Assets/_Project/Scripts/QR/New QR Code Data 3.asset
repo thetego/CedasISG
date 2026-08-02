@@ -15,12 +15,6 @@ MonoBehaviour:
   qrCodeID: 220 V Besleme Kablosu
   title: 220 V Besleme Kablosu
   icon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
-  message: "Bu 220 V besleme kablosu, test arac\u0131n\u0131n \u015Febeke elektri\u011Fine
-    ba\u011Flanmas\u0131n\u0131 sa\u011Flayarak sistemin enerji ihtiyac\u0131n\u0131
-    kar\u015F\u0131lamak i\xE7in kullan\u0131l\u0131r. \xD6zellikle ara\xE7 \xFCzerindeki
-    ak\xFClerin \u015Farj edilmesi ve test ekipmanlar\u0131n\u0131n harici enerji
-    kayna\u011F\u0131yla \xE7al\u0131\u015Ft\u0131r\u0131lmas\u0131 amac\u0131yla
-    kullan\u0131l\u0131r. Ara\xE7 ak\xFCs\xFCn\xFCn yetersiz kald\u0131\u011F\u0131
-    durumlarda, sistemin kesintisiz \xE7al\u0131\u015Fmas\u0131n\u0131 sa\u011Flayarak
-    test i\u015Flemlerinin g\xFCvenli ve verimli \u015Fekilde devam etmesine olanak
-    tan\u0131r."
+  message: "Test arac\u0131n\u0131 \u015Febeke elektri\u011Fine ba\u011Flayarak ak\xFClerin
+    \u015Farj edilmesini ve test ekipmanlar\u0131n\u0131n kesintisiz enerjiyle \xE7al\u0131\u015Fmas\u0131n\u0131
+    sa\u011Flar."

@@ -173,7 +173,7 @@ namespace SafetyTraining
 			SetSequenceSelectionInstruction();
 
 			if (levelText)
-				levelText.text = $"Level {GetLevelNumber()}/{Mathf.Max(1, totalLevelCount)}";
+				levelText.text = currentLevel != null ? currentLevel.levelName : string.Empty;
 
 			if (tmptext)
 				tmptext.text = "00:00";
@@ -1038,30 +1038,7 @@ namespace SafetyTraining
 				return;
 
 			if (levelText)
-				levelText.text = $"Level {GetLevelNumber()}/{Mathf.Max(1, totalLevelCount)}";
-		}
-
-		private int GetLevelNumber()
-		{
-			string levelText = currentLevel != null
-				? $"{currentLevel.levelName} {currentLevel.levelID}"
-				: string.Empty;
-
-			int number = 0;
-			for (int i = 0; i < levelText.Length; i++)
-			{
-				if (!char.IsDigit(levelText[i]))
-					continue;
-
-				while (i < levelText.Length && char.IsDigit(levelText[i]))
-				{
-					number = number * 10 + (levelText[i] - '0');
-					i++;
-				}
-				break;
-			}
-
-			return Mathf.Max(1, number);
+				levelText.text = currentLevel != null ? currentLevel.levelName : string.Empty;
 		}
 
 		private void EnsureFadeOverlay()
