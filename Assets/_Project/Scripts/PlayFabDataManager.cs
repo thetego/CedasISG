@@ -275,14 +275,26 @@ namespace SafetyTraining
         // OYUNCU GİRİŞİ
         // ═══════════════════════════════════════════════════════
 
+        /// <summary>
+        /// ID + şifre ile giriş yapar. Bu ID için daha önce hiç şifre belirlenmemişse
+        /// (PlayFab hesabı henüz yoksa) girilen şifre o ID'nin şifresi olarak kaydedilir —
+        /// bir sonraki girişte aynı şifre doğrulanarak kullanılır.
+        /// </summary>
         public void LoginWithPlayer(
             PlayerEntry    entry,
+            string         password,
             Action         onSuccess = null,
             Action<string> onFailed  = null)
         {
             if (entry == null)
             {
                 onFailed?.Invoke("Geçersiz oyuncu.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(password))
+            {
+                onFailed?.Invoke("Şifre boş olamaz.");
                 return;
             }
 
@@ -297,29 +309,72 @@ namespace SafetyTraining
             _onLoginFailed     = onFailed;
 
             if (debugMode)
-                Debug.Log($"[PlayFabDataManager] Giriş: {entry.displayName} ({entry.playerId})");
+                Debug.Log($"[PlayFabDataManager] Giriş deneniyor: {entry.displayName} ({entry.playerId})");
 
-            PlayFabClientAPI.LoginWithCustomID(
-                new LoginWithCustomIDRequest
+            PlayFabClientAPI.LoginWithPlayFab(
+                new LoginWithPlayFabRequest
                 {
-                    CustomId      = entry.playerId,
-                    CreateAccount = true
+                    Username = entry.playerId,
+                    Password = password
                 },
                 OnLoginSuccess,
+                error => HandleLoginError(entry, password, error)
+            );
+        }
+
+        /// <summary>
+        /// Şifreli girişte hata alınırsa çağrılır. Hata "hesap yok" ise (bu ID ilk kez
+        /// şifre belirliyor demektir) girilen şifreyle yeni hesap oluşturulur — bundan
+        /// sonraki girişlerde aynı şifre zorunlu olur. Başka bir hata ise (yanlış şifre vb.)
+        /// olduğu gibi bildirilir.
+        /// </summary>
+        private void HandleLoginError(PlayerEntry entry, string password, PlayFabError error)
+        {
+            if (error.Error != PlayFabErrorCode.AccountNotFound)
+            {
+                OnLoginError(error);
+                return;
+            }
+
+            if (debugMode)
+                Debug.Log($"[PlayFabDataManager] '{entry.playerId}' için hesap yok — ilk giriş, şifre kaydediliyor.");
+
+            PlayFabClientAPI.RegisterPlayFabUser(
+                new RegisterPlayFabUserRequest
+                {
+                    Username = entry.playerId,
+                    Password = password,
+                    DisplayName = entry.displayName,
+                    RequireBothUsernameAndEmail = false
+                },
+                OnRegisterSuccess,
                 OnLoginError
             );
         }
 
         private void OnLoginSuccess(LoginResult result)
         {
-            _isLoggedIn = true;
-            _playFabId  = result.PlayFabId;
+            FinalizeLogin(result.PlayFabId, result.NewlyCreated);
+        }
 
-            if (result.NewlyCreated || string.IsNullOrEmpty(CurrentPlayerCreatedAt))
+        private void OnRegisterSuccess(RegisterPlayFabUserResult result)
+        {
+            if (debugMode)
+                Debug.Log($"<color=lime>[PlayFabDataManager] ✓ '{CurrentPlayerId}' için şifre ilk kez oluşturuldu.</color>");
+
+            FinalizeLogin(result.PlayFabId, newlyCreated: true);
+        }
+
+        private void FinalizeLogin(string playFabId, bool newlyCreated)
+        {
+            _isLoggedIn = true;
+            _playFabId  = playFabId;
+
+            if (newlyCreated || string.IsNullOrEmpty(CurrentPlayerCreatedAt))
                 CurrentPlayerCreatedAt = CurrentPlayerLastLogin;
 
             if (debugMode)
-                Debug.Log($"<color=lime>[PlayFabDataManager] Giriş başarılı: {CurrentDisplayName} → {_playFabId}</color>");
+                Debug.Log($"<color=lime>[PlayFabDataManager] Giriş başarılı: {CurrentDisplayName} → {playFabId}</color>");
 
             TryFlushQueue();
             _onLoginSuccess?.Invoke();
@@ -329,11 +384,23 @@ namespace SafetyTraining
 
         private void OnLoginError(PlayFabError error)
         {
-            string msg = error.GenerateErrorReport();
-            Debug.LogError($"[PlayFabDataManager] Giriş hatası: {msg}");
-            _onLoginFailed?.Invoke(msg);
+            Debug.LogError($"[PlayFabDataManager] Giriş hatası: {error.GenerateErrorReport()}");
+            _onLoginFailed?.Invoke(MapLoginError(error));
             _onLoginSuccess = null;
             _onLoginFailed  = null;
+        }
+
+        private static string MapLoginError(PlayFabError error)
+        {
+            switch (error.Error)
+            {
+                case PlayFabErrorCode.InvalidUsernameOrPassword:
+                    return "Şifre hatalı.";
+                case PlayFabErrorCode.UsernameNotAvailable:
+                    return "Bu ID için hesap oluşturulamadı, lütfen sistem yöneticinizle iletişime geçin.";
+                default:
+                    return "Giriş başarısız, lütfen tekrar deneyin.";
+            }
         }
 
         // ═══════════════════════════════════════════════════════

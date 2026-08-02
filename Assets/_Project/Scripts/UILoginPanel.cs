@@ -1,23 +1,31 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System;
 using System.Collections.Generic;
-using Michsky.MUIP;
 
 namespace SafetyTraining
 {
     /// <summary>
     /// Oyun açılışında PlayFab Title Data'dan çalışan whitelist'ini çeker.
-    /// Çalışan kendi ID'sini bir input field'a yazıp giriş yapar — tüm çalışan
+    /// Çalışan kendi ID'sini ve şifresini girip giriş yapar — tüm çalışan
     /// listesi ekrana hiç basılmaz, sadece girilen ID whitelist'te aranır.
+    /// Bir ID için ilk kez şifre giriliyorsa (PlayFab hesabı henüz yoksa) o şifre
+    /// kalıcı olarak kaydedilir; sonraki girişlerde aynı şifre doğrulanır
+    /// (bkz. PlayFabDataManager.LoginWithPlayer).
     /// </summary>
     public class UILoginPanel : MonoBehaviour
     {
         [Header("━━━ UI REFERANSLARI ━━━")]
         public TMP_InputField playerIdInput;
-        public ButtonManager   loginButton;
+        public TMP_InputField passwordInput;
+        public Button         loginButton;
         public TextMeshProUGUI statusText;
         public GameObject      loadingIndicator;
+
+        [Header("━━━ AYARLAR ━━━")]
+        [Tooltip("PlayFab'ın izin verdiği minimum şifre uzunluğu")]
+        public int minPasswordLength = 6;
 
         [Header("━━━ DEBUG ━━━")]
         public bool debugMode = true;
@@ -26,6 +34,10 @@ namespace SafetyTraining
 
         private void Start()
         {
+            // Şifre alanı yanlışlıkla düz metin olarak bırakılmışsa bile ekranda gizli kalsın.
+            if (passwordInput != null)
+                passwordInput.contentType = TMP_InputField.ContentType.Password;
+
             SetInteractable(false);
             SetStatus("Çalışan listesi yükleniyor...");
             ShowLoading(true);
@@ -47,6 +59,9 @@ namespace SafetyTraining
 
             if (playerIdInput)
                 playerIdInput.onSubmit.AddListener(_ => OnLoginClicked());
+
+            if (passwordInput)
+                passwordInput.onSubmit.AddListener(_ => OnLoginClicked());
         }
 
         private void OnFetchFailed(string error)
@@ -72,7 +87,9 @@ namespace SafetyTraining
 
         private void OnLoginClicked()
         {
-            string enteredId = playerIdInput != null ? playerIdInput.text : string.Empty;
+            string enteredId       = playerIdInput != null ? playerIdInput.text : string.Empty;
+            string enteredPassword = passwordInput  != null ? passwordInput.text  : string.Empty;
+
             PlayFabDataManager.PlayerEntry entry = FindEntry(enteredId);
 
             if (entry == null)
@@ -81,11 +98,17 @@ namespace SafetyTraining
                 return;
             }
 
+            if (string.IsNullOrEmpty(enteredPassword) || enteredPassword.Length < minPasswordLength)
+            {
+                SetStatus($"Şifre en az {minPasswordLength} karakter olmalı.", isError: true);
+                return;
+            }
+
             SetInteractable(false);
             ShowLoading(true);
             SetStatus("Giriş yapılıyor...");
 
-            PlayFabDataManager.Instance?.LoginWithPlayer(entry,
+            PlayFabDataManager.Instance?.LoginWithPlayer(entry, enteredPassword,
                 () => OnLoginSuccess(entry),
                 OnLoginFailed);
         }
@@ -115,8 +138,9 @@ namespace SafetyTraining
 
         private void SetInteractable(bool state)
         {
-            if (loginButton)     loginButton.Interactable(state);
+            if (loginButton)     loginButton.interactable    = state;
             if (playerIdInput)   playerIdInput.interactable  = state;
+            if (passwordInput)   passwordInput.interactable  = state;
         }
 
         private void ShowLoading(bool state)
