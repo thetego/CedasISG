@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Megger
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.EquipmentData
   equipmentID: MeggerT
-  equipmentName: MeggerT
+  equipmentName: "Megger Ask\u0131"
   dropID: body
   gameObjectID: MeggerDrop
   equipmentIcon: {fileID: 21300000, guid: 6323b18874d417940a280e959a489ec6, type: 3}

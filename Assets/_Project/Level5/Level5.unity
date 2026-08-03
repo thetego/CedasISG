@@ -10526,7 +10526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c951e3ff35c3c1643889a3d14fc53fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.UIManager
-  levelCompletePanel: {fileID: 2001394681}
+  levelCompletePanel: {fileID: 1074854278}
   gameOverPanel: {fileID: 0}
   pausePanel: {fileID: 0}
   scoreText: {fileID: 0}
@@ -12977,7 +12977,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 559692317940871169, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 67.76
+      value: 59.69
       objectReference: {fileID: 0}
     - target: {fileID: 559692317940871169, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
       propertyPath: m_SizeDelta.y
@@ -12985,7 +12985,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 559692317940871169, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 88.880005
+      value: 84.845
       objectReference: {fileID: 0}
     - target: {fileID: 559692317940871169, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -13065,7 +13065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1556976348517057959, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 222.24
+      value: 188.48
       objectReference: {fileID: 0}
     - target: {fileID: 1556976348517057959, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -13089,11 +13089,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1788289187968318455, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1059.8114
+      value: 960
       objectReference: {fileID: 0}
     - target: {fileID: 1788289187968318455, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -454.1437
+      value: -505
       objectReference: {fileID: 0}
     - target: {fileID: 1932512499015210927, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
       propertyPath: m_AnchorMax.y
@@ -13521,7 +13521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5770126842095277035, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 142.76001
+      value: 134.69
       objectReference: {fileID: 0}
     - target: {fileID: 5770126842095277035, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
       propertyPath: m_SizeDelta.y
@@ -13617,7 +13617,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6266564133536447717, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 156.12
+      value: 160.155
       objectReference: {fileID: 0}
     - target: {fileID: 6266564133536447717, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -13705,7 +13705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8286202405275439779, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 142.76001
+      value: 134.69
       objectReference: {fileID: 0}
     - target: {fileID: 8286202405275439779, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
       propertyPath: m_SizeDelta.y
@@ -13713,7 +13713,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8286202405275439779, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 71.380005
+      value: 67.345
       objectReference: {fileID: 0}
     - target: {fileID: 8286202405275439779, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -20501,6 +20501,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1064723469}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1074854278 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2706595108831149719, guid: b6e45ec49cd4d4246b7d8d6fe74b575a, type: 3}
+  m_PrefabInstance: {fileID: 636999255}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1081716042
 GameObject:
   m_ObjectHideFlags: 0
@@ -29672,7 +29677,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1059.8114, y: -454.1437}
+  m_AnchoredPosition: {x: 960, y: -505}
   m_SizeDelta: {x: 826, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1707001579
@@ -32301,7 +32306,6 @@ MonoBehaviour:
   currentLevel: {fileID: 11400000, guid: 32e1762c734a5d54db052f723412eaed, type: 2}
   instructionText: {fileID: 636999257}
   levelText: {fileID: 636999260}
-  levelNameText: {fileID: 0}
   tmptext: {fileID: 636999259}
   totalLevelCount: 15
   gameOverPanel: {fileID: 1795533605}

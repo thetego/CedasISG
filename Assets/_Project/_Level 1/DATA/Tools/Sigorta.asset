@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sigorta
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ToolData
   toolID: Sigorta
-  toolName: 
+  toolName: Sigorta
   toolIcon: {fileID: 21300000, guid: 51785d5bdade62e4fa432eebb9a67790, type: 3}
   dropTargetObjectID: 
   gameObjectID: 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hurmuz
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ToolData
   toolID: "KlemensS\u0131kmaYe\u015Fil"
-  toolName: "KlemensS\u0131kmaYe\u015Fil"
+  toolName: "Pabu\xE7 S\u0131kma Pensesi"
   toolIcon: {fileID: 21300000, guid: d7b96d85ff337c1409ab32353f2fcafb, type: 3}
   dropTargetObjectID: 
   gameObjectID: 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "MeggerK\u0131ska\xE7"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ToolData
   toolID: "MeggerK\u0131ska\xE7"
-  toolName: "MeggerK\u0131ska\xE7"
+  toolName: "K\u0131ska\xE7"
   toolIcon: {fileID: 21300000, guid: ad970a44055854d499d8697982340d68, type: 3}
   dropTargetObjectID: 
   gameObjectID: 

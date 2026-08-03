@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KD
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ToolData
   toolID: KD
-  toolName: 
+  toolName: "K\u0131smi De\u015Farj"
   toolIcon: {fileID: 21300000, guid: 380fd17d25d5bbb46ba8331d7802fcc1, type: 3}
   dropTargetObjectID: 
   gameObjectID: 

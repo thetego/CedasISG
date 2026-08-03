@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MaskC
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.EquipmentData
   equipmentID: CleanMask
-  equipmentName: CleanMask
+  equipmentName: "T\u0131bbi Maske"
   dropID: head
   gameObjectID: CleanMask
   equipmentIcon: {fileID: 21300000, guid: 3dd0a3764751efb419f560818ebc6488, type: 3}

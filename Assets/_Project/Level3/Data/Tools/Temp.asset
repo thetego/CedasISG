@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Temp
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ToolData
   toolID: Temp
-  toolName: 
+  toolName: Termal Kamera
   toolIcon: {fileID: 21300000, guid: 602e0e9cf52558741a5da7bc7c8567e3, type: 3}
   dropTargetObjectID: 
   gameObjectID: 

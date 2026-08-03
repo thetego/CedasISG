@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Matkap
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ToolData
   toolID: Matkap
-  toolName: 
+  toolName: Matkap
   toolIcon: {fileID: 21300000, guid: c5e03f34ebab5a745a112054eb6496f3, type: 3}
   dropTargetObjectID: 
   gameObjectID: 

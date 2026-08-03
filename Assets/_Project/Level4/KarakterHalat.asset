@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KarakterHalat
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.EquipmentData
   equipmentID: KarakterHalat
-  equipmentName: 
+  equipmentName: "G\xFCvenlik Giysisi"
   dropID: body
   gameObjectID: characterHalat
   equipmentIcon: {fileID: 21300000, guid: 71d25505094ac3f4f83e7c246aaf4d89, type: 3}

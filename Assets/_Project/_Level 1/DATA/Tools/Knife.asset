@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Knife
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ToolData
   toolID: Knife
-  toolName: 
+  toolName: "Fal\xE7ata"
   toolIcon: {fileID: 21300000, guid: d5bfde7908b50084e9d59c38729e3e93, type: 3}
   dropTargetObjectID: 
   gameObjectID: 

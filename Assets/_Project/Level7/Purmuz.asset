@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Purmuz
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ToolData
   toolID: Purmuz
-  toolName: Purmuz
+  toolName: "P\xFCrm\xFCz"
   toolIcon: {fileID: 21300000, guid: adb00b7ad2394a54d9fdee98d15d0506, type: 3}
   dropTargetObjectID: 
   gameObjectID: 

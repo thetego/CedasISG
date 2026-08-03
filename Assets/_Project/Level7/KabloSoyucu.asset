@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KabloSoyucu
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ToolData
   toolID: KabloSoyucu
-  toolName: KabloSoyucu
+  toolName: Kablo Soyucu
   toolIcon: {fileID: 21300000, guid: 5530548bbf7ca4947ba923b6ee14f7ef, type: 3}
   dropTargetObjectID: 
   gameObjectID: 

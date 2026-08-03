@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Klemens
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ToolData
   toolID: Klemens
-  toolName: 
+  toolName: Klemens
   toolIcon: {fileID: 21300000, guid: 132e677d904179349ab30b28100bf129, type: 3}
   dropTargetObjectID: 
   gameObjectID: 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "KlemensS\u0131kmaMavi"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ToolData
   toolID: "KlemensS\u0131kmaMavi"
-  toolName: "KlemensS\u0131kmaMavi"
+  toolName: "S\u0131kma Pensesi"
   toolIcon: {fileID: 21300000, guid: 3510751129a51534b8dbe5d2f319edef, type: 3}
   dropTargetObjectID: 
   gameObjectID: 

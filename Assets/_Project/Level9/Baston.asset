@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Baston
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ToolData
   toolID: Baston
-  toolName: Baston
+  toolName: "Zemin Ak\u0131m Kontrol"
   toolIcon: {fileID: 21300000, guid: e2eacda7a6f06b545868861c95d4d8cd, type: 3}
   dropTargetObjectID: 
   gameObjectID: 

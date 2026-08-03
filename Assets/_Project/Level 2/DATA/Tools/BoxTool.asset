@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BoxTool
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ToolData
   toolID: BoxTool
-  toolName: BoxTool
+  toolName: Stanka
   toolIcon: {fileID: 21300000, guid: 409acfb39ab622845a23e5bf86ad4423, type: 3}
   dropTargetObjectID: 
   gameObjectID: 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KabloKesici
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ToolData
   toolID: KabloKesici
-  toolName: KabloKesici
+  toolName: Kablo Kesici
   toolIcon: {fileID: 21300000, guid: b3c62ff1addc9794ebdd771403f29abc, type: 3}
   dropTargetObjectID: 
   gameObjectID: 

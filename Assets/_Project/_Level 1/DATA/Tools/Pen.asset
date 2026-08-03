@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pen
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ToolData
   toolID: Pen
-  toolName: 
+  toolName: Kontrol Kalemi
   toolIcon: {fileID: 21300000, guid: b9241bc0f2e645b4490fdb719fb115d3, type: 3}
   dropTargetObjectID: 
   gameObjectID: 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sweeper
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ToolData
   toolID: Sweeper
-  toolName: Sweeper
+  toolName: "S\xFCp\xFCrge"
   toolIcon: {fileID: 21300000, guid: b3032dbdbe270894d9cbccb01e2a7e33, type: 3}
   dropTargetObjectID: 
   gameObjectID: 

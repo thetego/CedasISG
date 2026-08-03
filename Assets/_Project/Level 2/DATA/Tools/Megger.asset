@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Megger
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ToolData
   toolID: Megger
-  toolName: 
+  toolName: Megger
   toolIcon: {fileID: 21300000, guid: 30417d545d4a0da45867f1fe7c6b7178, type: 3}
   dropTargetObjectID: 
   gameObjectID: 

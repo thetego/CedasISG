@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Yag
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ToolData
   toolID: Yag
-  toolName: Yag
+  toolName: "Yagdanl\u0131k"
   toolIcon: {fileID: 21300000, guid: 606d2160ff54a214eb1533c0ec59ba40, type: 3}
   dropTargetObjectID: 
   gameObjectID: 

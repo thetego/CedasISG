@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Neon
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ToolData
   toolID: Neon
-  toolName: 
+  toolName: "Ak\u0131m Kontrol Cihaz\u0131"
   toolIcon: {fileID: 21300000, guid: 0f723966ff8c81046b0150bc12d6ef40, type: 3}
   dropTargetObjectID: 
   gameObjectID: 
