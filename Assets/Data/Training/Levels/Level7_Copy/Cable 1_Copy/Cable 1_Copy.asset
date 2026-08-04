@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae7c937195070f4b9c4dbc73072e37b, type: 3}
+  m_Name: Cable 1_Copy
+  m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.SequenceData
+  sequenceID: Cable 1_Copy
+  sequenceName: Cable 1_Copy
+  sequenceDescription: 
+  instructionText: "Hasar g\xF6ren kabloya gidin"
+  actions:
+  - {fileID: 11400000, guid: a772bde08659cc641b84e84199d4cc0c, type: 2}
+  - {fileID: 11400000, guid: 41a5c6ba8f004f34aa6bc5292ac1af8e, type: 2}
+  - {fileID: 11400000, guid: 7cff665f04f0a79479c2be7983d402e6, type: 2}
+  - {fileID: 11400000, guid: fe7cb3ea395169744bea58229e097ef9, type: 2}
+  - {fileID: 11400000, guid: c5d3288d8faebc4489d38e8e0275ea30, type: 2}
+  - {fileID: 11400000, guid: f8ea37b817ae7c94da9ab93f3c5f1655, type: 2}
+  - {fileID: 11400000, guid: a96ce4f228e8e71409bc9fa4dae5975d, type: 2}
+  - {fileID: 11400000, guid: 0a44552fad8796847b000138d725ac51, type: 2}
+  - {fileID: 11400000, guid: 66294fefe026eeb4196052c7bffc0c7c, type: 2}
+  - {fileID: 11400000, guid: 93af8e49168110b4baf9b37e14fce72c, type: 2}
+  - {fileID: 11400000, guid: e200b16950f4d5b47955dfa260c6dfbc, type: 2}
+  - {fileID: 11400000, guid: 528c447ee5d167944841eeb6987e31b8, type: 2}
+  - {fileID: 11400000, guid: d8f12f6ad849ea04c9f334b3cb6428c6, type: 2}
+  - {fileID: 11400000, guid: 4c38dc7eec721924d885709474a16f7e, type: 2}
+  - {fileID: 11400000, guid: 5edf4a570c788f341b337aaa30aca615, type: 2}
+  - {fileID: 11400000, guid: 1c8889219d8b79640b59af0eef9beda8, type: 2}
+  - {fileID: 11400000, guid: 8c53b9d13876d2b4cb8320a8b8694370, type: 2}
+  - {fileID: 11400000, guid: dca9f7a7e9c13e842a163844bb74448b, type: 2}
+  - {fileID: 11400000, guid: 2aa73652f92758040b2b48357291c600, type: 2}
+  - {fileID: 11400000, guid: af1d767ed9f2ada4db2ea438631099e4, type: 2}
+  - {fileID: 11400000, guid: bb314e4390f5a1a48ab65c64a010871e, type: 2}
+  - {fileID: 11400000, guid: 20ca19db15e0eae4a868b0ad338b4dd3, type: 2}
+  - {fileID: 11400000, guid: 97359c454a5ba454a85a61e2dde2fd8f, type: 2}
+  - {fileID: 11400000, guid: 92f005477ad898142bcea52a2013d38a, type: 2}
+  - {fileID: 11400000, guid: 1141b59a5b74a6945bba96212c644330, type: 2}
+  - {fileID: 11400000, guid: 0ea17036fca58164bbc7de44bfedc82c, type: 2}
+  - {fileID: 11400000, guid: e633f6a79b6a11c479f7edced2bf1897, type: 2}
+  - {fileID: 11400000, guid: 6831f3846cb0cd74cb277bf883999808, type: 2}
+  - {fileID: 11400000, guid: c673979082936e44d82f6b8eae71fbf9, type: 2}
+  - {fileID: 11400000, guid: b870accd1e9c4f7458c0c4b7511af35f, type: 2}
+  - {fileID: 11400000, guid: ae3dd6d9d2bf3da48a4b89ee0892d71b, type: 2}
+  - {fileID: 11400000, guid: bc3aa352720526240bff9553ba46599f, type: 2}
+  - {fileID: 11400000, guid: 1e2b08b23c0b64d42839c960222eb36d, type: 2}
+  - {fileID: 11400000, guid: dab462368d63d3c48b5c3d38853468a9, type: 2}
+  - {fileID: 11400000, guid: c30b784cf78bd2643a061b0e9b1d6ab2, type: 2}
+  - {fileID: 11400000, guid: 5be6661e1e06e924f92b4f311598402b, type: 2}
+  - {fileID: 11400000, guid: 68525a1bc7c0fe741a20ca2cb626c966, type: 2}
+  - {fileID: 11400000, guid: 409aa95f1e937634c95361df7cda7dab, type: 2}
+  - {fileID: 11400000, guid: 72c83a11683f53f43b245001527174f8, type: 2}
+  - {fileID: 11400000, guid: 3b11186cd7dcdc341a687dfaa8d45c82, type: 2}
+  - {fileID: 11400000, guid: 3b97d63f742d4944f9531c44f3cbb801, type: 2}
+  - {fileID: 11400000, guid: b1b84e45b8c4cbc41afd330f479004b9, type: 2}
+  - {fileID: 11400000, guid: 20660b80127dbd24a815dbf86849724e, type: 2}
+  - {fileID: 11400000, guid: a3780a120eae88648a3d9f61c9471a3a, type: 2}
+  - {fileID: 11400000, guid: a6a91544d8da7ca47b29cdab0628f046, type: 2}
+  - {fileID: 11400000, guid: 65cc8f8ce3020834abea1e321ef666d2, type: 2}
+  - {fileID: 11400000, guid: 182a28d50cf811948aab1381975b46bf, type: 2}
+  - {fileID: 11400000, guid: fe92741e43e88f044b342f2c2df7963f, type: 2}
+  targetObjectID: cable1
+  buttonOffset: {x: 0, y: 0, z: 0}
+  entryCameraMode: 4
+  entryCameraID: camCharacter2
+  autoReturnOnComplete: 1
+  autoReturnOnExit: 1
+  resumeFromLastAction: 1
+  allowRestart: 0
+  hideButtonAfterComplete: 0
+  prerequisiteSequences:
+  - {fileID: 11400000, guid: f7c291a0b4e30ba4991ae6a45522a3cd, type: 2}
+  onPrerequisiteFail: 1
+  prerequisiteFailMessage: "Bu sekansa girmek i\xE7in \xF6nce di\u011Fer sekanslar\u0131
+    tamamlay\u0131n."
+  hasSurvey: 0
+  surveyPanelPrefab: {fileID: 0}
+  surveyData:
+    panelTitle: Kontrol Formu
+    completeButtonText: Tamamla
+    questions: []
+    photoSlotCount: 0
+    photoSlots: []
+  spawnButtonAtStart: 1
+  sequenceIcon: {fileID: 0}
+  buttonColor: {r: 0.2, g: 0.8, b: 0.2, a: 0.9}
+  completedColor: {r: 0.2, g: 0.6, b: 1, a: 0.9}
+  onSequenceEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onSequenceExit:
+    m_PersistentCalls:
+      m_Calls: []

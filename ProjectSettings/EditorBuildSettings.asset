@@ -50,6 +50,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/QR.unity
     guid: 64942c1b60859e14baafde7fd20a1bc6
+  - enabled: 1
+    path: Assets/_Project/Level7/Scene/Level7-2.unity
+    guid: b9da4b8785c6c244cac556b494b7b41f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

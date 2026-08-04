@@ -15,10 +15,13 @@ MonoBehaviour:
   sequenceID: Cable2
   sequenceName: Cable 2
   sequenceDescription: 
-  instructionText: 
+  instructionText: "Hasar g\xF6ren kabloya gidin."
   actions:
+  - {fileID: 11400000, guid: 2dc09e41475d72a49be5a097ea6e82bb, type: 2}
   - {fileID: 11400000, guid: 0acefce647e5ca14ba058a798646ffba, type: 2}
+  - {fileID: 11400000, guid: f9321f500c0c7104e909e9488d98c63a, type: 2}
   - {fileID: 11400000, guid: fc60b2be471aebe4fb8ef7f0efb6af8b, type: 2}
+  - {fileID: 11400000, guid: 8fb59aec03432af4c91cbf4960031526, type: 2}
   - {fileID: 11400000, guid: e40ad608b1af96343ac1820a08826404, type: 2}
   - {fileID: 11400000, guid: 5673427b22edfa84da02332a77375a52, type: 2}
   - {fileID: 11400000, guid: 04d2ce9d64875864dbedd1f322584f3b, type: 2}
@@ -27,10 +30,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e21d71b99264cf64ba823aa4da5bf4e1, type: 2}
   - {fileID: 11400000, guid: bb139e9e26514a04d89ccca9460267e7, type: 2}
   - {fileID: 11400000, guid: a0d2317bdc1943645839a83084cbd1b3, type: 2}
+  - {fileID: 11400000, guid: 6ab775294b980fd449035ebbf06e2074, type: 2}
   - {fileID: 11400000, guid: 30f471f14a58f324f8d6fed13fe7e1b0, type: 2}
+  - {fileID: 11400000, guid: 79a0a18ee03e50c499935171c4370832, type: 2}
   - {fileID: 11400000, guid: 1c7a9b8d8b462e74e87a55c7ce9097c1, type: 2}
   - {fileID: 11400000, guid: da052d4a70b1d3849a0cb68d4be22371, type: 2}
   - {fileID: 11400000, guid: 52d5bc05424799642a47f2704c142b9a, type: 2}
+  - {fileID: 11400000, guid: 4b55170d96cde3c48932fffbfffd6617, type: 2}
   - {fileID: 11400000, guid: 0093cd17e3cbd554a827faa7d6881008, type: 2}
   - {fileID: 11400000, guid: 41cba5c82aad9c64f986be05a7bf5f81, type: 2}
   - {fileID: 11400000, guid: 569d9ed5267a1c741bc38a970f448786, type: 2}
@@ -43,6 +49,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f58b5e8a52e020a48972f63e7682dbc9, type: 2}
   - {fileID: 11400000, guid: dd913888d8913f24abd8fc342f98c0c2, type: 2}
   - {fileID: 11400000, guid: 72b2355a00dd81e4789ef827420edbc9, type: 2}
+  - {fileID: 11400000, guid: db1a70115265eaa4f903507d9ab1082b, type: 2}
   - {fileID: 11400000, guid: 1c20c79a6ea958f46bdfcad9848047b2, type: 2}
   - {fileID: 11400000, guid: 5c475307f0262ac48a60515ec7582b26, type: 2}
   - {fileID: 11400000, guid: ae9445c1a2d578d47aa8a6a52ec4177d, type: 2}
@@ -61,11 +68,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 133f096bcc87e9d448736d3a20e7aae4, type: 2}
   - {fileID: 11400000, guid: 08b0689f13a190a458a0c6f22e46c91d, type: 2}
   - {fileID: 11400000, guid: eaa5cb09db575f642b1d4e02c2a0e4f5, type: 2}
+  - {fileID: 11400000, guid: 2ffbfd4115f700c48a22a138be569962, type: 2}
   - {fileID: 11400000, guid: 79811b02561794c428d6e69b1a36c735, type: 2}
   - {fileID: 11400000, guid: aa4e72cdfd1d2f240badd0e5cb942a76, type: 2}
   - {fileID: 11400000, guid: 08830a6de3bdad6448059e1ca9c2376c, type: 2}
   - {fileID: 11400000, guid: d87cdc64a29e46b439500b9f7b21c47e, type: 2}
   - {fileID: 11400000, guid: 77c41f6457c34c549b2a7826bd3ee24d, type: 2}
+  - {fileID: 11400000, guid: c083ab2e589e888428d6070e588917f0, type: 2}
   - {fileID: 11400000, guid: 0958561f0dc47864bac4875fdd6de2ed, type: 2}
   targetObjectID: cable3
   buttonOffset: {x: 0, y: 0, z: 0}

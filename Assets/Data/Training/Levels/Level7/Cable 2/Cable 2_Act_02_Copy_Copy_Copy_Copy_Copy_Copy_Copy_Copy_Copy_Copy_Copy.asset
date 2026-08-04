@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: Cable 2_Act_02_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy
   actionName: Cable 2_Act_02_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy
-  instructionText: 
+  instructionText: "Buat g\xF6vdesini kapat\u0131n ve kilitleyin."
   actionType: 3
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
@@ -51,6 +51,12 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  surveyPhotoCount: 0
+  surveyPhotoRequired: 0
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0

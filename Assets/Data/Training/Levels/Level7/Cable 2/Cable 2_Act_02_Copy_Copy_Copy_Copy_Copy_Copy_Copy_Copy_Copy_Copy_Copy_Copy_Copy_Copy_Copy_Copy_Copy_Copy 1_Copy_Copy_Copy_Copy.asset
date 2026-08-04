@@ -16,7 +16,7 @@ MonoBehaviour:
   actionID: Cable 2_Act_02_Copy_Copy_Copy_Copy_Caerg
   actionName: Cable 2_Act_02_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy_Copy
     1_Copy_Copy_Copy_Copy
-  instructionText: 
+  instructionText: "Ek b\xF6lgesini yal\u0131t\u0131m band\u0131 ile sar\u0131n.\r\n"
   actionType: 3
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
@@ -53,6 +53,12 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  surveyPhotoCount: 0
+  surveyPhotoRequired: 0
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0

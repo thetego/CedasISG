@@ -15,9 +15,10 @@ MonoBehaviour:
   sequenceID: Equipment_3
   sequenceName: E qu ip me nt
   sequenceDescription: 
-  instructionText: 
+  instructionText: "\u0130SG malzemelerini giyin."
   actions:
   - {fileID: 11400000, guid: eeb031592ca725343be13c75a3410668, type: 2}
+  - {fileID: 11400000, guid: 82a9a2a7d01359a4b9790215a6a8c393, type: 2}
   targetObjectID: character
   buttonOffset: {x: 0, y: 0, z: 0}
   entryCameraMode: 4

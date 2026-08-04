@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
   actionID: Cable 2_Act_45_Copy_Copy_Copy
   actionName: Cable 2_Act_45_Copy_Copy_Copy
-  instructionText: 
+  instructionText: "Sol\xFCsyonu buat i\xE7erisine belirtilen dolum noktas\u0131ndan
+    doldurun."
   actionType: 2
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
@@ -56,6 +57,12 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  surveyPhotoCount: 0
+  surveyPhotoRequired: 0
+  modalWindowPrefab: {fileID: 0}
+  modalWindowTitle: 
+  modalWindowDescription: 
+  modalConfirmButtonText: Tamam
   activatesTablet: 0
   deactivatesTablet: 0
   hideButtonAfterComplete: 0

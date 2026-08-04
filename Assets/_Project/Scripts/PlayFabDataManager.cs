@@ -32,6 +32,9 @@ namespace SafetyTraining
         public string CurrentPlayerCreatedAt { get; private set; }
         public string CurrentPlayerLastLogin { get; private set; }
 
+        // Menüye her dönüşte login panelinin tekrar sorulmaması için (bkz. UILoginPanel.Start)
+        public bool IsLoggedIn => _isLoggedIn;
+
         private bool   _isLoggedIn;
         private string _playFabId;
         private string _currentLevelId;

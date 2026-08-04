@@ -101,16 +101,15 @@ namespace SafetyTraining
 				modal.descriptionText =
 					$"{levelName} tamamlandı!\n" +
 					$"Süre: {minutes:00}:{seconds:00}\n" +
-					$"Hata sayısı: {mistakes}\n" +
-					$"Skor: {score}";
+					$"Hata sayısı: {mistakes}";
 				modal.UpdateUI();
 			}
 
 			modal?.Open();
 
-			// Skorları göster (ayrı text alanları varsa)
+			// Skor artık gösterilmiyor
 			if (scoreText != null)
-				scoreText.text = $"Score: {score}";
+				scoreText.gameObject.SetActive(false);
 
 			if (timeText != null)
 				timeText.text = $"Time: {minutes:00}:{seconds:00}";

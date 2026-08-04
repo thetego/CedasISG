@@ -37,6 +37,17 @@ namespace SafetyTraining
 
         private void Start()
         {
+            // Zaten giriş yapılmışsa (ör. bir level bitirip menüye dönüldüğünde
+            // bu panel yeniden aktive oluyor) tekrar login sormadan direkt kapat.
+            if (PlayFabDataManager.Instance != null && PlayFabDataManager.Instance.IsLoggedIn)
+            {
+                if (displayNameText != null)
+                    displayNameText.text = PlayFabDataManager.Instance.CurrentDisplayName;
+
+                gameObject.SetActive(false);
+                return;
+            }
+
             // Şifre alanı yanlışlıkla düz metin olarak bırakılmışsa bile ekranda gizli kalsın.
             if (passwordInput != null)
                 passwordInput.contentType = TMP_InputField.ContentType.Password;
