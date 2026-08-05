@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.Networking;
 using PlayFab;
 using PlayFab.ClientModels;
 using PlayFab.Json;
 using System;
 using System.IO;
+using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -19,6 +21,13 @@ namespace SafetyTraining
 
         [Tooltip("PlayFab Title Data'daki whitelist anahtarı")]
         public string whitelistTitleDataKey = "PlayerWhitelist";
+
+        [Header("━━━ TELEMETRİ API ━━━")]
+        [Tooltip("Event telemetrisinin gönderileceği ingest endpoint'i (PlayFab değil)")]
+        public string telemetryEndpoint = "https://cedas.collbrai.com/api/v1/telemetry/events";
+
+        [Tooltip("GÜVENLİK: Bearer ingest token. Kaynak koduna gömmek yerine bu değeri sahnedeki bileşen üzerinde Inspector'dan girin.")]
+        public string ingestToken = "";
 
         [Header("━━━ DEBUG ━━━")]
         public bool debugMode = true;
@@ -38,7 +47,15 @@ namespace SafetyTraining
         private bool   _isLoggedIn;
         private string _playFabId;
         private string _currentLevelId;
+        // Telemetri API'sinin kabul ettiği sabit levelId (level-1/level-2/level-3) —
+        // LevelData.telemetryLevelId'den gelir, yukarıdaki serbest metin levelID'den bağımsız (bkz. LogLevelStarted).
+        private string _currentApiLevelId = "level-1";
         private string _sessionId;
+
+        // Yeni API'nin payload.role enum'u — whitelist'teki (PlayFab Title Data) roller
+        // bunlarla birebir örtüşmeyebilir, eşleşmeyen her şey "trainee"ye düşer.
+        private static readonly HashSet<string> ValidApiRoles =
+            new HashSet<string> { "admin", "manager", "inspector", "trainee" };
 
         // ─── Kalıcı offline kuyruk (§9) — giriş öncesi VE gönderim hatası durumunda
         // eventler burada birikir; disk üzerinde saklandığı için crash/force-close
@@ -410,9 +427,13 @@ namespace SafetyTraining
         // LEVEL EVENTLERİ
         // ═══════════════════════════════════════════════════════
 
-        public void LogLevelStarted(string levelId)
+        public void LogLevelStarted(LevelData level)
         {
+            string levelId = level?.levelID;
             _currentLevelId = levelId;
+            _currentApiLevelId = !string.IsNullOrEmpty(level?.telemetryLevelId)
+                ? level.telemetryLevelId
+                : "level-1";
             _sessionId = Guid.NewGuid().ToString("N");
             _levelStartTime = Time.time;
             _quizTotalQuestions = 0;
@@ -638,13 +659,25 @@ namespace SafetyTraining
         // SEKANS GİRİŞ REDDİ (kilitli/önkoşulu sağlanmamış sekansa girme denemesi)
         // ═══════════════════════════════════════════════════════
 
+        /// <summary>
+        /// Telemetri API'sinin eventType enum'unda "SequenceEntryDenied" yok — bu yüzden
+        /// MistakeRecorded olarak, mistakeType="sequence_entry_denied" ile gönderilir.
+        /// </summary>
         public void LogSequenceEntryDenied(string sequenceId, string levelId,
             string[] missingPrerequisiteIds, string failAction)
         {
-            SendEvent("SequenceEntryDenied", new Dictionary<string, object>
+            const string mistakeType = "sequence_entry_denied";
+            int severity = ComputeMistakeSeverity(sequenceId, mistakeType, out int occurrence);
+
+            SendEvent("MistakeRecorded", new Dictionary<string, object>
             {
-                { "sequenceId",            sequenceId },
+                { "mistakeType",           mistakeType },
+                { "actionId",              sequenceId },
                 { "levelId",               levelId },
+                { "sequenceId",            sequenceId },
+                { "severity",              severity },
+                { "occurrence",            occurrence },
+                { "timestamp",             DateTime.UtcNow.ToString("o") },
                 { "missingPrerequisites",  missingPrerequisiteIds != null
                                                 ? new List<object>(missingPrerequisiteIds)
                                                 : new List<object>() },
@@ -703,32 +736,37 @@ namespace SafetyTraining
         }
 
         // ═══════════════════════════════════════════════════════
-        // CORE — Doküman §6 Event Payload Formatı:
-        // { eventType, clientTimestamp, employeeId, payload: {...} }
-        //
-        // Not: "timestamp" ve "playerId" adlarını bilerek kullanmıyoruz —
-        // PlayFab, WritePlayerEvent body'sinde bu iki adı kendi rezerve ettiği
-        // event şemasıyla çakıştığı için reddediyor ("Field X is a reserved
-        // PlayFab field and may not be overridden"). PlayFab zaten her event'e
-        // kimin (oturum sahibi) ve ne zaman (sunucu saatiyle) yazdığını otomatik
-        // ekliyor; clientTimestamp/employeeId alanlarımız ise istemci tarafındaki
-        // gerçek değerleri (login olmadan kuyruğa alınan eventlerde bunlar sunucu
-        // değerlerinden farklı olabilir) doküman formatına uygun şekilde taşır.
+        // CORE — Telemetri Ingest API'sinin TelemetryEvent şeması:
+        // { eventId, schemaVersion, eventType, clientTimestamp, employeeId, payload }
+        // payload zorunlu alanları: sessionId, playerId, levelId (level-1/2/3).
+        // levelId ve role burada merkezi olarak set edilir/override edilir ki
+        // hangi çağıran ne geçerse geçsin API'nin kabul ettiği sabit değerler gitsin
+        // (bkz. LogLevelStarted → _currentApiLevelId, MapApiRole).
         // ═══════════════════════════════════════════════════════
+
+        private static string MapApiRole(string role)
+        {
+            if (string.IsNullOrEmpty(role))
+                return "trainee";
+
+            string normalized = role.Trim().ToLowerInvariant();
+            return ValidApiRoles.Contains(normalized) ? normalized : "trainee";
+        }
 
         private void SendEvent(string eventName, Dictionary<string, object> payload)
         {
-            // PlayFab reserves top-level playerId/timestamp. Keep its transport
-            // envelope intact and add the document contract context to payload.
             var documentPayload = new Dictionary<string, object>(payload);
             documentPayload["sessionId"] = _sessionId ?? string.Empty;
             documentPayload["playerId"] = CurrentPlayerId ?? string.Empty;
-            documentPayload["role"] = CurrentPlayerRole ?? string.Empty;
+            documentPayload["levelId"] = _currentApiLevelId;
+            documentPayload["role"] = MapApiRole(CurrentPlayerRole);
             if (!documentPayload.ContainsKey("timestamp"))
                 documentPayload["timestamp"] = DateTime.UtcNow.ToString("o");
 
             var envelope = new Dictionary<string, object>
             {
+                { "eventId",         Guid.NewGuid().ToString() },
+                { "schemaVersion",   2 },
                 { "eventType",       eventName },
                 { "clientTimestamp", DateTime.UtcNow.ToString("o") },
                 { "employeeId",      CurrentPlayerId ?? string.Empty },
@@ -765,17 +803,30 @@ namespace SafetyTraining
                 return;
             }
 
-            QueuedEvent next = _offlineQueue[0];
-            var request = new WriteClientPlayerEventRequest
-            {
-                EventName = next.EventName,
-                Body      = next.Body as Dictionary<string, object>
-                            ?? new Dictionary<string, object>((IDictionary<string, object>)next.Body)
-            };
+            StartCoroutine(SendTelemetryEvent(_offlineQueue[0]));
+        }
 
-            PlayFabClientAPI.WritePlayerEvent(
-                request,
-                _ =>
+        // Telemetri API'si tek event de kabul ediyor, batch de (max 200/256 KiB) —
+        // mevcut "kuyruktan tek tek gönder" akışıyla uyumlu kalması için tek elemanlı
+        // bir batch olarak gönderiyoruz.
+        private IEnumerator SendTelemetryEvent(QueuedEvent next)
+        {
+            var batch = new Dictionary<string, object>
+            {
+                { "events", new List<object> { next.Body } }
+            };
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(PlayFabSimpleJson.SerializeObject(batch));
+
+            using (var request = new UnityWebRequest(telemetryEndpoint, "POST"))
+            {
+                request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+                request.downloadHandler = new DownloadHandlerBuffer();
+                request.SetRequestHeader("Content-Type", "application/json");
+                request.SetRequestHeader("Authorization", "Bearer " + ingestToken);
+
+                yield return request.SendWebRequest();
+
+                if (request.result == UnityWebRequest.Result.Success)
                 {
                     if (debugMode)
                         Debug.Log($"<color=cyan>[PlayFabDataManager] ✓ {next.EventName}</color>");
@@ -783,15 +834,16 @@ namespace SafetyTraining
                     _offlineQueue.RemoveAt(0);
                     PersistQueueToDisk();
                     SendNextQueuedEvent();
-                },
-                error =>
+                }
+                else
                 {
                     Debug.LogError(
-                        $"[PlayFabDataManager] Event hatası ({next.EventName}), {_currentRetryDelay:F0}s sonra tekrar denenecek: {error.GenerateErrorReport()}");
+                        $"[PlayFabDataManager] Telemetri hatası ({next.EventName}: {request.responseCode} {request.error}), " +
+                        $"{_currentRetryDelay:F0}s sonra tekrar denenecek.");
                     _isFlushingQueue = false;
                     ScheduleRetry();
                 }
-            );
+            }
         }
 
         private void ScheduleRetry()

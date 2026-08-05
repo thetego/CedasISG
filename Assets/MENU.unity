@@ -23243,6 +23243,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.PlayFabDataManager
   titleId: 797DC
   whitelistTitleDataKey: PlayerWhitelist
+  telemetryEndpoint: https://cedas.collbrai.com/api/v1/telemetry/events
+  ingestToken: UrryIvFZj5HVVKmX3b_6_BbgCSds3Tdy5P-t6fCHEAuQXR7zFJSLLCHHHFIoCPeI
   debugMode: 1
 --- !u!4 &2129887003
 Transform:

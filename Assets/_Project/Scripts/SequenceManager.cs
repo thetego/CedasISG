@@ -161,7 +161,7 @@ namespace SafetyTraining
 			// Sekans butonlarını spawn et
 			UISpawnManager.Instance?.SpawnSequenceButtons(currentLevel);
 
-			PlayFabDataManager.Instance?.LogLevelStarted(currentLevel.levelID);
+			PlayFabDataManager.Instance?.LogLevelStarted(currentLevel);
 
 			// Level start event
 			currentLevel.onLevelStart?.Invoke();

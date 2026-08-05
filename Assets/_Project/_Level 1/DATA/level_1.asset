@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Level 1
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.LevelData
   levelID: level 1
+  telemetryLevelId: level-1
   levelName: Level 1
   levelDescription: 
   sequenceSelectionInstructionText: "Bir sekans se\xE7in"

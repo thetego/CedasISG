@@ -12,6 +12,11 @@ namespace SafetyTraining
 		[Header("━━━ LEVEL BİLGİLERİ ━━━")]
 		public string levelID;
 		public string levelName;
+
+		[Header("━━━ TELEMETRİ ━━━")]
+		[Tooltip("Telemetri API'sine gönderilen sabit levelId (yalnızca level-1 / level-2 / level-3 kabul edilir). " +
+			"Yukarıdaki levelID alanından bağımsızdır, oyun içi mantığı etkilemez.")]
+		public string telemetryLevelId = "level-1";
 		[TextArea(2, 4)]
 		public string levelDescription;
 
