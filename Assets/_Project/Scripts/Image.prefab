@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e3ac98c7b179e7b4b937034cc51b3f1b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8bb5c15443dd64d7d80864ef40d66883, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -143,3 +143,6 @@ MonoBehaviour:
   scaleSpeed: 8
   clickSound: {fileID: 0}
   debugMode: 0
+  dockToRightMiddle: 1
+  rightMargin: 80
+  verticalOffset: 0
