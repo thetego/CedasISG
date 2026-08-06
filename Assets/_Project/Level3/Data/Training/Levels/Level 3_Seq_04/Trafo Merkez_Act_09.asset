@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
   m_Name: "Trafo Merkez Act 09"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: "TrafoMerkez_Act_09"
+  actionID: "seq_5_act5"
   actionName: "Trafo Merkez Act 09"
   instructionText: 
   actionType: 6

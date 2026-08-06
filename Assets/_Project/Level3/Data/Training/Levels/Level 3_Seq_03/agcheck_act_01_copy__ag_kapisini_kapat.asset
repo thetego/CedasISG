@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
   m_Name: "AG kapisini kapat"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: "AGCheck_Act_01_2"
+  actionID: "seq_4_act25"
   actionName: "AG kapisini kapat"
   instructionText: "AG odas\u0131ndan \xE7\u0131k\u0131n"
   actionType: 3

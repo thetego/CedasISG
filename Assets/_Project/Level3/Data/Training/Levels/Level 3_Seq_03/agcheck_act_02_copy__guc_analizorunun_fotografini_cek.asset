@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
   m_Name: Guc analizorunun fotografini cek
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: AGCheck_Act_02_2
+  actionID: seq_4_act10
   actionName: Guc analizorunun fotografini cek
   instructionText: "G\xFC\xE7 analiz\xF6r\xFCn\xFCn foto\u011Fraf\u0131n\u0131 \xE7ekin"
   actionType: 4

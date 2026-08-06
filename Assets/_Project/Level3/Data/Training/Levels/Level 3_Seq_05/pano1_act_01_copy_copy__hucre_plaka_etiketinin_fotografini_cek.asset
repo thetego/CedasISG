@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
   m_Name: Hucre plaka etiketinin fotografini cek
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: pano1_Act_01_5
+  actionID: seq_6_act9
   actionName: Hucre plaka etiketinin fotografini cek
   instructionText: "H\xFCcre plaka etiketini teyit edin ve kontrol formunu doldurun"
   actionType: 4

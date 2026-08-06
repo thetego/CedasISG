@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
   m_Name: Trafonun termal gorusunu kontrol et ve fotografini cek
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: TrafoCheck_Act_03
+  actionID: seq_2_act7
   actionName: Trafonun termal gorusunu kontrol et ve fotografini cek
   instructionText: "Termal kamera ile \xF6l\xE7\xFCm yap\u0131n ve foto\u011Fraf\u0131n\u0131
     \xE7ekin"

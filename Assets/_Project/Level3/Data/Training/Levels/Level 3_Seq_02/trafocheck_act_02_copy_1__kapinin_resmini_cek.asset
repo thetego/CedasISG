@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
   m_Name: Kapinin resmini cek
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: TrafoCheck_Act_02_3
+  actionID: seq_2_act2
   actionName: Kapinin resmini cek
   instructionText: "Trafo odas\u0131 kap\u0131s\u0131n\u0131 tablet ile foto\u011Fraflay\u0131n
     ve kontrol formundaki soruyu cevaplay\u0131n."

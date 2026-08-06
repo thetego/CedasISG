@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
   m_Name: "AG Check Act 16"
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: "AGCheck_Act_16"
+  actionID: "seq_4_act4"
   actionName: "AG Check Act 16"
   instructionText: 
   actionType: 6

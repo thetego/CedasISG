@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
   m_Name: Kapagi ac_Copy
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: Kapagi ac_Copy
+  actionID: seq_4_act13
   actionName: Kapagi ac_Copy
   instructionText: "Kapa\u011F\u0131 a\xE7\u0131n"
   actionType: 3

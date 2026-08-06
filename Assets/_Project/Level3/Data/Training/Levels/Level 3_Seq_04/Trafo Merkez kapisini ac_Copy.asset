@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
-  m_Name: Guc analizorunun fotografini cek_Copy
+  m_Name: Trafo Merkez kapisini ac_Copy
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: seq_4_act11
-  actionName: Guc analizorunun fotografini cek_Copy
-  instructionText: "G\xFC\xE7 analiz\xF6r\xFCn\xFCn foto\u011Fraf\u0131n\u0131 \xE7ekin"
-  actionType: 4
+  actionID: seq_5_act3
+  actionName: Trafo Merkez kapisini ac_Copy
+  instructionText: "OG odas\u0131n\u0131n kap\u0131s\u0131n\u0131 a\xE7\u0131n"
+  actionType: 3
   prerequisiteActionIDs: []
   onPrerequisiteFail: 0
   prerequisiteFailMessage: "Bu aksiyonu yapmak i\xE7in \xF6nce gerekli ad\u0131mlar\u0131
     tamamlamal\u0131s\u0131n\u0131z."
-  completionDelay: 0
-  autoCompleteAfterDelay: 0
-  cameraMode: 4
-  virtualCameraID: camAG4
+  completionDelay: 2
+  autoCompleteAfterDelay: 1
+  cameraMode: 0
+  virtualCameraID: 
   autoReturnCameraOnComplete: 0
-  targetObjectID: 
+  targetObjectID: TMLock
   requiredEquipments: []
   distractorEquipments: []
   requiredTools: []
@@ -51,16 +51,22 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
-  surveyPhotoCount: 1
-  surveyPhotoRequired: 1
+  surveyPhotoCount: 0
+  surveyPhotoRequired: 0
   modalWindowPrefab: {fileID: 0}
   modalWindowTitle: 
   modalWindowDescription: 
   modalConfirmButtonText: Tamam
-  activatesTablet: 1
-  deactivatesTablet: 0
+  activatesTablet: 0
+  deactivatesTablet: 1
   hideButtonAfterComplete: 0
-  animationTriggers: []
+  animationTriggers:
+  - animatorObjectID: "TMKap\u0131"
+    triggerName: Open
+    parameterType: 0
+    parameterValue: 0
+    timing: 1
+    autoResetTrigger: 0
   soundClip: {fileID: 0}
   particleEffectID: 
   particleSpawnOffset: {x: 0, y: 0, z: 0}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d51cb09b5ff4d4eb3cb9321e0db360, type: 3}
   m_Name: Roleyi kontrol et_Copy_Copy_Copy
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.ActionData
-  actionID: Roleyi kontrol et_Copy_Copy_Copy
+  actionID: seq_9_act4
   actionName: Roleyi kontrol et_Copy_Copy_Copy
   instructionText: "R\xF6lenin \xE7al\u0131\u015F\u0131rl\u0131\u011F\u0131n\u0131
     kontrol edin"
