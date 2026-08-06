@@ -23241,8 +23241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8547ab229f999d14094e47875696f5ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SafetyTraining.PlayFabDataManager
-  titleId: 797DC
-  whitelistTitleDataKey: PlayerWhitelist
+  authEndpoint: https://cedas.collbrai.com/api/v1/auth/login
   telemetryEndpoint: https://cedas.collbrai.com/api/v1/telemetry/events
   ingestToken: UrryIvFZj5HVVKmX3b_6_BbgCSds3Tdy5P-t6fCHEAuQXR7zFJSLLCHHHFIoCPeI
   debugMode: 1

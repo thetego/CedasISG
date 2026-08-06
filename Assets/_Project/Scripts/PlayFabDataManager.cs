@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.Networking;
-using PlayFab;
-using PlayFab.ClientModels;
 using PlayFab.Json;
 using System;
 using System.IO;
@@ -15,12 +13,9 @@ namespace SafetyTraining
     {
         public static PlayFabDataManager Instance { get; private set; }
 
-        [Header("━━━ PLAYFAB ━━━")]
-        [Tooltip("PlayFab Title ID — zorunlu")]
-        public string titleId;
-
-        [Tooltip("PlayFab Title Data'daki whitelist anahtarı")]
-        public string whitelistTitleDataKey = "PlayerWhitelist";
+        [Header("━━━ AUTH API ━━━")]
+        [Tooltip("CEDAŞ backend login endpoint'i. id+password alır, kullanıcı bilgisini döner.")]
+        public string authEndpoint = "https://cedas.collbrai.com/api/v1/auth/login";
 
         [Header("━━━ TELEMETRİ API ━━━")]
         [Tooltip("Event telemetrisinin gönderileceği ingest endpoint'i (PlayFab değil)")]
@@ -32,27 +27,22 @@ namespace SafetyTraining
         [Header("━━━ DEBUG ━━━")]
         public bool debugMode = true;
 
-        // ─── Oyuncu verisi (doküman §4.1) ───
+        // ─── Oyuncu verisi ───
         public string CurrentPlayerId    { get; private set; }
         public string CurrentDisplayName { get; private set; }
         public string CurrentPlayerRole  { get; private set; }
-        public int    CurrentPlayerLevel { get; private set; }
-        public long   CurrentPlayerXp    { get; private set; }
-        public string CurrentPlayerCreatedAt { get; private set; }
-        public string CurrentPlayerLastLogin { get; private set; }
 
         // Menüye her dönüşte login panelinin tekrar sorulmaması için (bkz. UILoginPanel.Start)
         public bool IsLoggedIn => _isLoggedIn;
 
         private bool   _isLoggedIn;
-        private string _playFabId;
         private string _currentLevelId;
         // Telemetri API'sinin kabul ettiği sabit levelId (level-1/level-2/level-3) —
         // LevelData.telemetryLevelId'den gelir, yukarıdaki serbest metin levelID'den bağımsız (bkz. LogLevelStarted).
         private string _currentApiLevelId = "level-1";
         private string _sessionId;
 
-        // Yeni API'nin payload.role enum'u — whitelist'teki (PlayFab Title Data) roller
+        // Telemetri API'sinin payload.role enum'u — CEDAŞ backend'inden dönen rol
         // bunlarla birebir örtüşmeyebilir, eşleşmeyen her şey "trainee"ye düşer.
         private static readonly HashSet<string> ValidApiRoles =
             new HashSet<string> { "admin", "manager", "inspector", "trainee" };
@@ -74,10 +64,6 @@ namespace SafetyTraining
         private const float MaxRetryDelaySeconds = 60f;
         private const string QueueFileName = "pf_event_queue.json";
         private string QueueFilePath => Path.Combine(Application.persistentDataPath, QueueFileName);
-
-        // Callback'ler
-        private Action          _onLoginSuccess;
-        private Action<string>  _onLoginFailed;
 
         // Zaman takibi
         private float _levelStartTime;
@@ -107,18 +93,6 @@ namespace SafetyTraining
             public string playerId;
             public string displayName;
             public string role;
-
-            // ── Doküman §4.1 Player modeli — whitelist JSON'da bu alanlar varsa parse edilir ──
-            public int    level;
-            public long   xp;
-            public string createdAt;
-            public string lastLogin;
-        }
-
-        [Serializable]
-        private class WhitelistJson
-        {
-            public List<PlayerEntry> players;
         }
 
         // ═══════════════════════════════════════════════════════
@@ -155,12 +129,6 @@ namespace SafetyTraining
             {
                 Destroy(gameObject);
             }
-        }
-
-        private void Start()
-        {
-            if (!string.IsNullOrEmpty(titleId))
-                PlayFabSettings.TitleId = titleId;
         }
 
         // ═══════════════════════════════════════════════════════
@@ -222,93 +190,20 @@ namespace SafetyTraining
         }
 
         // ═══════════════════════════════════════════════════════
-        // WHİTELİST ÇEKME
+        // OYUNCU GİRİŞİ — CEDAŞ backend (POST /api/v1/auth/login)
+        // Swagger'da belgelenmemiş ama üretimde çalışan bir endpoint;
+        // {id, password} alır, doğruysa kullanıcı bilgisini (id/name/role) döner.
         // ═══════════════════════════════════════════════════════
 
-        // Title Data'yı okuyabilmek için PlayFab bir oturum ister; cihaza özel bir ID
-        // yerine SABİT/paylaşılan bu ID kullanılıyor. Böylece kaç cihaz/kullanıcı olursa
-        // olsun bu amaçla yalnızca TEK bir PlayFab hesabı oluşur (Development Mode'daki
-        // 1.000 hesap kotasını cihaz başına ayrı ayrı tüketmemek için).
-        private const string WhitelistReaderCustomId = "whitelist_reader";
-
-        /// <summary>
-        /// PlayFab Title Data'dan whitelist'i çeker.
-        /// Önce paylaşılan (cihaza özel olmayan) bir login yapar, ardından GetTitleData çağırır.
-        /// </summary>
-        public void FetchWhitelist(
-            Action<List<PlayerEntry>> onSuccess,
-            Action<string>           onFailed)
+        public void LoginWithCredentials(
+            string               employeeId,
+            string               password,
+            Action<PlayerEntry>  onSuccess = null,
+            Action<string>       onFailed  = null)
         {
-            if (debugMode)
-                Debug.Log("[PlayFabDataManager] Whitelist çekiliyor...");
-
-            // Title Data okuyabilmek için paylaşılan hesapla giriş
-            PlayFabClientAPI.LoginWithCustomID(
-                new LoginWithCustomIDRequest
-                {
-                    CustomId      = WhitelistReaderCustomId,
-                    CreateAccount = true
-                },
-                _ => FetchTitleData(onSuccess, onFailed),
-                err => onFailed?.Invoke(err.GenerateErrorReport())
-            );
-        }
-
-        private void FetchTitleData(
-            Action<List<PlayerEntry>> onSuccess,
-            Action<string>           onFailed)
-        {
-            PlayFabClientAPI.GetTitleData(
-                new GetTitleDataRequest { Keys = new List<string> { whitelistTitleDataKey } },
-                result =>
-                {
-                    if (!result.Data.TryGetValue(whitelistTitleDataKey, out string json))
-                    {
-                        onFailed?.Invoke($"Title Data'da '{whitelistTitleDataKey}' anahtarı bulunamadı.");
-                        return;
-                    }
-
-                    try
-                    {
-                        var parsed = JsonUtility.FromJson<WhitelistJson>(json);
-                        if (parsed?.players == null || parsed.players.Count == 0)
-                        {
-                            onFailed?.Invoke("Whitelist boş veya hatalı JSON.");
-                            return;
-                        }
-
-                        if (debugMode)
-                            Debug.Log($"<color=lime>[PlayFabDataManager] {parsed.players.Count} oyuncu yüklendi.</color>");
-
-                        onSuccess?.Invoke(parsed.players);
-                    }
-                    catch (Exception e)
-                    {
-                        onFailed?.Invoke($"JSON parse hatası: {e.Message}");
-                    }
-                },
-                err => onFailed?.Invoke(err.GenerateErrorReport())
-            );
-        }
-
-        // ═══════════════════════════════════════════════════════
-        // OYUNCU GİRİŞİ
-        // ═══════════════════════════════════════════════════════
-
-        /// <summary>
-        /// ID + şifre ile giriş yapar. Bu ID için daha önce hiç şifre belirlenmemişse
-        /// (PlayFab hesabı henüz yoksa) girilen şifre o ID'nin şifresi olarak kaydedilir —
-        /// bir sonraki girişte aynı şifre doğrulanarak kullanılır.
-        /// </summary>
-        public void LoginWithPlayer(
-            PlayerEntry    entry,
-            string         password,
-            Action         onSuccess = null,
-            Action<string> onFailed  = null)
-        {
-            if (entry == null)
+            if (string.IsNullOrWhiteSpace(employeeId))
             {
-                onFailed?.Invoke("Geçersiz oyuncu.");
+                onFailed?.Invoke("ID boş olamaz.");
                 return;
             }
 
@@ -318,108 +213,113 @@ namespace SafetyTraining
                 return;
             }
 
-            CurrentPlayerId       = entry.playerId;
-            CurrentDisplayName    = entry.displayName;
-            CurrentPlayerRole     = entry.role;
-            CurrentPlayerLevel    = entry.level;
-            CurrentPlayerXp       = entry.xp;
-            CurrentPlayerCreatedAt = entry.createdAt;
-            CurrentPlayerLastLogin = DateTime.UtcNow.ToString("o");
-            _onLoginSuccess    = onSuccess;
-            _onLoginFailed     = onFailed;
-
             if (debugMode)
-                Debug.Log($"[PlayFabDataManager] Giriş deneniyor: {entry.displayName} ({entry.playerId})");
+                Debug.Log($"[PlayFabDataManager] Giriş deneniyor: {employeeId}");
 
-            PlayFabClientAPI.LoginWithPlayFab(
-                new LoginWithPlayFabRequest
-                {
-                    Username = entry.playerId,
-                    Password = password
-                },
-                OnLoginSuccess,
-                error => HandleLoginError(entry, password, error)
-            );
+            StartCoroutine(SendLoginRequest(employeeId.Trim(), password, onSuccess, onFailed));
         }
 
-        /// <summary>
-        /// Şifreli girişte hata alınırsa çağrılır. Hata "hesap yok" ise (bu ID ilk kez
-        /// şifre belirliyor demektir) girilen şifreyle yeni hesap oluşturulur — bundan
-        /// sonraki girişlerde aynı şifre zorunlu olur. Başka bir hata ise (yanlış şifre vb.)
-        /// olduğu gibi bildirilir.
-        /// </summary>
-        private void HandleLoginError(PlayerEntry entry, string password, PlayFabError error)
+        private IEnumerator SendLoginRequest(
+            string               employeeId,
+            string               password,
+            Action<PlayerEntry>  onSuccess,
+            Action<string>       onFailed)
         {
-            if (error.Error != PlayFabErrorCode.AccountNotFound)
+            var body = new Dictionary<string, object>
             {
-                OnLoginError(error);
-                return;
-            }
+                { "id",       employeeId },
+                { "password", password }
+            };
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(PlayFabSimpleJson.SerializeObject(body));
 
-            if (debugMode)
-                Debug.Log($"[PlayFabDataManager] '{entry.playerId}' için hesap yok — ilk giriş, şifre kaydediliyor.");
+            using (var request = new UnityWebRequest(authEndpoint, "POST"))
+            {
+                request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+                request.downloadHandler = new DownloadHandlerBuffer();
+                request.SetRequestHeader("Content-Type", "application/json");
 
-            PlayFabClientAPI.RegisterPlayFabUser(
-                new RegisterPlayFabUserRequest
+                yield return request.SendWebRequest();
+
+                string responseText = request.downloadHandler.text;
+
+                if (request.result == UnityWebRequest.Result.Success && request.responseCode == 200)
                 {
-                    Username = entry.playerId,
-                    Password = password,
-                    DisplayName = entry.displayName,
-                    RequireBothUsernameAndEmail = false
-                },
-                OnRegisterSuccess,
-                OnLoginError
-            );
+                    PlayerEntry entry = ParseLoginResponse(responseText);
+                    if (entry == null)
+                    {
+                        onFailed?.Invoke("Sunucu yanıtı okunamadı.");
+                        yield break;
+                    }
+
+                    ApplyLoggedInPlayer(entry);
+                    onSuccess?.Invoke(entry);
+                }
+                else
+                {
+                    Debug.LogError($"[PlayFabDataManager] Giriş hatası ({request.responseCode}): {responseText}");
+                    onFailed?.Invoke(MapLoginError(request.responseCode, responseText));
+                }
+            }
         }
 
-        private void OnLoginSuccess(LoginResult result)
+        private static PlayerEntry ParseLoginResponse(string json)
         {
-            FinalizeLogin(result.PlayFabId, result.NewlyCreated);
+            try
+            {
+                if (PlayFabSimpleJson.DeserializeObject(json) is IDictionary<string, object> root &&
+                    root.TryGetValue("user", out object userObj) &&
+                    userObj is IDictionary<string, object> user)
+                {
+                    return new PlayerEntry
+                    {
+                        playerId    = user.TryGetValue("id", out object id) ? id as string : string.Empty,
+                        displayName = user.TryGetValue("name", out object name) ? name as string : string.Empty,
+                        role        = user.TryGetValue("role", out object role) ? role as string : "trainee"
+                    };
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[PlayFabDataManager] Giriş yanıtı parse edilemedi: {e.Message}");
+            }
+            return null;
         }
 
-        private void OnRegisterSuccess(RegisterPlayFabUserResult result)
+        private void ApplyLoggedInPlayer(PlayerEntry entry)
         {
+            CurrentPlayerId    = entry.playerId;
+            CurrentDisplayName = entry.displayName;
+            CurrentPlayerRole  = entry.role;
+            _isLoggedIn        = true;
+
             if (debugMode)
-                Debug.Log($"<color=lime>[PlayFabDataManager] ✓ '{CurrentPlayerId}' için şifre ilk kez oluşturuldu.</color>");
-
-            FinalizeLogin(result.PlayFabId, newlyCreated: true);
-        }
-
-        private void FinalizeLogin(string playFabId, bool newlyCreated)
-        {
-            _isLoggedIn = true;
-            _playFabId  = playFabId;
-
-            if (newlyCreated || string.IsNullOrEmpty(CurrentPlayerCreatedAt))
-                CurrentPlayerCreatedAt = CurrentPlayerLastLogin;
-
-            if (debugMode)
-                Debug.Log($"<color=lime>[PlayFabDataManager] Giriş başarılı: {CurrentDisplayName} → {playFabId}</color>");
+                Debug.Log($"<color=lime>[PlayFabDataManager] Giriş başarılı: {CurrentDisplayName} ({CurrentPlayerId})</color>");
 
             TryFlushQueue();
-            _onLoginSuccess?.Invoke();
-            _onLoginSuccess = null;
-            _onLoginFailed  = null;
         }
 
-        private void OnLoginError(PlayFabError error)
+        private static string MapLoginError(long statusCode, string responseText)
         {
-            Debug.LogError($"[PlayFabDataManager] Giriş hatası: {error.GenerateErrorReport()}");
-            _onLoginFailed?.Invoke(MapLoginError(error));
-            _onLoginSuccess = null;
-            _onLoginFailed  = null;
-        }
-
-        private static string MapLoginError(PlayFabError error)
-        {
-            switch (error.Error)
+            string errorCode = null;
+            try
             {
-                case PlayFabErrorCode.InvalidUsernameOrPassword:
-                    return "Şifre hatalı.";
-                case PlayFabErrorCode.UsernameNotAvailable:
-                    return "Bu ID için hesap oluşturulamadı, lütfen sistem yöneticinizle iletişime geçin.";
+                if (PlayFabSimpleJson.DeserializeObject(responseText) is IDictionary<string, object> root &&
+                    root.TryGetValue("error", out object err))
+                    errorCode = err as string;
+            }
+            catch (Exception)
+            {
+                // yanıt JSON değilse (ör. ağ hatası) durum koduna düşülür
+            }
+
+            switch (errorCode)
+            {
+                case "invalid_credentials":
+                    return "ID veya şifre hatalı.";
                 default:
-                    return "Giriş başarısız, lütfen tekrar deneyin.";
+                    return statusCode == 0
+                        ? "Sunucuya ulaşılamadı, internet bağlantınızı kontrol edin."
+                        : "Giriş başarısız, lütfen tekrar deneyin.";
             }
         }
 

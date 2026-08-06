@@ -1,18 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
-using System.Collections.Generic;
 
 namespace SafetyTraining
 {
     /// <summary>
-    /// Oyun açılışında PlayFab Title Data'dan çalışan whitelist'ini çeker.
-    /// Çalışan kendi ID'sini ve şifresini girip giriş yapar — tüm çalışan
-    /// listesi ekrana hiç basılmaz, sadece girilen ID whitelist'te aranır.
-    /// Bir ID için ilk kez şifre giriliyorsa (PlayFab hesabı henüz yoksa) o şifre
-    /// kalıcı olarak kaydedilir; sonraki girişlerde aynı şifre doğrulanır
-    /// (bkz. PlayFabDataManager.LoginWithPlayer).
+    /// Çalışan CEDAŞ panelinde oluşturulan ID'sini ve şifresini girip giriş yapar.
+    /// Doğrulama CEDAŞ backend'inde (PlayFabDataManager.LoginWithCredentials) yapılır.
     /// </summary>
     public class UILoginPanel : MonoBehaviour
     {
@@ -27,13 +21,11 @@ namespace SafetyTraining
         public TextMeshProUGUI displayNameText;
 
         [Header("━━━ AYARLAR ━━━")]
-        [Tooltip("PlayFab'ın izin verdiği minimum şifre uzunluğu")]
-        public int minPasswordLength = 6;
+        [Tooltip("CEDAŞ panelinin izin verdiği minimum şifre uzunluğu")]
+        public int minPasswordLength = 12;
 
         [Header("━━━ DEBUG ━━━")]
         public bool debugMode = true;
-
-        private List<PlayFabDataManager.PlayerEntry> _entries;
 
         private void Start()
         {
@@ -52,19 +44,6 @@ namespace SafetyTraining
             if (passwordInput != null)
                 passwordInput.contentType = TMP_InputField.ContentType.Password;
 
-            SetInteractable(false);
-            SetStatus("Çalışan listesi yükleniyor...");
-            ShowLoading(true);
-
-            PlayFabDataManager.Instance?.FetchWhitelist(OnWhitelistFetched, OnFetchFailed);
-        }
-
-        // ─── Whitelist yüklendi ───
-
-        private void OnWhitelistFetched(List<PlayFabDataManager.PlayerEntry> entries)
-        {
-            _entries = entries;
-            ShowLoading(false);
             SetInteractable(true);
             SetStatus("Çalışan ID'nizi girip giriş yapın.");
 
@@ -78,25 +57,6 @@ namespace SafetyTraining
                 passwordInput.onSubmit.AddListener(_ => OnLoginClicked());
         }
 
-        private void OnFetchFailed(string error)
-        {
-            ShowLoading(false);
-            SetStatus($"Liste yüklenemedi: {error}", isError: true);
-            Debug.LogError($"[UILoginPanel] Whitelist hatası: {error}");
-        }
-
-        // ─── ID arama ───
-
-        private PlayFabDataManager.PlayerEntry FindEntry(string enteredId)
-        {
-            if (_entries == null || string.IsNullOrWhiteSpace(enteredId))
-                return null;
-
-            string trimmed = enteredId.Trim();
-            return _entries.Find(e =>
-                string.Equals(e.playerId, trimmed, StringComparison.OrdinalIgnoreCase));
-        }
-
         // ─── Login ───
 
         private void OnLoginClicked()
@@ -104,11 +64,9 @@ namespace SafetyTraining
             string enteredId       = playerIdInput != null ? playerIdInput.text : string.Empty;
             string enteredPassword = passwordInput  != null ? passwordInput.text  : string.Empty;
 
-            PlayFabDataManager.PlayerEntry entry = FindEntry(enteredId);
-
-            if (entry == null)
+            if (string.IsNullOrWhiteSpace(enteredId))
             {
-                SetStatus("ID bulunamadı. Lütfen kontrol edip tekrar deneyin.", isError: true);
+                SetStatus("ID boş olamaz.", isError: true);
                 return;
             }
 
@@ -122,8 +80,8 @@ namespace SafetyTraining
             ShowLoading(true);
             SetStatus("Giriş yapılıyor...");
 
-            PlayFabDataManager.Instance?.LoginWithPlayer(entry, enteredPassword,
-                () => OnLoginSuccess(entry),
+            PlayFabDataManager.Instance?.LoginWithCredentials(enteredId, enteredPassword,
+                OnLoginSuccess,
                 OnLoginFailed);
         }
 

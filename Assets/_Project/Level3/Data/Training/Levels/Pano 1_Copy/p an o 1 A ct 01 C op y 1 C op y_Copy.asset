@@ -76,5 +76,5 @@ MonoBehaviour:
   onStartEventIDs:
   - 
   onCompleteEventIDs:
-  - D1_OFF
+  - D2_OFF
   onFailEventIDs: []

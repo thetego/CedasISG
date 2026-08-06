@@ -51,6 +51,8 @@ MonoBehaviour:
     questions: []
     photoSlotCount: 0
     photoSlots: []
+  surveyPhotoCount: 0
+  surveyPhotoRequired: 0
   modalWindowPrefab: {fileID: 0}
   modalWindowTitle: 
   modalWindowDescription: 
@@ -72,7 +74,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onStartEventIDs:
-  - 
+  - D1_OFF
   onCompleteEventIDs:
   - D1_OFF
   onFailEventIDs: []

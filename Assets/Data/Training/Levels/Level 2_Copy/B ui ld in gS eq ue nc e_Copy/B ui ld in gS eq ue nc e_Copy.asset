@@ -17,8 +17,8 @@ MonoBehaviour:
   sequenceDescription: 
   instructionText: 
   actions:
+  - {fileID: 11400000, guid: d466f0c714684a44083c837784349e4e, type: 2}
   - {fileID: 11400000, guid: b0769dce59c158449aca14eba6040660, type: 2}
-  - {fileID: 11400000, guid: c094a44150428bd42b4fed450e3b7708, type: 2}
   - {fileID: 11400000, guid: 82175290b30bdb54497b994ff0138c39, type: 2}
   - {fileID: 11400000, guid: a1a2f132aaf7da04a8d4951e8a432376, type: 2}
   - {fileID: 11400000, guid: 0c2d48d133937d44995ed2cb27dfaa8a, type: 2}
